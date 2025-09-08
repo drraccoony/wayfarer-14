@@ -7,6 +7,7 @@ using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Systems;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.SSDIndicator;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -31,6 +32,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
         SubscribeLocalEvent<JobTrackingComponent, CryosleepBeforeMindRemovedEvent>(OnJobBeforeCryoEntered);
         SubscribeLocalEvent<JobTrackingComponent, MindAddedMessage>(OnJobMindAdded);
         SubscribeLocalEvent<JobTrackingComponent, MindRemovedMessage>(OnJobMindRemoved);
+        SubscribeLocalEvent<JobTrackingComponent, SSDJobReopenEvent>(OnJobSSDReopen);
     }
 
     // If, through admin jiggery pokery, the player returns (or the mob is controlled), we should close the slot if it's opened.
@@ -77,6 +79,16 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
         OpenJob(ent);
         ev.DeleteEntity = true;
+    }
+
+    private void OnJobSSDReopen(Entity<JobTrackingComponent> ent, ref SSDJobReopenEvent ev)
+    {
+        if (ent.Comp.Job == null
+            || !ent.Comp.Active
+            || !JobShouldBeReopened(ent.Comp.Job.Value))
+            return;
+
+        OpenJob(ent);
     }
 
     public void OpenJob(Entity<JobTrackingComponent> ent)

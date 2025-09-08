@@ -56,4 +56,17 @@ public sealed partial class SSDIndicatorComponent : Component
     [AutoNetworkedField]
     public bool PreventSleep = false;
     // End Frontier
+
+    /// <summary>
+    /// They went SSD at this time.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public TimeSpan WentBraindeadAt = TimeSpan.Zero;
+
+    /// <summary>
+    /// The job that was opened when they went SSD.
+    /// Prevents reopening the job if they go SSD again within a certain time frame.
+    /// </summary>
+    public bool JobOpened = false;
 }

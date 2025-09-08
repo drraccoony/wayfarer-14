@@ -83,4 +83,10 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> ICSSDSleepTime =
         CVarDef.Create("ic.ssd_sleep_time", 600f, CVar.SERVER);
+
+    /// <summary>
+    /// If youre in SSD, wait this many minutes before reopening your job
+    /// </summary>
+    public static readonly CVarDef<float> ICSSDJobReopenMinutes =
+        CVarDef.Create("ic.ssd_job_reopen_minutes", 60f, CVar.SERVER);
 }

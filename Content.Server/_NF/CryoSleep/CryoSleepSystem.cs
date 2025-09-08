@@ -454,18 +454,19 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             QueueDel(bodyId);
         }
-        else
-        {
-            // Start a timer. When it ends, the body needs to be deleted.
-            Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NFCCVars.CryoExpirationTime)), () =>
-            {
-                if (id != null)
-                    ResetCryosleepState(id.Value);
-
-                if (!Deleted(bodyId) && Transform(bodyId).ParentUid == _storageMap)
-                    QueueDel(bodyId);
-            });
-        }
+        // COYOTE: Disabled cryo expiration for now.
+        // else
+        // {
+        //     // Start a timer. When it ends, the body needs to be deleted.
+        //     Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NFCCVars.CryoExpirationTime)), () =>
+        //     {
+        //         if (id != null)
+        //             ResetCryosleepState(id.Value);
+        //
+        //         if (!Deleted(bodyId) && Transform(bodyId).ParentUid == _storageMap)
+        //             QueueDel(bodyId);
+        //     });
+        // }
     }
 
     /// <param name="body">If not null, will not eject if the stored body is different from that parameter.</param>
