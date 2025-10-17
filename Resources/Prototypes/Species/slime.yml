@@ -17,6 +17,7 @@
     FacialHair: MobSlimeMarkingFollowSkin
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Chest: MobSlimeTorso
     Eyes: MobHumanoidEyes
     LArm: MobSlimeLArm

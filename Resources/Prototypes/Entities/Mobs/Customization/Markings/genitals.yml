@@ -1,0 +1,867 @@
+# Ball/Testicle markings - Single type
+- type: marking
+  id: Genital-Balls-Single1
+  name: "Balls - Single Size 1"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_1_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Single2
+  name: "Balls - Single Size 2"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_2_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Single2Alt
+  name: "Balls - Single Size 2 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_2_1_FRONT
+
+- type: marking
+  id: Genital-Balls-Single3
+  name: "Balls - Single Size 3"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_3_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Single4
+  name: "Balls - Single Size 4"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_4_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Single4Alt
+  name: "Balls - Single Size 4 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_4_1_FRONT
+
+- type: marking
+  id: Genital-Balls-Single5
+  name: "Balls - Single Size 5"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_5_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Single5Alt
+  name: "Balls - Single Size 5 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_5_1_FRONT
+
+# Ball/Testicle markings - Small single type
+- type: marking
+  id: Genital-Balls-Small1
+  name: "Balls - Small Size 1"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_1-s_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Small2
+  name: "Balls - Small Size 2"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_2-s_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Small3
+  name: "Balls - Small Size 3"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_single_3-s_0_FRONT
+
+# Ball/Testicle markings - Sheath type
+- type: marking
+  id: Genital-Balls-Sheath1
+  name: "Balls - Sheath Size 1"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_1_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath1Alt
+  name: "Balls - Sheath Size 1 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_1_1_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath2
+  name: "Balls - Sheath Size 2"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_2_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath2Alt
+  name: "Balls - Sheath Size 2 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_2_1_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath3
+  name: "Balls - Sheath Size 3"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_3_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath3Alt
+  name: "Balls - Sheath Size 3 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_3_1_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath4
+  name: "Balls - Sheath Size 4"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_4_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath4Alt
+  name: "Balls - Sheath Size 4 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_4_1_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath5
+  name: "Balls - Sheath Size 5"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_5_0_FRONT
+
+- type: marking
+  id: Genital-Balls-Sheath5Alt
+  name: "Balls - Sheath Size 5 Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/balls
+    state: testicles_sheath_5_1_FRONT
+
+# Vagina markings - Human type
+- type: marking
+  id: GenitalVaginaHuman
+  name: "Vagina - Human"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_human_1_0_FRONT
+
+- type: marking
+  id: GenitalVaginaHumanAlt
+  name: "Vagina - Human Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_human_1_1_FRONT
+
+- type: marking
+  id: GenitalVaginaHumanSmall
+  name: "Vagina - Human Small"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_human_1_s_0_FRONT
+
+- type: marking
+  id: GenitalVaginaHumanSmallAlt
+  name: "Vagina - Human Small Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_human_1_s_1_FRONT
+
+# Vagina markings - Gaping type
+- type: marking
+  id: GenitalVaginaGaping
+  name: "Vagina - Gaping"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_gaping_1_0_FRONT
+
+- type: marking
+  id: GenitalVaginaGapingAlt
+  name: "Vagina - Gaping Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_gaping_1_1_FRONT
+
+- type: marking
+  id: GenitalVaginaGapingSmall
+  name: "Vagina - Gaping Small"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_gaping_1_s_0_FRONT
+
+- type: marking
+  id: GenitalVaginaGapingSmallAlt
+  name: "Vagina - Gaping Small Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_gaping_1_s_1_FRONT
+
+# Vagina markings - Tentacle type
+- type: marking
+  id: GenitalVaginaTentacle
+  name: "Vagina - Tentacle"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_tentacle_1_0_FRONT
+
+- type: marking
+  id: GenitalVaginaTentacleAlt
+  name: "Vagina - Tentacle Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_tentacle_1_1_FRONT
+
+- type: marking
+  id: GenitalVaginaTentacleSmall
+  name: "Vagina - Tentacle Small"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_tentacle_1_s_0_FRONT
+
+- type: marking
+  id: GenitalVaginaTentacleSmallAlt
+  name: "Vagina - Tentacle Small Alt"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_tentacle_1_s_1_FRONT
+
+# Vagina markings - Other types
+- type: marking
+  id: GenitalVaginaDentata
+  name: "Vagina - Dentata"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_dentata_1_0_FRONT
+
+- type: marking
+  id: GenitalVaginaHairy
+  name: "Vagina - Hairy"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_hairy_1_0_FRONT
+
+- type: marking
+  id: GenitalVaginaFurred
+  name: "Vagina - Furred"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_furred_1_0_FRONT
+
+- type: marking
+  id: GenitalVaginaSpade
+  name: "Vagina - Spade"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/vagina
+    state: vagina_spade_1_0_FRONT
+
+# Breast markings - Round Pair (A-Cup through F-Cup)
+- type: marking
+  id: GenitalBreastsRoundA
+  name: "Breasts - Round A-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pairround_a_0_FRONT
+
+- type: marking
+  id: GenitalBreastsRoundB
+  name: "Breasts - Round B-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pairround_b_0_FRONT
+
+- type: marking
+  id: GenitalBreastsRoundC
+  name: "Breasts - Round C-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pairround_c_0_FRONT
+
+- type: marking
+  id: GenitalBreastsRoundD
+  name: "Breasts - Round D-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pairround_d_0_FRONT
+
+- type: marking
+  id: GenitalBreastsRoundE
+  name: "Breasts - Round E-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pairround_e_0_FRONT
+
+- type: marking
+  id: GenitalBreastsRoundF
+  name: "Breasts - Round F-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pairround_f_0_FRONT
+
+# Breast markings - Regular Pair (A-Cup through F-Cup)
+- type: marking
+  id: GenitalBreastsPairA
+  name: "Breasts - Pair A-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pair_a_0_FRONT
+
+- type: marking
+  id: GenitalBreastsPairB
+  name: "Breasts - Pair B-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pair_b_0_FRONT
+
+- type: marking
+  id: GenitalBreastsPairC
+  name: "Breasts - Pair C-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pair_c_0_FRONT
+
+- type: marking
+  id: GenitalBreastsPairD
+  name: "Breasts - Pair D-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_pair_d_0_FRONT
+
+# Breast markings - Quad (4 breasts)
+- type: marking
+  id: GenitalBreastsQuadA
+  name: "Breasts - Quad A-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_quad_a_0_FRONT
+
+- type: marking
+  id: GenitalBreastsQuadB
+  name: "Breasts - Quad B-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_quad_b_0_FRONT
+
+- type: marking
+  id: GenitalBreastsQuadC
+  name: "Breasts - Quad C-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_quad_c_0_FRONT
+
+- type: marking
+  id: GenitalBreastsQuadD
+  name: "Breasts - Quad D-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_quad_d_0_FRONT
+
+# Breast markings - Sextuple (6 breasts)
+- type: marking
+  id: GenitalBreastsSextupleA
+  name: "Breasts - Sextuple A-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_sextuple_a_0_FRONT
+
+- type: marking
+  id: GenitalBreastsSextupleB
+  name: "Breasts - Sextuple B-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_sextuple_b_0_FRONT
+
+- type: marking
+  id: GenitalBreastsSextupleC
+  name: "Breasts - Sextuple C-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_sextuple_c_0_FRONT
+
+# Breast markings - Udders
+- type: marking
+  id: GenitalBreastsUddersA
+  name: "Breasts - Udders A-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_udders_a_0_FRONT
+
+- type: marking
+  id: GenitalBreastsUddersB
+  name: "Breasts - Udders B-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_udders_b_0_FRONT
+
+- type: marking
+  id: GenitalBreastsUddersC
+  name: "Breasts - Udders C-Cup"
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/breasts
+    state: breasts_udders_c_0_FRONT
+

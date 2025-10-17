@@ -24,6 +24,7 @@
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Chest: MobHumanTorso
     Eyes: MobHumanoidEyes
     HeadTop: MobHumanoidAnyMarking

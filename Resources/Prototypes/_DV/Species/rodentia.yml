@@ -31,6 +31,9 @@
     Chest: MobRodentiaTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobRodentiaLArm

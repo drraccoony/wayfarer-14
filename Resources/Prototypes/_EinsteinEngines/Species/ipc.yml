@@ -41,6 +41,16 @@
     RLeg: MobIPCRLeg
     LFoot: MobIPCLFoot
     RFoot: MobIPCRFoot
+    TailBehind: MobHumanoidAnyMarking
+    TailOversuit: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
+    Eyes: MobHumanoidEyes
+    UndershirtUnderclothes: MobHumanoidAnyMarking
+    UndershirtOverclothes: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobIPCMarkingLimits
