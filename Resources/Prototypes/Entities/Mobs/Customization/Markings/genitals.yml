@@ -1,867 +1,2853 @@
 # Ball/Testicle markings - Single type
 - type: marking
   id: Genital-Balls-Single1
-  name: "Balls - Single Size 1"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_1_0_FRONT
 
 - type: marking
   id: Genital-Balls-Single2
-  name: "Balls - Single Size 2"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_2_0_FRONT
 
 - type: marking
   id: Genital-Balls-Single2Alt
-  name: "Balls - Single Size 2 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_2_1_FRONT
 
 - type: marking
   id: Genital-Balls-Single3
-  name: "Balls - Single Size 3"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_3_0_FRONT
 
 - type: marking
   id: Genital-Balls-Single4
-  name: "Balls - Single Size 4"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_4_0_FRONT
 
 - type: marking
   id: Genital-Balls-Single4Alt
-  name: "Balls - Single Size 4 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_4_1_FRONT
 
 - type: marking
   id: Genital-Balls-Single5
-  name: "Balls - Single Size 5"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_5_0_FRONT
 
 - type: marking
   id: Genital-Balls-Single5Alt
-  name: "Balls - Single Size 5 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_5_1_FRONT
 
 # Ball/Testicle markings - Small single type
 - type: marking
   id: Genital-Balls-Small1
-  name: "Balls - Small Size 1"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_1-s_0_FRONT
 
 - type: marking
   id: Genital-Balls-Small2
-  name: "Balls - Small Size 2"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_2-s_0_FRONT
 
 - type: marking
   id: Genital-Balls-Small3
-  name: "Balls - Small Size 3"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_single_3-s_0_FRONT
 
 # Ball/Testicle markings - Sheath type
 - type: marking
   id: Genital-Balls-Sheath1
-  name: "Balls - Sheath Size 1"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_1_0_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath1Alt
-  name: "Balls - Sheath Size 1 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_1_1_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath2
-  name: "Balls - Sheath Size 2"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_2_0_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath2Alt
-  name: "Balls - Sheath Size 2 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_2_1_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath3
-  name: "Balls - Sheath Size 3"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_3_0_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath3Alt
-  name: "Balls - Sheath Size 3 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_3_1_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath4
-  name: "Balls - Sheath Size 4"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_4_0_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath4Alt
-  name: "Balls - Sheath Size 4 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_4_1_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath5
-  name: "Balls - Sheath Size 5"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_5_0_FRONT
 
 - type: marking
   id: Genital-Balls-Sheath5Alt
-  name: "Balls - Sheath Size 5 Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/balls
+  - sprite: Mobs/Customization/Markings/Genital/balls.rsi
     state: testicles_sheath_5_1_FRONT
 
 # Vagina markings - Human type
 - type: marking
   id: GenitalVaginaHuman
-  name: "Vagina - Human"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_human_1_0_FRONT
 
 - type: marking
   id: GenitalVaginaHumanAlt
-  name: "Vagina - Human Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_human_1_1_FRONT
 
 - type: marking
   id: GenitalVaginaHumanSmall
-  name: "Vagina - Human Small"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_human_1_s_0_FRONT
 
 - type: marking
   id: GenitalVaginaHumanSmallAlt
-  name: "Vagina - Human Small Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_human_1_s_1_FRONT
 
 # Vagina markings - Gaping type
 - type: marking
   id: GenitalVaginaGaping
-  name: "Vagina - Gaping"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_gaping_1_0_FRONT
 
 - type: marking
   id: GenitalVaginaGapingAlt
-  name: "Vagina - Gaping Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_gaping_1_1_FRONT
 
 - type: marking
   id: GenitalVaginaGapingSmall
-  name: "Vagina - Gaping Small"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_gaping_1_s_0_FRONT
 
 - type: marking
   id: GenitalVaginaGapingSmallAlt
-  name: "Vagina - Gaping Small Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_gaping_1_s_1_FRONT
 
 # Vagina markings - Tentacle type
 - type: marking
   id: GenitalVaginaTentacle
-  name: "Vagina - Tentacle"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_tentacle_1_0_FRONT
 
 - type: marking
   id: GenitalVaginaTentacleAlt
-  name: "Vagina - Tentacle Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_tentacle_1_1_FRONT
 
 - type: marking
   id: GenitalVaginaTentacleSmall
-  name: "Vagina - Tentacle Small"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_tentacle_1_s_0_FRONT
 
 - type: marking
   id: GenitalVaginaTentacleSmallAlt
-  name: "Vagina - Tentacle Small Alt"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_tentacle_1_s_1_FRONT
 
 # Vagina markings - Other types
 - type: marking
   id: GenitalVaginaDentata
-  name: "Vagina - Dentata"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_dentata_1_0_FRONT
 
 - type: marking
   id: GenitalVaginaHairy
-  name: "Vagina - Hairy"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_hairy_1_0_FRONT
 
 - type: marking
   id: GenitalVaginaFurred
-  name: "Vagina - Furred"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_furred_1_0_FRONT
 
 - type: marking
   id: GenitalVaginaSpade
-  name: "Vagina - Spade"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/vagina
+  - sprite: Mobs/Customization/Markings/Genital/vagina.rsi
     state: vagina_spade_1_0_FRONT
 
 # Breast markings - Round Pair (A-Cup through F-Cup)
 - type: marking
   id: GenitalBreastsRoundA
-  name: "Breasts - Round A-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pairround_a_0_FRONT
 
 - type: marking
   id: GenitalBreastsRoundB
-  name: "Breasts - Round B-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pairround_b_0_FRONT
 
 - type: marking
   id: GenitalBreastsRoundC
-  name: "Breasts - Round C-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pairround_c_0_FRONT
 
 - type: marking
   id: GenitalBreastsRoundD
-  name: "Breasts - Round D-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pairround_d_0_FRONT
 
 - type: marking
   id: GenitalBreastsRoundE
-  name: "Breasts - Round E-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pairround_e_0_FRONT
 
 - type: marking
   id: GenitalBreastsRoundF
-  name: "Breasts - Round F-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pairround_f_0_FRONT
 
 # Breast markings - Regular Pair (A-Cup through F-Cup)
 - type: marking
   id: GenitalBreastsPairA
-  name: "Breasts - Pair A-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pair_a_0_FRONT
 
 - type: marking
   id: GenitalBreastsPairB
-  name: "Breasts - Pair B-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pair_b_0_FRONT
 
 - type: marking
   id: GenitalBreastsPairC
-  name: "Breasts - Pair C-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pair_c_0_FRONT
 
 - type: marking
   id: GenitalBreastsPairD
-  name: "Breasts - Pair D-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_pair_d_0_FRONT
 
 # Breast markings - Quad (4 breasts)
 - type: marking
   id: GenitalBreastsQuadA
-  name: "Breasts - Quad A-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_quad_a_0_FRONT
 
 - type: marking
   id: GenitalBreastsQuadB
-  name: "Breasts - Quad B-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_quad_b_0_FRONT
 
 - type: marking
   id: GenitalBreastsQuadC
-  name: "Breasts - Quad C-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_quad_c_0_FRONT
 
 - type: marking
   id: GenitalBreastsQuadD
-  name: "Breasts - Quad D-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_quad_d_0_FRONT
 
 # Breast markings - Sextuple (6 breasts)
 - type: marking
   id: GenitalBreastsSextupleA
-  name: "Breasts - Sextuple A-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_sextuple_a_0_FRONT
 
 - type: marking
   id: GenitalBreastsSextupleB
-  name: "Breasts - Sextuple B-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_sextuple_b_0_FRONT
 
 - type: marking
   id: GenitalBreastsSextupleC
-  name: "Breasts - Sextuple C-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_sextuple_c_0_FRONT
 
 # Breast markings - Udders
 - type: marking
   id: GenitalBreastsUddersA
-  name: "Breasts - Udders A-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_udders_a_0_FRONT
 
 - type: marking
   id: GenitalBreastsUddersB
-  name: "Breasts - Udders B-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_udders_b_0_FRONT
 
 - type: marking
   id: GenitalBreastsUddersC
-  name: "Breasts - Udders C-Cup"
   bodyPart: Genital
   markingCategory: Genital
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Arachnid, Diona, Human, Dwarf, Moth, SlimePerson, Goblin, Sheleg, Felinid, Vulpkanin, Oni, Harpy]
   coloring:
     default:
       type: null
       fallbackColor: '#FFFFFF'
   sprites:
-  - sprite: Mobs/Customization/Markings/Genital/breasts
+  - sprite: Mobs/Customization/Markings/Genital/breasts.rsi
     state: breasts_udders_c_0_FRONT
+
+# Penis/Cock markings
+- type: marking
+  id: Genital-Penis-Amputated
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: amputated_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Nondescript-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_nondescript_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_5_1_FRONT
+
+# Continue with the remaining penis variants (human sheath, knotted sheath, etc.)
+- type: marking
+  id: Genital-Penis-Human-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Human-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_human_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Knotted-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_knotted_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Barbknot-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_barbknot_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Flared-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_flared_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tentacle-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tentacle_4_s_1_FRONT
+
+# Hemi penis variants
+- type: marking
+  id: Genital-Penis-Hemi-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-1-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_1_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-1-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_1_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-2-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_2_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-2-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_2_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-3-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_3_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-3-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_3_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-4-S-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_4_s_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-4-S-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_4_s_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tipknotted-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tipknotted_5_1_FRONT
+
+# All the non-sheath versions of Hemi
+- type: marking
+  id: Genital-Penis-Hemi-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemi-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemi_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Hemiknot-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_hemiknot_5_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-1-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_1_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-1-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_1_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-2-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_2_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-2-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_2_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-3-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_3_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-3-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_3_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-4-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_4_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-4-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_4_1_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-5-0
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_5_0_FRONT
+
+- type: marking
+  id: Genital-Penis-Tapered-5-1
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: penis_tapered_5_1_FRONT
+
+- type: marking
+  id: Knotted-Wolf-Cock
+  bodyPart: Genital
+  markingCategory: Genital
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Mobs/Customization/Markings/Genital/cocks.rsi
+    state: BRC-Knotted
+    scale: 0.5
+
+
 
