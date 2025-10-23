@@ -25,8 +25,9 @@
 
 - type: consentToggle
   id: GenitalMarkings
-
   priority: 4
+
+- type: consentToggle
   id: SizeManipulation
   priority: 5
 

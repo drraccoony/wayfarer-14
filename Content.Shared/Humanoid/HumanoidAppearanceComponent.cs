@@ -106,6 +106,12 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public ProtoId<MarkingPrototype>? UndergarmentBottom = new ProtoId<MarkingPrototype>("UndergarmentBottomBoxers");
 
     /// <summary>
+    ///     Set of marking IDs that are currently hidden from view.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public HashSet<string> HiddenMarkings = new();
+
+    /// <summary>
     ///     The displacement maps that will be applied to specific layers of the humanoid.
     /// </summary>
     [DataField]
