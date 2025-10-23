@@ -63,18 +63,18 @@ public sealed class ModifyUndiesSystem : EntitySystem
             if (!component.BodyPartTargets.Contains(mProt.BodyPart))
                 continue;
                 
-            // Skip genital markings if the user doesn't have consent enabled
+            // Skip genital markings based on consent
             if (mProt.BodyPart == HumanoidVisualLayers.Genital)
             {
-                // Check if the person performing the action has consent to interact with genital markings
-                var hasUserConsent = _consentSystem.HasConsent(args.User, GenitalMarkingsConsent);
-                // Also check if the target (person being undressed) has consent enabled
-                var hasTargetConsent = _consentSystem.HasConsent(args.Target, GenitalMarkingsConsent);
-                
-                // Only show genital marking verbs if both user and target have consent enabled
-                if (!hasUserConsent || !hasTargetConsent)
+                // If user and target are the same person, they can always interact with their own markings
+                if (args.User != args.Target)
                 {
-                    continue;
+                    // For other players, only check the target's consent setting
+                    var hasTargetConsent = _consentSystem.HasConsent(args.Target, GenitalMarkingsConsent);
+                    if (!hasTargetConsent)
+                    {
+                        continue;
+                    }
                 }
             }
             
