@@ -1,16 +1,19 @@
 using System.Linq;
 using Content.Server.Humanoid;
+using Content.Shared.Consent;
 using Content.Shared.DoAfter;
 using Content.Shared.FloofStation;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Inventory;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 
@@ -28,7 +31,9 @@ public sealed class ModifyUndiesSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly EntityManager _entMan = default!;
+    [Dependency] private readonly SharedConsentSystem _consentSystem = default!;
+
+    public static ProtoId<ConsentTogglePrototype> GenitalMarkingsConsent = "GenitalMarkings";
 
     public static readonly VerbCategory UndiesCat =
         new("verb-categories-undies", "/Textures/Interface/VerbIcons/undies.png");
@@ -43,12 +48,10 @@ public sealed class ModifyUndiesSystem : EntitySystem
 
     private void AddModifyUndiesVerb(EntityUid uid, ModifyUndiesComponent component, GetVerbsEvent<Verb> args)
     {
-        if (args.Hands == null || !args.CanAccess ||!args.CanInteract)
+        if (args.Hands == null || !args.CanAccess || !args.CanInteract)
             return;
         if (!TryComp<HumanoidAppearanceComponent>(args.Target, out var humApp))
             return;
-        // if (args.User != args.Target && _entMan.System<InventorySystem>().TryGetSlotEntity(args.Target, "jumpsuit", out _))
-        //     return; // mainly so people cant just spy on others undies *too* easily
         var isMine = args.User == args.Target;
         // okay go through their markings, and find all the undershirts and underwear markings
         // <marking_ID>, list:(localized name, bodypart enum, isvisible)
@@ -59,6 +62,22 @@ public sealed class ModifyUndiesSystem : EntitySystem
             // check if the Bodypart is in the component's BodyPartTargets
             if (!component.BodyPartTargets.Contains(mProt.BodyPart))
                 continue;
+                
+            // Skip genital markings if the user doesn't have consent enabled
+            if (mProt.BodyPart == HumanoidVisualLayers.Genital)
+            {
+                // Check if the person performing the action has consent to interact with genital markings
+                var hasUserConsent = _consentSystem.HasConsent(args.User, GenitalMarkingsConsent);
+                // Also check if the target (person being undressed) has consent enabled
+                var hasTargetConsent = _consentSystem.HasConsent(args.Target, GenitalMarkingsConsent);
+                
+                // Only show genital marking verbs if both user and target have consent enabled
+                if (!hasUserConsent || !hasTargetConsent)
+                {
+                    continue;
+                }
+            }
+            
             var localizedName = Loc.GetString($"marking-{mProt.ID}");
             var partSlot = mProt.BodyPart;
             var isVisible = !humApp.HiddenMarkings.Contains(mProt.ID);
@@ -68,7 +87,7 @@ public sealed class ModifyUndiesSystem : EntitySystem
             {
                 HumanoidVisualLayers.UndergarmentTop => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bra.png")),
                 HumanoidVisualLayers.UndergarmentBottom => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/underpants.png")),
-                HumanoidVisualLayers.Genital => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/undies.png")),
+                HumanoidVisualLayers.Genital => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/love.png")),
                 _ => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/undies.png"))
             };
             // add the verb
@@ -161,7 +180,6 @@ public sealed class ModifyUndiesSystem : EntitySystem
                         false,
                         AudioParams.Default.WithVariation(2f).WithVolume(0.5f));
                     _doAfterSystem.TryStartDoAfter(doAfterArgs);
-                    // ToggleUndies(uid, mProt, isVisible, localizedName, args.User, args.Target, humApp);
                 },
                 Disabled = false,
                 Message = null

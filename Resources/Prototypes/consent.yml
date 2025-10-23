@@ -24,8 +24,15 @@
 #   priority: 4
 
 - type: consentToggle
+  id: GenitalMarkings
+
+  priority: 4
   id: SizeManipulation
   priority: 5
+
+- type: consentToggle
+  id: Aphrodisiacs
+  priority: 6
 
 #- type: consentToggle
 #  id: Cum
