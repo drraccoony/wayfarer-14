@@ -38,6 +38,11 @@ public sealed class NanoChatCardData
     public string OwnerName { get; set; } = "Unknown";
 
     /// <summary>
+    /// Username of the player who owns/controls this card
+    /// </summary>
+    public string? Username { get; set; }
+
+    /// <summary>
     /// Job title of the card owner
     /// </summary>
     public string? JobTitle { get; set; }

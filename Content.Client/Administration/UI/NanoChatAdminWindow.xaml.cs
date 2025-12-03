@@ -26,6 +26,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
     private BoxContainer CardList => (BoxContainer)FindControl("CardList")!;
     private BoxContainer CardInfoPanel => (BoxContainer)FindControl("CardInfoPanel")!;
     private Label CardOwnerLabel => (Label)FindControl("CardOwnerLabel")!;
+    private Label CardUsernameLabel => (Label)FindControl("CardUsernameLabel")!;
     private Label CardNumberLabel => (Label)FindControl("CardNumberLabel")!;
     private BoxContainer RecipientSelectorPanel => (BoxContainer)FindControl("RecipientSelectorPanel")!;
     private BoxContainer RecipientList => (BoxContainer)FindControl("RecipientList")!;
@@ -129,6 +130,8 @@ public sealed class NanoChatAdminWindow : DefaultWindow
 
         // Update card info
         CardOwnerLabel.Text = $"{card.OwnerName} ({card.JobTitle ?? "No Job"})";
+        CardUsernameLabel.Text = card.Username != null ? $"Player: {card.Username}" : "";
+        CardUsernameLabel.Visible = !string.IsNullOrEmpty(card.Username);
         CardNumberLabel.Text = $"NanoChat Number: #{card.Number?.ToString("D4") ?? "Not Assigned"}";
         
         CardInfoPanel.Visible = true;
@@ -267,6 +270,18 @@ public sealed class NanoChatAdminWindow : DefaultWindow
 
             headerContainer.AddChild(senderLabel);
             headerContainer.AddChild(timestampLabel);
+            
+            // Add username label if available from the message
+            if (!string.IsNullOrEmpty(message.SenderUsername))
+            {
+                var usernameLabel = new Label
+                {
+                    Text = $"  @{message.SenderUsername}",
+                    StyleClasses = { "LabelSubText" },
+                    FontColorOverride = Color.Gray
+                };
+                headerContainer.AddChild(usernameLabel);
+            }
 
             if (message.DeliveryFailed)
             {
