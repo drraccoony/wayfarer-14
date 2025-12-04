@@ -292,7 +292,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
                     var stolenLabel = new Label
                     {
                         Text = " [STOLEN]",
-                        FontColorOverride = Color.Red,e
+                        FontColorOverride = Color.Red,
                         StyleClasses = { "LabelHeading" }
                     };
                     headerContainer.AddChild(stolenLabel);
