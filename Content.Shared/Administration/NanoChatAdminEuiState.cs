@@ -38,9 +38,14 @@ public sealed class NanoChatCardData
     public string OwnerName { get; set; } = "Unknown";
 
     /// <summary>
-    /// Username of the player who owns/controls this card
+    /// Username of the player who currently owns/controls this card
     /// </summary>
     public string? Username { get; set; }
+
+    /// <summary>
+    /// Username of the original owner whose name is on the ID card (for detecting stolen PDA usage)
+    /// </summary>
+    public string? OriginalOwnerUsername { get; set; }
 
     /// <summary>
     /// Job title of the card owner

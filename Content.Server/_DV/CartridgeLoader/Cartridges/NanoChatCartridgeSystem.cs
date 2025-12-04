@@ -289,6 +289,14 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             if (EntityManager.EntityExists(parent) && _playerManager.TryGetSessionByEntity(parent, out var session))
             {
                 senderUsername = session.Name;
+                
+                // Set the original owner username if not already set
+                // This captures who the ID card originally belonged to
+                if (string.IsNullOrEmpty(card.Comp.OriginalOwnerUsername))
+                {
+                    card.Comp.OriginalOwnerUsername = senderUsername;
+                    Dirty(card);
+                }
             }
         }
 

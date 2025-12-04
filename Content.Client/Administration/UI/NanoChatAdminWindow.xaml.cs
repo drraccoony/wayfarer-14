@@ -283,6 +283,22 @@ public sealed class NanoChatAdminWindow : DefaultWindow
                 headerContainer.AddChild(usernameLabel);
             }
 
+            // Check if message was sent by someone other than the card owner (stolen PDA)
+            if (isFromOwner && !string.IsNullOrEmpty(message.SenderUsername) && !string.IsNullOrEmpty(_selectedCard.OriginalOwnerUsername))
+            {
+                // If the sender username doesn't match the original card owner's username, it was stolen
+                if (message.SenderUsername != _selectedCard.OriginalOwnerUsername)
+                {
+                    var stolenLabel = new Label
+                    {
+                        Text = " [STOLEN]",
+                        FontColorOverride = Color.Red,e
+                        StyleClasses = { "LabelHeading" }
+                    };
+                    headerContainer.AddChild(stolenLabel);
+                }
+            }
+
             if (message.DeliveryFailed)
             {
                 var failedLabel = new Label
@@ -298,7 +314,8 @@ public sealed class NanoChatAdminWindow : DefaultWindow
             // Message content
             var contentLabel = new RichTextLabel
             {
-                MaxWidth = 600
+                MaxWidth = 600,
+                HorizontalExpand = true
             };
             contentLabel.SetMessage(message.Content);
             messageContainer.AddChild(contentLabel);

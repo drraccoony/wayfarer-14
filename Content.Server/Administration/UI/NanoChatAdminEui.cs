@@ -90,6 +90,7 @@ public sealed class NanoChatAdminEui : BaseEui
                 Number = nanoChatCard.Number,
                 OwnerName = ownerName,
                 Username = username,
+                OriginalOwnerUsername = nanoChatCard.OriginalOwnerUsername,
                 JobTitle = jobTitle,
                 Recipients = new Dictionary<uint, NanoChatRecipient>(nanoChatCard.Recipients),
                 Messages = new Dictionary<uint, List<NanoChatMessage>>()
