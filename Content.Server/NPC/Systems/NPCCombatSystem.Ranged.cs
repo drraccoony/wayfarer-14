@@ -1,5 +1,16 @@
+// SPDX-FileCopyrightText: 2022 metalgearsloth
+// SPDX-FileCopyrightText: 2023 DrSmugleaf
+// SPDX-FileCopyrightText: 2024 Dvir
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Aviu00
+// SPDX-FileCopyrightText: 2025 Ilya246
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Numerics;
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
+using Content.Shared.Damage.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
@@ -21,7 +32,7 @@ public sealed partial class NPCCombatSystem
     private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
-    private EntityQuery<FixturesComponent> _fixturesQuery;
+    private EntityQuery<RequireProjectileTargetComponent> _requireTargetQuery; // Mono
 
     // TODO: Don't predict for hitscan
     private const float ShootSpeed = 20f;
@@ -38,7 +49,7 @@ public sealed partial class NPCCombatSystem
         _rechargeQuery = GetEntityQuery<RechargeBasicEntityAmmoComponent>();
         _steeringQuery = GetEntityQuery<NPCSteeringComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
-        _fixturesQuery = GetEntityQuery<FixturesComponent>();
+        _requireTargetQuery = GetEntityQuery<RequireProjectileTargetComponent>(); // Mono
 
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentStartup>(OnRangedStartup);
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentShutdown>(OnRangedShutdown);
@@ -144,22 +155,11 @@ public sealed partial class NPCCombatSystem
             if (comp.LOSAccumulator < 0f)
             {
                 comp.LOSAccumulator += UnoccludedCooldown;
-
-                // For consistency with NPC steering.
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, predicate: (EntityUid entity) =>
+                // For consistency with NPC steering.                                                  // Mono
+                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, comp.ObstructedMask, predicate: (EntityUid entity) =>
                 {
-                    if (_fixturesQuery.TryGetComponent(entity, out var fixtures))
-                    {
-                        foreach (var fixture in fixtures.Fixtures.Values)
-                        {
-                            if ((fixture.CollisionLayer & (int)CollisionGroup.GlassLayer) != 0 ||
-                                (fixture.CollisionLayer & (int)CollisionGroup.GlassAirlockLayer) != 0)
-                            {
-                                return true; // Ignore this entity for LOS
-                            }
-                        }
-                    }
-                    return false; // Don't ignore
+                    return _physicsQuery.TryGetComponent(entity, out var physics) && (physics.CollisionLayer & (int)comp.BulletMask) == 0 // ignore if it can't collide with bullets
+                        || _requireTargetQuery.HasComponent(entity); // or if it requires targeting
                 });
             }
 
