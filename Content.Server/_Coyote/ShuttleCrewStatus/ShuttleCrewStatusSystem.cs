@@ -11,7 +11,8 @@ using Robust.Shared.Timing;
 namespace Content.Server._Coyote.ShuttleCrewStatus;
 
 /// <summary>
-/// System that periodically checks shuttles for active crew and updates IFF label colors accordingly.
+/// System that periodically checks player-owned shuttles for active crew and updates IFF label colors accordingly.
+/// Only applies to shuttles with the PlayerShuttle flag set (excludes asteroids, wrecks, and other non-player grids).
 /// Shuttles with no crew or only disconnected crew show a gray label, while shuttles with active crew show normal white labels.
 /// </summary>
 public sealed class ShuttleCrewStatusSystem : EntitySystem
@@ -43,8 +44,12 @@ public sealed class ShuttleCrewStatusSystem : EntitySystem
 
     private void OnIFFMapInit(EntityUid uid, IFFComponent component, MapInitEvent args)
     {
-        // Only track shuttles with IFF components
-        if (!HasComp<ShuttleComponent>(uid))
+        // Only track player-owned shuttles with IFF components
+        if (!TryComp<ShuttleComponent>(uid, out var shuttle))
+            return;
+
+        // Skip non-player shuttles (asteroids, wrecks, etc.)
+        if (!shuttle.PlayerShuttle)
             return;
 
         // Add the crew status component to track this shuttle
