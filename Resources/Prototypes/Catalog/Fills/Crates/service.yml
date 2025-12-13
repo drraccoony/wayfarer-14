@@ -169,6 +169,7 @@
     - id: NewtonCradle
     - id: BoxEnvelope
     - id: BrbSign
+    - id: OpenSign
     - id: RubberStampCaptain # Frontier
 
 - type: entity
