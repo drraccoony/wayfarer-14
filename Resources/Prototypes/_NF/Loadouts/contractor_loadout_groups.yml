@@ -694,6 +694,15 @@
   - ContractorClothingNeckMantleCE
   - ContractorClothingNeckCloakVoid
   - ContractorClothingNeckBling
+  # Flooftier collars start
+  - FloofClothingCollarBlue
+  - FloofClothingCollarBlack
+  - FloofClothingCollarPink
+  - FloofClothingCollarEpi
+  - FloofClothingCollarEngi
+  - FloofClothingCollarLogi
+  - FloofClothingCollarCmd
+  # Flooftier collars end
 
 - type: loadoutGroup
   id: ContractorPDA
