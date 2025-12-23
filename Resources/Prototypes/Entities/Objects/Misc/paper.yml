@@ -442,6 +442,8 @@
         type: StorageBoundUserInterface
   - type: Item
     size: Tiny
+    shape:
+    - 0,0,2,0
   - type: Tag
     tags:
     - Envelope
