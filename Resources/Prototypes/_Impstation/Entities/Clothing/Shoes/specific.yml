@@ -7,5 +7,5 @@
   - type: Action
     itemIconStyle: BigItem
     useDelay: 2.5
-  - type: IcnstantAction
+  - type: InstantAction
     event: !type:ToggleActionEvent
