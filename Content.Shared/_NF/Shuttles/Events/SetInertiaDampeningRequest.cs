@@ -22,6 +22,7 @@ namespace Content.Shared._NF.Shuttles.Events
         Dampen = 1,
         Anchor = 2,
         Station = 3, // Reserved for station status, should not be used in requests.
+        Emergency = 4,
         Query = 255 // Reserved for requests - does not set the mode, only returns its state.
     }
 }

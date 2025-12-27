@@ -74,5 +74,27 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [DataField]
         public float DampingModifier;
+
+        /// <summary>
+        /// Delay between checks to throw on the E-brake.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("brakeDelay")]
+        public TimeSpan BrakeDelay = TimeSpan.FromSeconds(10);
+
+        /// <summary>
+        /// Next time we should check to throw on the E-brake.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("nextBrakeCheck")]
+        public TimeSpan NextBrakeCheck = TimeSpan.Zero;
+
+        /// <summary>
+        /// E-Brake is currently active.
+        /// </summary>
+        public bool EBrakeActive = false;
+
+        /// <summary>
+        /// Its a player shuttle!
+        /// </summary>
+        public bool PlayerShuttle = false;
     }
 }

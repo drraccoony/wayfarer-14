@@ -100,6 +100,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     {
         base.Update(frameTime);
         UpdateHyperspace();
+        ShouldEmergencyBrake();
     }
 
     private void OnGridInit(GridInitializeEvent ev)

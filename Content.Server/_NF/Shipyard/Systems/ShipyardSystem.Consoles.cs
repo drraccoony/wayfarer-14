@@ -186,6 +186,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
+        shuttle.PlayerShuttle = true; // Frontier: They're on a shuttle =3
         EntityUid? shuttleStation = null;
         // setting up any stations if we have a matching game map prototype to allow late joins directly onto the vessel
         if (_prototypeManager.TryIndex<GameMapPrototype>(vessel.ID, out var stationProto))
