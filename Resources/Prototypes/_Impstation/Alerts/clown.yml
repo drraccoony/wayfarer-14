@@ -1,4 +1,4 @@
-﻿- type: alert
+- type: alert
   id: Waddling
   icons:
   - sprite: Clothing/Shoes/Specific/clown.rsi

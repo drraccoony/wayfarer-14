@@ -33,6 +33,29 @@
 #    ClothingHeadsetService: 4 # Frontier
     RubberStampChaplain: 3
     Bible: 3 # Frontier: 1<3
+    ClothingBeltChaplainDragon: 1 # imp
+    ClothingEyesChaplainBlindfold: 1 # imp
+    ClothingHeadHatDruid: 1 # imp
+    ClothingHeadHatMoon: 1 # imp
+    ClothingHeadHatShrineMaidenWig: 2 # imp edit - giving this religious outfit the sanctity it deserves
+    ClothingHeadHatSun: 1 # imp
+    ClothingHeadHatTidal: 1 # imp
+    ClothingMaskClayshaper: 1 # imp
+    ClothingMaskFire: 1 # imp
+    ClothingNeckChaplainDragon: 1 # imp
+    ClothingNeckClayshaper: 1 # imp
+    ClothingNeckDruid: 1 # imp
+    ClothingNeckDruidMantle: 1 # imp
+    ClothingNeckSun: 1 # imp
+    ClothingNeckTidal: 1 # imp
+    ClothingOuterMoon: 1 # imp
+    ClothingOuterSuitShrineMaiden: 2 # imp
+    ClothingUniformSkirtClayshaper: 1 # imp
+    ClothingUniformSkirtDruid: 1 # imp
+    ClothingUniformSkirtMoon: 1 # imp
+    ClothingUniformSkirtTidal: 1 # imp
+    ClothingUniformSun: 1 # imp
+    ClothingUniformTech: 1 # imp
     BoxCandle: 2
     BoxCandleSmall: 2
     Urn: 5
@@ -47,6 +70,10 @@
     DrinkWineBottleFull: 1
     ToyFigurineChaplain: 1
     ClothingNeckScarfStripedBlack: 3
+    ClothingMaskClownChaplain: 1
+    ClothingOuterClownPriest: 1
+    ClothingMaskSilent: 1
+    ClothingOuterSilent: 1
   emaggedInventory:
     WoodenStake: 6 # Frontier
     ClothingOuterRobesCult: 3

@@ -8,10 +8,6 @@
   },
   "states": [
     {
-        "name": "RLeg_Burn_70",
-        "directions": 4
-    },
-    {
         "name": "Chest_Burn_10",
         "directions": 4
     },
@@ -25,6 +21,10 @@
     },
     {
         "name": "Chest_Burn_70",
+        "directions": 4
+    },
+    {
+        "name": "Chest_Burn_100",
         "directions": 4
     },
     {
@@ -44,6 +44,10 @@
         "directions": 4
     },
     {
+        "name": "Head_Burn_100",
+        "directions": 4
+    },
+    {
         "name": "LArm_Burn_10",
         "directions": 4
     },
@@ -60,6 +64,10 @@
         "directions": 4
     },
     {
+        "name": "LArm_Burn_100",
+        "directions": 4
+    },
+    {
         "name": "LFoot_Burn_10",
         "directions": 4
     },
@@ -72,8 +80,12 @@
         "directions": 4
     },
     {
-      "name": "LFoot_Burn_70",
-      "directions": 4
+        "name": "LFoot_Burn_70",
+        "directions": 4
+    },
+    {
+        "name": "LFoot_Burn_100",
+        "directions": 4
     },
     {
         "name": "LHand_Burn_10",
@@ -89,6 +101,10 @@
     },
     {
         "name": "LHand_Burn_70",
+        "directions": 4
+    },
+    {
+        "name": "LHand_Burn_100",
         "directions": 4
     },
     {
@@ -108,6 +124,10 @@
         "directions": 4
     },
     {
+        "name": "LLeg_Burn_100",
+        "directions": 4
+    },
+    {
         "name": "RArm_Burn_10",
         "directions": 4
     },
@@ -121,6 +141,10 @@
     },
     {
         "name": "RArm_Burn_70",
+        "directions": 4
+    },
+    {
+        "name": "RArm_Burn_100",
         "directions": 4
     },
     {
@@ -140,6 +164,10 @@
         "directions": 4
     },
     {
+        "name": "RFoot_Burn_100",
+        "directions": 4
+    },
+    {
         "name": "RHand_Burn_10",
         "directions": 4
     },
@@ -156,6 +184,10 @@
         "directions": 4
     },
     {
+        "name": "RHand_Burn_100",
+        "directions": 4
+    },
+    {
         "name": "RLeg_Burn_10",
         "directions": 4
     },
@@ -165,6 +197,14 @@
     },
     {
         "name": "RLeg_Burn_50",
+        "directions": 4
+    },
+    {
+        "name": "RLeg_Burn_70",
+        "directions": 4
+    },
+    {
+        "name": "RLeg_Burn_100",
         "directions": 4
     }
   ]

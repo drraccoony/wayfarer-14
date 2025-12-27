@@ -1,0 +1,81 @@
+﻿- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatDruid
+  name: druid's crown
+  description: Shaped after a peculiar beast.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Head/Hats/druidhat.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Head/Hats/druidhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMoon
+  name: moon crown
+  description: The pure silver feels cold to the touch.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Head/Hats/moonhat.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Head/Hats/moonhat.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Pierce: 1
+        Holy: 1
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Pierce: 2
+        Holy: 5
+    #soundHit:      ##Field doesn't exist for this component according to YML Linter 12/27/25
+    #  path: "/Audio/Weapons/bladeslice.ogg"
+    #staminaCost: 10       ##Don't know what this should be. Don't think MeleeStaminaCost is the right field choice
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 10
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSun
+  name: sun crown
+  description: The pure gold feels hot to the touch.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Head/Hats/sunoraclehat.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Head/Hats/sunoraclehat.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Heat: 1
+        Holy: 1
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Heat: 2
+        Holy: 5
+    #soundHit:       ##Field doesn't exist for this component according to YML Linter 12/27/25
+    #  path: "/Audio/Weapons/bladeslice.ogg"
+    #staminaCost: 10      ##Don't know what this should be. Don't think MeleeStaminaCost is the right field choice
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 10
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatTidal
+  name: tidal crown
+  description: You can hear waves crashing if you listen closely.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Head/Hats/tidalhat.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Head/Hats/tidalhat.rsi
