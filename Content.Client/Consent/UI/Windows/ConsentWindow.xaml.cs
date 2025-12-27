@@ -142,6 +142,9 @@ public sealed partial class ConsentWindow : FancyWindow
 
     public void UpdateUi()
     {
+        if (Disposed)
+            return;
+
         var consent = _consentManager.GetConsent();
 
         ConsentFreetext.TextRope = new Rope.Leaf(consent.Freetext);

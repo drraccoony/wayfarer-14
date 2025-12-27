@@ -20,3 +20,12 @@ consent-examine-not-set = This player has no consent preferences set. Ask for co
 # Consent toggles
 consent-Example-name = Example Consent Toggle
 consent-Example-desc = This is just here as an example for how to add consent toggles.
+
+consent-Hypno-name = Hypnosis
+consent-Hypno-desc = Allow yourself to be hypnotized.
+
+consent-NoClone-name = Disallow Paradox Anomaly
+consent-NoClone-desc = Turn this on to disallow Paradox clones of yourself.
+
+consent-NSFWDescriptions-name = Show NSFW Descriptions
+consent-NSFWDescriptions-desc = Toggle this on to see dynamic player descriptions that may contain NSFW/ERP content.

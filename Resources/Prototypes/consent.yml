@@ -1,4 +1,15 @@
-# - type: consentToggle
-#   id: Example
-#   category: ExampleCategory
-#   priority: 1
+- type: consentToggle
+  id: Vore
+
+- type: consentToggle
+  id: Digestion
+
+- type: consentToggle
+  id: Hypno
+  category: Hypno
+
+- type: consentToggle
+  id: NoClone
+
+- type: consentToggle
+  id: NSFWDescriptions
