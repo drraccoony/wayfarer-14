@@ -128,6 +128,8 @@ public sealed partial class ConsentWindow : FancyWindow
         wrapper.StyleClasses.Add("PdaBorderRect");
 
         wrapper.AddChild(container);
+        if (ConsentList.Disposed) // COOL
+            return;
         ConsentList.AddChild(wrapper);
 
         _entries.Add(state);
