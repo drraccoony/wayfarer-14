@@ -13,7 +13,7 @@
   parent: BaseVessel
   name: FSA Dragoon
   description: The Dragoon is the explorer of choice for adventures that are more guns and explosives themed.
-  price: 30000
+  price: 33650
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/dragoon.yml
