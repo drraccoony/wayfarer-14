@@ -62,8 +62,8 @@
       types:
         Heat: 2
         Holy: 5
-    soundHit:
-      path: "/Audio/Weapons/bladeslice.ogg"
+    #soundHit:       ##Field doesn't exist for this component according to YML Linter 12/27/25
+    #  path: "/Audio/Weapons/bladeslice.ogg"
     #staminaCost: 10      ##Don't know what this should be. Don't think MeleeStaminaCost is the right field choice
   - type: PhysicalComposition
     materialComposition:
