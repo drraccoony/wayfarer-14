@@ -40,7 +40,7 @@
   id: CrateServiceReplacementLights
   parent: CrateGenericSteel
   name: replacement lights crate
-  description: May the light of Aether shine upon this station! Includes two boxes of twelve lights in both bulbs and tubes.
+  description: May the light of Aether shine upon this station! Includes two boxes of twelve lights in both bulbs and tubes. #Wayfarer-14
   components:
   - type: StorageFill
     contents:
@@ -58,6 +58,7 @@
       - id: BoxLighttubeHoliday
       - id: BoxLighttubeHoliday
 
+#Start Wayfarer-14
 - type: entity
   id: CrateServiceNavigationLights
   parent: CrateServiceHolidayLights
@@ -68,6 +69,7 @@
     contents:
     - id: BoxLighttubeNavRed
     - id: BoxLighttubeNavGreen
+#End Wayfarer-14
 
 - type: entity
   id: CrateMousetrapBoxes

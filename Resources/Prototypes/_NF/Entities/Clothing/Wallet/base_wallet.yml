@@ -35,9 +35,9 @@
       - NFShipyardVoucher
       - Card # single cards
       - NFEmagPass
-      - IdCard
-      tags:
-      - Ring
+      - IdCard # Wayfarer-14
+      tags: # Wayfarer-14
+      - Ring # Wayfarer-14
     blacklist:
       tags:
       - Book

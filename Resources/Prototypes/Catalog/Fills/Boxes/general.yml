@@ -115,6 +115,7 @@
       - id: LightTubeCrystalRed
       - id: LightTubeCrystalGreen
 
+#Start Wayfarer-14
 - type: entity
   name: red navigation lighttube box
   parent: BoxLightbulb
@@ -154,6 +155,7 @@
     - id: LightTubeCrystalGreen
     - id: LightTubeCrystalGreen
     - id: LightTubeCrystalGreen
+#End Wayfarer-14
 
 - type: entity
   name: PDA box

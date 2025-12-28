@@ -131,13 +131,3 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-
-- type: construction
-  id: PolyFlag
-  graph: Flags
-  startNode: start
-  targetNode: PolyFlag
-  category: construction-category-flags
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true

@@ -233,11 +233,13 @@
     - ClothingNeckGenderfluidPin
   groupBy: "pin"
 
+#Start Wayfarer-14
 - type: loadout
   id: ClothingNeckPolyamoryPin
   storage:
     back:
     - ClothingNeckPolyamoryPin
+#End Wayfarer-14
 
 # Towels
 - type: loadout

@@ -1,0 +1,15 @@
+- type: constructionGraph
+  id: Flags
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: PolyFlag
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
+  - node: PolyFlag
+    entity: PolyFlag

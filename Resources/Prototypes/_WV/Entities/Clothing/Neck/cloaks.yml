@@ -1,0 +1,8 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakPoly
+  name: satellite's cloak
+  description: I keep good company in my gravitational field.
+  components:
+  - type: Sprite
+    sprite: _WV/Clothing/Neck/Cloaks/poly.rsi

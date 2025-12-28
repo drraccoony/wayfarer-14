@@ -7,6 +7,7 @@ namespace Content.Server.Atmos.EntitySystems;
 /// <summary>
 /// Manages entities with RandomWalkOnIgnitedComponent.
 /// Adds RandomWalkComponent when ignited, removes it when extinguished.
+/// Wayfarer-14
 /// </summary>
 public sealed class RandomWalkOnIgnitedSystem : EntitySystem
 {

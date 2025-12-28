@@ -84,6 +84,7 @@
   - node: shoes
     entity: MoproachShoes
 
+#Start Wayfarer-14
 - type: constructionGraph
   id: PaperLantern
   start: start
@@ -198,3 +199,4 @@
         doAfter: 1
   - node: lantern-purple
     entity: PaperLanternPurple
+#End Wayfarer-14

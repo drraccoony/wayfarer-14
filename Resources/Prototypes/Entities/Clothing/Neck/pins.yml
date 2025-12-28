@@ -210,6 +210,7 @@
   - type: Clothing
     equippedPrefix: goldautism
 
+#Start Wayfarer-14
 - type: entity
   parent: ClothingNeckPinBase
   id: ClothingNeckPolyamoryPin
@@ -220,3 +221,4 @@
     state: poly
   - type: Clothing
     equippedPrefix: poly
+#End Wayfarer-14

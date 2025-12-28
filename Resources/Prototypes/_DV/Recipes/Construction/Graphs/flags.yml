@@ -84,13 +84,6 @@
       - material: Gold
         amount: 5
         doAfter: 2
-    - to: PolyFlag
-      completed:
-      - !type:SnapToGrid
-      steps:
-      - material: Cloth
-        amount: 5
-        doAfter: 2
   - node: LGBTQFlag
     entity: LGBTQFlag
   - node: TransFlag
@@ -113,5 +106,3 @@
     entity: AceFlag
   - node: TransRoyalShrimpFlag
     entity: TransRoyalShrimpFlag
-  - node: PolyFlag
-    entity: PolyFlag

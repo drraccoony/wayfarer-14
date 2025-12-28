@@ -280,6 +280,7 @@
     neck: ClothingNeckCloakLesbian
   groupBy: "flagCloaks"
 
+#Start Wayfarer-14
 - type: loadout
   id: ContractorClothingNeckCloakPoly
   effects:
@@ -288,6 +289,7 @@
   price: 1000
   equipment:
     neck: ClothingNeckCloakPoly
+#End Wayfarer-14
 
 - type: loadout
   id: ContractorBedsheetRainbow

@@ -1056,10 +1056,12 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingNeckCloakTrans
 
+#Start Wayfarer-14
 - type: latheRecipe
   id: ClothingNeckCloakPoly
   parent: NFBaseJumpsuitRecipe
   result: ClothingNeckCloakPoly
+#End Wayfarer-14
 
 - type: latheRecipe
   id: ClothingNeckCloakQm

@@ -210,6 +210,7 @@
 - type: Tag
   id: Candle
 
+#Start Wayfarer-14
 - type: Tag
   id: CandleBlack
 
@@ -224,6 +225,7 @@
 
 - type: Tag
   id: CandleRed
+#End Wayfarer-14
 
 - type: Tag
   id: Cake
@@ -1039,8 +1041,10 @@
 - type: Tag
   id: Paper
 
+#Start Wayfarer-14
 - type: Tag
   id: PaperLantern
+#End Wayfarer-14
 
 - type: Tag
   id: Pancake

@@ -438,8 +438,8 @@
         type: PaperBoundUserInterface
   - type: Item
     size: Tiny
-    shape:
-    - 0,0,0,0
+    shape: # Wayfarer-14
+    - 0,0,0,0 # Wayfarer-14
   - type: Tag
     tags:
     - Trash

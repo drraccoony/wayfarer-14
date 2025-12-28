@@ -117,14 +117,3 @@
     state: trans_royal_shrimp_flag
   - type: Construction
     node: TransRoyalShrimpFlag
-
-- type: entity
-  parent: BaseFlagDV
-  id: PolyFlag
-  name: polyamory flag
-  description: '"Be poly do crime" flag.'
-  components:
-  - type: Sprite
-    state: poly_flag
-  - type: Construction
-    node: PolyFlag

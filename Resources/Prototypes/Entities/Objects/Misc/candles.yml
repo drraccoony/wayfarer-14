@@ -78,10 +78,10 @@
       right:
       - state: inhand-right
         color: "#a12349"
-  - type: Tag
-    tags:
-      - CandleRed
-      - Candle
+  - type: Tag # Wayfarer-14
+    tags: # Wayfarer-14
+      - CandleRed # Wayfarer-14
+      - Candle # Wayfarer-14
 
 - type: entity
   name: blue candle
@@ -100,10 +100,10 @@
       right:
       - state: inhand-right
         color: "#425d7d"
-  - type: Tag
-    tags:
-    - CandleBlue
-    - Candle
+  - type: Tag # Wayfarer-14
+    tags: # Wayfarer-14
+    - CandleBlue # Wayfarer-14
+    - Candle # Wayfarer-14
 
 - type: entity
   name: black candle
@@ -122,10 +122,10 @@
       right:
       - state: inhand-right
         color: "#1b1724"
-  - type: Tag
-    tags:
-    - CandleBlack
-    - Candle
+  - type: Tag # Wayfarer-14
+    tags: # Wayfarer-14
+    - CandleBlack # Wayfarer-14
+    - Candle # Wayfarer-14
 
 - type: entity
   name: green candle
@@ -144,10 +144,10 @@
       right:
       - state: inhand-right
         color: "#5d997e"
-  - type: Tag
-    tags:
-    - CandleGreen
-    - Candle
+  - type: Tag # Wayfarer-14
+    tags: # Wayfarer-14
+    - CandleGreen # Wayfarer-14
+    - Candle # Wayfarer-14
 
 - type: entity
   name: purple candle
@@ -166,10 +166,10 @@
       right:
       - state: inhand-right
         color: "#984aa1"
-  - type: Tag
-    tags:
-    - CandlePurple
-    - Candle
+  - type: Tag # Wayfarer-14
+    tags: # Wayfarer-14
+    - CandlePurple # Wayfarer-14
+    - Candle # Wayfarer-14
 
 
 - type: entity

@@ -148,7 +148,7 @@
   - ClothingNeckCloakRd
   - ClothingNeckCloakEnby
   - ClothingNeckCloakAro
-  - ClothingNeckCloakPoly
+  - ClothingNeckCloakPoly # Wayfarer-14
 
 - type: latheRecipePack
   id: NFUniformCommand

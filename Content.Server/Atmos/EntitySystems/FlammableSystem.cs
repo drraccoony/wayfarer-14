@@ -470,6 +470,7 @@ namespace Content.Server.Atmos.EntitySystems
                     // Unless the entity has AirlessFlammableComponent, which allows it to burn in space.
                     // This was added for paper lanterns. It can safely be removed if creating problems.
                     // Resources/Prototypes/Entities/Objects/Misc/paperlantern.yml
+                    // Wayfarer-14
                     if (!HasComp<AirlessFlammableComponent>(uid) && (air == null || air.GetMoles(Gas.Oxygen) < 1f))
                     {
                         Extinguish(uid, flammable);
