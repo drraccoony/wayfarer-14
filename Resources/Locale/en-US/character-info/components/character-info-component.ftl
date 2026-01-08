@@ -7,3 +7,7 @@ character-info-no-level = Level 1
 character-info-tab-info = Info
 character-info-tab-roleplay = Roleplay Level
 character-info-roleplay-stats = Roleplay Statistics
+
+# Roleplay commend notifications
+roleplay-commend-received-private = You received a commend!
+roleplay-commend-received-public = You received a commend from {$giver}!

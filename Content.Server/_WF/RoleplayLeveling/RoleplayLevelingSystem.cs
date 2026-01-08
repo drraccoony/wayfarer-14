@@ -1,4 +1,5 @@
 using Content.Server.Database;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
@@ -27,6 +28,7 @@ public sealed class RoleplayLevelingSystem : SharedRoleplayLevelingSystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
 
     private int _currentRoundId = 0;
     
@@ -243,6 +245,15 @@ public sealed class RoleplayLevelingSystem : SharedRoleplayLevelingSystem
         // Award experience for receiving a commend (configurable via CVar)
         var commendXp = _cfg.GetCVar(CCVars.RoleplayXpCommend);
         AwardExperience(recipientEntity, commendXp, "Received commend");
+
+        // Notify recipient that they received a commend
+        if (recipientActor?.PlayerSession != null)
+        {
+            var commendMessage = msg.IsPrivate
+                ? Loc.GetString("roleplay-commend-received-private")
+                : Loc.GetString("roleplay-commend-received-public", ("giver", Name(giver)));
+            _chatManager.DispatchServerMessage(recipientActor.PlayerSession, commendMessage);
+        }
 
         // Raise event
         var commendEvent = new RoleplayCommendReceivedEvent(recipientEntity, giver, msg.Comment, msg.IsPrivate);

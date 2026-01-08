@@ -151,15 +151,20 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         // Update roleplay level tab
         if (_ent.TryGetComponent<RoleplayLevelComponent>(entity, out var rpLevel))
         {
-            _window.RoleplayLevelLabel.Text = $"Level: {rpLevel.Level}";
-            _window.ExperienceLabel.Text = $"Experience: {rpLevel.Experience} / {rpLevel.ExperienceToNextLevel}";
+            _window.RoleplayLevelLabel.Text = $"Level: {rpLevel.Level} ({rpLevel.Experience} / {rpLevel.ExperienceToNextLevel} XP)";
             _window.TotalCommendsLabel.Text = $"Total Commends: {rpLevel.TotalCommends}";
+            
+            // Update experience progress bar
+            var progress = rpLevel.ExperienceToNextLevel > 0 
+                ? (float)rpLevel.Experience / rpLevel.ExperienceToNextLevel 
+                : 1.0f;
+            _window.ExperienceProgressBar.Value = progress;
         }
         else
         {
-            _window.RoleplayLevelLabel.Text = "Level: 1";
-            _window.ExperienceLabel.Text = "Experience: 0 / 100";
+            _window.RoleplayLevelLabel.Text = "Level: 1 (0 / 100 XP)";
             _window.TotalCommendsLabel.Text = "Total Commends: 0";
+            _window.ExperienceProgressBar.Value = 0.0f;
         }
 
         foreach (var (groupId, conditions) in objectives)
