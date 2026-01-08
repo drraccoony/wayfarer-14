@@ -151,7 +151,8 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         // Update roleplay level tab
         if (_ent.TryGetComponent<RoleplayLevelComponent>(entity, out var rpLevel))
         {
-            _window.RoleplayLevelLabel.Text = $"Level: {rpLevel.Level} ({rpLevel.Experience} / {rpLevel.ExperienceToNextLevel} XP)";
+            _window.RoleplayLevelLabel.Text = $"Level: {rpLevel.Level}";
+            // _window.RoleplayLevelLabel.Text = $"Level: {rpLevel.Level} ({rpLevel.Experience} / {rpLevel.ExperienceToNextLevel} XP)";
             _window.TotalCommendsLabel.Text = $"Total Commends: {rpLevel.TotalCommends}";
             
             // Update experience progress bar
@@ -162,7 +163,8 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         }
         else
         {
-            _window.RoleplayLevelLabel.Text = "Level: 1 (0 / 100 XP)";
+            _window.RoleplayLevelLabel.Text = "Level: 1";
+            // _window.RoleplayLevelLabel.Text = "Level: 1 (0 / 100 XP)";
             _window.TotalCommendsLabel.Text = "Total Commends: 0";
             _window.ExperienceProgressBar.Value = 0.0f;
         }
