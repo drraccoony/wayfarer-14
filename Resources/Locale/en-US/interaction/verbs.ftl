@@ -52,3 +52,10 @@ interaction-Pet-description = Pet your co-worker to ease their stress.
 interaction-Pet-success-self-popup = You pet {THE($target)} on {POSS-ADJ($target)} head.
 interaction-Pet-success-target-popup = {THE($user)} pets you on your head.
 interaction-Pet-success-others-popup = {THE($user)} pets {THE($target)}.
+
+# Force Down Interaction
+interaction-ForceDown-name = Force Down
+interaction-ForceDown-description = Force someone down.
+interaction-ForceDown-success-self-popup = You force {THE($target)} down.
+interaction-ForceDown-success-target-popup = {THE($user)} forces you down.
+interaction-ForceDown-success-others-popup = {THE($user)} forces {THE($target)} down.

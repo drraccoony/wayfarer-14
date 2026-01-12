@@ -145,3 +145,27 @@
   allowSelfInteract: false
   priority: 0
   categoryKey: interaction
+
+- type: Interaction
+  id: ForceDown
+  action:
+    !type:NoOpAction
+  effectSuccess:
+    popup: DefaultInteraction
+    effectTarget: TargetThenUser
+    soundPerceivedByOthers: true
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+      params:
+        volume: -2
+        variation: 0.1
+  delay: 0
+  cooldown: 2
+  range:
+    min: 0
+    max: 1.5
+  requiresCanInteract: true
+  requiresHands: false
+  allowSelfInteract: false
+  priority: 0
+  categoryKey: interaction
