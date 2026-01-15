@@ -33,21 +33,36 @@ public static class ColorExtensions
     /// </summary>
     public static Color PreventColorFromBeingTooCloseToTheBackgroundColor(Color theColor)
     {
-        Color backgroundColor = new(44, 44, 46, 255);
-        // Calculate the brightness of the color
-        var brightness = (theColor.R * 0.299 + theColor.G * 0.587 + theColor.B * 0.114) / 255;
-        // Calculate the brightness of the background color
-        var backgroundBrightness = (backgroundColor.R * 0.299 + backgroundColor.G * 0.587 + backgroundColor.B * 0.114) / 255;
-        // If the color is too close to the background color, adjust it
-        if (!(brightness < backgroundBrightness + 0.1) && !(brightness > backgroundBrightness - 0.1))
-            return theColor;
-        // R, G, and B are floats between 0 and 1
-        // Adjust the color by increasing its brightness
-        theColor.R = Math.Clamp(theColor.R + 0.2f, 0f, 1f);
-        theColor.G = Math.Clamp(theColor.G + 0.2f, 0f, 1f);
-        theColor.B = Math.Clamp(theColor.B + 0.2f, 0f, 1f);
-        theColor.A = Math.Clamp(theColor.A, 0f, 1f);
-        // If the color is not too close to the background color, return it unchanged
+        // Background color components are in 0-1 range (44/255 ≈ 0.172, 46/255 ≈ 0.180)
+        const float bgR = 44f / 255f;
+        const float bgG = 44f / 255f;
+        const float bgB = 46f / 255f;
+        
+        // Calculate the brightness using standard luminance formula
+        var brightness = theColor.R * 0.299f + theColor.G * 0.587f + theColor.B * 0.114f;
+        var backgroundBrightness = bgR * 0.299f + bgG * 0.587f + bgB * 0.114f;
+        
+        const float threshold = 0.15f;
+        
+        // If the color brightness is too close to the background, adjust it
+        if (brightness >= backgroundBrightness - threshold && brightness <= backgroundBrightness + threshold)
+        {
+            // If darker than background, brighten it significantly
+            if (brightness < backgroundBrightness)
+            {
+                theColor.R = Math.Clamp(theColor.R + 0.4f, 0f, 1f);
+                theColor.G = Math.Clamp(theColor.G + 0.4f, 0f, 1f);
+                theColor.B = Math.Clamp(theColor.B + 0.4f, 0f, 1f);
+            }
+            else
+            {
+                // If similar or slightly brighter, brighten it more to ensure contrast
+                theColor.R = Math.Clamp(theColor.R + 0.3f, 0f, 1f);
+                theColor.G = Math.Clamp(theColor.G + 0.3f, 0f, 1f);
+                theColor.B = Math.Clamp(theColor.B + 0.3f, 0f, 1f);
+            }
+        }
+        
         return theColor;
     }
 
