@@ -13,7 +13,9 @@ public static class ColorExtensions
         {
             input = "bingles"; // Return transparent color for empty or null input
         }
-        // Use a consistent hash function to generate a seed from the input string
+        // Use a deterministic hash function (FNV-1a) to generate a stable seed. 
+        // TODO: Maybe another day once we have time for testing.
+        // int seed = GetDeterministicHashCode(input);
         int seed = input.GetHashCode();
         System.Random random = new(seed);
 
@@ -23,6 +25,26 @@ public static class ColorExtensions
         byte b = (byte)random.Next(0, 256);
 
         return new Color(r, g, b, 255); // A is set to 255 (opaque)
+    }
+
+    /// <summary>
+    /// FNV-1a hash algorithm for deterministic, stable hashing across runs.
+    /// </summary>
+    private static int GetDeterministicHashCode(string str)
+    {
+        unchecked
+        {
+            const int fnvPrime = 16777619;
+            int hash = (int)2166136261;
+
+            foreach (char c in str)
+            {
+                hash ^= c;
+                hash *= fnvPrime;
+            }
+
+            return hash;
+        }
     }
 
     /// <summary>
