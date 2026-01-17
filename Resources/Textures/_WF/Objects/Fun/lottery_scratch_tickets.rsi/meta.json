@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Placeholder sprites using paper.png from Objects/Misc/bureaucracy.rsi. To be replaced with custom lottery scratch ticket sprites.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ticket_unscratched",
+      "description": "An unscratched lottery ticket"
+    },
+    {
+      "name": "ticket_scratched",
+      "description": "A scratched lottery ticket"
+    },
+    {
+      "name": "ticket_winner",
+      "description": "A winning lottery ticket"
+    },
+    {
+      "name": "ticket_loser",
+      "description": "A losing lottery ticket"
+    }
+  ]
+}
