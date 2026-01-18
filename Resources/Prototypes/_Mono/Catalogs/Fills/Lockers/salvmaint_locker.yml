@@ -668,13 +668,13 @@
       - !type:AllSelector
         children:
         - id: WeaponShotgunDoubleBarreled
-        - id: MagazineBoxShotgunSlug
+        - id: NFAmmunitionBoxShellShotgunSlug
       #Kammerer
       - !type:AllSelector
         children:
         - id: WeaponShotgunDoubleBarreled
         - id: WeaponShotgunKammerer
-        - id: MagazineBoxShotgunSlug
+        - id: NFAmmunitionBoxShellShotgunSlug
       #Faith
       - !type:AllSelector
         children:
@@ -684,7 +684,7 @@
       - !type:AllSelector
         children:
         - id: NFWeaponRevolverArgenti
-        - id: SpeedLoaderRifle
+        - id: SpeedLoaderRifleHeavy
     - id: PillCanisterStrange
     - id: NFWeaponEnergyPistolLaser
     - id: BoxT3ComponentsAssorted
