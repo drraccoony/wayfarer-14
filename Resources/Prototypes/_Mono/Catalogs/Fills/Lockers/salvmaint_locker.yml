@@ -120,7 +120,7 @@
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
       - id: ClothingMaskSterile
-      - id: ClothingNeckHeadphones
+      - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
       - id: ClothingOuterCoatGentle
       - !type:AllSelector
@@ -464,8 +464,8 @@
       #Survival box
       - !type:GroupSelector
         children:
-        - id: BoxSurvivalNFOxygen
-        - id: BoxSurvivalNFNitrogen
+        - id: NFBoxSurvival
+        - id: NFBoxSurvivalNitrogen
       #Salvagecore bevvy
       - !type:GroupSelector
         children:
@@ -514,8 +514,8 @@
         children:
         - id: MonkeyCubeWrapped
         - id: KoboldCubeWrapped
-        - id: HumanCube #fucked
-          weight: 0.1
+        # - id: HumanCube #fucked - REMOVED: doesn't exist
+        #   weight: 0.1
         - id: MonkeyCubeBox
           weight: 0.5
         - id: KoboldCubeBox
@@ -657,36 +657,36 @@
       #Novalite
       - !type:AllSelector
         children:
-        - id: WeaponRifleNovaliteC1
-        - id: MagazineNovaliteC1
+        - id: NFWeaponRifleAssaultNovaliteC1
+        - id: NFMagazineClipRifle20
       #Gestio
       - !type:AllSelector
         children:
-        - id: WeaponRifleGestio
-        - id: Magazine7.62x39mmLowCapacityFMJ
+        - id: NFWeaponRifleAssaultGestio
+        - id: MagazineRifle
       #DoubleBarrel
       - !type:AllSelector
         children:
         - id: WeaponShotgunDoubleBarreled
-        - id: AmmoBox12_gaugeBuckshot
+        - id: MagazineBoxShotgunSlug
       #Kammerer
       - !type:AllSelector
         children:
         - id: WeaponShotgunDoubleBarreled
         - id: WeaponShotgunKammerer
-        - id: AmmoBox12_gaugeBuckshot
+        - id: MagazineBoxShotgunSlug
       #Faith
       - !type:AllSelector
         children:
-        - id: WeaponRevolverFaith
-        - id: SpeedLoader45_magnumFMJ
+        - id: NFWeaponRevolverFaith
+        - id: NFSpeedLoaderPistol45
       #Argenti
       - !type:AllSelector
         children:
-        - id: WeaponRevolverArgenti
-        - id: SpeedLoader5.56x45mmFMJ
+        - id: NFWeaponRevolverArgenti
+        - id: SpeedLoaderRifle
     - id: PillCanisterStrange
-    - id: WeaponLaserPistolNF
+    - id: NFWeaponEnergyPistolLaser
     - id: BoxT3ComponentsAssorted
     - id: PlushieThrongler
     
@@ -698,7 +698,7 @@
       - id: BoxT4ComponentsAssorted
       - id: MobCatSpaceGhost
       - id: WehMedipen
-      - id: DrinkBeerCervezaCristalFull
+      # - id: DrinkBeerCervezaCristalFull # REMOVED: doesn't exist
       #Syndie shit
       - id: Telecrystal5
       - id: HypopenBox
