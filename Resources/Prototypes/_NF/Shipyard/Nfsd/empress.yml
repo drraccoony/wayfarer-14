@@ -2,7 +2,7 @@
   id: Empress
   parent: BaseVessel
   name: NSF Empress
-  description: A large patrol vessel capable of carrying up to 4 smaller faster attack ships. The flagship vessel of the NFSD.
+  description: A large patrol vessel capable of carrying up to 4 smaller faster attack ships. The flagship vessel of the CGP.
   price: 170000 #Appraisal value is 150000
   category: Large
   group: Security

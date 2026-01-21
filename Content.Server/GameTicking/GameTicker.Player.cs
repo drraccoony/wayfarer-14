@@ -191,14 +191,16 @@ namespace Content.Server.GameTicking
             _playerGameStatuses[session.UserId] = PlayerGameStatus.JoinedGame;
             _db.AddRoundPlayers(RoundId, session.UserId);
 
-            if (_adminManager.HasAdminFlag(session, AdminFlags.Admin))
-            {
-                if (_allPreviousGameRules.Count > 0)
-                {
-                    var rulesMessage = GetGameRulesListMessage(true);
-                    _chatManager.SendAdminAnnouncementMessage(session, Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)));
-                }
-            }
+            // Wayfarer: Disable gamerules in use message
+            // if (_adminManager.HasAdminFlag(session, AdminFlags.Admin))
+            // {
+            //     if (_allPreviousGameRules.Count > 0)
+            //     {
+            //         var rulesMessage = GetGameRulesListMessage(true);
+            //         _chatManager.SendAdminAnnouncementMessage(session, Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)));
+            //     }
+            // }
+            // End Wayfarer
 
             RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
         }

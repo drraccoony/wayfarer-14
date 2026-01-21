@@ -186,7 +186,7 @@
 - type: entity
   parent: [ SuitStorageWallmount, StorageFillEVASuitNfsd ]
   id: SuitStorageWallmountEVANfsd
-  suffix: EVA, NFSD
+  suffix: EVA, CGP
   components:
   - type: AccessReader
     access: [["Security"]]

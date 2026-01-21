@@ -14,7 +14,7 @@ phrase-location-nautical-cargo-bay = cargo bay
 
 # Station names
 phrase-location-nash = Nash
-phrase-location-nfsd-outpost = NFSD Outpost
+phrase-location-nfsd-outpost = CGP Outpost
 phrase-location-frontier-outpost = Frontier outpost
 phrase-location-power-plant = Power Plant
 phrase-location-barrier = Barrier Station

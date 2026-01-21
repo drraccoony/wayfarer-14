@@ -929,8 +929,8 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: NfsdTechFabFlatpack
-  name: NFSD techfab flatpack
-  description: A flatpack used for constructing an NFSD techfab.
+  name: CGP techfab flatpack
+  description: A flatpack used for constructing a CGP techfab.
   components:
   - type: Flatpack
     entity: NfsdTechFab
@@ -980,7 +980,7 @@
 - type: entity
   parent: HoverbikeFlatpack
   id: HoverbikeNfsdFlatpack
-  name: NFSD hoverbike flatpack
+  name: CGP hoverbike flatpack
   description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
   components:
   - type: Flatpack

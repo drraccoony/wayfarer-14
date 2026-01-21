@@ -151,6 +151,7 @@
     - NFServiceKitchenStatic # Frontier
     - NFEvaSuitCommon # Frontier
     - AACTableStatic # DeltaV - AAC Tablets
+    - CSPlumbingStatic # CS - showers, sinks, drains
 
   - type: EmagLatheRecipes
     emagStaticPacks:

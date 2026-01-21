@@ -296,7 +296,7 @@
 - type: entity
   abstract: true
   id: StorageFillEVASuitNfsd
-  description: Contains a standard issue NFSD EVA kit.
+  description: Contains a standard issue CGP EVA kit.
   components:
   - type: StorageFill
     contents:

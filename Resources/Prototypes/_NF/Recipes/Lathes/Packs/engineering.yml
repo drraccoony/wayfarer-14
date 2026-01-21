@@ -31,7 +31,6 @@
 - type: latheRecipePack
   id: NFEngineeringBoardsStatic
   recipes:
-  - IntercomElectronics
   - SmallThrusterMachineCircuitboard
   - SmallGyroscopeMachineCircuitboard
   - SolarControlComputerCircuitboard
@@ -43,7 +42,6 @@
   - PortableGeneratorJrPacmanMachineCircuitboard
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
-  - AutopilotServerCircuitboard # Wayfarer
   - MiniGravityGeneratorCircuitboard
   - MiniStationAnchorCircuitboard
   - GasRecyclerMachineCircuitboard
@@ -85,6 +83,7 @@
   recipes:
   - GasMiningDrillMachineCircuitboard
   - GaslockFrameMachineCircuitboard
+#  - GaslockBigFrameMachineCircuitboard
 
 - type: latheRecipePack
   id: NFEngineering
@@ -99,3 +98,4 @@
   - SuperMatterBinStockPart
   - PicoManipulatorStockPart
   - NFWeaponParticleDecelerator
+#  - NFWeaponParticleDecelerator

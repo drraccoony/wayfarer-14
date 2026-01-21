@@ -383,7 +383,7 @@
   parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineNfsdDrobe
   name: NFSDDrobe
-  description: A vending machine for NFSD and NFSD clothing!
+  description: A vending machine for CGP and CGP clothing!
   components:
   - type: VendingMachine
     pack: NfsdDrobeInventory
@@ -433,7 +433,7 @@
   parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineNfsdTech
   name: NFSDTech
-  description: A vending machine for NFSD and NFSD tech!
+  description: A vending machine for CGP and CGP tech!
   components:
   - type: VendingMachine
     pack: NfsdTechInventory
@@ -470,7 +470,7 @@
 - type: entity
   parent: NFVendingMachineCart
   id: NFVendingMachineCartNfsd
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: VendingMachine
     pack: NFPTechNfsdInventory
@@ -605,8 +605,8 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-  - type: MarketModifier
-    mod: 30 # damn
+  # - type: MarketModifier
+  #   mod: 30 # damn
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/civimed.rsi
     layers:

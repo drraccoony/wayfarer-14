@@ -61,7 +61,7 @@ shipyard-console-class-Kitchen = Kitchen
 # Antag
 shipyard-console-class-Syndicate = Syndicate
 shipyard-console-class-Pirate = Pirate
-# NFSD
+# CGP
 shipyard-console-class-Capital = Capital
 shipyard-console-class-Detainment = Detainment
 shipyard-console-class-Detective = Detective

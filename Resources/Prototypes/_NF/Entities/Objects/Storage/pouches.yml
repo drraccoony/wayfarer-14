@@ -1031,12 +1031,12 @@
       - state: equipped-BELT
         color: "#935c3f"
 
-## NFSD
+## CGP
 #region nfsd
 - type: entity
   id: NFPouchNfsd
   parent: NFPouchUtility
-  name: NFSD pouch
+  name: CGP pouch
   components:
   - type: Sprite
     layers:

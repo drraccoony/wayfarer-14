@@ -186,6 +186,24 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+#  - type: Machine
+#    board: GaslockBigFrameMachineCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel:
+            min: 20
+            max: 25
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: [ BaseStructureDynamic, BasePressurePumpGaslock, BaseMachinePowered, ConstructibleMachine ]
@@ -233,7 +251,6 @@
   - type: StaticPrice
     price: 100
   - type: Docking
-    receiveOnly: true
   - type: DeviceNetwork
     prefix: device-address-prefix-portable-gaslock
   - type: Fixtures
@@ -257,3 +274,20 @@
     board: GaslockFrameMachineCircuitboard
   - type: BindToStation
     enabled: false # should be draggable between stations
+#  - type: Construction
+#    graph: GasUnary
+#    node: asslock
+#  - type: Damageable
+#    damageContainer: StructuralInorganic
+#    damageModifierSet: Metallic
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 75
+#      behaviors:
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: GlassBreak
+#      - !type:DoActsBehavior
+#        acts: [ "Destruction" ]

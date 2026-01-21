@@ -10,6 +10,7 @@ using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._CS.Body.Components; // CS
 
 namespace Content.Client.Humanoid;
 
@@ -46,19 +47,20 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
-        var component = entity.Comp1;
-        var sprite = entity.Comp2;
-
         UpdateLayers(entity);
         ApplyMarkingSet(entity);
 
+        // Begin CS - Size Difference
         // Don't clamp height/width on client - the server already handles limits
         // Clamping here prevents temporary size effects (size gun, clothing, buffs) from displaying properly
+        var component = entity.Comp1;
+        var sprite = entity.Comp2;
+
         var height = component.Height;
         var width = component.Width;
 
         // Apply size manipulation multiplier if present
-        if (TryComp<Content.Shared.Body.Components.SizeAffectedComponent>(entity.Owner, out var sizeAffected))
+        if (TryComp<SizeAffectedComponent>(entity.Owner, out var sizeAffected))
         {
             height *= sizeAffected.ScaleMultiplier;
             width *= sizeAffected.ScaleMultiplier;
@@ -66,9 +68,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         // Directly set sprite scale - this is the original approach that worked
         // Using SpriteSystem.SetScale() was causing issues with outline shader rendering
-        sprite.Scale = new Vector2(width, height);
+        _sprite.SetScale(entity.Owner, new(width, height));
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = component.EyeColor;
+        // END CS
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)

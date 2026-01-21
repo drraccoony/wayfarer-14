@@ -103,10 +103,10 @@
   id: NFCadetPhrase
   text: job-name-cadet-nf
 
-- type: quickPhrase
-  parent: BaseNFSDPhrase
-  id: PublicAffairsLiasonPhrase
-  text: job-name-pal
+#- type: quickPhrase
+#  parent: BaseNFSDPhrase
+#  id: PublicAffairsLiasonPhrase
+#  text: job-name-pal
 
 - type: quickPhrase
   parent: BaseNFSDPhrase

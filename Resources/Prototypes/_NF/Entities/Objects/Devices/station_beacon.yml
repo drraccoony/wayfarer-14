@@ -160,11 +160,11 @@
   - type: NavMapBeacon
     defaultText: station-beacon-break-room
 
-# region NFSD
+# region CGP
 - type: entity
   parent: DefaultStationBeacon
   id: DefaultStationBeaconFrontierNfsd
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-nfsd
@@ -173,7 +173,7 @@
 - type: entity
   parent: DefaultStationBeaconFrontierNfsd
   id: DefaultStationBeaconFrontierNfsdBrig
-  suffix: NFSD Brig
+  suffix: CGP Brig
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-nfsd-brig

@@ -90,7 +90,7 @@
     state: piratefirstmate
   jobName: job-name-nf-pirate-first-mate
 
-# region NFSD
+# region CGP
 
 - type: jobIcon
   parent: JobIcon

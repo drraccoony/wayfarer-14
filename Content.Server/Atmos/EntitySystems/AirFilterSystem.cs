@@ -77,7 +77,7 @@ public sealed class AirFilterSystem : EntitySystem
 
         if (destination != null)
         {
-            _atmosphere.ScrubInto(removed, destination, gases);
+            _atmosphere.ScrubInto(removed, destination, gases, new Dictionary<Gas, float>());
         }
         else
         {

@@ -34,7 +34,7 @@ public sealed partial class CriticalImplantTrackerUiFragment : BoxContainer
         {
             var noDataLabel = new Label
             {
-                Text = "No critical patients with implants found.",
+                Text = "No critical patients found.",
                 HorizontalAlignment = HAlignment.Center,
                 Margin = new Thickness(0, 20, 0, 0)
             };
@@ -44,11 +44,20 @@ public sealed partial class CriticalImplantTrackerUiFragment : BoxContainer
 
         foreach (var patient in patients)
         {
+            // Outer panel with gray background (matching bounty contracts style)
+            var panelContainer = new PanelContainer
+            {
+                Margin = new Thickness(0, 0, 0, 5),
+                HorizontalExpand = true,
+                StyleClasses = { "AngleRect" },
+                ModulateSelfOverride = Color.FromHex("#3F3F3F") // Gray background like bounty contracts
+            };
+
             // Patient container
             var patientContainer = new BoxContainer
             {
                 Orientation = LayoutOrientation.Vertical,
-                Margin = new Thickness(0, 0, 0, 12)
+                HorizontalExpand = true
             };
 
             // Header with name and status badge
@@ -100,35 +109,11 @@ public sealed partial class CriticalImplantTrackerUiFragment : BoxContainer
             };
             patientContainer.AddChild(timeLabel);
 
-            // Implants list
-            var implantsList = new BoxContainer
-            {
-                Orientation = LayoutOrientation.Vertical,
-                Margin = new Thickness(16, 4, 0, 0)
-            };
+            // Add patient container to panel
+            panelContainer.AddChild(patientContainer);
 
-            foreach (var implant in patient.Implants)
-            {
-                var implantLabel = new Label
-                {
-                    Text = $"• {implant}",
-                    Margin = new Thickness(0, 2, 0, 2)
-                };
-                implantsList.AddChild(implantLabel);
-            }
-
-            patientContainer.AddChild(implantsList);
-
-            // Separator line
-            var separator = new PanelContainer
-            {
-                MinHeight = 1,
-                HorizontalExpand = true,
-                StyleClasses = { "LowDivider" }
-            };
-            patientContainer.AddChild(separator);
-
-            _patientList.AddChild(patientContainer);
+            // Add panel to list
+            _patientList.AddChild(panelContainer);
         }
     }
 }

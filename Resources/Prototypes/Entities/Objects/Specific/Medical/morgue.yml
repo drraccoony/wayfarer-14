@@ -13,6 +13,9 @@
     layers:
     - state: bag
       map: ["unfoldedLayer", "enum.StorageVisualLayers.Base"]
+    - state: bag_overlay # Imp
+      map: ["unfoldedLayerOverlay"] # Imp
+      shader: unshaded # Imp
     - state: bag_folded
       map: ["foldedLayer"]
       visible: false

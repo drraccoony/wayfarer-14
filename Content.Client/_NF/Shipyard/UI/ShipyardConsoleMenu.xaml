@@ -60,5 +60,14 @@
                 <Label Name="DeedTitle" Text=""/>
             </BoxContainer>
         </GridContainer>
+        <BoxContainer Orientation="Horizontal" Margin="0 2 0 2" Name="RenameContainer" Visible="False">
+            <LineEdit Name="RenameLineEdit"
+                      PlaceHolder="Name"
+                      MinWidth="140"
+                      Editable="False" />
+            <Button Name="RenameButton"
+                    Text="Rename"
+                    Disabled="True" />
+        </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

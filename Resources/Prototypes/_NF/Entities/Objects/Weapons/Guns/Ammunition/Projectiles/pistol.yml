@@ -94,7 +94,7 @@
       types:
         Blunt: 1
   - type: StaminaDamageOnCollide
-    damage: 13 # ~8 hits to stun sounds reasonable
+    damage: 9 # 12 to stun in line with higher RPS
 
 #region .45 pistol
 - type: entity

@@ -96,7 +96,7 @@ public abstract partial class SharedGunSystem
             // Continuous loading
             _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, fillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid) // Frontier: component.FillDelay<fillDelay
             {
-                BreakOnMove = true,
+                BreakOnMove = false, // Wayfarer: reload while moving
                 BreakOnDamage = false,
                 NeedHand = true
             });

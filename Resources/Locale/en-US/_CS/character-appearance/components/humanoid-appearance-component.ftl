@@ -1,0 +1,2 @@
+humanoid-appearance-component-examine-size = [color=gray]They appear to be genetically modified to be {$scale}x sized.[/color]
+humanoid-appearance-component-examine-modified-size = [color=gray]They are currently modified to {$scale}x size (×{$modifier} from normal)![/color]

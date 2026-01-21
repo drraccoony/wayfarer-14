@@ -1,8 +1,8 @@
 using System.Numerics;
 using Content.Server.Storage.Components;
+using Content.Server.Storage.EntitySystems;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
@@ -100,7 +100,7 @@ public sealed class SpaceJanitorSystem : EntitySystem
         if (TryComp<EntityStorageComponent>(uid, out var storage)
             && !storage.DeleteContentsOnDestruction)
         {
-            var sess = IoCManager.Resolve<SharedEntityStorageSystem>();
+            var sess = IoCManager.Resolve<EntityStorageSystem>();
             sess.EmptyContents(uid, storage);
         }
         if (TryComp<StorageComponent>(uid, out var storage2))

@@ -549,14 +549,14 @@
             - Gun # Any gun :(, including RPDS
         priority: 2
 
-# NFSD
+# CGP
 - type: entity
   parent:
   - VehicleHoverbikeMailcarrier
   - BaseC2ContrabandUnredeemable
   id: NFVehicleHoverbikeNfsd
-  name: NFSD hoverbike
-  description: An NFSD issued turbine with bike handles. Very safe.
+  name: CGP hoverbike
+  description: A CGP issued turbine with bike handles. Very safe.
   components:
   - type: Vehicle
     sirenSound:

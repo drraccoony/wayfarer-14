@@ -111,19 +111,26 @@
       ports:
         - Trigger
 
-# Clothing Lock Module - prevents ALL clothing removal while worn
+# Clothing Lock Module - prevents specific clothing slots from removal while worn
 - type: entity
   parent: BaseAdvCollarModule
   id: AdvCollarModuleClothingLock
   name: Collar clothing lock module
-  description: An advanced module that locks all clothing in place, preventing removal by anyone while the collar with this module is worn.
+  description: An advanced module that locks specific clothing slots (head, feet, jumpsuit, and gloves), preventing removal by anyone while the collar with this module is worn.
   components:
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: servo
     - type: AdvancedCollarModule
       componentToAdd: ClothingLock
-      moduleDescription: Locks all worn clothing
+      moduleDescription: Locks head, feet, jumpsuit, and gloves
+    # Store the component configuration that will be added to the collar
+    - type: ClothingLock
+      lockedSlots:
+        - head
+        - shoes
+        - jumpsuit
+        - gloves
 
 # Jingling Module - makes jingle sounds when the wearer moves
 - type: entity

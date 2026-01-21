@@ -1,6 +1,7 @@
 using Content.Client.Examine.UI;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -9,7 +10,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.Examine;
 
 /// <summary>
-/// Adds a "Character" examine button to humanoid entities that opens a character info window
+/// Adds a "Character" examine button to humanoid entities and ghost roles that opens a character info window
 /// </summary>
 public sealed class CharacterExamineSystem : EntitySystem
 {
@@ -23,16 +24,35 @@ public sealed class CharacterExamineSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
+        SubscribeLocalEvent<MindContainerComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbsWithMind);
         SubscribeNetworkEvent<CharacterInfoEvent>(HandleCharacterInfo);
     }
 
     private void OnGetExamineVerbs(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<ExamineVerb> args)
     {
+        // Wayfarer Begin
+        args.Verbs.Add(new ExamineVerb
+        {
+            Text = Loc.GetString("character-examine-verb"),
+            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
+            Act = () => OpenCharacterWindow(uid),
+            Category = VerbCategory.Examine,
+            ClientExclusive = true,
+            ShowOnExamineTooltip = true,
+        });
+        // Wayfarer End
+    }
+
+    private void OnGetExamineVerbsWithMind(EntityUid uid, MindContainerComponent component, GetVerbsEvent<ExamineVerb> args)
+    {
+        // Only add if not already a humanoid (to avoid duplicate buttons)
+        if (HasComp<HumanoidAppearanceComponent>(uid))
+            return;
 
         args.Verbs.Add(new ExamineVerb
         {
             Text = Loc.GetString("character-examine-verb"),
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")), // TODO: Create custom character icon
+            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
             Act = () => OpenCharacterWindow(uid),
             Category = VerbCategory.Examine,
             ClientExclusive = true,

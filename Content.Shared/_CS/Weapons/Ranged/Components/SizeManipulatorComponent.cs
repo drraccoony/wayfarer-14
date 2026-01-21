@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Weapons.Ranged.Components;
+namespace Content.Shared._CS.Weapons.Ranged.Components;
 
 /// <summary>
 /// Component for guns that can toggle between growing and shrinking targets.

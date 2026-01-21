@@ -245,12 +245,12 @@
     - state: base-pistol-wall-decal
       color: "#9a54bf"
 
-#region NFSD
+#region CGP
 # Gun racks
 - type: entity
   id: StructureGunRackNfsd
   parent: StructureGunRack
-  suffix: NFSD, Empty
+  suffix: CGP, Empty
   components:
   - type: Sprite
     layers:
@@ -279,7 +279,7 @@
 - type: entity
   id: StructureGunRackWallmountedNfsd
   parent: StructureGunRackWallmounted
-  suffix: NFSD, Empty, Wallmount
+  suffix: CGP, Empty, Wallmount
   components:
   - type: Sprite
     layers:
@@ -309,7 +309,7 @@
 - type: entity
   id: StructureMeleeWeaponRackNfsd
   parent: StructureMeleeWeaponRack
-  suffix: NFSD, Empty
+  suffix: CGP, Empty
   components:
   - type: Sprite
     layers:
@@ -338,7 +338,7 @@
 - type: entity
   id: StructureMeleeWeaponRackWallmountedNfsd
   parent: StructureMeleeWeaponRackWallmounted
-  suffix: NFSD, Empty, Wallmount
+  suffix: CGP, Empty, Wallmount
   components:
   - type: Sprite
     layers:
@@ -368,7 +368,7 @@
 - type: entity
   id: StructurePistolRackNfsd
   parent: StructurePistolRack
-  suffix: NFSD, Empty
+  suffix: CGP, Empty
   components:
   - type: Sprite
     layers:
@@ -396,7 +396,7 @@
 - type: entity
   id: StructurePistolRackWallmountedNfsd
   parent: StructurePistolRackWallmounted
-  suffix: NFSD, Empty, Wallmount
+  suffix: CGP, Empty, Wallmount
   components:
   - type: Sprite
     layers:

@@ -39,6 +39,7 @@
                     </BoxContainer>
                     <!-- End Frontier: add print button -->
                 </BoxContainer>
+                <!-- End DeltaV - Medical Records -->
 
                 <PanelContainer StyleClasses="LowDivider" />
 

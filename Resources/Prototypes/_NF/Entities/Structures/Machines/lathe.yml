@@ -100,6 +100,7 @@
     - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
+    - CSPlumbingStatic # CS - showers, sinks, drains
     - NFLightsColoredStatic
     - NFServiceArchetypeStatic
     - NFPietyStatic
@@ -197,6 +198,7 @@
     - NFEngineeringStructureBoardsStatic
     - NFEngineeringMaterialsStatic
     - NFInflatablesStatic
+    - CSPlumbingStatic # CS - showers, sinks, drains
     - NFEngineeringArchetypeStatic
 
   - type: BlueprintReceiver
@@ -259,8 +261,8 @@
 - type: entity
   id: NfsdTechFab
   parent: [ NFBlueprintReceiverBase, SecurityTechFab ]
-  name: NFSD techfab
-  description: Prints equipment for use by NFSD.
+  name: CGP techfab
+  description: Prints equipment for use by CGP.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi

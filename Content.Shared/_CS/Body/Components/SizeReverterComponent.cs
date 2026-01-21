@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared._CS.Body.Components;
 
 /// <summary>
 /// Component for items that revert players back to acceptable size thresholds

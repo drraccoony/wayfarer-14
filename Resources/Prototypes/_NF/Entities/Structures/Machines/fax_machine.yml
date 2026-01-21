@@ -151,11 +151,11 @@
 - type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineBase]
   id: FaxMachineNFTradeMallNFSD
-  suffix: POI, Trade NFSD
+  suffix: POI, Trade CGP
   categories: [ HideSpawnMenu ]
   components:
   - type: FaxMachine
-    name: "Trade Mall NFSD Post"
+    name: "Trade Mall CGP Post"
 
 - type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineBase]
@@ -205,20 +205,20 @@
 - type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineBase]
   id: FaxMachineNFNfsd
-  suffix: POI, NFSD
+  suffix: POI, CGP
   categories: [ HideSpawnMenu ]
   components:
   - type: FaxMachine
-    name: "NFSD Outpost Sheriff"
+    name: "CGP Outpost Sheriff"
 
 - type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineBase]
   id: FaxMachineNFNfsdLawyer
-  suffix: POI, NFSD Lawyer
+  suffix: POI, CGP Lawyer
   categories: [ HideSpawnMenu ]
   components:
   - type: FaxMachine
-    name: "NFSD Outpost Lawyer"
+    name: "CGP Outpost Lawyer"
 
 - type: entity
   parent: FaxMachineBase

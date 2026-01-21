@@ -19,6 +19,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public event Action<ButtonEventArgs>? OnSellShip;
     public event Action<ButtonEventArgs>? OnOrderApproved;
+    public event Action<string>? OnRenameShip;
     private readonly List<VesselSize> _categoryStrings = new();
     private readonly List<VesselClass> _classStrings = new();
     private readonly List<VesselEngine> _engineStrings = new();
@@ -42,6 +43,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Classes.OnItemSelected += OnClassItemSelected;
         Engines.OnItemSelected += OnEngineItemSelected;
         SellShipButton.OnPressed += (args) => { OnSellShip?.Invoke(args); };
+        RenameButton.OnPressed += OnRenameButtonPressed;
     }
 
 
@@ -61,6 +63,22 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     {
         SetEngineText(args.Id);
         PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+    }
+
+    private void OnRenameButtonPressed(ButtonEventArgs args)
+    {
+        var newName = RenameLineEdit.Text.Trim();
+        if (string.IsNullOrEmpty(newName))
+            return;
+
+        // Validate length (30 characters max, matching ShuttleDeedComponent.MaxNameLength)
+        if (newName.Length > 30)
+        {
+            newName = newName[..30];
+        }
+
+        OnRenameShip?.Invoke(newName);
+        RenameLineEdit.Text = "";
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
@@ -298,6 +316,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         ShipAppraisalLabel.Text = $"{BankSystemExtensions.ToSpesoString(shipPrice)} ({state.SellRate * 100.0f:F1}%)";
         SellShipButton.Disabled = state.ShipDeedTitle == null;
+        // Show/hide and enable/disable rename controls based on whether there's a ship deed
+        var hasShipDeed = state.ShipDeedTitle != null;
+        RenameContainer.Visible = hasShipDeed;
+        RenameLineEdit.Editable = hasShipDeed;
+        RenameButton.Disabled = !hasShipDeed;
+
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")
             : Loc.GetString("id-card-console-window-insert-button");

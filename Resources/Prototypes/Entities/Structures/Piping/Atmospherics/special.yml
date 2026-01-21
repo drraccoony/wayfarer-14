@@ -54,3 +54,25 @@
   - type: Tag
     tags:
       - SpreaderIgnore
+  - type: Construction
+    graph: GasUnary
+    node: tinygayfan
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel:
+            min: 20
+            max: 25
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

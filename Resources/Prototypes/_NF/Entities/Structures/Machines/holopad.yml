@@ -178,7 +178,7 @@
 - type: entity
   parent: NFHolopadPoiBase
   id: NFHolopadNFSDReception
-  suffix: NFSD Reception, POI
+  suffix: CGP Reception, POI
   components:
   - type: Label
     currentLabel: nf-holopad-general-nfsd-reception
@@ -186,7 +186,7 @@
 - type: entity
   parent: NFHolopadPoiBase
   id: NFHolopadNFSDSheriff
-  suffix: NFSD Sheriff, POI
+  suffix: CGP Sheriff, POI
   components:
   - type: Label
     currentLabel: nf-holopad-general-nfsd-sheriff-office
@@ -194,7 +194,7 @@
 - type: entity
   parent: NFHolopadPoiBase
   id: NFHolopadNFSDLobby
-  suffix: NFSD Lobby, POI
+  suffix: CGP Lobby, POI
   components:
   - type: Label
     currentLabel: nf-holopad-general-nfsd-lobby

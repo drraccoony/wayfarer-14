@@ -18,16 +18,14 @@ public sealed class CriticalImplantTrackerUiState : BoundUserInterfaceState
 public sealed class CriticalPatientData
 {
     public string Name { get; }
-    public List<string> Implants { get; }
     public string Coordinates { get; }
     public string Species { get; }
     public string TimeSinceCrit { get; }
     public bool IsDead { get; }
 
-    public CriticalPatientData(string name, List<string> implants, string coordinates, string species, string timeSinceCrit, bool isDead)
+    public CriticalPatientData(string name, string coordinates, string species, string timeSinceCrit, bool isDead)
     {
         Name = name;
-        Implants = implants;
         Coordinates = coordinates;
         Species = species;
         TimeSinceCrit = timeSinceCrit;

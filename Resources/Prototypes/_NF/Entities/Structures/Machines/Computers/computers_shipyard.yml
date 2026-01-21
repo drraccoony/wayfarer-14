@@ -81,8 +81,8 @@
 - type: entity
   id: ComputerShipyardNfsd
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
-  name: NFSD shipyard console
-  description: Used to buy NFSD patrol vessels.
+  name: CGP shipyard console
+  description: Used to buy CGP patrol vessels.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi

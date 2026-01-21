@@ -1,25 +1,31 @@
-using Content.Server.Body.Systems;
+using Content.Server._CS.Body.Systems;
+using Content.Server._CS.Weapons.Ranged.Components;
+using Content.Shared._CS.Weapons.Ranged.Components;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Projectiles;
-using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Robust.Shared.Log;
 using Robust.Shared.Map;
 using System.Numerics;
+using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._CS.Weapons.Ranged.Systems;
 
-namespace Content.Server.Weapons.Ranged.Systems;
+namespace Content.Server._CS.Weapons.Ranged.Systems;
 
-public sealed class SizeManipulatorSystem : EntitySystem
+public sealed class SizeManipulatorSystem : SharedSizeManipulatorSystem
 {
     [Dependency] private readonly SizeManipulationSystem _sizeManipulation = default!;
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
 
+    private ISawmill _sawmill = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _sawmill = Logger.GetSawmill("size_manipulator");
 
         SubscribeLocalEvent<SizeManipulatorComponent, AmmoShotEvent>(OnAmmoShot);
         SubscribeLocalEvent<BulletSizeManipulatorComponent, ProjectileHitEvent>(OnProjectileHit);
@@ -88,11 +94,11 @@ public sealed class SizeManipulatorSystem : EntitySystem
 
         if (!Exists(hitEntity))
         {
-            Logger.Debug("SizeManipulator: Hit entity doesn't exist");
+            _sawmill.Debug("SizeManipulator: Hit entity doesn't exist");
             return;
         }
 
-        Logger.Debug($"SizeManipulator: Projectile {ToPrettyString(uid)} hit entity {ToPrettyString(hitEntity)}, applying size change mode: {component.Mode}, safety disabled: {component.SafetyDisabled}");
+        _sawmill.Debug($"SizeManipulator: Projectile {ToPrettyString(uid)} hit entity {ToPrettyString(hitEntity)}, applying size change mode: {component.Mode}, safety disabled: {component.SafetyDisabled}");
 
         // Apply size change to the hit entity, passing the safety state
         _sizeManipulation.TryChangeSize(hitEntity, component.Mode, args.Shooter, component.SafetyDisabled);

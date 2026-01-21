@@ -1,16 +1,11 @@
-﻿using System.Threading;
-using Content.Server.Explosion.Components;
+﻿using Content.Server.Explosion.Components;
 using Content.Shared.Explosion.Components;
 using Content.Shared.FloofStation;
 using Content.Shared.FloofStation;
 using Content.Shared.Implants;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mind;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -31,33 +26,15 @@ public sealed partial class TriggerSystem
         TriggerOnMobstateChangeComponent component,
         MobStateChangedEvent args)
     {
-        component.RattleCancelToken.Cancel();
-        component.RattleCancelToken = new CancellationTokenSource();
         if (!component.MobState.Contains(args.NewMobState))
             return;
 
-        TryRunTrigger(
-            uid,
-            component,
-            args.Target,
-            args.NewMobState,
-            args.Origin);
-    }
-
-    private void TryRunTrigger(
-        EntityUid uid,
-        TriggerOnMobstateChangeComponent component,
-        EntityUid changedStateMobUid,
-        MobState coolState,
-        EntityUid? stateChangerUid = null,
-        bool retry = false)
-    {
         if (!component.Enabled)
             return;
 
         if (component.PreventVore)
         {
-            if (HasComp<VoredComponent>(changedStateMobUid))
+            if (HasComp<VoredComponent>(args.Target))
             {
                 // Typically, if someone is vored, they dont want people to come rush to
                 // their aid, so just block the trigger if they are vored.
@@ -71,64 +48,14 @@ public sealed partial class TriggerSystem
         {
             HandleTimerTrigger(
                 uid,
-                stateChangerUid,
+                args.Origin,
                 timerTrigger.Delay,
                 timerTrigger.BeepInterval,
                 timerTrigger.InitialBeepDelay,
                 timerTrigger.BeepSound);
         }
         else
-        {
-            Dictionary<string, object> extraData = new()
-            {
-                { "isRetry", retry }
-            };
-            Trigger(uid, extras: extraData);
-        }
-
-        // but only repeat if their mind has a people behind it
-        if (!TryComp<MindContainerComponent>(changedStateMobUid, out var mindContainer))
-            return;
-        var mind = CompOrNull<MindComponent>(mindContainer.Mind);
-        var hasUserId = mind?.UserId;
-        if (hasUserId == null)
-            return;
-
-        // then do it AGAIN
-        component.RattleCancelToken.Cancel();
-        component.RattleCancelToken = new CancellationTokenSource();
-        Robust.Shared.Timing.Timer.Spawn(component.RattleRefireDelay, () => CheckAndTryRefire(uid, component, changedStateMobUid), component.RattleCancelToken.Token);
-    }
-
-    /// <summary>
-    /// Check if the trigger can be retriggered and does so if possible
-    /// </summary>
-    private void CheckAndTryRefire(
-        EntityUid uid,
-        TriggerOnMobstateChangeComponent component,
-        EntityUid changedStateMobUid)
-    {
-        if (!Exists(uid)
-            || !Exists(changedStateMobUid))
-            return;
-        if (Deleted(uid)
-            || Deleted(changedStateMobUid))
-            return;
-        if (!HasComp<MobStateComponent>(changedStateMobUid))
-            return;
-        if (!component.Enabled)
-            return;
-        var stat = Comp<MobStateComponent>(changedStateMobUid).CurrentState;
-        if (component.MobState.Contains(stat))
-        {
-            TryRunTrigger(
-                uid,
-                component,
-                changedStateMobUid,
-                stat,
-                null,
-                true);
-        }
+            Trigger(uid);
     }
 
     /// <summary>

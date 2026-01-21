@@ -1,0 +1,9 @@
+- files: ["shower_enable.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from FloofStation"
+  source: "https://github.com/Floof-Station/Floof-Station/blob/7f9afac40048ac8c08ce17954ac631378957d668/Resources/Audio/Ambience/Objects/shower_enable.ogg"
+
+- files: ["shower_running.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from FloofStation"
+  source: "https://github.com/Floof-Station/Floof-Station/blob/7f9afac40048ac8c08ce17954ac631378957d668/Resources/Audio/Ambience/Objects/shower_running.ogg"

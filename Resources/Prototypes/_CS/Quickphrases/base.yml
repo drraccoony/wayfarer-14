@@ -8,7 +8,7 @@
 - type: quickPhrase
   parent: BaseJobPhrase
   id: BaseNFSDPhrase
-  group: NFSD
+  group: CGP
   styleClass: NFSDButton
   abstract: true
 

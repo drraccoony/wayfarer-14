@@ -159,6 +159,7 @@
     - CrewManifestCartridge
     - NotekeeperCartridge
     - NanoTaskCartridge
+    - NanoChatCartridge # Wayfarer
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
@@ -320,37 +321,37 @@
   - type: Icon
     state: pda-nfdetective
 
-- type: entity
-  parent: BaseSecurityPDA
-  id: PublicAffairsLiaisonPDA
-  name: public affairs liaison PDA
-  description: Paperwork, paperwork, paperwork!
-  components:
-  - type: Pda
-    id: PublicAffairsIDCard
-    penSlot:
-      startingItem: PublicAffairsPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-    bookSlot: # Frontier
-      startingItem: HyperlinkBookNfsdSop
-      priority: -2
-      whitelist:
-        tags:
-        - BookSpaceLaw
-        - BookNfsdSop
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-pal
-  - type: PdaBorderColor
-    borderColor: "#FFFDD0"
-    accentHColor: "#896b49"
-  - type: Icon
-    state: pda-pal
+#- type: entity
+#  parent: BaseSecurityPDA
+#  id: PublicAffairsLiaisonPDA
+#  name: public affairs liaison PDA
+#  description: Paperwork, paperwork, paperwork!
+# components:
+# - type: Pda
+#   id: PublicAffairsIDCard
+#   penSlot:
+#     startingItem: PublicAffairsPen
+#     priority: -1
+#     whitelist:
+#       tags:
+#       - Write
+#   bookSlot: # Frontier
+#      startingItem: HyperlinkBookNfsdSop
+#     priority: -2
+#     whitelist:
+#       tags:
+#       - BookSpaceLaw
+#       - BookNfsdSop
+# - type: Appearance
+#   appearanceDataInit:
+#     enum.PdaVisuals.PdaType:
+#       !type:String
+#       pda-pal
+# - type: PdaBorderColor
+#   borderColor: "#FFFDD0"
+#   accentHColor: "#896b49"
+# - type: Icon
+#   state: pda-pal
 
 - type: entity
   parent: [BaseSecurityPDA, BaseCommandContraband]
@@ -386,6 +387,7 @@
     - AstroNavCartridge
     - LedgerCartridge
     - MailMetricsCartridge
+    - NanoChatCartridge # Wayfarer
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand
 
@@ -546,6 +548,7 @@
     - AstroNavCartridge
     - LedgerCartridge
     - MedTekCartridge
+    - NanoChatCartridge # Wayfarer
 
 - type: entity
   parent: BasePDA
@@ -592,5 +595,6 @@
     - BountyContractsCartridge
     - AstroNavCartridge
     - LedgerCartridge
+    - NanoChatCartridge # Wayfarer
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand

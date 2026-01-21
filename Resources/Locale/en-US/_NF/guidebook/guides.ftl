@@ -4,6 +4,7 @@ guide-entry-bank = NT Galactic Bank
 guide-entry-shifts-and-persistence = Shifts and Persistence
 guide-entry-safety-deposit-box = Safety Deposit Box System
 guide-entry-piloting = Piloting
+guide-entry-autopilot = Autopilot
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
 guide-entry-interviews = Interviews

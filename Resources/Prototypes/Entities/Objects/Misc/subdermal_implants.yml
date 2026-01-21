@@ -79,7 +79,7 @@
   parent: BaseSubdermalImplant
   id: TrackingImplant
   name: tracking implant
-  description: This implant has a condition monitor for the NFSD radio channel. # Frontier: NFSD mentioned, no tracking
+  description: This implant has a condition monitor for the CGP radio channel. # Frontier: CGP mentioned, no tracking
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant

@@ -1,0 +1,65 @@
+# Bathroom
+- type: construction
+  id: FloorDrain
+  graph: FloorDrain
+  startNode: start
+  targetNode: floorDrain
+  category: construction-category-furniture
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: Shower
+  graph: Shower
+  startNode: start
+  targetNode: shower
+  category: construction-category-furniture
+  # description: A shower, complete with bluespace water. # CS commented out due incompatibility, likely due to upstream codebase changes.
+  # icon:
+    # sprite: _HL/Structures/Furniture/shower.rsi
+    # state: shower
+    # objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: Sink
+  graph: Sink
+  startNode: start
+  targetNode: sink
+  category: construction-category-furniture
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: SinkStemless
+  graph: SinkStemless
+  startNode: start
+  targetNode: sinkStemless
+  category: construction-category-furniture
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: SinkWide
+  graph: SinkWide
+  startNode: start
+  targetNode: sinkWide
+  category: construction-category-furniture
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

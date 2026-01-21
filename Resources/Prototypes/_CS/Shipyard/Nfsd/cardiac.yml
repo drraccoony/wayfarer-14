@@ -9,7 +9,7 @@
   id: Cardiac
   parent: BaseVessel
   name: TSF Cardiac
-  description: An NFSD medical shuttle on the larger end, while it has an EMP generator its primary purpose is to function as more public facing trauma vessel.
+  description: An CGP medical shuttle on the larger end, while it has an EMP generator its primary purpose is to function as more public facing trauma vessel.
   price: 73250 #45782, LL2 +60% = 73251
   category: Medium
   group: Security

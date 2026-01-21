@@ -12,7 +12,7 @@
 - type: entity
   parent: Airlock
   id: AirlockNfsd
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi
@@ -32,7 +32,7 @@
 - type: entity
   parent: AirlockGlass
   id: AirlockNfsdGlass
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Glass/nfsd.rsi
@@ -100,7 +100,7 @@
 - type: entity
   parent: [AirlockGlassShuttleNfsd, AirlockExternalGlassShuttleTransit]
   id: AirlockExternalGlassShuttleNfsdTransitMinorPOI
-  suffix: Ext, Route (R3), NFSD, Glass, Docking
+  suffix: Ext, Route (R3), CGP, Glass, Docking
   components:
   - type: PriorityDock
     tag: DockTransitMinorPOIs

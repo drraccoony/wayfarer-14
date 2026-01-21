@@ -39,9 +39,14 @@ public sealed class DCCVars
     /// </summary>
     public static readonly CVarDef<bool> NoVisionFilters =
         CVarDef.Create("accessibility.no_vision_filters", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+    /// <summary>
+    /// What year it is in the game. Actual value shown in game is server date + this value.
+    /// </summary>
+    public static readonly CVarDef<int> YearOffset =
+        CVarDef.Create("game.current_year_offset", 230, CVar.SERVERONLY);
 
     /// <summary>
-    /// Whether the Shipyard is enabled.
+    ///   Whether the Shipyard is enabled.
     /// </summary>
     //public static readonly CVarDef<bool> Shipyard =
     //    CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);

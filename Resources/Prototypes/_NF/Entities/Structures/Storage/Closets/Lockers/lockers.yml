@@ -104,22 +104,22 @@
   - type: StaticPrice
     price: 75 # Frontier: 75
 
-# NFSD - Evidence
+# CGP - Evidence
 - type: entity
   id: LockerNfsdEvidence
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: NFSD evidence locker
+  name: CGP evidence locker
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: nfsd
     stateDoorOpen: nfsd_open
     stateDoorClosed: nfsd_door
 
-# NFSD Copper
+# CGP Copper
 - type: entity
   id: LockerNfsdCopper
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: NFSD locker
+  name: CGP locker
   suffix: Copper
   components:
   - type: EntityStorageVisuals
@@ -127,11 +127,11 @@
     stateDoorOpen: nfsd_copper_open
     stateDoorClosed: nfsd_copper_door
 
-# NFSD Silver
+# CGP Silver
 - type: entity
   id: LockerNfsdSilver
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: NFSD locker
+  name: CGP locker
   suffix: Silver
   components:
   - type: EntityStorageVisuals
@@ -139,11 +139,11 @@
     stateDoorOpen: nfsd_silver_open
     stateDoorClosed: nfsd_silver_door
 
-# NFSD Brigmedic
+# CGP Brigmedic
 - type: entity
   id: LockerNfsdBrigmedic
   parent: NFLockerBaseSecure
-  name: NFSD locker
+  name: CGP locker
   suffix: Brigmedic
   components:
   - type: EntityStorageVisuals
@@ -153,11 +153,11 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
-# NFSD Gold - Sergeant
+# CGP Gold - Sergeant
 - type: entity
   id: LockerNfsdSergeant
   parent: NFLockerBaseSecure
-  name: NFSD locker
+  name: CGP locker
   suffix: Sergeant
   components:
   - type: EntityStorageVisuals
@@ -167,21 +167,21 @@
   - type: AccessReader
     access: [["Sergeant"]]
 
-# NFSD Gold - Bailiff
+# CGP Gold - Bailiff
 - type: entity
   id: LockerNfsdBailiff
   parent: LockerNfsdSergeant
-  name: NFSD locker
+  name: CGP locker
   suffix: Bailiff
   components:
   - type: AccessReader
     access: [["Bailiff"]]
 
-# NFSD Sheriff
+# CGP Sheriff
 - type: entity
   id: LockerNfsdSheriff
   parent: [NFLockerBaseSecure, LockerHeadOfSecurity]
-  name: NFSD locker
+  name: CGP locker
   suffix: Sheriff
   components:
   - type: EntityStorageVisuals

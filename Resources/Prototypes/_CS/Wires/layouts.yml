@@ -1,0 +1,5 @@
+- type: wireLayout
+  id: SizeManipulator
+  dummyWires: 0
+  wires:
+  - !type:SizeManipulatorSafetyWireAction

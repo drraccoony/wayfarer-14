@@ -10,11 +10,19 @@ public sealed partial class ShuttleSystem
 {
     private void InitializeIFF()
     {
+        SubscribeLocalEvent<IFFComponent, ComponentStartup>(OnIFFStartup); // Wayfarer
         SubscribeLocalEvent<IFFConsoleComponent, AnchorStateChangedEvent>(OnIFFConsoleAnchor);
         SubscribeLocalEvent<IFFConsoleComponent, IFFShowIFFMessage>(OnIFFShow);
         SubscribeLocalEvent<IFFConsoleComponent, IFFShowVesselMessage>(OnIFFShowVessel);
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
     }
+
+    // Wayfarer start: Fix the IFF console not accurately reflecting its grid's flags when spawned on the grid
+    private void OnIFFStartup(EntityUid uid, IFFComponent component, ComponentStartup args)
+    {
+        UpdateIFFInterfaces(uid, component);
+    }
+    // Wayfarer end
 
     private void OnGridSplit(ref GridSplitEvent ev)
     {
@@ -71,28 +79,43 @@ public sealed partial class ShuttleSystem
         }
     }
 
+    // Wayfarer start: Enable IFF if the console is detached
     private void OnIFFConsoleAnchor(EntityUid uid, IFFConsoleComponent component, ref AnchorStateChangedEvent args)
     {
-        // If we anchor / re-anchor then make sure flags up to date.
-        if (!args.Anchored ||
-            !TryComp(uid, out TransformComponent? xform) ||
-            !TryComp<IFFComponent>(xform.GridUid, out var iff))
+        // If there's no IFF component, disable the UI
+        if (!TryComp(uid, out TransformComponent? xform) || !TryComp(xform.GridUid, out IFFComponent? iff))
         {
-            _uiSystem.SetUiState(uid, IFFConsoleUiKey.Key, new IFFConsoleBoundUserInterfaceState()
-            {
-                AllowedFlags = component.AllowedFlags,
-                Flags = IFFFlags.None,
-            });
+            DisableUi(uid, component);
+            return;
         }
-        else
+
+        // If we're unanchoring, also disable the UI
+        if (!args.Anchored)
         {
-            _uiSystem.SetUiState(uid, IFFConsoleUiKey.Key, new IFFConsoleBoundUserInterfaceState()
-            {
-                AllowedFlags = component.AllowedFlags,
-                Flags = iff.Flags,
-            });
+            // Force IFF on
+            RemoveIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel, iff);
+
+            DisableUi(uid, component);
+            return;
         }
+
+        // If we're anchoring, update the UI with the IFF flags
+        _uiSystem.SetUiState(uid, IFFConsoleUiKey.Key, new IFFConsoleBoundUserInterfaceState()
+        {
+            AllowedFlags = component.AllowedFlags,
+            Flags = iff.Flags,
+        });
     }
+
+    private void DisableUi(EntityUid uid, IFFConsoleComponent component)
+    {
+        _uiSystem.SetUiState(uid, IFFConsoleUiKey.Key, new IFFConsoleBoundUserInterfaceState()
+        {
+            AllowedFlags = component.AllowedFlags,
+            Flags = IFFFlags.None,
+        });
+    }
+    // Wayfarer end
 
     protected override void UpdateIFFInterfaces(EntityUid gridUid, IFFComponent component)
     {

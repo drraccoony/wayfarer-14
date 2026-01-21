@@ -25,6 +25,7 @@ public sealed partial class ScrubberControl : BoxContainer
 
     private GridContainer _gases => CGasContainer;
     private Dictionary<Gas, Button> _gasControls = new();
+    private Dictionary<Gas, FloatSpinBox> _gasLimitControls = new();
 
     public ScrubberControl(GasVentScrubberData data, string address)
     {
@@ -78,27 +79,67 @@ public sealed partial class ScrubberControl : BoxContainer
             ScrubberDataCopied?.Invoke(_data);
         };
 
-        foreach (var value in Enum.GetValues<Gas>())
+        foreach (var gas in Enum.GetValues<Gas>())
         {
+            var label = new Label
+            {
+                Text = gas.ToString(),
+                MinWidth = 120
+            };
+
             var gasButton = new Button
             {
-                Name = value.ToString(),
-                Text = Loc.GetString($"{value}"),
+                Name = gas.ToString(),
+                Text = Loc.GetString("phrase-scrub").ToUpper(),
                 ToggleMode = true,
-                HorizontalExpand = true,
-                Pressed = _data.FilterGases.Contains(value)
+                Pressed = _data.FilterGases.Contains(gas)
             };
             gasButton.OnToggled += args =>
             {
                 if (args.Pressed)
-                    _data.FilterGases.Add(value);
+                    _data.FilterGases.Add(gas);
                 else
-                    _data.FilterGases.Remove(value);
+                    _data.FilterGases.Remove(gas);
 
                 ScrubberDataChanged?.Invoke(_address, _data);
             };
-            _gasControls.Add(value, gasButton);
-            _gases.AddChild(gasButton);
+
+            var limitSet = _data.FilterGasLimits.TryGetValue(gas, out var gasLimit);
+            var percentInput = new FloatSpinBox
+            {
+                Name = gas.ToString() + "Percent",
+                ToolTip = Loc.GetString("air-alarm-ui-atmos-gas-filter-percentage-tooltip"),
+                Value = limitSet ? gasLimit : 0,
+                HorizontalExpand = true,
+            };
+            percentInput.OnValueChanged += args =>
+            {
+                if (args.Value <= 0)
+                {
+                    _data.FilterGasLimits.Remove(gas);
+                }
+                else
+                {
+                    _data.FilterGasLimits[gas] = Math.Min(args.Value, 100);
+                }
+
+                ScrubberDataChanged?.Invoke(_address, _data);
+            };
+
+            var label2 = new Label
+            {
+                Text = Loc.GetString("air-alarm-ui-atmos-gas-filter-above")
+            };
+
+            var container = new GridContainer
+            {
+                Name = "CGasContainerRow" + gas.ToString(),
+                Columns = 4,
+                Children = { label, gasButton, label2, percentInput }
+            };
+            _gasControls.Add(gas, gasButton);
+            _gasLimitControls.Add(gas, percentInput);
+            _gases.AddChild(container);
         }
 
     }
@@ -119,9 +160,12 @@ public sealed partial class ScrubberControl : BoxContainer
         _wideNet.Pressed = _data.WideNet;
         _data.FilterGases = data.FilterGases;
 
-        foreach (var value in Enum.GetValues<Gas>())
+        foreach (var gas in Enum.GetValues<Gas>())
         {
-            _gasControls[value].Pressed = data.FilterGases.Contains(value);
+            _gasControls[gas].Pressed = data.FilterGases.Contains(gas);
+
+            var limitSet = _data.FilterGasLimits.TryGetValue(gas, out var gasLimit);
+            _gasLimitControls[gas].Value = limitSet ? gasLimit : 0;
         }
     }
 }

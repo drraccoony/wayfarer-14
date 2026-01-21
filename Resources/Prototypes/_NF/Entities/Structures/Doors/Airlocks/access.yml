@@ -92,7 +92,7 @@
 - type: entity
   parent: AirlockNfsdGlass
   id: AirlockNfsdGlassLocked
-  suffix: NFSD, Locked
+  suffix: CGP, Locked
   components:
   - type: ContainerFill
     containers:
@@ -101,7 +101,7 @@
 - type: entity
   parent: AirlockNfsd
   id: AirlockNfsdLocked
-  suffix: NFSD, Locked
+  suffix: CGP, Locked
   components:
   - type: ContainerFill
     containers:
@@ -110,7 +110,7 @@
 - type: entity
   parent: AirlockNfsd
   id: AirlockNfsdBrigLocked
-  suffix: NFSD Brig, Locked
+  suffix: CGP Brig, Locked
   components:
   - type: ContainerFill
     containers:
@@ -119,7 +119,7 @@
 - type: entity
   parent: AirlockNfsdGlass
   id: AirlockNfsdBrigGlassLocked
-  suffix: NFSD Brig, Locked
+  suffix: CGP Brig, Locked
   components:
   - type: ContainerFill
     containers:
@@ -128,7 +128,7 @@
 - type: entity
   parent: AirlockNfsd
   id: AirlockNfsdDetectiveLocked
-  suffix: NFSD Detective, Locked
+  suffix: CGP Detective, Locked
   components:
   - type: ContainerFill
     containers:
@@ -137,7 +137,7 @@
 - type: entity
   parent: AirlockNfsdGlass
   id: AirlockNfsdDetectiveGlassLocked
-  suffix: NFSD Detective, Locked
+  suffix: CGP Detective, Locked
   components:
   - type: ContainerFill
     containers:
@@ -146,7 +146,7 @@
 - type: entity
   parent: AirlockNfsd
   id: AirlockNfsdArmoryLocked
-  suffix: NFSD Armory, Locked
+  suffix: CGP Armory, Locked
   components:
   - type: ContainerFill
     containers:
@@ -155,7 +155,7 @@
 - type: entity
   parent: AirlockNfsdGlass
   id: AirlockNfsdArmoryGlassLocked
-  suffix: NFSD Armory, Locked
+  suffix: CGP Armory, Locked
   components:
   - type: ContainerFill
     containers:
@@ -246,7 +246,7 @@
 - type: entity
   parent: AirlockExternalGlassNfsd
   id: AirlockExternalGlassNfsdLocked
-  suffix: NFSD, Glass, Locked
+  suffix: CGP, Glass, Locked
   components:
   - type: ContainerFill
     containers:
@@ -255,7 +255,7 @@
 - type: entity
   parent: AirlockShuttleNfsd
   id: AirlockShuttleNfsdLocked
-  suffix: NFSD, Docking, Locked
+  suffix: CGP, Docking, Locked
   components:
   - type: ContainerFill
     containers:
@@ -264,7 +264,7 @@
 - type: entity
   parent: AirlockGlassShuttleNfsd
   id: AirlockGlassShuttleNfsdLocked
-  suffix: NFSD, Glass, Docking, Locked
+  suffix: CGP, Glass, Docking, Locked
   components:
   - type: ContainerFill
     containers:

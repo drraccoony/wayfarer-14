@@ -106,7 +106,7 @@
     - type: Cartridge
       programName: log-probe-program-name
       icon:
-        sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi # Frontier: Swap security to NFSD
+        sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi # Frontier: Swap security to CGP
         state: closed
     - type: LogProbeCartridge
     - type: GuideHelp

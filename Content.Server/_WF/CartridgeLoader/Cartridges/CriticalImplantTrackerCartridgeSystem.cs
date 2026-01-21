@@ -1,4 +1,5 @@
 using Content.Server.CartridgeLoader;
+using Content.Server.Explosion.Components;
 using Content.Server.Ghost.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._WF.CartridgeLoader.Cartridges;
@@ -7,6 +8,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -21,10 +23,11 @@ public sealed class CriticalImplantTrackerCartridgeSystem : EntitySystem
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {
@@ -91,36 +94,56 @@ public sealed class CriticalImplantTrackerCartridgeSystem : EntitySystem
             }
 
             // Calculate time since entering crit/death
-            // For dead entities, check if they have a ghost component with time of death
-            var timeSinceCrit = "Unknown";
-            if (isDead && TryComp<GhostComponent>(mobUid, out var ghost))
+            var timeSinceCrit = "Active";
+            if (isDead)
             {
-                var elapsedTime = _gameTiming.CurTime - ghost.TimeOfDeath;
-                var totalSeconds = (int)elapsedTime.TotalSeconds;
-                var minutes = totalSeconds / 60;
-                var seconds = totalSeconds % 60;
-                timeSinceCrit = minutes > 0 ? $"{minutes}m {seconds}s" : $"{seconds}s";
+                TimeSpan? timeOfDeath = null;
+                
+                // Try to get time of death from mind first
+                if (_mindSystem.TryGetMind(mobUid, out var mindId, out var mind) && mind.TimeOfDeath.HasValue)
+                {
+                    timeOfDeath = mind.TimeOfDeath.Value;
+                }
+                // Fall back to ghost component if available
+                else if (TryComp<GhostComponent>(mobUid, out var ghost))
+                {
+                    timeOfDeath = ghost.TimeOfDeath;
+                }
+                
+                if (timeOfDeath.HasValue)
+                {
+                    var elapsedTime = _gameTiming.CurTime - timeOfDeath.Value;
+                    var totalSeconds = (int)elapsedTime.TotalSeconds;
+                    var minutes = totalSeconds / 60;
+                    var seconds = totalSeconds % 60;
+                    timeSinceCrit = minutes > 0 ? $"{minutes}m {seconds}s" : $"{seconds}s";
+                }
+                else
+                {
+                    timeSinceCrit = "Unknown";
+                }
             }
 
-            // Find all implants on this entity
-            var implants = new List<string>();
+            // Check if the entity has a medAlert beacon that is enabled
+            var hasActiveBeacon = false;
             if (_containerSystem.TryGetContainer(mobUid, ImplanterComponent.ImplantSlotId, out var implantContainer))
             {
                 foreach (var implant in implantContainer.ContainedEntities)
                 {
-                    if (HasComp<SubdermalImplantComponent>(implant))
+                    if (TryComp<TriggerOnMobstateChangeComponent>(implant, out var trigger) && trigger.Enabled)
                     {
-                        var implantName = MetaData(implant).EntityName;
-                        implants.Add(implantName);
+                        hasActiveBeacon = true;
+                        break;
                     }
                 }
             }
 
-            // Only add patients who have implants
-            if (implants.Count > 0)
-            {
-                patients.Add(new CriticalPatientData(name, implants, coordinates, species, timeSinceCrit, isDead));
-            }
+            // Only add patients who have an active medAlert beacon
+            if (!hasActiveBeacon)
+                continue;
+
+            // Add all critical/dead patients with active beacons
+            patients.Add(new CriticalPatientData(name, coordinates, species, timeSinceCrit, isDead));
         }
 
         var state = new CriticalImplantTrackerUiState(patients);

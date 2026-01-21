@@ -21,7 +21,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledNfsd
-  suffix: Ship, NFSD
+  suffix: Ship, CGP
   components:
   - type: ContainerFill
     containers:

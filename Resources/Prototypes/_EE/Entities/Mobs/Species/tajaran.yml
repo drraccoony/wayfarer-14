@@ -47,6 +47,12 @@
         Piercing: 1
   - type: Speech
     speechSounds: Alto
+    allowedEmotes:
+    - Hiss
+    - Meow
+    - Mew
+    - Growl
+    - Purr
   - type: DamageOnHighSpeedImpact # Landing on all fours!
     damage:
       types:
@@ -76,13 +82,17 @@
     - FootstepSound
     - DoorBumpOpener
   - type: Temperature
-    coldDamageThreshold: 230 # -25 degrees centigrade, like 12 degrees below normal
+    coldDamageThreshold: 210
+    heatDamageThreshold: 320
     currentTemperature: 312  # Body temperature of cat
+    coldDamage:
+      types:
+        Cold: 0.02
     heatDamage:
       types:
-        Cold: 0.65 # in line with cold resist
+        Heat: 2
   - type: ThermalRegulator
-    normalBodyTemperature: 311.76
+    normalBodyTemperature: 312
   # CS - tweaks and edits
   - type: ItemCougher
     item: Hairball

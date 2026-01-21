@@ -1,7 +1,6 @@
-using Content.Server.Body.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared._CS.Body.Components;
 using Content.Shared.Construction.Components;
-using Content.Shared.HeightAdjust;
+using Content.Shared._CS.HeightAdjust;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;

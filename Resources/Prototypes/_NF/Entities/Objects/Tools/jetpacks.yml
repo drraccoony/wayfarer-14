@@ -2,7 +2,7 @@
 - type: entity
   id: JetpackNfsd
   parent: JetpackSecurity
-  name: NFSD jetpack
+  name: CGP jetpack
   suffix: Empty
   components:
   - type: Item
@@ -19,7 +19,7 @@
 - type: entity
   id: JetpackNfsdFilled
   parent: JetpackSecurityFilled
-  name: NFSD jetpack
+  name: CGP jetpack
   suffix: Filled
   components:
   - type: Item

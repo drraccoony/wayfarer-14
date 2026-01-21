@@ -1,19 +1,18 @@
 
 using Content.Server.Consent;
-using Content.Shared.Body.Components;
+using Content.Shared._CS.Body.Components;
 using Content.Shared.Consent;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Weapons.Ranged.Components;
-using Robust.Shared.Log;
+using Content.Shared._CS.Weapons.Ranged.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Body.Systems;
+namespace Content.Server._CS.Body.Systems;
 
 public sealed class SizeManipulationSystem : EntitySystem
 {
@@ -21,7 +20,16 @@ public sealed class SizeManipulationSystem : EntitySystem
     [Dependency] private readonly ConsentSystem _consent = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
+    private ISawmill _sawmill = default!;
+
     private static readonly ProtoId<ConsentTogglePrototype> SizeManipulationConsent = "SizeManipulation";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _sawmill = Logger.GetSawmill("size_manipulator");
+    }
 
     /// <summary>
     /// Applies a size change to the target entity
@@ -31,7 +39,7 @@ public sealed class SizeManipulationSystem : EntitySystem
         // Only allow size manipulation on mobs (living entities)
         if (!HasComp<MobStateComponent>(target))
         {
-            Logger.Debug($"SizeManipulation: Target {ToPrettyString(target)} is not a mob, ignoring");
+            _sawmill.Debug($"SizeManipulation: Target {ToPrettyString(target)} is not a mob, ignoring");
             return false;
         }
 
@@ -40,14 +48,14 @@ public sealed class SizeManipulationSystem : EntitySystem
         {
             if (user != null)
                 _popup.PopupEntity(Loc.GetString("size-manipulator-consent-denied"), target, user.Value);
-            
-            Logger.Debug($"SizeManipulation: Consent denied for {ToPrettyString(target)}");
+
+            _sawmill.Debug($"SizeManipulation: Consent denied for {ToPrettyString(target)}");
             return false;
         }
 
         var sizeComp = EnsureComp<SizeAffectedComponent>(target);
 
-        Logger.Debug($"SizeManipulation: TryChangeSize called on {ToPrettyString(target)}, mode: {mode}, current scale: {sizeComp.ScaleMultiplier}, safety disabled: {safetyDisabled}");
+        _sawmill.Debug($"SizeManipulation: TryChangeSize called on {ToPrettyString(target)}, mode: {mode}, current scale: {sizeComp.ScaleMultiplier}, safety disabled: {safetyDisabled}");
 
         // If safety is disabled, double the max limit
         var maxScale = safetyDisabled ? sizeComp.MaxScale * 2.0f : sizeComp.MaxScale;
@@ -76,11 +84,11 @@ public sealed class SizeManipulationSystem : EntitySystem
 
         sizeComp.ScaleMultiplier = newScale;
         Dirty(target, sizeComp);
-        
+
         // Apply physics scaling
         ApplyPhysicsScale(target, newScale, sizeComp.BaseScale);
-        
-        Logger.Debug($"SizeManipulation: Set scale multiplier to {newScale} for {ToPrettyString(target)}");
+
+        _sawmill.Debug($"SizeManipulation: Set scale multiplier to {newScale} for {ToPrettyString(target)}");
 
         // Visual scaling should be handled by a shared/client system that reads SizeAffectedComponent
         // Server should not directly manipulate sprite components
@@ -120,20 +128,20 @@ public sealed class SizeManipulationSystem : EntitySystem
                     if (!sizeComp.OriginalFixtureRadii.ContainsKey(id))
                     {
                         sizeComp.OriginalFixtureRadii[id] = circle.Radius;
-                        Logger.Debug($"SizeManipulation: Stored original radius {circle.Radius} for fixture {id}");
+                        _sawmill.Debug($"SizeManipulation: Stored original radius {circle.Radius} for fixture {id}");
                     }
 
                     var originalRadius = sizeComp.OriginalFixtureRadii[id];
                     var newRadius = originalRadius * totalScale;
-                    
+
                     _physics.SetPositionRadius(target, id, fixture, circle, circle.Position, newRadius, fixtures);
-                    Logger.Debug($"SizeManipulation: Scaled circle fixture {id} radius from {circle.Radius} to {newRadius} (original: {originalRadius}, scale: {totalScale})");
+                    _sawmill.Debug($"SizeManipulation: Scaled circle fixture {id} radius from {circle.Radius} to {newRadius} (original: {originalRadius}, scale: {totalScale})");
                     break;
-                    
+
                 // Note: PhysShapeAabb and other shapes would need different handling
                 // For now, only supporting circle shapes (most humanoids use circles)
                 default:
-                    Logger.Debug($"SizeManipulation: Skipping non-circle fixture {id} of type {fixture.Shape.GetType().Name}");
+                    _sawmill.Debug($"SizeManipulation: Skipping non-circle fixture {id} of type {fixture.Shape.GetType().Name}");
                     break;
             }
         }

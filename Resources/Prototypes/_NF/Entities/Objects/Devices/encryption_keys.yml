@@ -19,9 +19,9 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyNfsd
-  name: NFSD encryption key
+  name: CGP encryption key
   categories: [ DoNotMap ]
-  description: An encryption key for the New Frontier Sheriff's Department channel.
+  description: An encryption key for the Concordia's Galactic Peacekeepers channel.
   components:
   - type: EncryptionKey
     channels:

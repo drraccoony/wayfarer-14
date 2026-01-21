@@ -1,8 +1,8 @@
 - type: entity
   id: BannerNfsd
   parent: BannerBase
-  name: NFSD banner
-  description: A banner displaying the colors of the New Frontier Sheriff's Department.
+  name: CGP banner
+  description: A banner displaying the colors of the Concordia's Galactic Peacekeepers.
   components:
   - type: Sprite
     sprite: _NF/Structures/Decoration/banner.rsi
@@ -14,8 +14,8 @@
 - type: entity
   id: FlagNfsd
   parent: BannerBase
-  name: NFSD flag
-  description: A flag displaying the colors of the New Frontier Sheriff's Department.
+  name: CGP flag
+  description: A flag displaying the colors of the Concordia's Galactic Peacekeepers.
   components:
   - type: Sprite
     sprite: _NF/Structures/Decoration/banner.rsi

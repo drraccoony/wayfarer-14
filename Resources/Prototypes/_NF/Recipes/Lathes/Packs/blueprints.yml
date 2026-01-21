@@ -98,11 +98,11 @@
   - ShuttleConsoleCircuitboard
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
-  - AutopilotServerCircuitboard # Wayfarer
   - MiniGravityGeneratorCircuitboard
   - MiniStationAnchorCircuitboard
   - SmallThrusterMachineCircuitboard
   - SmallGyroscopeMachineCircuitboard
+  - AutopilotServerCircuitboard # Wayfarer
   # AdvancedAtmospherics
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
@@ -126,6 +126,7 @@
   # AtmosphericDrilling
   - GasMiningDrillMachineCircuitboard
   - GaslockFrameMachineCircuitboard
+#  - GaslockBigFrameMachineCircuitboard
   # HardsuitsAdvanced
   - ClothingOuterHardsuitEngineeringWhite
   # PortableParticleEmission
@@ -227,7 +228,7 @@
   # HardsuitsExperimentalIndustrial
   - ClothingOuterHardsuitMaximPrototype
 
-# region NFSD
+# region CGP
 - type: latheRecipePack
   id: NFBlueprintsNfsd
   recipes:
@@ -432,7 +433,7 @@
 #               #
 #################
 
-# region Merc & NFSD
+# region Merc & CGP
 - type: latheRecipePack
   id: NFBlueprintsMercenaryNfsd
   recipes:

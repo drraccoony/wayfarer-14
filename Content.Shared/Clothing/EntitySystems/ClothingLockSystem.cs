@@ -7,11 +7,14 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Clothing.EntitySystems;
 
 /// <summary>
-/// System that prevents ALL clothing from being removed when a ClothingLock item is worn.
-/// This is intended for use with collar modules to create a full clothing lock.
+/// System that prevents clothing from being removed when a ClothingLock item is worn.
+/// Can be configured to lock specific slots or all slots.
+/// This is intended for use with collar modules to create a clothing lock.
 /// </summary>
 public sealed class ClothingLockSystem : EntitySystem
 {
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -28,12 +31,26 @@ public sealed class ClothingLockSystem : EntitySystem
 
     private void OnUnequipAttempt(Entity<ClothingLockComponent> ent, ref InventoryRelayedEvent<IsUnequippingTargetAttemptEvent> args)
     {
-        // Allow the collar itself to be removed, but prevent all other clothing removal
+        // Allow the collar itself to be removed, but prevent other clothing removal based on configuration
         if (args.Args.Equipment == ent.Owner)
             return;
 
-        // Cancel all other unequip attempts when the clothing lock is worn
-        args.Args.Reason = "clothing-lock-prevent-removal";
-        args.Args.Cancel();
+        // If LockedSlots is null or empty, lock all clothing
+        if (ent.Comp.LockedSlots == null || ent.Comp.LockedSlots.Count == 0)
+        {
+            args.Args.Reason = "clothing-lock-prevent-removal";
+            args.Args.Cancel();
+            return;
+        }
+
+        // Only lock specific slots if configured
+        if (_inventorySystem.TryGetContainingSlot((args.Args.Equipment, null, null), out var slotDef))
+        {
+            if (ent.Comp.LockedSlots.Contains(slotDef.Name))
+            {
+                args.Args.Reason = "clothing-lock-prevent-removal";
+                args.Args.Cancel();
+            }
+        }
     }
 }

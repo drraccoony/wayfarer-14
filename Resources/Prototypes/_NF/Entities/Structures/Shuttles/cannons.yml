@@ -1,8 +1,8 @@
-# NFSD
+# CGP
 - type: entity
   id: ShuttleGunFriendshipNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunFriendship]
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: Machine
     board: Null
@@ -10,7 +10,7 @@
 - type: entity
   id: ShuttleGunDusterNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunDuster]
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: Machine
     board: Null

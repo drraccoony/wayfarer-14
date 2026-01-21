@@ -1,5 +1,5 @@
 - type: entity
-  name: NFSD energy sword
+  name: CGP energy sword
   parent: [BaseC2ContrabandUnredeemable, EnergySword]
   id: EnergySwordNfsd
   description: A very loud beam of concentrated energy that drains the stamina from people it hits.  It's highly destructive to non-living equipment.

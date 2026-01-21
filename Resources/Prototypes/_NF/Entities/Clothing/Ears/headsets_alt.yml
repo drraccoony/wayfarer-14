@@ -21,7 +21,7 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltNfsdBrown
-  name: NFSD over-ear headset
+  name: CGP over-ear headset
   components:
   - type: ContainerFill
     containers:

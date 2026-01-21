@@ -58,7 +58,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdBomber
-  name: NFSD bomber
+  name: CGP bomber
   description: Lookin' slick Tom.
   components:
   - type: Sprite
@@ -69,7 +69,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdBomberBrigmed
-  name: NFSD brigmedic bomber
+  name: CGP brigmedic bomber
   description: Blood may stain.
   components:
   - type: Sprite
@@ -80,7 +80,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdFormal
-  name: NFSD formal coat
+  name: CGP formal coat
   description: Snazzy.
   components:
   - type: Sprite
@@ -91,7 +91,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdFormalSheriff
-  name: NFSD sheriff's formal coat
+  name: CGP sheriff's formal coat
   description: Very snazzy.
   components:
   - type: Sprite
@@ -102,7 +102,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdLongCoat
-  name: NFSD long coat
+  name: CGP long coat
   description: Big iron on his hip...
   components:
   - type: Sprite

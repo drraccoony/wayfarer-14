@@ -394,7 +394,7 @@
         amount: 4
 
 - type: entity
-  name: NFSD encryption key box
+  name: CGP encryption key box
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeySecurity
   components:

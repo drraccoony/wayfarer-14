@@ -1463,12 +1463,12 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPrivateSec
 
-#region NFSD
+#region CGP
 - type: entity
   parent: NFDepartmentalEVASuitShoulderLight
   id: ClothingOuterEVASuitNfsd
-  name: NFSD EVA suit
-  description: An EVA suit with a built-in helmet commonly issued to NFSD personnel.
+  name: CGP EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to CGP personnel.
   components:
   - type: Sprite
     layers:

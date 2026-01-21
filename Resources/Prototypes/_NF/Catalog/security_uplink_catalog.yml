@@ -720,7 +720,7 @@
         tags:
           - SecurityUplink
 
-- type: listing # Coyote added NFSD esword
+- type: listing # Coyote added CGP esword
   id: UplinkSecurityEnergySword
   name:  uplink-security-energysword-name
   description: uplink-security-energysword-desc

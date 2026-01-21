@@ -8757,13 +8757,13 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
-- proto: SpawnPointPublicAffairsLiaison
-  entities:
-  - uid: 1489
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
+#- proto: SpawnPointPublicAffairsLiaison
+#  entities:
+#  - uid: 1489
+#    components:
+#    - type: Transform
+#      pos: -3.5,2.5
+#      parent: 179
 - proto: SpawnPointSecurityGuard
   entities:
   - uid: 1457

@@ -1,8 +1,8 @@
 using Content.Server.Wires;
-using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared._CS.Weapons.Ranged.Components;
 using Content.Shared.Wires;
 
-namespace Content.Server.Weapons.Ranged.WireActions;
+namespace Content.Server._CS.Weapons.Ranged.WireActions;
 
 /// <summary>
 /// Wire action that controls the safety limiter on the size manipulator.

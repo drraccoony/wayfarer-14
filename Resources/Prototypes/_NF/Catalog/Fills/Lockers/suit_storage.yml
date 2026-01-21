@@ -193,7 +193,7 @@
 - type: entity
   parent: [ SuitStorageBase, StorageFillEVASuitNfsd ]
   id: SuitStorageEVANfsd
-  suffix: EVA, NFSD
+  suffix: EVA, CGP
   components:
   - type: AccessReader
     access: [["Security"]]
@@ -340,7 +340,7 @@
 - type: entity
   id: SuitStorageCadet
   parent: SuitStorageBase
-  suffix: NFSD Cadet
+  suffix: CGP Cadet
   components:
   - type: StorageFill
     contents:
@@ -356,7 +356,7 @@
 - type: entity
   id: SuitStorageDeputy
   parent: SuitStorageBase
-  suffix: NFSD Deputy
+  suffix: CGP Deputy
   components:
   - type: StorageFill
     contents:
@@ -372,7 +372,7 @@
 - type: entity
   id: SuitStorageBrigmedic
   parent: SuitStorageBase
-  suffix: NFSD Brigmedic
+  suffix: CGP Brigmedic
   components:
   - type: StorageFill
     contents:
@@ -388,7 +388,7 @@
 - type: entity
   id: SuitStorageSergeant
   parent: SuitStorageBase
-  suffix: NFSD Sergeant
+  suffix: CGP Sergeant
   components:
   - type: StorageFill
     contents:
@@ -404,7 +404,7 @@
 - type: entity
   id: SuitStorageBailiff
   parent: SuitStorageBase
-  suffix: NFSD Bailiff
+  suffix: CGP Bailiff
   components:
   - type: StorageFill
     contents:
@@ -420,7 +420,7 @@
 - type: entity
   id: SuitStorageSheriff
   parent: SuitStorageBase
-  suffix: NFSD Sheriff
+  suffix: CGP Sheriff
   components:
   - type: StorageFill
     contents:
@@ -436,7 +436,7 @@
 - type: entity
   id: SuitStorageNfsdCombat
   parent: SuitStorageBase
-  suffix: NFSD Combat
+  suffix: CGP Combat
   components:
   - type: StorageFill
     contents:
@@ -452,7 +452,7 @@
 - type: entity
   id: SuitStorageNfsdCommand
   parent: SuitStorageBase
-  suffix: NFSD Command
+  suffix: CGP Command
   components:
   - type: StorageFill
     contents:

@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared._CS.Body.Components;
 
 [Serializable, NetSerializable]
 public enum SizeReverterVisuals : byte

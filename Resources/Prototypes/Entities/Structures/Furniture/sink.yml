@@ -23,9 +23,9 @@
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
-        maxVol: 100
+        maxVol: 100 # HardLight: Parity with Sink
       tank:
-        maxVol: 500
+        maxVol: 100
   - type: SolutionRegeneration
     solution: tank
     generated:
@@ -65,7 +65,9 @@
     range: 8
     sound:
       path: /Audio/Ambience/Objects/drain.ogg
-
+  - type: Construction # Hardlight
+    graph: Sink
+    node: sink
 
 - type: entity
   name: sink
@@ -76,11 +78,11 @@
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
-        maxVol: 200
+        maxVol: 100
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 500
+          Quantity: 100
 
 - type: entity
   name: wide sink
@@ -98,6 +100,9 @@
       maxFillLevels: 1
       fillBaseName: sink_wide-fill-
       solutionName: drainBuffer
+    - type: Construction # Hardlight
+      graph: SinkWide
+      node: sinkWide
 
 #Stemless Sink
 
@@ -113,6 +118,9 @@
       - map: [ "enum.SolutionContainerLayers.Fill" ]
         state: sink-fill-1
         visible: false
+  - type: Construction # Hardlight
+    graph: SinkStemless
+    node: sinkStemless
 
 - type: entity
   name: sink
@@ -123,8 +131,8 @@
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
-        maxVol: 100
+        maxVol: 100 # HardLight: Parity with Sink
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 500
+          Quantity: 100

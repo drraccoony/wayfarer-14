@@ -43,7 +43,7 @@
 - type: entity
   parent: CrateSecgear
   id: CrateNfsdSecure1
-  name: NFSD crate
+  name: CGP crate
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi
@@ -55,7 +55,7 @@
 - type: entity
   parent: CrateSecgear
   id: CrateNfsdSecure2
-  name: NFSD crate
+  name: CGP crate
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi

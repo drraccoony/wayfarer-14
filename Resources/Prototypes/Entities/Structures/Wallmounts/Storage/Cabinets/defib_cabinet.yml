@@ -7,6 +7,12 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: WallMount
+    arc: 175
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
   - type: Sprite
     sprite: Structures/Wallmounts/defib_cabinet.rsi
     noRot: false
@@ -24,6 +30,18 @@
         whitelist:
           components:
           - Defibrillator
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  # Begin DeltaV additions
+  - type: Charger
+    slotId: ItemCabinet
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  # End DeltaV additions
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger

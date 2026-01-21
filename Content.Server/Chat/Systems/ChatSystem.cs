@@ -11,7 +11,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._Coyote;
+using Content.Shared._WF;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -251,9 +251,13 @@ public sealed partial class ChatSystem : SharedChatSystem
             // If no name override is provided, we use the entity's name.
             entityName = "bingles";
         }
-        var nameHashColor = ColorExtensions.ConsistentRandomSeededColorFromString(entityName);
-        var nameHashColorAdjusted = ColorExtensions.PreventColorFromBeingTooCloseToTheBackgroundColor(nameHashColor); // pastilla loses
-        var nameColorString = nameHashColorAdjusted.ToHex();
+
+        // Wayfarer start: Minimum lightness for contrast
+        // 149 as a minimum lightness should provide at least a 4.5:1 contrast ratio
+        // The minimum contrast required by WCAG (Level AA) for text
+        var nameHashColor = ColorExtensions.ConsistentRandomSeededColorFromString(entityName, 149);
+        var nameColorString = nameHashColor.ToHex();
+        // Wayfarer end
 
         // Was there an emote in the message? If so, send it.
         if (emoteStr != message && emoteStr != null)
@@ -942,7 +946,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
-            
+
             numHeareded++;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             var text2Send = ensmallenedByOcclusion && data.Occluded
@@ -1138,7 +1142,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null, bool Occluded = false)
-    { 
+    {
     }
 
     /// <summary>

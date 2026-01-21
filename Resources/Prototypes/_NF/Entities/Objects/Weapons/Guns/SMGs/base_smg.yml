@@ -16,7 +16,7 @@
     maxAngle: 15.5
     angleIncrease: 0.7
     angleDecay: 3.5
-    fireRate: 6
+    fireRate: 5.8
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -35,9 +35,9 @@
   - type: Gun
     minAngle: 3.6
     maxAngle: 18
-    angleIncrease: 1
+    angleIncrease: 1.2
     angleDecay: 3.4
-    fireRate: 5.1
+    fireRate: 5.7
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -47,9 +47,9 @@
   id: NFBaseWeaponFrameSubMachineGunCybersun
   components:
   - type: Gun
-    angleIncrease: 0.7
+    angleIncrease: 0.9
     angleDecay: 5
-    fireRate: 4.8
+    fireRate: 5.9
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-cybersun-industries
 
@@ -61,8 +61,9 @@
   - type: Gun
     minAngle: 3.4
     maxAngle: 17
-    angleIncrease: 1.2
+    angleIncrease: 1.4
     angleDecay: 4.3
+    fireRate: 6.1
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-gorlex-steel-works
 
@@ -74,9 +75,9 @@
   - type: Gun
     minAngle: 3.7
     maxAngle: 15
-    angleIncrease: 1.4
+    angleIncrease: 1.6
     angleDecay: 4.5
-    fireRate: 4.8
+    fireRate: 6
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 

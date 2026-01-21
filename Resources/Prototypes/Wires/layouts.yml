@@ -227,12 +227,6 @@
   - !type:AccessWireAction
 
 - type: wireLayout
-  id: SizeManipulator
-  dummyWires: 0
-  wires:
-  - !type:SizeManipulatorSafetyWireAction
-
-- type: wireLayout
   id: APC
   dummyWires: 3
   wires:

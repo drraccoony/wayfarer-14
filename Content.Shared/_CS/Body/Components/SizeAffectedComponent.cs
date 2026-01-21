@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared._CS.Body.Components;
 
 /// <summary>
 /// Marks an entity as being affected by size manipulation.

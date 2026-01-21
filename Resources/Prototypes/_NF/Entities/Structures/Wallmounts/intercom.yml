@@ -61,7 +61,7 @@
 - type: entity
   id: IntercomNfsd
   parent: IntercomSecurity
-  suffix: NFSD
+  suffix: CGP
   components:
   - type: ContainerFill
     containers:

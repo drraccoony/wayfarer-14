@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: Nfsd
   parent: BasePOI
-  name: 'NFSD Outpost'
+  name: 'CGP Outpost'
   minimumDistance: 750
   maximumDistance: 1000
   spawnGroup: Required
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Nfsd
-  mapName: 'NFSD Outpost'
+  mapName: 'CGP Outpost'
   mapPath: /Maps/_NF/POI/nfsd.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: SecurityFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NFSD Outpost'
+          mapNameTemplate: 'CGP Outpost'
         - type: ExtraStationInformation
           iconPath: /Textures/_NF/Interface/StationIcons/nfsd-banner.png
           stationSubtext: 'frontier-lobby-nfsd-subtext'
@@ -48,8 +48,6 @@
             NFDetective: [ 1, 1 ]
             Deputy: [ 3, 3 ]
             Cadet: [ 0, 0 ]
-            # Others:
-            PublicAffairsLiaison: [ 1, 1 ]
             Prisoner: [ 0, 0 ]
           tags:
           - HeadOfPersonnel

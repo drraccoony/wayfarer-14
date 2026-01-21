@@ -153,12 +153,27 @@
       stackRequirements:
         Glass: 1
 
+#- type: entity
+#  id: GaslockBigFrameMachineCircuitboard
+#  parent: BaseMachineCircuitboard
+#  name: full-sized gaslock machine board
+#  description: A machine printed circuit board for a full-on wall gaslock. Perfect for pumping a ship up full of gas like a Sonic OC.
+#  components:
+#    - type: Sprite
+#      state: engineering
+#    - type: MachineBoard
+#      prototype: Gaslock
+#      stackRequirements:
+#        Steel: 1
+#    - type: BindToStation
+#      enabled: false # should be draggable between stations
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
   parent: SecurityTechFabCircuitboard
-  name: NFSD techfab machine board
-  description: A machine printed circuit board for an NFSD techfab.
+  name: CGP techfab machine board
+  description: A machine printed circuit board for a CGP techfab.
   components:
     - type: Sprite
       sprite: _NF/Objects/Misc/module.rsi
@@ -203,7 +218,7 @@
 - type: entity
   id: ThrusterNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: NFSD thruster machine board
+  name: CGP thruster machine board
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/module.rsi
@@ -270,7 +285,7 @@
 - type: entity
   id: GyroscopeNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: NFSD gyroscope machine board
+  name: CGP gyroscope machine board
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/module.rsi
@@ -286,7 +301,7 @@
 - type: entity
   id: SmallGyroscopeNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: small NFSD gyroscope machine board
+  name: small CGP gyroscope machine board
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/module.rsi

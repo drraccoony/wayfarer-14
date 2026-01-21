@@ -114,7 +114,7 @@
 - type: entity
   id: SafetyDepositConsole
   name: safety deposit box console
-  description: "A console for purchasing and managing safety deposit boxes. Small: $250,000 | Medium: $750,000 | Large: $1,250,000"
+  description: "A console for purchasing and managing safety deposit boxes. Small: $2,250,000 | Medium: $3,500,000 | Large: $4,250,000"
   parent: BaseStructure
   components:
   - type: Sprite

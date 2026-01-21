@@ -284,7 +284,7 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
-# region NFSD
+# region CGP
 - type: roleLoadout
   id: JobCadet
   groups:
@@ -385,29 +385,29 @@
   - ContractorHandItems
   - NfsdSpeciesSpecific
 
-- type: roleLoadout
-  id: JobPublicAffairsLiaison
-  groups:
-  - ContractorHead
-  - PalNeck
-  - PalJumpsuit
-  - PalGloves
-  - NfsdBackpackBrown
-  - NfsdForcedOuterClothing
-  - NfsdShoesBrown
-  - ContractorFace
-  - NfsdGlasses
-  - ContractorBelt
-  - NfsdEarsBrown
-  - NfsdBoxSurvival
-  - PalPDA
-  - ContractorWallet
-  - ContractorCartridge
-  - ContractorImplanter
-  - ContractorEncryptionKey
-  - ContractorBackpackItems
-  - ContractorHandItems
-  - NFSpeciesSpecific # Explicitly civilian variant
+#'- type: roleLoadout
+#  id: JobPublicAffairsLiaison
+#  groups:
+#  - ContractorHead
+#  - PalNeck
+#  - PalJumpsuit
+#  - PalGloves
+#  - NfsdBackpackBrown
+#  - NfsdForcedOuterClothing
+#  - NfsdShoesBrown
+#  - ContractorFace
+#  - NfsdGlasses
+#  - ContractorBelt
+#  - NfsdEarsBrown
+#  - NfsdBoxSurvival
+#  - PalPDA
+#  - ContractorWallet
+#  - ContractorCartridge
+#  - ContractorImplanter
+#  - ContractorEncryptionKey
+#  - ContractorBackpackItems
+#  - ContractorHandItems
+#  - NFSpeciesSpecific # Explicitly civilian variant
 
 # - type: roleLoadout # Fix when this is actully used
   # id: JobPrisonGuard

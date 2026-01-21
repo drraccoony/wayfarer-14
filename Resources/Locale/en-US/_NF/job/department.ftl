@@ -2,4 +2,4 @@
 department-Antag = Criminals
 department-Command = Frontier Command
 department-Frontier = Frontier
-department-Security = New Frontier Sheriff's Department
+department-Security = Concordia's Galactic Peacekeepers

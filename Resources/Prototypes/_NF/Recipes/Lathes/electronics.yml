@@ -111,6 +111,14 @@
     Steel: 800
     Glass: 900
 
+#- type: latheRecipe
+#  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+#  id: GaslockBigFrameMachineCircuitboard
+#  result: GaslockBigFrameMachineCircuitboard
+#  materials:
+#    Steel: 2000
+#    Glass: 2000
+
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: NFHolopadShipMachineCircuitboard

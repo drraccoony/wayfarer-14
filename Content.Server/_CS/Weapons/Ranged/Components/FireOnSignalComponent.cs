@@ -1,7 +1,8 @@
 using Content.Shared.DeviceLinking;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Weapons.Ranged.Components;
+namespace Content.Server._CS.Weapons.Ranged.Components;
 
 /// <summary>
 /// Fires the weapon when signal is received.
@@ -10,9 +11,9 @@ namespace Content.Server.Weapons.Ranged.Components;
 [RegisterComponent]
 public sealed partial class FireOnSignalComponent : Component
 {
-    [DataField("growPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string GrowPort = "GrowTrigger";
+    [DataField]
+    public ProtoId<SinkPortPrototype> GrowPort = "GrowTrigger";
 
-    [DataField("shrinkPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string ShrinkPort = "ShrinkTrigger";
+    [DataField]
+    public ProtoId<SinkPortPrototype> ShrinkPort = "ShrinkTrigger";
 }

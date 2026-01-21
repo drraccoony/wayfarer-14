@@ -910,11 +910,11 @@
       - state: clasp-inhand-right
         color: "#6F9463"
 
-#region NFSD
+#region CGP
 - type: entity
   parent: ClothingBackpackMessengerContractor
   id: ClothingBackpackMessengerNfsdBrown
-  name: NFSD messenger bag
+  name: CGP messenger bag
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/color.rsi
@@ -959,7 +959,7 @@
 - type: entity
   parent: ClothingBackpackMessengerContractor
   id: ClothingBackpackMessengerNfsdCream
-  name: NFSD messenger bag
+  name: CGP messenger bag
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/color.rsi

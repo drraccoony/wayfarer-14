@@ -27,15 +27,15 @@
 - type: entity
   id: BoxFolderNfsdForms
   parent: [FillNfsdForms, BoxFolderPalGreen]
-  name: NFSD form folder
-  description: A folder filled with NFSD paperwork templates.
+  name: CGP form folder
+  description: A folder filled with CGP paperwork templates.
   suffix: Forms, Green
 
 - type: entity
   id: BoxFolderNfsdFormsBrown
   parent: [FillNfsdForms, BoxFolderPalBrown]
-  name: NFSD form folder
-  description: A folder filled with NFSD paperwork templates.
+  name: CGP form folder
+  description: A folder filled with CGP paperwork templates.
   suffix: Forms, Brown
 
 # Forms
@@ -47,7 +47,7 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Search Warrant[/head]
 
@@ -64,7 +64,7 @@
 
 
 
-      [color=#AAAAAA]This Warrant is only valid when requested by an agent of the NFSD and approved, signed, and stamped by a [italic]distinct[/italic] (unless impossible) officer ranked Bailiff or above or a Station Representative.[/color]
+      [color=#AAAAAA]This Warrant is only valid when requested by an agent of the CGP and approved, signed, and stamped by a [italic]distinct[/italic] (unless impossible) officer ranked Bailiff or above or a Station Representative.[/color]
 
 - type: entity # Creator: Starly (Shaw Clifflower)
   id: PaperWrittenNfsdReport
@@ -74,7 +74,7 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]After Action Report[/head]
 
@@ -108,7 +108,7 @@
 
 
 
-      [color=#AAAAAA]I, the [italic]Bailiff or Sheriff[/italic] of the NFSD, or an agent acting on their behalf, certify that everything written in this report is correct and truthful. I am aware of the penalties should anything in this report be proven incorrect, falsified, or exaggerated.[/color]
+      [color=#AAAAAA]I, the [italic]Bailiff or Sheriff[/italic] of the CGP, or an agent acting on their behalf, certify that everything written in this report is correct and truthful. I am aware of the penalties should anything in this report be proven incorrect, falsified, or exaggerated.[/color]
 
 - type: entity
   id: PaperWrittenNfsdArrestWarrant
@@ -118,7 +118,7 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Arrest Warrant[/head]
 
@@ -145,7 +145,7 @@
 
 
 
-      [color=#AAAAAA]This warrant is only valid when requested by an agent of the NFSD, and approved, signed and stamped by a distinct (unless impossible) officer ranked Bailiff or above, or a Station Representative.[/color]
+      [color=#AAAAAA]This warrant is only valid when requested by an agent of the CGP, and approved, signed and stamped by a distinct (unless impossible) officer ranked Bailiff or above, or a Station Representative.[/color]
 
 - type: entity # Creator: Kwentov (Vica)
   id: PaperWrittenNfsdArrestReport
@@ -155,7 +155,7 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Arrest Report[/head]
 
@@ -192,7 +192,7 @@
   components:
   - type: Paper
     content: |2 # If editing this, edit PaperWrittenFrontierEmployeePayHistory
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Duty Log[/head]
 
@@ -218,7 +218,7 @@
       [bold]Sign Off Time:[/bold] 
 
 
-      [color=#AAAAAA]This Form is considered NT Sensitive Data, Class 2, and is for internal NFSD use only.[/color]
+      [color=#AAAAAA]This Form is considered NT Sensitive Data, Class 2, and is for internal CGP use only.[/color]
 
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
@@ -229,7 +229,7 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandTurnover
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Turnover Receipt[/head]
 
@@ -262,7 +262,7 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandAmnesty
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Amnesty Agreement[/head]
 
@@ -292,7 +292,7 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandPermit
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Class 2 Contraband Permit[/head]
 
@@ -320,7 +320,7 @@
   components:
   - type: Paper
     content: |2 # When updating this, update PaperWrittenFrontierAuthorization
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Concordia's Galactic Peacekeepers[/bold][/color]
       [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Authorization for Bluespace Threats[/head]
 
@@ -332,7 +332,7 @@
           [bullet]XXXXXXXX, Station Representative
           [bullet]XXXXXXXX, Sheriff
 
-      This document authorizes the above vessel and its captain to assist and [bold]cooperate with the NFSD and Frontier authorities[/bold] in neutralizing [bold]hostile bluespace threats[/bold] to Frontier. These include, but are not limited to:
+      This document authorizes the above vessel and its captain to assist and [bold]cooperate with the CGP and Frontier authorities[/bold] in neutralizing [bold]hostile bluespace threats[/bold] to Frontier. These include, but are not limited to:
           [bullet] Cultist vessels
           [bullet] Syndicate vessels
           [bullet] Wizard Federation vessels
@@ -340,11 +340,11 @@
 
       This document [bold]does NOT deputize[/bold] the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
 
-      [bold]Any contraband[/bold] seized during operations aboard hostile vessels [bold]must be surrendered[/bold], either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.
+      [bold]Any contraband[/bold] seized during operations aboard hostile vessels [bold]must be surrendered[/bold], either to the CGP or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.
 
-      The authorized party is to [bold]keep a copy of this[/bold] document for inspection. The authorized party is expected to [bold]maintain contact with NFSD[/bold] command and/or the Station Representative to minimize casualties.
+      The authorized party is to [bold]keep a copy of this[/bold] document for inspection. The authorized party is expected to [bold]maintain contact with CGP[/bold] command and/or the Station Representative to minimize casualties.
 
-      [bold]Before engaging[/bold] with hostile vessels, the authorized party is expected to [bold]follow any instructions given by the NFSD[/bold] for staging or other preparation prior to boarding.
+      [bold]Before engaging[/bold] with hostile vessels, the authorized party is expected to [bold]follow any instructions given by the CGP[/bold] for staging or other preparation prior to boarding.
 
 
 

@@ -127,14 +127,3 @@
   id: SetParticleSigma
   name: signal-port-name-set-particle-sigma
   description: signal-port-description-set-particle-sigma
-
-- type: sinkPort
-  id: GrowTrigger
-  name: signal-port-name-grow-trigger
-  description: signal-port-description-grow-trigger
-
-- type: sinkPort
-  id: ShrinkTrigger
-  name: signal-port-name-shrink-trigger
-  description: signal-port-description-shrink-trigger
-

@@ -1,0 +1,34 @@
+- type: vessel
+  id: Heater
+  parent: BaseVessel
+  name: CGP Heater
+  description: A CGP Ship set for a small crew or a single Internal Affairs agent.
+  price: 30935
+  category: Medium
+  group: Security
+  access: Security
+  shuttlePath: /Maps/_WF/Shuttles/Cgp/heater.yml
+  guidebookPage: Null
+  class:
+  - Pursuit
+  - Patrol
+  engine:
+  - Plasma
+  - APU
+
+- type: gameMap
+  id: Heater
+  mapName: 'CGP Heater'
+  mapPath: /Maps/_WF/Shuttles/Cgp/heater.yml
+  minPlayers: 0
+  stations:
+    Heater:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Heater {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs: {}

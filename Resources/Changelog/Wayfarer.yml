@@ -676,3 +676,198 @@ Entries:
   id: 6567
   time: '2026-01-16T04:16:35.0000000+00:00'
   url: https://github.com/project-wayfarer/wayfarer-14/pull/242
+- author: anpage
+  changes:
+    - type: Fix
+      message: >-
+        Fixed the random IC chat text colors possibly not being bright enough to
+        read
+  id: 6568
+  time: '2026-01-16T05:57:53.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/243
+- author: anpage
+  changes:
+    - type: Fix
+      message: >-
+        Fixed IFF consoles included with shuttles not correctly displaying the
+        current on/off status
+    - type: Tweak
+      message: Changed IFF consoles to force IFF on if detached from a shuttle
+  id: 6569
+  time: '2026-01-16T06:06:07.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/244
+- author: Eillyrea
+  changes:
+    - type: Remove
+      message: Removed the Alive Icon from Medhud
+  id: 6570
+  time: '2026-01-16T21:16:33.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/250
+- author: Eillyrea
+  changes:
+    - type: Add
+      message: PDAs have a date on them
+  id: 6571
+  time: '2026-01-16T21:16:46.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/251
+- author: Eillyrea
+  changes:
+    - type: Tweak
+      message: Defibrillator Cabinets now recharge the battery within!
+  id: 6572
+  time: '2026-01-16T21:18:43.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/249
+- author: Eillyrea
+  changes:
+    - type: Add
+      message: Rename your ships without need of an SR
+    - type: Remove
+      message: Removed fun from SRs
+  id: 6573
+  time: '2026-01-17T22:44:10.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/257
+- author: drraccoony
+  changes:
+    - type: Tweak
+      message: Changed Med Implant Tracker PDA Program Look
+    - type: Fix
+      message: Fixed Med Implant Tracker honoring medimplant alert being off
+  id: 6574
+  time: '2026-01-17T22:59:38.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/253
+- author: Eillyrea
+  changes:
+    - type: Add
+      message: Sink, Drain, Showerheads, Plumbing Assembly
+    - type: Tweak
+      message: Sinks watertanks from 500u to 100u
+  id: 6575
+  time: '2026-01-17T23:31:57.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/254
+- author: anpage
+  changes:
+    - type: Tweak
+      message: Overhauled the autopilot behavior to hopefully be less chaotic
+    - type: Tweak
+      message: >-
+        Changed the autopilot to deliberately switch to "Drive" mode when
+        engaged
+    - type: Fix
+      message: >-
+        Fixed the shuttle UI not switching to "Park" mode when autopilot reaches
+        its destination
+    - type: Fix
+      message: >-
+        Fixed the autopilot moving the shuttle very slowly if the last pilot
+        input was the brake
+  id: 6576
+  time: '2026-01-18T02:24:42.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/260
+- author: drraccoony
+  changes:
+    - type: Fix
+      message: Fixed Clothing Lock Module locking all slots
+    - type: Fix
+      message: Fixed Clothing Lock Module not being in HornyHawker
+  id: 6577
+  time: '2026-01-20T18:02:16.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/270
+- author: Eillyrea
+  changes:
+    - type: Tweak
+      message: Plant Analyzers scan faster
+  id: 6578
+  time: '2026-01-20T18:05:22.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/274
+- author: Eillyrea
+  changes:
+    - type: Add
+      message: Tape to Medbags
+  id: 6579
+  time: '2026-01-20T18:06:51.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/275
+- author: drraccoony
+  changes:
+    - type: Fix
+      message: Fixed nanochat missing from some PDAs
+  id: 6580
+  time: '2026-01-20T18:15:03.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/269
+- author: ShepardToTheStars
+  changes:
+    - type: Tweak
+      message: Most NSFD references have been renamed to CGP.
+  id: 6581
+  time: '2026-01-20T18:57:33.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/225
+- author: drraccoony
+  changes:
+    - type: Tweak
+      message: Changed the ability to see OOC Freetext on Ghost controlled mobs
+  id: 6582
+  time: '2026-01-20T19:07:09.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/271
+- author: Eillyrea
+  changes:
+    - type: Tweak
+      message: SMGs shoot faster, feel a little less weak compared to rifles
+  id: 6583
+  time: '2026-01-20T20:23:32.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/286
+- author: Eillyrea
+  changes:
+    - type: Add
+      message: CGP Roles
+    - type: Remove
+      message: NFSD Roles
+    - type: Tweak
+      message: Updated ID console
+  id: 6584
+  time: '2026-01-20T23:31:52.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/280
+- author: drraccoony
+  changes:
+    - type: Add
+      message: Added 'Look At' Verb
+    - type: Tweak
+      message: Changed so mobs can be interacted with (Mothroaches, dragons, etc)
+  id: 6585
+  time: '2026-01-20T23:32:05.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/287
+- author: drraccoony
+  changes:
+    - type: Add
+      message: Added better multiple character resuming support via cryosleep
+  id: 6586
+  time: '2026-01-21T00:19:29.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/288
+- author: drraccoony
+  changes:
+    - type: Fix
+      message: Fixed autopilot board being accessible without research
+    - type: Fix
+      message: Fixed autopilot using upgraded speed in maxspeed calculation
+  id: 6587
+  time: '2026-01-21T01:05:26.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/289
+- author: drraccoony
+  changes:
+    - type: Tweak
+      message: Adjusted solar flare events to be less frequent and longer between them
+  id: 6588
+  time: '2026-01-21T01:16:36.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/291
+- author: anpage
+  changes:
+    - type: Tweak
+      message: Moved the autopilot toggle to the shuttle console UI
+  id: 6589
+  time: '2026-01-21T02:51:45.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/292
+- author: drraccoony
+  changes:
+    - type: Fix
+      message: Fixed shuttle "cruise" to have no friction/speed decay
+  id: 6590
+  time: '2026-01-21T03:08:46.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/265

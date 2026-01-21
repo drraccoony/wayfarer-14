@@ -469,12 +469,12 @@
     maxFillLevels: 6
     fillBaseName: fillEva
 
-#region NFSD / Security
+#region CGP / Security
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallEVAColorNfsd
   parent: NFBaseLockerGridInvWallColor
-  name: NFSD EVA wall locker
+  name: CGP EVA wall locker
   components:
   - type: Sprite
     layers:
