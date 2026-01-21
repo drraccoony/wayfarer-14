@@ -7,6 +7,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random; //Frontier
+using Robust.Shared.Physics;
 
 namespace Content.Server.NPC.Systems;
 
@@ -20,6 +21,7 @@ public sealed partial class NPCCombatSystem
     private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<FixturesComponent> _fixturesQuery;
 
     // TODO: Don't predict for hitscan
     private const float ShootSpeed = 20f;
@@ -36,6 +38,7 @@ public sealed partial class NPCCombatSystem
         _rechargeQuery = GetEntityQuery<RechargeBasicEntityAmmoComponent>();
         _steeringQuery = GetEntityQuery<NPCSteeringComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _fixturesQuery = GetEntityQuery<FixturesComponent>();
 
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentStartup>(OnRangedStartup);
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentShutdown>(OnRangedShutdown);
@@ -143,8 +146,21 @@ public sealed partial class NPCCombatSystem
                 comp.LOSAccumulator += UnoccludedCooldown;
 
                 // For consistency with NPC steering.
-                var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
+                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, predicate: (EntityUid entity) =>
+                {
+                    if (_fixturesQuery.TryGetComponent(entity, out var fixtures))
+                    {
+                        foreach (var fixture in fixtures.Fixtures.Values)
+                        {
+                            if ((fixture.CollisionLayer & (int)CollisionGroup.GlassLayer) != 0 ||
+                                (fixture.CollisionLayer & (int)CollisionGroup.GlassAirlockLayer) != 0)
+                            {
+                                return true; // Ignore this entity for LOS
+                            }
+                        }
+                    }
+                    return false; // Don't ignore
+                });
             }
 
             if (!comp.TargetInLOS)
