@@ -65,12 +65,12 @@
       task: TurretCompound
     blackboard:
       RotateSpeed: !type:Single
-        3.141
+        1.57
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
   - type: MouseRotator
     angleTolerance: 5
-    rotationSpeed: 180
+    rotationSpeed: 90
     simple4DirMode: false
   - type: NoRotateOnInteract
   - type: NoRotateOnMove
@@ -89,6 +89,10 @@
       ballistic-ammo: !type:Container
   - type: Gun
     fireRate: 6
+    maxAngle: 15 # Mono
+    minAngle: 4 # Mono
+    angleIncrease: -1.2 # Mono
+    angleDecay: -4 # Mono
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -118,6 +122,10 @@
   - type: Gun
     projectileSpeed: 15
     fireRate: 1.5
+    maxAngle: 15 # Mono
+    minAngle: 4 # Mono
+    angleIncrease: -1.2 # Mono
+    angleDecay: -4 # Mono
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
