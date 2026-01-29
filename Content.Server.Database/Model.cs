@@ -1427,6 +1427,20 @@ namespace Content.Server.Database
         /// </summary>
         [Column(TypeName = "jsonb")]
         public JsonDocument? PlayerManifest { get; set; }
+
+        /// <summary>
+        /// Mail metrics data stored as JSON object
+        /// Expected format: {"Earnings": 1000, "OpenedCount": 10, "DamagedCount": 2, ...}
+        /// </summary>
+        [Column(TypeName = "jsonb")]
+        public JsonDocument? MailMetricsData { get; set; }
+
+        /// <summary>
+        /// Spesos flow (ledger) data stored as JSON array
+        /// Expected format: [{"Account": "Frontier", "Type": "CargoTax", "Amount": 500}, ...]
+        /// </summary>
+        [Column(TypeName = "jsonb")]
+        public JsonDocument? SpesosFlowData { get; set; }
     }
 
     // Wayfarer Safety Deposit Box Tables

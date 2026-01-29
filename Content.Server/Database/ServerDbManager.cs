@@ -366,7 +366,9 @@ namespace Content.Server.Database
             DateTime roundEndTime,
             JsonDocument? profitLossData,
             JsonDocument? playerStories,
-            JsonDocument? playerManifest);
+            JsonDocument? playerManifest,
+            JsonDocument? mailMetricsData,
+            JsonDocument? spesosFlowData);
 
         #endregion
 
@@ -1147,7 +1149,9 @@ namespace Content.Server.Database
             DateTime roundEndTime,
             JsonDocument? profitLossData,
             JsonDocument? playerStories,
-            JsonDocument? playerManifest)
+            JsonDocument? playerManifest,
+            JsonDocument? mailMetricsData,
+            JsonDocument? spesosFlowData)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.AddWayfarerRoundSummary(
@@ -1156,7 +1160,9 @@ namespace Content.Server.Database
                 roundEndTime,
                 profitLossData,
                 playerStories,
-                playerManifest));
+                playerManifest,
+                mailMetricsData,
+                spesosFlowData));
         }
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)

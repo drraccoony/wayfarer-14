@@ -2093,7 +2093,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             DateTime roundEndTime,
             JsonDocument? profitLossData,
             JsonDocument? playerStories,
-            JsonDocument? playerManifest)
+            JsonDocument? playerManifest,
+            JsonDocument? mailMetricsData,
+            JsonDocument? spesosFlowData)
         {
             await using var db = await GetDb();
 
@@ -2104,7 +2106,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 RoundEndTime = NormalizeDatabaseTime(roundEndTime),
                 ProfitLossData = profitLossData,
                 PlayerStories = playerStories,
-                PlayerManifest = playerManifest
+                PlayerManifest = playerManifest,
+                MailMetricsData = mailMetricsData,
+                SpesosFlowData = spesosFlowData
             };
 
             db.DbContext.WayfarerRoundSummaries.Add(summary);
