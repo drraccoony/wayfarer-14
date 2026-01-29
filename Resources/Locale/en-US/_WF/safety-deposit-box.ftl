@@ -19,7 +19,7 @@ safety-deposit-console-box-id-short = Box ID: {$id}...
 safety-deposit-console-box-deposited = Stored
 safety-deposit-console-box-not-deposited = Not Stored
 safety-deposit-console-box-in-world = In World
-safety-deposit-console-box-lost = Lost (Empty)
+safety-deposit-console-box-lost = Lost
 
 # Safety Deposit Box Entity
 safety-deposit-box-boxSlot = Box Slot

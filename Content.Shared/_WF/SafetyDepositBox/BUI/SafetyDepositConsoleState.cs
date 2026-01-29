@@ -43,6 +43,11 @@ public sealed class SafetyDepositConsoleState : BoundUserInterfaceState
     /// </summary>
     public int LargeBoxCost;
 
+    /// <summary>
+    /// The current round ID, used to determine if boxes are lost.
+    /// </summary>
+    public int CurrentRoundId;
+
     public SafetyDepositConsoleState(
         List<SafetyDepositBoxInfo> ownedBoxes,
         int insertedCash,
@@ -50,7 +55,8 @@ public sealed class SafetyDepositConsoleState : BoundUserInterfaceState
         SafetyDepositBoxInfo? boxInSlot,
         int smallBoxCost,
         int mediumBoxCost,
-        int largeBoxCost)
+        int largeBoxCost,
+        int currentRoundId)
     {
         OwnedBoxes = ownedBoxes;
         InsertedCash = insertedCash;
@@ -59,6 +65,7 @@ public sealed class SafetyDepositConsoleState : BoundUserInterfaceState
         SmallBoxCost = smallBoxCost;
         MediumBoxCost = mediumBoxCost;
         LargeBoxCost = largeBoxCost;
+        CurrentRoundId = currentRoundId;
     }
 }
 
@@ -74,8 +81,9 @@ public sealed class SafetyDepositBoxInfo
     public string? Nickname;
     public string BoxSize;
     public DateTime? LastWithdrawn;
+    public int? LastWithdrawnRoundId;
 
-    public SafetyDepositBoxInfo(Guid boxId, string ownerName, bool isDeposited, string? nickname = null, string boxSize = "Small", DateTime? lastWithdrawn = null)
+    public SafetyDepositBoxInfo(Guid boxId, string ownerName, bool isDeposited, string? nickname = null, string boxSize = "Small", DateTime? lastWithdrawn = null, int? lastWithdrawnRoundId = null)
     {
         BoxId = boxId;
         OwnerName = ownerName;
@@ -83,5 +91,6 @@ public sealed class SafetyDepositBoxInfo
         Nickname = nickname;
         BoxSize = boxSize;
         LastWithdrawn = lastWithdrawn;
+        LastWithdrawnRoundId = lastWithdrawnRoundId;
     }
 }

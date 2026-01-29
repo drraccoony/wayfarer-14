@@ -1,5 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Database;
+using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Preferences.Managers;
@@ -48,6 +49,7 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly LabelSystem _label = default!;
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     public override void Initialize()
     {
@@ -93,13 +95,35 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         var boxInfoList = new List<SafetyDepositBoxInfo>();
         foreach (var box in ownedBoxes)
         {
+            // A box is considered deposited if:
+            // - It has never been withdrawn (!LastWithdrawn.HasValue), OR
+            // - It was withdrawn in the current round and still has items
+            // A box is considered lost if it was withdrawn in a previous round and has no items
+            bool isDeposited;
+            if (!box.LastWithdrawn.HasValue)
+            {
+                // Never withdrawn, so it's deposited
+                isDeposited = true;
+            }
+            else if (box.LastWithdrawnRoundId.HasValue && box.LastWithdrawnRoundId.Value != _gameTicker.RoundId)
+            {
+                // Withdrawn in a previous round - lost regardless of items
+                isDeposited = false;
+            }
+            else
+            {
+                // Withdrawn in current round - deposited only if it has items
+                isDeposited = box.Items.Count > 0;
+            }
+            
             boxInfoList.Add(new SafetyDepositBoxInfo(
                 box.BoxId,
                 box.OwnerName,
-                box.Items.Count > 0,
+                isDeposited,
                 box.Nickname,
                 box.BoxSize,
-                box.LastWithdrawn
+                box.LastWithdrawn,
+                box.LastWithdrawnRoundId
             ));
         }
 
@@ -120,7 +144,9 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
                 boxComp.OwnerName ?? "Unknown",
                 false,
                 nickname,
-                "Unknown"
+                "Unknown",
+                null,
+                null
             );
         }
 
@@ -131,7 +157,8 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
             boxInSlotInfo,
             component.SmallBoxCost,
             component.MediumBoxCost,
-            component.LargeBoxCost
+            component.LargeBoxCost,
+            _gameTicker.RoundId
         );
 
         _uiSystem.SetUiState(consoleUid, SafetyDepositConsoleUiKey.Key, state);
@@ -498,8 +525,13 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
             return;
         }
 
-        // Verify box is actually lost (has LastWithdrawn set and no items)
-        if (!box.LastWithdrawn.HasValue || box.Items.Count > 0)
+        // Verify box is actually lost (withdrawn in previous round with no items)
+        bool isLost = box.LastWithdrawn.HasValue && 
+                      box.LastWithdrawnRoundId.HasValue && 
+                      box.LastWithdrawnRoundId.Value != _gameTicker.RoundId && 
+                      box.Items.Count == 0;
+        
+        if (!isLost)
         {
             ConsolePopup(player, "This box is not lost and cannot be reclaimed.");
             PlayDenySound(consoleUid, component);
@@ -508,6 +540,14 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
 
         // Delete the database record
         await _dbManager.DeleteSafetyDepositBox(boxId);
+
+        // Create a new database record for the replacement box
+        var newBox = await _dbManager.PurchaseSafetyDepositBox(
+            userId,
+            characterIndex,
+            MetaData(player).EntityName,
+            box.BoxSize
+        );
 
         // Spawn a new empty physical box
         string prototypeId = box.BoxSize switch
@@ -520,12 +560,15 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
 
         var boxEntity = Spawn(prototypeId, Transform(player).Coordinates);
         var boxComp = EnsureComp<SafetyDepositBoxComponent>(boxEntity);
-        boxComp.BoxId = box.BoxId;
+        boxComp.BoxId = newBox.BoxId;
         boxComp.OwnerId = userId;
         boxComp.CharacterIndex = characterIndex;
         boxComp.BoxPrototypeId = prototypeId;
         boxComp.OwnerName = MetaData(player).EntityName;
         Dirty(boxEntity, boxComp);
+
+        // Mark the box as withdrawn in the current round (since we're giving them a physical box)
+        await _dbManager.ClearSafetyDepositBoxItems(newBox.BoxId, _gameTicker.RoundId);
 
         // Restore nickname if one was saved
         if (!string.IsNullOrEmpty(box.Nickname))
@@ -741,7 +784,7 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         }
 
         // Clear items from database
-        await _dbManager.ClearSafetyDepositBoxItems(boxId);
+        await _dbManager.ClearSafetyDepositBoxItems(boxId, _gameTicker.RoundId);
 
         // Try to put it in player's hands or place it near them
         if (!_hands.TryPickupAnyHand(player, boxEntity))

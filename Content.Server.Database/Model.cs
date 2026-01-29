@@ -1479,6 +1479,12 @@ namespace Content.Server.Database
         public DateTime? LastWithdrawn { get; set; }
 
         /// <summary>
+        /// The round ID when the box was last withdrawn. Null if currently stored in database.
+        /// Used to detect if a box was lost (withdrawn in a previous round but never deposited back).
+        /// </summary>
+        public int? LastWithdrawnRoundId { get; set; }
+
+        /// <summary>
         /// Items stored in this box
         /// </summary>
         public List<WayfarerSafetyDepositBoxItem> Items { get; set; } = new();

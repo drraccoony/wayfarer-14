@@ -1462,6 +1462,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("last_withdrawn");
 
+                    b.Property<int?>("LastWithdrawnRoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("last_withdrawn_round_id");
+
                     b.Property<string>("Nickname")
                         .HasColumnType("TEXT")
                         .HasColumnName("nickname");

@@ -114,26 +114,17 @@ public sealed partial class SafetyDepositConsoleWindow : FancyWindow
                     statusText = Loc.GetString("safety-deposit-console-box-deposited");
                     statusColor = Color.LightGreen;
                 }
-                else if (box.LastWithdrawn.HasValue)
+                else if (box.LastWithdrawnRoundId.HasValue && box.LastWithdrawnRoundId.Value != state.CurrentRoundId)
                 {
-                    // Box was withdrawn but never deposited - potentially lost
-                    var daysSinceWithdrawn = (DateTime.UtcNow - box.LastWithdrawn.Value).TotalDays;
-                    if (daysSinceWithdrawn > 7)
-                    {
-                        statusText = Loc.GetString("safety-deposit-console-box-lost");
-                        statusColor = Color.Red;
-                    }
-                    else
-                    {
-                        statusText = Loc.GetString("safety-deposit-console-box-in-world");
-                        statusColor = Color.Yellow;
-                    }
+                    // Box was withdrawn in a previous round - it's lost
+                    statusText = Loc.GetString("safety-deposit-console-box-lost");
+                    statusColor = Color.Red;
                 }
                 else
                 {
-                    // No items and never withdrawn - shouldn't happen but handle gracefully
-                    statusText = Loc.GetString("safety-deposit-console-box-not-deposited");
-                    statusColor = Color.Orange;
+                    // Box was withdrawn in current round - it's in world
+                    statusText = Loc.GetString("safety-deposit-console-box-in-world");
+                    statusColor = Color.Yellow;
                 }
                 
                 var statusLabel = new Label
@@ -147,9 +138,10 @@ public sealed partial class SafetyDepositConsoleWindow : FancyWindow
                     FontColorOverride = statusColor
                 };
 
-                // Determine if box is lost (withdrawn 7+ days ago with no items)
-                var isLost = !box.IsDeposited && box.LastWithdrawn.HasValue && 
-                             (DateTime.UtcNow - box.LastWithdrawn.Value).TotalDays > 7;
+                // Determine if box is lost (withdrawn in previous round with no items)
+                var isLost = box.LastWithdrawnRoundId.HasValue && 
+                             box.LastWithdrawnRoundId.Value != state.CurrentRoundId &&
+                             !box.IsDeposited;
 
                 // Action button - either Withdraw or Reclaim depending on state
                 var actionButton = new Button
