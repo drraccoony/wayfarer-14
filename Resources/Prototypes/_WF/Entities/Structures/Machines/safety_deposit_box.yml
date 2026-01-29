@@ -21,16 +21,25 @@
     maxItemSize: Small
     grid:
     - 0,0,1,1
+    whitelist:
+      tags:
+      - Document
+      - Paper
+      - Write
+      components:
+      - Clothing
     blacklist:
       components:
       - IdCard
-      - Currency  # Prevents telecrystals and other currency items
-      - Store     # Prevents uplinks
-      - Gun       # Prevents firearms
-      - EncryptionKey  # Prevents radio encryption keys
-      - Battery   # Prevents power cell farming
-      - PowerCell # Prevents power cell farming
-      - Implant   # Prevents implant farming
+      - Currency
+      - Store
+      - Gun
+      - EncryptionKey
+      - Battery
+      - PowerCell
+      - Implant
+      - ShockOnTrigger  # Prevents shock collars
+      - AdvancedCollar  # Prevents advanced collars
   - type: SafetyDepositBox
   - type: Appearance
   - type: Tag
@@ -58,6 +67,13 @@
     maxItemSize: Normal
     grid:
     - 0,0,1,3
+    whitelist:
+      tags:
+      - Document
+      - Paper
+      - Write
+      components:
+      - Clothing
     blacklist:
       components:
       - IdCard
@@ -68,6 +84,8 @@
       - Battery
       - PowerCell
       - Implant
+      - ShockOnTrigger  # Prevents shock collars
+      - AdvancedCollar  # Prevents advanced collars
   - type: SafetyDepositBox
   - type: Appearance
   - type: Tag
@@ -95,6 +113,13 @@
     maxItemSize: Large
     grid:
     - 0,0,1,5
+    whitelist:
+      tags:
+      - Document
+      - Paper
+      - Write
+      components:
+      - Clothing
     blacklist:
       components:
       - IdCard
@@ -105,6 +130,8 @@
       - Battery
       - PowerCell
       - Implant
+      - ShockOnTrigger  # Prevents shock collars
+      - AdvancedCollar  # Prevents advanced collars
   - type: SafetyDepositBox
   - type: Appearance
   - type: Tag
