@@ -1,6 +1,52 @@
 # Safety Deposit Box Entities
 
 - type: entity
+  id: SafetyDepositBoxTrial
+  name: safety deposit box (trial)
+  description: A trial box for storing a single item. Can hold 1x1 items. Limited to one per character.
+  parent: BaseStorageItem
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Economy/depositboxsmall.rsi
+    state: icon
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+  - type: Item
+    size: Tiny
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,0,0
+    whitelist:
+      tags:
+      - Document
+      - Paper
+      - Write
+      components:
+      - Clothing
+    blacklist:
+      components:
+      - IdCard
+      - Currency
+      - Store
+      - Gun
+      - EncryptionKey
+      - Battery
+      - PowerCell
+      - Implant
+      - ShockOnTrigger  # Prevents shock collars
+      - AdvancedCollar  # Prevents advanced collars
+  - type: SafetyDepositBox
+  - type: Appearance
+  - type: Tag
+    tags:
+    - SafetyDepositBox
+
+- type: entity
   id: SafetyDepositBoxSmall
   name: safety deposit box (small)
   description: A small secure box for storing valuables. Can hold 2x2 items.

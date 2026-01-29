@@ -18,6 +18,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Paper;
 using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
+using System.Linq;
 using Content.Shared.Stacks;
 using Content.Shared.Access.Components;
 using Robust.Server.GameObjects;
@@ -155,6 +156,7 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
             0, // No cash display needed anymore
             boxInSlot != null,
             boxInSlotInfo,
+            component.TrialBoxCost,
             component.SmallBoxCost,
             component.MediumBoxCost,
             component.LargeBoxCost,
@@ -177,6 +179,10 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         string prototypeId;
         switch (args.BoxSize)
         {
+            case SafetyDepositBoxSize.Trial:
+                cost = component.TrialBoxCost;
+                prototypeId = "SafetyDepositBoxTrial";
+                break;
             case SafetyDepositBoxSize.Small:
                 cost = component.SmallBoxCost;
                 prototypeId = "SafetyDepositBoxSmall";
@@ -230,7 +236,37 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         var characterIndex = prefs.SelectedCharacterIndex;
         var characterName = MetaData(player).EntityName;
 
+        // Check if trying to purchase a trial box and already owns one
+        if (args.BoxSize == SafetyDepositBoxSize.Trial)
+        {
+            CheckTrialBoxLimitAsync(uid, component, player, userId.UserId, characterIndex, characterName, prototypeId, cost);
+            return;
+        }
+
         PurchaseBoxAsync(uid, component, player, userId.UserId, characterIndex, characterName, prototypeId, cost);
+    }
+
+    private async void CheckTrialBoxLimitAsync(
+        EntityUid consoleUid,
+        SafetyDepositConsoleComponent component,
+        EntityUid player,
+        Guid userId,
+        int characterIndex,
+        string characterName,
+        string prototypeId,
+        int cost)
+    {
+        var ownedBoxes = await _dbManager.GetPlayerSafetyDepositBoxes(userId, characterIndex);
+        var hasTrialBox = ownedBoxes.Any(b => b.BoxSize == "Trial");
+
+        if (hasTrialBox)
+        {
+            ConsolePopup(player, "You already own a Trial Box. Only one Trial Box per character is allowed.");
+            PlayDenySound(consoleUid, component);
+            return;
+        }
+
+        PurchaseBoxAsync(consoleUid, component, player, userId, characterIndex, characterName, prototypeId, cost);
     }
 
     private async void PurchaseBoxAsync(
@@ -246,6 +282,7 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         // Determine box size from prototype
         string boxSize = prototypeId switch
         {
+            "SafetyDepositBoxTrial" => "Trial",
             "SafetyDepositBoxSmall" => "Small",
             "SafetyDepositBoxMedium" => "Medium",
             "SafetyDepositBoxLarge" => "Large",
@@ -270,6 +307,9 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         {
             _transform.SetLocalRotation(boxEntity, Angle.Zero);
         }
+
+        // Mark the box as withdrawn so it shows "In World" in the UI
+        await _dbManager.ClearSafetyDepositBoxItems(box.BoxId, _gameTicker.RoundId);
 
         ConsolePopup(player, $"Safety deposit box purchased! Box ID: {box.BoxId.ToString()[..8]}...");
         PlayConfirmSound(consoleUid, component);
@@ -622,6 +662,7 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
         // Spawn the physical box (use stored box size to determine prototype)
         string prototypeId = box.BoxSize switch
         {
+            "Trial" => "SafetyDepositBoxTrial",
             "Small" => "SafetyDepositBoxSmall",
             "Medium" => "SafetyDepositBoxMedium",
             "Large" => "SafetyDepositBoxLarge",

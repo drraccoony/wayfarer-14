@@ -29,6 +29,11 @@ public sealed class SafetyDepositConsoleState : BoundUserInterfaceState
     public SafetyDepositBoxInfo? BoxInSlot;
 
     /// <summary>
+    /// Purchase cost for a trial box.
+    /// </summary>
+    public int TrialBoxCost;
+
+    /// <summary>
     /// Purchase cost for a small box.
     /// </summary>
     public int SmallBoxCost;
@@ -53,6 +58,7 @@ public sealed class SafetyDepositConsoleState : BoundUserInterfaceState
         int insertedCash,
         bool hasBoxInSlot,
         SafetyDepositBoxInfo? boxInSlot,
+        int trialBoxCost,
         int smallBoxCost,
         int mediumBoxCost,
         int largeBoxCost,
@@ -62,6 +68,7 @@ public sealed class SafetyDepositConsoleState : BoundUserInterfaceState
         InsertedCash = insertedCash;
         HasBoxInSlot = hasBoxInSlot;
         BoxInSlot = boxInSlot;
+        TrialBoxCost = trialBoxCost;
         SmallBoxCost = smallBoxCost;
         MediumBoxCost = mediumBoxCost;
         LargeBoxCost = largeBoxCost;

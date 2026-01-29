@@ -23,6 +23,7 @@ public sealed partial class SafetyDepositConsoleWindow : FancyWindow
     {
         RobustXamlLoader.Load(this);
 
+        PurchaseTrialButton.OnPressed += _ => OnPurchasePressed?.Invoke(SafetyDepositBoxSize.Trial);
         PurchaseSmallButton.OnPressed += _ => OnPurchasePressed?.Invoke(SafetyDepositBoxSize.Small);
         PurchaseMediumButton.OnPressed += _ => OnPurchasePressed?.Invoke(SafetyDepositBoxSize.Medium);
         PurchaseLargeButton.OnPressed += _ => OnPurchasePressed?.Invoke(SafetyDepositBoxSize.Large);
@@ -32,6 +33,9 @@ public sealed partial class SafetyDepositConsoleWindow : FancyWindow
     public void UpdateState(SafetyDepositConsoleState state)
     {
         // Update purchase buttons with costs
+        PurchaseTrialButton.Disabled = false; // Bank account check happens server-side
+        PurchaseTrialButton.Text = Loc.GetString("safety-deposit-console-purchase-trial", ("cost", state.TrialBoxCost.ToString("N0")));
+        
         PurchaseSmallButton.Disabled = false; // Bank account check happens server-side
         PurchaseSmallButton.Text = Loc.GetString("safety-deposit-console-purchase-small", ("cost", state.SmallBoxCost.ToString("N0")));
         
