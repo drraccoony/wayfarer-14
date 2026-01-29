@@ -803,14 +803,10 @@ public sealed class SafetyDepositBoxSystem : EntitySystem
 
     private void OnSlotChanged(EntityUid uid, SafetyDepositConsoleComponent component, ContainerModifiedMessage args)
     {
-        // Update UI for anyone who has this specific console open
-        var query = EntityQueryEnumerator<ActorComponent>();
-        while (query.MoveNext(out var actorUid, out _))
+        // Update UI for anyone who has this console's UI open
+        foreach (var actor in _uiSystem.GetActors(uid, SafetyDepositConsoleUiKey.Key))
         {
-            if (_uiSystem.TryGetOpenUi(actorUid, SafetyDepositConsoleUiKey.Key, out var bui) && bui.Owner == uid)
-            {
-                UpdateUI(uid, component, actorUid);
-            }
+            UpdateUI(uid, component, actor);
         }
     }
 
