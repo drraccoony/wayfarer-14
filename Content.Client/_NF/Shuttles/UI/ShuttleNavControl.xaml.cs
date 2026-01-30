@@ -1,6 +1,7 @@
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Physics.Components;
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
@@ -92,80 +93,176 @@ public sealed partial class ShuttleNavControl
     /// <summary>
     /// Adds a blip to the blip data list for later drawing.
     /// </summary>
-    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color)
+    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color, string? shuttleName, EntityUid entityUid, float distance, bool isDistantPOI = false, bool isMouseOver = false, Vector2? gridMapCoords = null)
     {
         blipDataList.Add(new BlipData
         {
             IsOutsideRadarCircle = isOutsideRadarCircle,
             UiPosition = uiPosition,
             VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
-            Color = color
+            Color = color,
+            ShuttleName = shuttleName,
+            EntityUid = entityUid,
+            Distance = distance,
+            IsDistantPOI = isDistantPOI,
+            IsMouseOver = isMouseOver,
+            GridMapCoords = gridMapCoords ?? Vector2.Zero
         });
+    }
+
+    /// <summary>
+    /// Groups nearby blips together to reduce clutter on the radar.
+    /// </summary>
+    private List<GroupedBlip> NFGroupBlips(List<BlipData> blipDataList, Vector2 mousePosition)
+    {
+        var grouped = new List<GroupedBlip>();
+        var processed = new HashSet<BlipData>();
+
+        foreach (var blip in blipDataList)
+        {
+            if (processed.Contains(blip))
+                continue;
+
+            var group = new GroupedBlip
+            {
+                Blips = new List<BlipData> { blip },
+                UiPosition = blip.UiPosition,
+                VectorToPosition = blip.VectorToPosition,
+                Color = blip.Color,
+                IsOutsideRadarCircle = blip.IsOutsideRadarCircle
+            };
+
+            processed.Add(blip);
+
+            // Find nearby blips to group with
+            foreach (var otherBlip in blipDataList)
+            {
+                if (processed.Contains(otherBlip))
+                    continue;
+
+                var distance = Vector2.Distance(blip.UiPosition * UIScale, otherBlip.UiPosition * UIScale);
+                if (distance < BlipGroupDistance)
+                {
+                    group.Blips.Add(otherBlip);
+                    processed.Add(otherBlip);
+                }
+            }
+
+            // Calculate average position for the group
+            if (group.Blips.Count > 1)
+            {
+                var avgPos = Vector2.Zero;
+                var avgVec = Vector2.Zero;
+                foreach (var groupBlip in group.Blips)
+                {
+                    avgPos += groupBlip.UiPosition;
+                    avgVec += groupBlip.VectorToPosition;
+                }
+                group.UiPosition = avgPos / group.Blips.Count;
+                group.VectorToPosition = avgVec / group.Blips.Count;
+            }
+
+            grouped.Add(group);
+        }
+
+        return grouped;
     }
 
     /// <summary>
     /// Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
     /// Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
+    /// Supports grouping of nearby shuttles to reduce clutter.
     /// </summary>
-    private void NFDrawBlips(DrawingHandleBase handle, List<BlipData> blipDataList)
+    private void NFDrawBlips(DrawingHandleScreen handle, List<BlipData> blipDataList)
     {
+        var scaledMousePosition = GetMouseCoordinatesFromCenter().Position * UIScale;
+        var groupedBlips = NFGroupBlips(blipDataList, scaledMousePosition);
+
         var blipValueList = new Dictionary<Color, ValueList<Vector2>>();
 
-        foreach (var blipData in blipDataList)
+        foreach (var group in groupedBlips)
         {
-            var triangleShapeVectorPoints = new[]
+            // Check if mouse is hovering over this group
+            var isMouseOverGroup = Vector2.Distance(scaledMousePosition, group.UiPosition * UIScale) < 40f;
+            
+            // If it's a group and not hovered, draw one blip with a count and grouped label
+            if (group.Blips.Count > 1 && !isMouseOverGroup)
             {
-                new Vector2(0, 0),
-                new Vector2(RadarBlipSize, 0),
-                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
-            };
-
-            if (blipData.IsOutsideRadarCircle)
-            {
-                // Calculate the angle of rotation
-                var angle = (float)Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
-
-                // Manually create a rotation matrix
-                var cos = (float)Math.Cos(angle);
-                var sin = (float)Math.Sin(angle);
-                float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
-
-                // Rotate each vertex
-                for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+                var blipData = new BlipData
                 {
-                    var vertex = triangleShapeVectorPoints[i];
-                    var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
-                    var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
-                    triangleShapeVectorPoints[i] = new Vector2(x, y);
+                    IsOutsideRadarCircle = group.IsOutsideRadarCircle,
+                    UiPosition = group.UiPosition,
+                    VectorToPosition = group.VectorToPosition,
+                    Color = group.Color
+                };
+
+                DrawSingleBlip(handle, blipData, blipValueList);
+
+                // Draw count indicator
+                var countText = $"×{group.Blips.Count}";
+                var textDims = handle.GetDimensions(FontHeart, countText, 0.8f);
+                var textPos = group.UiPosition * UIScale + new Vector2(RadarBlipSize * 0.7f, -RadarBlipSize * 0.5f);
+                handle.DrawString(FontHeart, textPos, countText, 0.8f * UIScale, Color.White);
+
+                // Draw a single grouped label showing "Multiple Shuttles"
+                var firstBlip = group.Blips[0];
+                if ((!firstBlip.IsOutsideRadarCircle || firstBlip.IsDistantPOI || isMouseOverGroup) && firstBlip.ShuttleName != null)
+                {
+                    var avgDistance = group.Blips.Average(b => b.Distance);
+                    var displayedDistance = avgDistance < 50f ? $"{avgDistance:0.0}" : avgDistance < 1000 ? $"{avgDistance:0}" : $"{avgDistance / 1000:0.0}k";
+                    var labelText = Loc.GetString("shuttle-console-iff-label", ("name", $"{group.Blips.Count} Shuttles")!, ("distance", displayedDistance));
+                    var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                    var blipSize = RadarBlipSize * 0.7f;
+                    var labelOffset = new Vector2()
+                    {
+                        X = group.UiPosition.X > Width / 2f
+                            ? -labelDimensions.X - blipSize
+                            : blipSize,
+                        Y = -labelDimensions.Y / 2f
+                    };
+                    handle.DrawString(Font, (group.UiPosition + labelOffset) * UIScale, labelText, UIScale, group.Color);
                 }
             }
-
-            var triangleCenterVector =
-                (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
-
-            // Calculate the vectors from the center to each vertex
-            var vectorsFromCenter = new Vector2[3];
-            for (int i = 0; i < 3; i++)
+            else
             {
-                vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
-            }
+                // Draw individual blips (either single or expanded group)
+                foreach (var blip in group.Blips)
+                {
+                    // Draw labels for individual shuttles
+                    if ((!blip.IsOutsideRadarCircle || blip.IsDistantPOI || blip.IsMouseOver || isMouseOverGroup) && blip.ShuttleName != null)
+                    {
+                        var displayedDistance = blip.Distance < 50f ? $"{blip.Distance:0.0}" : blip.Distance < 1000 ? $"{blip.Distance:0}" : $"{blip.Distance / 1000:0.0}k";
+                        var labelText = Loc.GetString("shuttle-console-iff-label", ("name", blip.ShuttleName)!, ("distance", displayedDistance));
+                        var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                        var blipSize = RadarBlipSize * 0.7f;
+                        var labelOffset = new Vector2()
+                        {
+                            X = blip.UiPosition.X > Width / 2f
+                                ? -labelDimensions.X - blipSize
+                                : blipSize,
+                            Y = -labelDimensions.Y / 2f
+                        };
+                        handle.DrawString(Font, (blip.UiPosition + labelOffset) * UIScale, labelText, UIScale, blip.Color);
 
-            // Calculate the vertices of the new triangle
-            var newVerts = new Vector2[3];
-            for (var i = 0; i < 3; i++)
-            {
-                newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
-            }
+                        // Draw coordinates on mouse over if enabled
+                        if ((blip.IsMouseOver || isMouseOverGroup) && !HideCoords)
+                        {
+                            var coordsText = $"({blip.GridMapCoords.X:0.0}, {blip.GridMapCoords.Y:0.0})";
+                            var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
+                            var coordOffset = new Vector2()
+                            {
+                                X = blip.UiPosition.X > Width / 2f
+                                    ? -coordDimensions.X - blipSize / 0.7f
+                                    : blipSize,
+                                Y = coordDimensions.Y / 2
+                            };
+                            handle.DrawString(Font, (blip.UiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, new Color(blip.Color.R * 0.8f, blip.Color.G * 0.8f, blip.Color.B * 0.8f, 0.5f));
+                        }
+                    }
 
-            if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
-            {
-                valueList = new ValueList<Vector2>();
-
+                    DrawSingleBlip(handle, blip, blipValueList);
+                }
             }
-            valueList.Add(newVerts[0]);
-            valueList.Add(newVerts[1]);
-            valueList.Add(newVerts[2]);
-            blipValueList[blipData.Color] = valueList;
         }
 
         // One draw call for every color we have
@@ -173,6 +270,65 @@ public sealed partial class ShuttleNavControl
         {
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
         }
+    }
+
+    /// <summary>
+    /// Draws a single blip triangle.
+    /// </summary>
+    private void DrawSingleBlip(DrawingHandleScreen handle, BlipData blipData, Dictionary<Color, ValueList<Vector2>> blipValueList)
+    {
+        var triangleShapeVectorPoints = new[]
+        {
+            new Vector2(0, 0),
+            new Vector2(RadarBlipSize, 0),
+            new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+        };
+
+        if (blipData.IsOutsideRadarCircle)
+        {
+            // Calculate the angle of rotation
+            var angle = (float)Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
+
+            // Manually create a rotation matrix
+            var cos = (float)Math.Cos(angle);
+            var sin = (float)Math.Sin(angle);
+            float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+            // Rotate each vertex
+            for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+            {
+                var vertex = triangleShapeVectorPoints[i];
+                var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                triangleShapeVectorPoints[i] = new Vector2(x, y);
+            }
+        }
+
+        var triangleCenterVector =
+            (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
+
+        // Calculate the vectors from the center to each vertex
+        var vectorsFromCenter = new Vector2[3];
+        for (int i = 0; i < 3; i++)
+        {
+            vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+        }
+
+        // Calculate the vertices of the new triangle
+        var newVerts = new Vector2[3];
+        for (var i = 0; i < 3; i++)
+        {
+            newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
+        }
+
+        if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
+        {
+            valueList = new ValueList<Vector2>();
+        }
+        valueList.Add(newVerts[0]);
+        valueList.Add(newVerts[1]);
+        valueList.Add(newVerts[2]);
+        blipValueList[blipData.Color] = valueList;
     }
 
     private void HandleMouseEntered(GUIMouseHoverEventArgs args)

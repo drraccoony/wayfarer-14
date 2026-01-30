@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -298,41 +299,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 var distance = Vector2.Distance(gridMapPos, mapPos.Position);
 
-                if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
-                {
-                    // Shows decimal when distance is < 50m, otherwise pointless to show it.
-                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
-                    var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
+                // Labels are now drawn in NFDrawBlips to support grouping
+                // Store position and metadata for grouped rendering
+                var gridMapCoords = new Vector2(gridMapPos.X, gridMapPos.Y);
 
-                    var coordsText = $"({gridMapPos.X:0.0}, {gridMapPos.Y:0.0})";
-
-                    // Calculate unscaled offsets.
-                    var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
-                    var blipSize = RadarBlipSize * 0.7f;
-                    var labelOffset = new Vector2()
-                    {
-                        X = uiPosition.X > Width / 2f
-                            ? -labelDimensions.X - blipSize // right align the text to left of the blip
-                            : blipSize, // left align the text to the right of the blip
-                        Y = -labelDimensions.Y / 2f
-                    };
-
-                    handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, labelColor);
-                    if (isMouseOver && !HideCoords)
-                    {
-                        var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
-                        var coordOffset = new Vector2()
-                        {
-                            X = uiPosition.X > Width / 2f
-                                ? -coordDimensions.X - blipSize / 0.7f // right align the text to left of the blip (0.7 needed for scale)
-                                : blipSize, // left align the text to the right of the blip
-                            Y = coordDimensions.Y / 2
-                        };
-                        handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, coordColor);
-                    }
-                }
-
-                NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor); // Frontier code
+                NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, labelName, gUid, distance, isDistantPOI, isMouseOver, gridMapCoords); // Frontier code
                 // End Frontier: IFF drawing functions
             }
 
@@ -429,7 +400,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, coordColor);
             }
 
-            NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor); // Frontier code
+            NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, targetName, targetEntity ?? EntityUid.Invalid, distance); // Frontier code
             // End Frontier: IFF drawing functions
         }
 
@@ -576,9 +547,25 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         public Vector2 UiPosition { get; set; }
         public Vector2 VectorToPosition { get; set; }
         public Color Color { get; set; }
+        public string? ShuttleName { get; set; }
+        public EntityUid EntityUid { get; set; }
+        public float Distance { get; set; }
+        public bool IsDistantPOI { get; set; }
+        public bool IsMouseOver { get; set; }
+        public Vector2 GridMapCoords { get; set; }
+    }
+
+    public sealed class GroupedBlip
+    {
+        public List<BlipData> Blips { get; set; } = new();
+        public Vector2 UiPosition { get; set; }
+        public Vector2 VectorToPosition { get; set; }
+        public Color Color { get; set; }
+        public bool IsOutsideRadarCircle { get; set; }
     }
 
     private const int RadarBlipSize = 15;
     private const int RadarFontSize = 10;
+    private const float BlipGroupDistance = 60f; // UI pixels distance for grouping
 
 }
