@@ -6,6 +6,11 @@
                       SetSize="648 750"
                       MinSize="256 256">
     <cc:BoxContainer Orientation="Vertical">
+        <!-- Menu Bar -->
+        <cc:BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="8 8 8 4" VerticalExpand="False">
+            <cc:Button Name="ViewMenuButton" Text="View" MinWidth="60" MinHeight="30" Access="Public" />
+        </cc:BoxContainer>
+        
         <cc:BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="8 8 8 20">
             <cc:Label Text="{Loc 'radar-console-iff-search'}" Margin="0 0 0 4"/>
             <cc:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"/>

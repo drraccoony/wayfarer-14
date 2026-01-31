@@ -29,6 +29,9 @@ public sealed partial class ShuttleNavControl
     private const float FireRateLimit = 0.1f; // 100ms between shots
     private static readonly Color TargetColor = Color.FromHex("#99ff66");
     private float _updateAccumulator = 0f;
+    
+    // Edge detection for label hiding
+    private const float EdgeMargin = 60f; // Distance from edge in pixels to be considered "near edge"
 
     private bool _isMouseDown;
     private bool _isMouseInside;
@@ -208,19 +211,27 @@ public sealed partial class ShuttleNavControl
                 var firstBlip = group.Blips[0];
                 if ((!firstBlip.IsOutsideRadarCircle || firstBlip.IsDistantPOI || isMouseOverGroup) && firstBlip.ShuttleName != null)
                 {
-                    var avgDistance = group.Blips.Average(b => b.Distance);
-                    var displayedDistance = avgDistance < 50f ? $"{avgDistance:0.0}" : avgDistance < 1000 ? $"{avgDistance:0}" : $"{avgDistance / 1000:0.0}k";
-                    var labelText = Loc.GetString("shuttle-console-iff-label", ("name", $"{group.Blips.Count} Shuttles")!, ("distance", displayedDistance));
-                    var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
-                    var blipSize = RadarBlipSize * 0.7f;
-                    var labelOffset = new Vector2()
+                    // Check if blip is near edge
+                    var isNearEdge = group.UiPosition.X < EdgeMargin || group.UiPosition.X > (Width - EdgeMargin) ||
+                                     group.UiPosition.Y < EdgeMargin || group.UiPosition.Y > (Height - EdgeMargin);
+                    
+                    // Only show label if not near edge, or if mouse is over the group
+                    if (!isNearEdge || isMouseOverGroup)
                     {
-                        X = group.UiPosition.X > Width / 2f
-                            ? -labelDimensions.X - blipSize
-                            : blipSize,
-                        Y = -labelDimensions.Y / 2f
-                    };
-                    handle.DrawString(Font, (group.UiPosition + labelOffset) * UIScale, labelText, UIScale, group.Color);
+                        var avgDistance = group.Blips.Average(b => b.Distance);
+                        var displayedDistance = avgDistance < 50f ? $"{avgDistance:0.0}" : avgDistance < 1000 ? $"{avgDistance:0}" : $"{avgDistance / 1000:0.0}k";
+                        var labelText = Loc.GetString("shuttle-console-iff-label", ("name", $"{group.Blips.Count} objects")!, ("distance", displayedDistance));
+                        var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                        var blipSize = RadarBlipSize * 0.7f;
+                        var labelOffset = new Vector2()
+                        {
+                            X = group.UiPosition.X > Width / 2f
+                                ? -labelDimensions.X - blipSize
+                                : blipSize,
+                            Y = -labelDimensions.Y / 2f
+                        };
+                        handle.DrawString(Font, (group.UiPosition + labelOffset) * UIScale, labelText, UIScale, group.Color);
+                    }
                 }
             }
             else
@@ -231,18 +242,27 @@ public sealed partial class ShuttleNavControl
                     // Draw labels for individual shuttles
                     if ((!blip.IsOutsideRadarCircle || blip.IsDistantPOI || blip.IsMouseOver || isMouseOverGroup) && blip.ShuttleName != null)
                     {
-                        var displayedDistance = blip.Distance < 50f ? $"{blip.Distance:0.0}" : blip.Distance < 1000 ? $"{blip.Distance:0}" : $"{blip.Distance / 1000:0.0}k";
-                        var labelText = Loc.GetString("shuttle-console-iff-label", ("name", blip.ShuttleName)!, ("distance", displayedDistance));
-                        var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
                         var blipSize = RadarBlipSize * 0.7f;
-                        var labelOffset = new Vector2()
+                        
+                        // Check if blip is near edge
+                        var isNearEdge = blip.UiPosition.X < EdgeMargin || blip.UiPosition.X > (Width - EdgeMargin) ||
+                                         blip.UiPosition.Y < EdgeMargin || blip.UiPosition.Y > (Height - EdgeMargin);
+                        
+                        // Only show label if not near edge, or if mouse is over the blip
+                        if (!isNearEdge || blip.IsMouseOver || isMouseOverGroup)
                         {
-                            X = blip.UiPosition.X > Width / 2f
-                                ? -labelDimensions.X - blipSize
-                                : blipSize,
-                            Y = -labelDimensions.Y / 2f
-                        };
-                        handle.DrawString(Font, (blip.UiPosition + labelOffset) * UIScale, labelText, UIScale, blip.Color);
+                            var displayedDistance = blip.Distance < 50f ? $"{blip.Distance:0.0}" : blip.Distance < 1000 ? $"{blip.Distance:0}" : $"{blip.Distance / 1000:0.0}k";
+                            var labelText = Loc.GetString("shuttle-console-iff-label", ("name", blip.ShuttleName)!, ("distance", displayedDistance));
+                            var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                            var labelOffset = new Vector2()
+                            {
+                                X = blip.UiPosition.X > Width / 2f
+                                    ? -labelDimensions.X - blipSize
+                                    : blipSize,
+                                Y = -labelDimensions.Y / 2f
+                            };
+                            handle.DrawString(Font, (blip.UiPosition + labelOffset) * UIScale, labelText, UIScale, blip.Color);
+                        }
 
                         // Draw coordinates on mouse over if enabled
                         if ((blip.IsMouseOver || isMouseOverGroup) && !HideCoords)
