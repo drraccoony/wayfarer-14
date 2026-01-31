@@ -46,6 +46,24 @@ public sealed partial class CCVars
         CVarDef.Create("shuttle.arrivals_cooldown", 50f, CVar.SERVERONLY);
 
     /// <summary>
+    ///     IFF grouping mode for shuttle radar. 0 = None, 1 = Lax (30px), 2 = Aggressive (50px)
+    /// </summary>
+    public static readonly CVarDef<int> ShuttleIFFGrouping =
+        CVarDef.Create("shuttle.iff_grouping", 1, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Label font size for shuttle radar IFF labels.
+    /// </summary>
+    public static readonly CVarDef<int> ShuttleLabelFontSize =
+        CVarDef.Create("shuttle.label_font_size", 8, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Hide labels for blips near the edge of the radar.
+    /// </summary>
+    public static readonly CVarDef<bool> ShuttleHideEdgeLabels =
+        CVarDef.Create("shuttle.hide_edge_labels", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     Are players allowed to return on the arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsReturns =

@@ -13,77 +13,9 @@ namespace Content.Client.Shuttles.UI;
 public sealed partial class RadarConsoleWindow : FancyWindow,
     IComputerWindow<NavInterfaceState>
 {
-    private Popup? _viewMenuPopup;
-    
     public RadarConsoleWindow()
     {
         RobustXamlLoader.Load(this);
-        
-        // Setup View menu button
-        ViewMenuButton.OnPressed += OnViewMenuPressed;
-    }
-    
-    private void OnViewMenuPressed(BaseButton.ButtonEventArgs args)
-    {
-        // Close existing menu if open
-        if (_viewMenuPopup != null && _viewMenuPopup.Visible)
-        {
-            _viewMenuPopup.Dispose();
-            _viewMenuPopup = null;
-            return;
-        }
-        
-        // Create new popup menu
-        _viewMenuPopup = new Popup();
-        
-        var menuPanel = new PanelContainer();
-        menuPanel.StyleClasses.Add("contextMenuPopup");
-        
-        var menuBody = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            MinWidth = 150
-        };
-        
-        // Add menu items
-        var item1 = new Button { Text = "Item 1", HorizontalExpand = true };
-        item1.OnPressed += _ => OnMenuItem1Clicked();
-        menuBody.AddChild(item1);
-        
-        var item2 = new Button { Text = "Item 2", HorizontalExpand = true };
-        item2.OnPressed += _ => OnMenuItem2Clicked();
-        menuBody.AddChild(item2);
-        
-        var item3 = new Button { Text = "Item 3", HorizontalExpand = true };
-        item3.OnPressed += _ => OnMenuItem3Clicked();
-        menuBody.AddChild(item3);
-        
-        menuPanel.AddChild(menuBody);
-        _viewMenuPopup.AddChild(menuPanel);
-        
-        UserInterfaceManager.ModalRoot.AddChild(_viewMenuPopup);
-        
-        // Position menu below the button
-        var globalPos = ViewMenuButton.GlobalPosition;
-        _viewMenuPopup.Open(UIBox2.FromDimensions(globalPos + new Vector2(0, ViewMenuButton.Height), Vector2.One));
-    }
-    
-    private void OnMenuItem1Clicked()
-    {
-        // Placeholder for Item 1 functionality
-        _viewMenuPopup?.Close();
-    }
-    
-    private void OnMenuItem2Clicked()
-    {
-        // Placeholder for Item 2 functionality
-        _viewMenuPopup?.Close();
-    }
-    
-    private void OnMenuItem3Clicked()
-    {
-        // Placeholder for Item 3 functionality
-        _viewMenuPopup?.Close();
     }
 
     public void UpdateState(NavInterfaceState scc)

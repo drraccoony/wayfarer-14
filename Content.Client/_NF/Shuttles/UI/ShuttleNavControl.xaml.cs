@@ -206,33 +206,6 @@ public sealed partial class ShuttleNavControl
                 var textDims = handle.GetDimensions(FontHeart, countText, 0.8f);
                 var textPos = group.UiPosition * UIScale + new Vector2(RadarBlipSize * 0.7f, -RadarBlipSize * 0.5f);
                 handle.DrawString(FontHeart, textPos, countText, 0.8f * UIScale, Color.White);
-
-                // Draw a single grouped label showing "Multiple Shuttles"
-                var firstBlip = group.Blips[0];
-                if ((!firstBlip.IsOutsideRadarCircle || firstBlip.IsDistantPOI || isMouseOverGroup) && firstBlip.ShuttleName != null)
-                {
-                    // Check if blip is near edge
-                    var isNearEdge = group.UiPosition.X < EdgeMargin || group.UiPosition.X > (Width - EdgeMargin) ||
-                                     group.UiPosition.Y < EdgeMargin || group.UiPosition.Y > (Height - EdgeMargin);
-                    
-                    // Only show label if not near edge, or if mouse is over the group
-                    if (!isNearEdge || isMouseOverGroup)
-                    {
-                        var avgDistance = group.Blips.Average(b => b.Distance);
-                        var displayedDistance = avgDistance < 50f ? $"{avgDistance:0.0}" : avgDistance < 1000 ? $"{avgDistance:0}" : $"{avgDistance / 1000:0.0}k";
-                        var labelText = Loc.GetString("shuttle-console-iff-label", ("name", $"{group.Blips.Count} objects")!, ("distance", displayedDistance));
-                        var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
-                        var blipSize = RadarBlipSize * 0.7f;
-                        var labelOffset = new Vector2()
-                        {
-                            X = group.UiPosition.X > Width / 2f
-                                ? -labelDimensions.X - blipSize
-                                : blipSize,
-                            Y = -labelDimensions.Y / 2f
-                        };
-                        handle.DrawString(Font, (group.UiPosition + labelOffset) * UIScale, labelText, UIScale, group.Color);
-                    }
-                }
             }
             else
             {
@@ -248,12 +221,13 @@ public sealed partial class ShuttleNavControl
                         var isNearEdge = blip.UiPosition.X < EdgeMargin || blip.UiPosition.X > (Width - EdgeMargin) ||
                                          blip.UiPosition.Y < EdgeMargin || blip.UiPosition.Y > (Height - EdgeMargin);
                         
-                        // Only show label if not near edge, or if mouse is over the blip
-                        if (!isNearEdge || blip.IsMouseOver || isMouseOverGroup)
+                        // Only show label if not near edge (when hide edge labels is enabled), or if mouse is over the blip
+                        if ((!isNearEdge || !HideEdgeLabels) || blip.IsMouseOver || isMouseOverGroup)
                         {
                             var displayedDistance = blip.Distance < 50f ? $"{blip.Distance:0.0}" : blip.Distance < 1000 ? $"{blip.Distance:0}" : $"{blip.Distance / 1000:0.0}k";
                             var labelText = Loc.GetString("shuttle-console-iff-label", ("name", blip.ShuttleName)!, ("distance", displayedDistance));
-                            var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                            var fontScale = LabelFontSize / 10f; // Default font is 10, so scale accordingly
+                            var labelDimensions = handle.GetDimensions(Font, labelText, fontScale);
                             var labelOffset = new Vector2()
                             {
                                 X = blip.UiPosition.X > Width / 2f
@@ -261,7 +235,15 @@ public sealed partial class ShuttleNavControl
                                     : blipSize,
                                 Y = -labelDimensions.Y / 2f
                             };
-                            handle.DrawString(Font, (blip.UiPosition + labelOffset) * UIScale, labelText, UIScale, blip.Color);
+                            
+                            // Determine label opacity: 20% if in a group and not directly hovered, 100% if directly hovered
+                            var labelColor = blip.Color;
+                            if (group.Blips.Count > 1 && isMouseOverGroup && !blip.IsMouseOver)
+                            {
+                                labelColor = new Color(blip.Color.R, blip.Color.G, blip.Color.B, 0.2f);
+                            }
+                            
+                            handle.DrawString(Font, (blip.UiPosition + labelOffset) * UIScale, labelText, fontScale * UIScale, labelColor);
                         }
 
                         // Draw coordinates on mouse over if enabled
@@ -280,7 +262,28 @@ public sealed partial class ShuttleNavControl
                         }
                     }
 
-                    DrawSingleBlip(handle, blip, blipValueList);
+                    // Determine blip opacity: 20% if in a group and not directly hovered, 100% if directly hovered
+                    var blipColor = blip.Color;
+                    if (group.Blips.Count > 1 && isMouseOverGroup && !blip.IsMouseOver)
+                    {
+                        blipColor = new Color(blip.Color.R, blip.Color.G, blip.Color.B, 0.2f);
+                    }
+                    
+                    var blipDataWithOpacity = new BlipData
+                    {
+                        IsOutsideRadarCircle = blip.IsOutsideRadarCircle,
+                        UiPosition = blip.UiPosition,
+                        VectorToPosition = blip.VectorToPosition,
+                        Color = blipColor,
+                        ShuttleName = blip.ShuttleName,
+                        EntityUid = blip.EntityUid,
+                        Distance = blip.Distance,
+                        IsDistantPOI = blip.IsDistantPOI,
+                        IsMouseOver = blip.IsMouseOver,
+                        GridMapCoords = blip.GridMapCoords
+                    };
+
+                    DrawSingleBlip(handle, blipDataWithOpacity, blipValueList);
                 }
             }
         }
