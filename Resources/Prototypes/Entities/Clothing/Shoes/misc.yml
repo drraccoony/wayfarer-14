@@ -162,6 +162,9 @@
     walkModifier: 1.7 # DeltaV
     sprintModifier: 1.7 # DeltaV
     standing: true
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: Appearance
   - type: GenericVisualizer
     visuals:

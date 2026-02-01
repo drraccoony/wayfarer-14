@@ -396,6 +396,9 @@
     sprite: Clothing/Hands/Gloves/northstar.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/northstar.rsi
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     autoAttack: true
     attackRate: 4
@@ -471,6 +474,9 @@
     sprite: Clothing/Hands/Gloves/KnuckleDusters/knuckleduster.rsi
   - type: Fiber
     fiberColor: fibers-silver
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -499,6 +505,9 @@
   - type: Construction
     graph: ClothingHandsKnuckleDustersBrass
     node: icon
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -517,6 +526,9 @@
     sprite: Clothing/Hands/Gloves/KnuckleDusters/goldenknuckleduster.rsi
   - type: Fiber
     fiberColor: fibers-gold
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -544,6 +556,9 @@
     state: syndicateknuckleduster
   - type: Clothing
     sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -575,6 +590,9 @@
   - type: Clothing
     sprite: Clothing/Hands/Gloves/KnuckleDusters/electricknuckleduster.rsi
     equippedPrefix: on
+  - type: Tag # Wayfarer
+    tags: # Wayfarer
+    - DepositBlacklist # Wayfarer
   - type: Appearance
   - type: GenericVisualizer
     visuals:
