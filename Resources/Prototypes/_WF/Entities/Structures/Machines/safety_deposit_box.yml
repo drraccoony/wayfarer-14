@@ -32,6 +32,31 @@
       - Implant
       - ShockOnTrigger  # Prevents shock collars
       - AdvancedCollar  # Prevents advanced collars
+      - Prying  # Prevents jaws of life (syndie and regular)
+      - RCD  # Prevents NFSD/Pirate RCDs
+      tags:
+      - JawsOfLife  # Additional check for jaws of life
+      - HudSecurity  # Prevents security/CGP HUDs
+      - HudMedical  # Prevents medical HUDs (for CGP corpsman)
+      entities:
+      - ClothingHandsGlovesNorthStar  # Gloves of the North Star
+      - ClothingHandsKnuckleDusters  # Knuckle dusters
+      - ClothingHandsKnuckleDustersBrass  # Brass knuckle dusters
+      - ClothingHandsKnuckleDustersQM  # QM's golden knuckle dusters
+      - ClothingHandsKnuckleDustersSyndicate  # Syndicate knuckle dusters
+      - ClothingHandsKnuckleDustersStun  # Stun knuckle dusters
+      - BluespaceAirTank  # Bluespace oxygen tank (large)
+      - SmallBluespaceAirTank  # Bluespace oxygen tank (pocket)
+      - ClothingShoesBootsMagSyndie  # Blood-red magboots
+      - ClothingShoesBootsMagAdv  # Advanced magboots
+      - ClothingShoesBootsSpeed  # Speed boots
+      - ClothingEyesHudNfsd  # CGP HUD
+      - ClothingEyesHudNfsdMed  # CGP Corpsman HUD
+      - ClothingEyesHudNfsdPatch  # CGP HUD Eyepatch
+      - ClothingEyesHudSecurity  # Security HUD (general)
+      - ClothingEyesHudMedical  # Medical HUD (general)
+      - NFSDRCD  # NFSD RCD
+      - PirateRCD  # Pirate RCD
   - type: SafetyDepositBox
   - type: Appearance
   - type: Tag
