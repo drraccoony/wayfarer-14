@@ -396,9 +396,6 @@
     sprite: Clothing/Hands/Gloves/northstar.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/northstar.rsi
-  - type: Tag # Wayfarer
-    tags: # Wayfarer
-    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     autoAttack: true
     attackRate: 4
@@ -428,6 +425,7 @@
     tags:
     - Kangaroo
     - WhitelistChameleon
+    - DepositBlacklist # Wayfarer
 
 - type: entity
   parent: [ClothingHandsBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -474,9 +472,6 @@
     sprite: Clothing/Hands/Gloves/KnuckleDusters/knuckleduster.rsi
   - type: Fiber
     fiberColor: fibers-silver
-  - type: Tag # Wayfarer
-    tags: # Wayfarer
-    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -490,6 +485,7 @@
     tags:
     - WhitelistChameleon
     - Kangaroo
+    - DepositBlacklist # Wayfarer
 
 - type: entity
   parent: [ClothingHandsKnuckleDusters, BaseC1Contraband] #Craftable version of base knuckledusters # Frontier: BaseMinorContraband
@@ -505,13 +501,11 @@
   - type: Construction
     graph: ClothingHandsKnuckleDustersBrass
     node: icon
-  - type: Tag # Wayfarer
-    tags: # Wayfarer
-    - DepositBlacklist # Wayfarer
   - type: Tag
     tags:
     - WhitelistChameleon
     - Kangaroo
+    - DepositBlacklist # Wayfarer
 
 - type: entity
   parent: [ClothingHandsBase, BaseC1Contraband] # Frontier: BaseGrandTheftContraband<BaseC1Contraband
@@ -526,9 +520,6 @@
     sprite: Clothing/Hands/Gloves/KnuckleDusters/goldenknuckleduster.rsi
   - type: Fiber
     fiberColor: fibers-gold
-  - type: Tag # Wayfarer
-    tags: # Wayfarer
-    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -542,6 +533,7 @@
     tags:
     - WhitelistChameleon
     - Kangaroo
+    - DepositBlacklist # Wayfarer
   - type: StealTarget
     stealGroup: ClothingHandsKnuckleDustersQM
 
@@ -556,9 +548,6 @@
     state: syndicateknuckleduster
   - type: Clothing
     sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi
-  - type: Tag # Wayfarer
-    tags: # Wayfarer
-    - DepositBlacklist # Wayfarer
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -573,6 +562,7 @@
     tags:
     - WhitelistChameleon
     - Kangaroo
+    - DepositBlacklist # Wayfarer
   - type: StaticPrice
     price: 2000
 
