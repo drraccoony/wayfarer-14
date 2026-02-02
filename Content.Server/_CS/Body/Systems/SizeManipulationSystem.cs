@@ -6,6 +6,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared._CS.Weapons.Ranged.Components;
+using Content.Shared.Examine;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
@@ -29,6 +30,29 @@ public sealed class SizeManipulationSystem : EntitySystem
         base.Initialize();
 
         _sawmill = Logger.GetSawmill("size_manipulator");
+        
+        SubscribeLocalEvent<SizeAffectedComponent, ExaminedEvent>(OnExamined);
+    }
+
+    private void OnExamined(EntityUid uid, SizeAffectedComponent component, ExaminedEvent args)
+    {
+        // Only show if entity has been resized (scale is not 1.0)
+        if (Math.Abs(component.ScaleMultiplier - 1.0f) < 0.001f)
+            return;
+
+        var totalScale = component.ScaleMultiplier * component.BaseScale;
+        
+        string message;
+        if (totalScale > 1.0f)
+        {
+            message = Loc.GetString("size-manipulator-examine-bigger", ("scale", totalScale.ToString("F2")));
+        }
+        else
+        {
+            message = Loc.GetString("size-manipulator-examine-smaller", ("scale", totalScale.ToString("F2")));
+        }
+        
+        args.PushMarkup($"[color=gray]{message}[/color]");
     }
 
     /// <summary>
