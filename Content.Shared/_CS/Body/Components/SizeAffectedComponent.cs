@@ -45,4 +45,10 @@ public sealed partial class SizeAffectedComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<string, float> OriginalFixtureRadii = new();
+
+    /// <summary>
+    /// Stores original fixture densities for mass scaling calculations (fixture id -> original density)
+    /// </summary>
+    [DataField]
+    public Dictionary<string, float> OriginalFixtureDensities = new();
 }

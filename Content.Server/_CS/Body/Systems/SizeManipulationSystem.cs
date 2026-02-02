@@ -121,6 +121,13 @@ public sealed class SizeManipulationSystem : EntitySystem
             if (!fixture.Hard)
                 continue;
 
+            // Store original density for mass scaling
+            if (!sizeComp.OriginalFixtureDensities.ContainsKey(id))
+            {
+                sizeComp.OriginalFixtureDensities[id] = fixture.Density;
+                _sawmill.Debug($"SizeManipulation: Stored original density {fixture.Density} for fixture {id}");
+            }
+
             switch (fixture.Shape)
             {
                 case PhysShapeCircle circle:
@@ -144,6 +151,28 @@ public sealed class SizeManipulationSystem : EntitySystem
                     _sawmill.Debug($"SizeManipulation: Skipping non-circle fixture {id} of type {fixture.Shape.GetType().Name}");
                     break;
             }
+
+            // Scale density for mass scaling
+            // Mass scales with volume (scale³), but since area scales with scale²,
+            // we need to scale density by scale to achieve scale³ mass scaling
+            var originalDensity = sizeComp.OriginalFixtureDensities[id];
+            var newDensity = originalDensity * totalScale;
+            
+            // Only update density if it changed significantly
+            if (Math.Abs(fixture.Density - newDensity) > 0.001f)
+            {
+                // Pass update: false to avoid recalculating mass multiple times
+                _physics.SetDensity(target, id, fixture, newDensity, update: false, manager: fixtures);
+                _sawmill.Debug($"SizeManipulation: Scaled density for fixture {id} from {originalDensity} to {newDensity} (scale: {totalScale})");
+            }
+        }
+
+        // Recalculate mass data once after all fixtures have been scaled
+        _physics.ResetMassData(target, fixtures);
+        
+        if (TryComp<PhysicsComponent>(target, out var physicsComp))
+        {
+            _sawmill.Debug($"SizeManipulation: New mass for {ToPrettyString(target)} is {physicsComp.Mass} kg (scale: {totalScale})");
         }
     }
 }
