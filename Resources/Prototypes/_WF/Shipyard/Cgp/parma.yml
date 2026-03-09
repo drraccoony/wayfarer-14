@@ -3,7 +3,7 @@
   parent: BaseVessel
   name: UCA Parma
   description: A CGP Prisoner Transport ship, small and not built for anything beyond moving people from A to B
-  price: 16630
+  price: 20595
   category: Small
   group: Security
   access: Security
@@ -22,10 +22,10 @@
   minPlayers: 0
   stations:
     Parma:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Parma {1}'
+        mapNameTemplate: 'Parma CGP{1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

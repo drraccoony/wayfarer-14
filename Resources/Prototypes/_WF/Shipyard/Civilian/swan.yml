@@ -3,7 +3,7 @@
   parent: BaseVessel
   name: UCA Swan
   description: A large Science vessel with it's own Medical Bay, powered by Solar energy and designed for long voyages
-  price: 193180
+  price: 242960
   category: Large
   group: Shipyard
   shuttlePath: /Maps/_WF/Shuttles/Civilian/swan.yml
@@ -26,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Swan {1}'
+        mapNameTemplate: 'Swan CIV{1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'
