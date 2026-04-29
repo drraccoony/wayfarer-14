@@ -1,0 +1,34 @@
+- type: entity
+  id: CorporationATMBase
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  abstract: true
+  components:
+  - type: ActivatableUIRequiresPower
+  - type: ActivatableUI
+    key: enum.CorporationAtmUiKey.Key
+    singleUser: true
+  - type: Computer
+    board: Null
+  - type: CorporationAtm
+  - type: UserInterface
+    interfaces:
+      enum.CorporationAtmUiKey.Key:
+        type: CorporationAtmBoundUserInterface
+  - type: Anchorable
+  - type: Pullable
+
+- type: entity
+  id: CorporationATM
+  name: corporation ATM
+  parent: CorporationATMBase
+  description: A special ATM for managing your corporation's funds. Anyone can deposit; only managers and the leader can withdraw.
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/atm/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded

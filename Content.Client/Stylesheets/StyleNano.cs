@@ -1584,6 +1584,9 @@ namespace Content.Client.Stylesheets
 
                 Element<Label>().Class(StyleClassLabelSmall)
                  .Prop(Label.StylePropertyFont, notoSans10),
+
+                Element<RichTextLabel>().Class(StyleClassLabelSmall)
+                 .Prop("font", notoSans10),
                 // ---
 
                 // Different Background shapes ---
