@@ -283,6 +283,7 @@
         # - ForcedSleep
         - TemporaryBlindness
         - Pacified
+        - Flashed
         # - PsionicsDisabled
         # - PsionicallyInsulated
     - type: Blindable
