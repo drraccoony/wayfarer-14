@@ -6,7 +6,7 @@
   roundStart: true
   prototype: MobIPC
   sprites: MobIPCSprites
-  markingLimits: MobHumanMarkingLimits #MobIPCMarkingLimits WF
+  markingLimits: MobIPCMarkingLimits # WF: was MobHumanMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: Hues
   minAge: 1
