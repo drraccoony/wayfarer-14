@@ -272,13 +272,13 @@ public sealed class CorporationStationSystem : EntitySystem
                 {
                     _log.Info($"Charged {cost.Value} spesos upkeep for corp {corpId}");
                     await NotifyCorpLeadership(corpId, Loc.GetString("corp-notify-upkeep-charged",
-                        ("amount", cost.Value)));
+                        ("amount", cost.Value.ToString("N0"))));
                 }
                 else
                 {
                     _log.Warning($"Corp {corpId} could not afford station upkeep of {cost.Value} spesos — removing station");
                     await NotifyCorpLeadership(corpId, Loc.GetString("corp-notify-upkeep-evicted",
-                        ("amount", cost.Value)));
+                        ("amount", cost.Value.ToString("N0"))));
                     evicted.Add(corpId);
                 }
             }

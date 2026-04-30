@@ -215,6 +215,7 @@ public sealed partial class CorporationUiFragment : BoxContainer
                 return;
             OnSendInvite?.Invoke(_inviteCharacters[idx]);
         };
+        _characterSelector.OnItemSelected += args => _characterSelector.SelectId(args.Id);
         _cancelInviteButton.OnPressed += _ => OnNavigate?.Invoke(CorporationView.List);
 
         // Station purchase
@@ -361,7 +362,7 @@ public sealed partial class CorporationUiFragment : BoxContainer
 
             if (corp.StationUpkeepCost is { } upkeep)
             {
-                _stationUpkeepLabel.Text = Loc.GetString("corp-station-upkeep-cost", ("amount", upkeep));
+                _stationUpkeepLabel.Text = Loc.GetString("corp-station-upkeep-cost", ("amount", upkeep.ToString("N0")));
                 var canAfford = corp.Balance >= upkeep;
                 _stationUpkeepWarning.Visible = !canAfford;
                 _stationUpkeepWarning.Text = Loc.GetString("corp-station-upkeep-warning");
@@ -525,33 +526,35 @@ public sealed partial class CorporationUiFragment : BoxContainer
         if (!isSelf && myRank > memberRank)
         {
             var capturedUserId = member.UserId;
-            var capturedRank = memberRank;
 
-            // Promote button (if target can be promoted further and still below my rank)
-            if (memberRank + 1 < myRank)
+            // Rank dropdown — shows all ranks the current user is allowed to assign to this member.
+            // Assignable range: Member (0) up to one below my own rank.
+            var rankDropdown = new OptionButton
             {
-                var promoteBtn = new Button
-                {
-                    Text = Loc.GetString("corp-btn-promote"),
-                    Margin = new Thickness(4, 0, 0, 0),
-                    StyleClasses = { "ButtonSmall" },
-                };
-                promoteBtn.OnPressed += _ => OnChangeRank?.Invoke(capturedUserId, capturedRank + 1);
-                row.AddChild(promoteBtn);
-            }
+                Margin = new Thickness(4, 0, 0, 0),
+                StyleClasses = { "ButtonSmall" },
+            };
 
-            // Demote button (if target is above Member)
-            if (memberRank > CorporationRank.Member)
+            int selectedIdx = 0;
+            int idx = 0;
+            for (var r = CorporationRank.Member; r < myRank; r++)
             {
-                var demoteBtn = new Button
-                {
-                    Text = Loc.GetString("corp-btn-demote"),
-                    Margin = new Thickness(4, 0, 0, 0),
-                    StyleClasses = { "ButtonSmall" },
-                };
-                demoteBtn.OnPressed += _ => OnChangeRank?.Invoke(capturedUserId, capturedRank - 1);
-                row.AddChild(demoteBtn);
+                var rankKey = $"corp-rank-{r.ToString().ToLowerInvariant()}";
+                rankDropdown.AddItem(Loc.GetString(rankKey), (int) r);
+                if (r == memberRank)
+                    selectedIdx = idx;
+                idx++;
             }
+            rankDropdown.SelectId((int) memberRank);
+
+            rankDropdown.OnItemSelected += args =>
+            {
+                rankDropdown.SelectId(args.Id);
+                var newRank = (CorporationRank) args.Id;
+                OnChangeRank?.Invoke(capturedUserId, newRank);
+            };
+
+            row.AddChild(rankDropdown);
 
             // Kick button
             var kickBtn = new ConfirmButton
