@@ -38,6 +38,7 @@ corp-invite-row = {$name} ({$members} member(s))
 corp-create-title = Found a Corporation
 corp-create-name = Name:
 corp-create-name-placeholder = Corporation name…
+corp-create-name-permanent = ⚠ The corporation name cannot be changed after creation.
 corp-create-description = Description:
 corp-create-privacy = Privacy:
 corp-create-cost = ⚠ Founding a corporation costs $1,000,000 spesos.
@@ -47,7 +48,7 @@ corp-editdesc-title = Edit Description
 corp-editdesc-privacy = Privacy:
 
 ## Buttons
-corp-btn-create = Found Corporation ($1,000,000)
+corp-btn-create = Create New Corporation
 corp-btn-found = Found Corporation
 corp-btn-cancel = Cancel
 corp-btn-save = Save
@@ -92,7 +93,7 @@ corp-error-invite-not-found = Invite not found or already expired.
 corp-error-invalid-rank = Invalid rank.
 
 ## Corporation station
-corp-section-station = Corporation Station
+corp-section-station = Your Corporation Station
 corp-station-label = Station:
 corp-station-none = No station purchased.
 corp-create-station-name = Station Name:
@@ -100,6 +101,12 @@ corp-create-station-placeholder = Enter station name…
 corp-btn-purchase-station = Purchase Station ($5,000,000)
 corp-station-scanner-visible = Show on Shuttle Scanners
 corp-station-coords = Coordinates: {$x}, {$y}
+corp-station-upkeep-cost = Upkeep: {$amount} spesos / round
+corp-station-upkeep-warning = Insufficient funds to cover next upkeep!
+corp-banner-upkeep-warning = Warning: Your corporation cannot afford the station upkeep.
+corp-notify-upkeep-charged = [CORP] Station upkeep of {$amount} spesos has been deducted from your corporation's bank account.
+corp-notify-upkeep-evicted = [CORP] Your corporation could not afford the station upkeep of {$amount} spesos. The station has been blasted from the sector by Zekke landlords and all materials has been lost.
+corp-notify-invited = [CORP] You have been invited to join {$corp}. Check your PDA's Corporation app to accept or decline.
 corp-error-station-exists = Your corporation already has a station.
 corp-error-station-name-empty = Please enter a station name.
 corp-error-station-name-too-long = Station name must be 40 characters or less.

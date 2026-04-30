@@ -22,6 +22,8 @@ public sealed class CorporationInfo
     public string? StationName { get; init; }
     public bool StationVisible { get; init; }
     public Vector2? StationCoordinates { get; init; }
+    /// <summary>Upkeep cost in spesos per 4 hours, or null if the station is not active this round.</summary>
+    public int? StationUpkeepCost { get; init; }
 }
 
 /// <summary>

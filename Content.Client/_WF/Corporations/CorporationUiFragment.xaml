@@ -20,6 +20,14 @@
             </PanelContainer>
         </controls:StripeBack>
 
+        <!-- Upkeep warning banner -->
+        <PanelContainer Name="UpkeepWarningBanner" Visible="False" Margin="0,0,0,0">
+            <BoxContainer Orientation="Horizontal" Margin="8,4,8,4">
+                <Label Text="⚠" Margin="0,0,6,0" FontColorOverride="#FF4444"/>
+                <Label Text="{Loc 'corp-banner-upkeep-warning'}" HorizontalExpand="True" FontColorOverride="#FF4444" StyleClasses="LabelSmall"/>
+            </BoxContainer>
+        </PanelContainer>
+
         <!-- Error / feedback message -->
         <Label Name="FeedbackLabel" Margin="4,2,4,2" Visible="False" HorizontalAlignment="Center"/>
 
@@ -80,6 +88,8 @@
                             <Label Name="StationNameLabel" StyleClasses="LabelSmall"/>
                         </BoxContainer>
                         <Label Name="StationCoordsLabel" StyleClasses="LabelSmall" FontColorOverride="#AAAAAA" Margin="0,2,0,0"/>
+                        <Label Name="StationUpkeepLabel" StyleClasses="LabelSmall" FontColorOverride="#AAAAAA" Margin="0,2,0,0"/>
+                        <Label Name="StationUpkeepWarning" StyleClasses="LabelSmall" FontColorOverride="#FF4444" Margin="0,2,0,0" Visible="False"/>
                         <CheckBox Name="StationVisibleCheckBox" Text="{Loc 'corp-station-scanner-visible'}" Margin="0,4,0,0"/>
                     </BoxContainer>
                     <!-- Purchase station form (Manager+, no station yet) -->
@@ -119,6 +129,7 @@
                 <LineEdit Name="CorpNameEdit" HorizontalExpand="True"
                           PlaceHolder="{Loc 'corp-create-name-placeholder'}"/>
             </BoxContainer>
+            <Label Text="{Loc 'corp-create-name-permanent'}" FontColorOverride="#AAAAAA" StyleClasses="LabelSmall" Margin="100,0,0,4"/>
 
             <BoxContainer Orientation="Vertical" Margin="0,0,0,4">
                 <Label Text="{Loc 'corp-create-description'}"/>

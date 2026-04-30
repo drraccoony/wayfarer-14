@@ -30,6 +30,7 @@ public sealed partial class CorporationUiFragment : BoxContainer
     private readonly Button _backButton;
     private readonly Button _refreshButton;
     private readonly Label _feedbackLabel;
+    private readonly PanelContainer _upkeepWarningBanner;
 
     // List panel
     private readonly ScrollContainer _listPanel;
@@ -49,6 +50,8 @@ public sealed partial class CorporationUiFragment : BoxContainer
     private readonly BoxContainer _stationExistsBox;
     private readonly Label _stationNameLabel;
     private readonly Label _stationCoordsLabel;
+    private readonly Label _stationUpkeepLabel;
+    private readonly Label _stationUpkeepWarning;
     private readonly CheckBox _stationVisibleCheckBox;
     private readonly BoxContainer _stationPurchaseBox;
     private readonly LineEdit _stationNameEdit;
@@ -90,6 +93,7 @@ public sealed partial class CorporationUiFragment : BoxContainer
         _backButton = FindControl<Button>("BackButton");
         _refreshButton = FindControl<Button>("RefreshButton");
         _feedbackLabel = FindControl<Label>("FeedbackLabel");
+        _upkeepWarningBanner = FindControl<PanelContainer>("UpkeepWarningBanner");
 
         _listPanel = FindControl<ScrollContainer>("ListPanel");
         _invitesSection = FindControl<BoxContainer>("InvitesSection");
@@ -108,6 +112,8 @@ public sealed partial class CorporationUiFragment : BoxContainer
         _stationExistsBox = FindControl<BoxContainer>("StationExistsBox");
         _stationNameLabel = FindControl<Label>("StationNameLabel");
         _stationCoordsLabel = FindControl<Label>("StationCoordsLabel");
+        _stationUpkeepLabel = FindControl<Label>("StationUpkeepLabel");
+        _stationUpkeepWarning = FindControl<Label>("StationUpkeepWarning");
         _stationVisibleCheckBox = FindControl<CheckBox>("StationVisibleCheckBox");
         _stationPurchaseBox = FindControl<BoxContainer>("StationPurchaseBox");
         _stationNameEdit = FindControl<LineEdit>("StationNameEdit");
@@ -259,12 +265,17 @@ public sealed partial class CorporationUiFragment : BoxContainer
         {
             _myCorporationSection.Visible = true;
             _noCorporationSection.Visible = false;
+            var corp = state.MyCorporation;
+            _upkeepWarningBanner.Visible = corp.HasStation
+                && corp.StationUpkeepCost.HasValue
+                && corp.Balance < corp.StationUpkeepCost.Value;
             PopulateMyCorporation(state);
         }
         else
         {
             _myCorporationSection.Visible = false;
             _noCorporationSection.Visible = true;
+            _upkeepWarningBanner.Visible = false;
             PopulatePublicCorps(state);
         }
     }
@@ -347,6 +358,19 @@ public sealed partial class CorporationUiFragment : BoxContainer
                     ("x", (int)coords.X), ("y", (int)coords.Y));
             else
                 _stationCoordsLabel.Text = string.Empty;
+
+            if (corp.StationUpkeepCost is { } upkeep)
+            {
+                _stationUpkeepLabel.Text = Loc.GetString("corp-station-upkeep-cost", ("amount", upkeep));
+                var canAfford = corp.Balance >= upkeep;
+                _stationUpkeepWarning.Visible = !canAfford;
+                _stationUpkeepWarning.Text = Loc.GetString("corp-station-upkeep-warning");
+            }
+            else
+            {
+                _stationUpkeepLabel.Text = string.Empty;
+                _stationUpkeepWarning.Visible = false;
+            }
         }
     }
 

@@ -22,4 +22,10 @@ public sealed class WFCCVars
     /// </summary>
     public static readonly CVarDef<int> CorporationDescriptionMaxLength =
         CVarDef.Create("wf.corporation.description_max_length", 500, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Multiplier applied to the appraised grid value to calculate the corporation station upkeep cost per 4 hours.
+    /// </summary>
+    public static readonly CVarDef<float> StationUpkeepMultiplier =
+        CVarDef.Create("wf.corporation.station_upkeep_multiplier", 1.5f, CVar.SERVER);
 }

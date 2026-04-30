@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Content.Server.Cargo.Systems;
+using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Shared._WF.CCVar;
+using Content.Shared._WF.Corporations;
+using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Robust.Server.Player;
+using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using Robust.Server.GameObjects;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization;
@@ -39,6 +47,10 @@ public sealed class CorporationStationSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] private readonly SharedShuttleSystem _shuttle = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly PricingSystem _pricing = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private ISawmill _log = default!;
 
@@ -104,10 +116,13 @@ public sealed class CorporationStationSystem : EntitySystem
         }
     }
 
-    private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
+    private async void OnRunLevelChanged(GameRunLevelChangedEvent ev)
     {
         if (ev.New == GameRunLevel.PostRound)
+        {
+            await ChargeUpkeep();
             SaveAllStations();
+        }
     }
 
     // ── Public API ────────────────────────────────────────────────────────────
@@ -153,6 +168,23 @@ public sealed class CorporationStationSystem : EntitySystem
     public bool IsStationVisible(int corpId)
         => _stationVisible.TryGetValue(corpId, out var v) && v;
 
+    /// <summary>
+    /// Returns the upkeep cost in spesos for the given corporation's active station,
+    /// calculated as appraised grid value × the upkeep multiplier CVAR.
+    /// Returns null if the station is not currently loaded.
+    /// </summary>
+    public int? GetUpkeepCost(int corpId)
+    {
+        if (!_activeStations.TryGetValue(corpId, out var gridUid))
+            return null;
+        if (!EntityManager.EntityExists(gridUid))
+            return null;
+
+        var multiplier = _cfg.GetCVar(WFCCVars.StationUpkeepMultiplier);
+        var appraised = _pricing.AppraiseGrid(gridUid);
+        return (int)(appraised * multiplier);
+    }
+
     /// <summary>Returns the world coordinates of the active station grid, or null if not loaded.</summary>
     public Vector2? GetStationCoordinates(int corpId)
     {
@@ -185,8 +217,8 @@ public sealed class CorporationStationSystem : EntitySystem
 
         if (_res.UserData.Exists(saveResPath))
         {
-            // Saved file is category: Grid (written by TrySaveGrid)
-            if (!_loader.TryLoadGrid(mapId, saveResPath, out var gridEnt, opts, offset: offset))
+            // Saved file is category: Grid (written by TrySaveGrid) — position is baked in, no extra offset.
+            if (!_loader.TryLoadGrid(mapId, saveResPath, out var gridEnt, opts, offset: Vector2.Zero))
             {
                 _log.Error($"Failed to load saved station for corp {corpId} from {saveResPath}");
                 return null;
@@ -214,6 +246,113 @@ public sealed class CorporationStationSystem : EntitySystem
         _shuttle.AddIFFFlag(gridUid, IFFFlags.Hide, iff);
         _log.Info($"Spawned station '{stationName}' for corp {corpId} at offset {offset}");
         return gridUid;
+    }
+
+    private async Task ChargeUpkeep()
+    {
+        var evicted = new List<int>();
+
+        foreach (var (corpId, gridUid) in _activeStations)
+        {
+            if (!EntityManager.EntityExists(gridUid))
+                continue;
+
+            var cost = GetUpkeepCost(corpId);
+            if (cost is null or 0)
+                continue;
+
+            try
+            {
+                var withdrawn = await _db.TryWithdrawFromCorporation(corpId, cost.Value);
+                if (withdrawn)
+                {
+                    _log.Info($"Charged {cost.Value} spesos upkeep for corp {corpId}");
+                    await NotifyCorpLeadership(corpId, Loc.GetString("corp-notify-upkeep-charged",
+                        ("amount", cost.Value)));
+                }
+                else
+                {
+                    _log.Warning($"Corp {corpId} could not afford station upkeep of {cost.Value} spesos — removing station");
+                    await NotifyCorpLeadership(corpId, Loc.GetString("corp-notify-upkeep-evicted",
+                        ("amount", cost.Value)));
+                    evicted.Add(corpId);
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"Failed to charge upkeep for corp {corpId}: {ex}");
+            }
+        }
+
+        foreach (var corpId in evicted)
+        {
+            await EvictStation(corpId);
+        }
+    }
+
+    private async Task EvictStation(int corpId)
+    {
+        // Remove DB record
+        try
+        {
+            await _db.DeleteCorporationStation(corpId);
+        }
+        catch (Exception ex)
+        {
+            _log.Error($"Failed to delete DB station record for corp {corpId}: {ex}");
+        }
+
+        // Delete save file
+        var saveResPath = new ResPath($"/corp_stations/corp_{corpId}.yml");
+        if (_res.UserData.Exists(saveResPath))
+        {
+            try
+            {
+                _res.UserData.Delete(saveResPath);
+                _log.Info($"Deleted save file for evicted corp {corpId} station");
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"Failed to delete save file for corp {corpId}: {ex}");
+            }
+        }
+
+        _activeStations.Remove(corpId);
+        _stationVisible.Remove(corpId);
+    }
+
+    /// <summary>
+    /// Sends a server message to all online corp owners and managers.
+    /// </summary>
+    private async Task NotifyCorpLeadership(int corpId, string message)
+    {
+        WayfarerCorporation? corp;
+        try
+        {
+            corp = await _db.GetCorporationById(corpId);
+        }
+        catch (Exception ex)
+        {
+            _log.Error($"NotifyCorpLeadership: failed to fetch corp {corpId}: {ex}");
+            return;
+        }
+
+        if (corp == null)
+            return;
+
+        foreach (var member in corp.Members)
+        {
+            if ((CorporationRank)member.Rank < CorporationRank.Manager)
+                continue;
+
+            if (!_playerManager.TryGetSessionById(new NetUserId(member.UserId), out var session) || session == null)
+                continue;
+
+            var wrapped = Loc.GetString("chat-manager-server-wrap-message",
+                ("message", FormattedMessage.EscapeText(message)));
+            _chat.ChatMessageToOne(ChatChannel.Server, message, wrapped, EntityUid.Invalid,
+                false, session.Channel, colorOverride: Color.FromHex("#FF69B4"));
+        }
     }
 
     public void SaveAllStations()

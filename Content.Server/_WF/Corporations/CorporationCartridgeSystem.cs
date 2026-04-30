@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.CartridgeLoader;
+using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
@@ -8,11 +9,14 @@ using Content.Server._NF.Bank;
 using Content.Shared._WF.CCVar;
 using Content.Shared._WF.Corporations;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.Chat;
 using Content.Shared.StationRecords;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Maths;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Server._WF.Corporations;
 
@@ -27,6 +31,7 @@ public sealed class CorporationCartridgeSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly CorporationStationSystem _stations = default!;
 
@@ -363,6 +368,17 @@ public sealed class CorporationCartridgeSystem : EntitySystem
 
         await _db.AddCorporationInvite(corp.Id, targetUserId.UserId);
         _log.Info($"Player {userId} invited '{characterName}' ({targetUserId}) to corporation '{corp.Name}'.");
+
+        // Notify the invited player if they are online
+        if (_playerManager.TryGetSessionById(targetUserId, out var targetSession))
+        {
+            var inviteMsg = Loc.GetString("corp-notify-invited", ("corp", corp.Name));
+            var inviteWrapped = Loc.GetString("chat-manager-server-wrap-message",
+                ("message", FormattedMessage.EscapeText(inviteMsg)));
+            _chat.ChatMessageToOne(ChatChannel.Server, inviteMsg, inviteWrapped, EntityUid.Invalid,
+                false, targetSession.Channel, colorOverride: Color.FromHex("#FF69B4"));
+        }
+
         await UpdateListUi(uid, loader, comp);
     }
 
@@ -616,6 +632,7 @@ public sealed class CorporationCartridgeSystem : EntitySystem
                 StationName = myStation?.StationName,
                 StationVisible = myCorp != null && _stations.IsStationVisible(myCorp.Id),
                 StationCoordinates = myCorp != null ? _stations.GetStationCoordinates(myCorp.Id) : null,
+                StationUpkeepCost = myCorp != null ? _stations.GetUpkeepCost(myCorp.Id) : null,
             } : null,
             MyRank = myRank,
             Members = members,
