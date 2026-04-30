@@ -1,4 +1,5 @@
 ﻿using Content.Client.Stylesheets;
+using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Input;
 using Robust.Client.UserInterface.Controls;
@@ -44,6 +45,19 @@ public class ChatInputBox : PanelContainer
             Name = "FilterButton",
             StyleClasses = {"chatFilterOptionButton"}
         };
+        var newWindowButton = new Button
+        {
+            Name = "NewWindowButton",
+            Text = "+",
+            MinWidth = 24,
+            ToolTip = "Open new chat window"
+        };
+        newWindowButton.OnPressed += _ =>
+        {
+            var window = new ChatWindow();
+            window.OpenCentered();
+        };
+        Container.AddChild(newWindowButton);
         Container.AddChild(FilterButton);
         AddStyleClass(StyleNano.StyleClassChatSubPanel);
         ChannelSelector.OnChannelSelect += UpdateActiveChannel;
