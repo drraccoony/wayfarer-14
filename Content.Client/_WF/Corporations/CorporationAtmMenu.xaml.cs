@@ -10,22 +10,23 @@ namespace Content.Client._WF.Corporations;
 [GenerateTypedNameReferences]
 public sealed partial class CorporationAtmMenu : FancyWindow
 {
-    public event Action<int>? DepositRequest;
+    public event Action? DepositRequest;
     public event Action<int>? WithdrawRequest;
-
-    private int _corpId = -1;
 
     public CorporationAtmMenu()
     {
         RobustXamlLoader.Load(this);
         Title = Loc.GetString("corp-atm-title");
-        DepositButton.OnPressed += _ => Invoke(DepositRequest);
-        WithdrawButton.OnPressed += _ => Invoke(WithdrawRequest);
+        DepositButton.OnPressed += _ => DepositRequest?.Invoke();
+        WithdrawButton.OnPressed += _ =>
+        {
+            if (int.TryParse(AmountEdit.Text, out var amount) && amount > 0)
+                WithdrawRequest?.Invoke(amount);
+        };
     }
 
     public void UpdateState(CorporationAtmUiState state)
     {
-        _corpId = state.CorporationId;
         var hasCorp = state.CorporationName != null;
 
         CorpNameLabel.Text = hasCorp
@@ -33,19 +34,17 @@ public sealed partial class CorporationAtmMenu : FancyWindow
             : Loc.GetString("corp-atm-no-corp");
 
         CorpBalanceLabel.Text = BankSystemExtensions.ToSpesoString(state.Balance);
-        PlayerBalanceLabel.Text = BankSystemExtensions.ToSpesoString(state.PlayerBalance);
+
+        if (state.Deposit < 0)
+            CashInsertedLabel.Text = Loc.GetString("corp-atm-wrong-cash-short");
+        else
+            CashInsertedLabel.Text = BankSystemExtensions.ToSpesoString(state.Deposit);
 
         StatusLabel.Text = string.IsNullOrEmpty(state.StatusMessage)
             ? string.Empty
             : Loc.GetString(state.StatusMessage);
 
-        DepositButton.Disabled = !hasCorp;
+        DepositButton.Disabled = !hasCorp || state.Deposit <= 0;
         WithdrawButton.Disabled = !hasCorp || !state.CanWithdraw;
-    }
-
-    private void Invoke(Action<int>? action)
-    {
-        if (int.TryParse(AmountEdit.Text, out var amount) && amount > 0)
-            action?.Invoke(amount);
     }
 }

@@ -132,6 +132,23 @@ public sealed class CorporationStationSystem : EntitySystem
     // ── Public API ────────────────────────────────────────────────────────────
 
     /// <summary>
+    /// Admin shortcut: grants a station to a corporation for free, creating the DB record and spawning the grid.
+    /// Returns false if the corp already has a station.
+    /// </summary>
+    public async Task<bool> GrantStation(int corpId, string stationName)
+    {
+        var existing = await _db.GetCorporationStation(corpId);
+        if (existing != null)
+            return false;
+
+        var savePath = $"corp_stations/corp_{corpId}.yml";
+        await _db.CreateCorporationStation(corpId, stationName, savePath);
+
+        SpawnStation(corpId, stationName, savePath, RandomOffset());
+        return true;
+    }
+
+    /// <summary>
     /// Purchases a station for the given corporation: withdraws the cost, creates the DB record, and spawns the grid.
     /// Returns false if the corp already has a station or cannot afford it.
     /// </summary>
@@ -294,7 +311,7 @@ public sealed class CorporationStationSystem : EntitySystem
         }
     }
 
-    private async Task EvictStation(int corpId)
+    public async Task EvictStation(int corpId)
     {
         // Remove DB record
         try
@@ -376,6 +393,24 @@ public sealed class CorporationStationSystem : EntitySystem
                 _log.Error($"Failed to save station for corp {corpId}");
         }
     }
+
+    /// <summary>Saves a single corporation's active station to disk. Returns false if not active this round.</summary>
+    public bool SaveStation(int corpId)
+    {
+        if (!_activeStations.TryGetValue(corpId, out var gridUid) || !EntityManager.EntityExists(gridUid))
+            return false;
+        var savePath = new ResPath($"/corp_stations/corp_{corpId}.yml");
+        if (_loader.TrySaveGrid(gridUid, savePath))
+        {
+            _log.Info($"Admin saved station for corp {corpId}");
+            return true;
+        }
+        _log.Error($"Admin: failed to save station for corp {corpId}");
+        return false;
+    }
+
+    /// <summary>Returns whether a corp has an active (spawned) station this round.</summary>
+    public bool HasActiveStation(int corpId) => _activeStations.ContainsKey(corpId);
 
     /// <summary>
     /// Deletes all entities on <paramref name="gridUid"/> whose prototype or tags appear in the

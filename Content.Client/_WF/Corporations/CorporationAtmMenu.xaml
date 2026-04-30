@@ -1,7 +1,7 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
             xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-            SetSize="340 220"
-            MinSize="340 220">
+            SetSize="340 260"
+            MinSize="340 260">
     <BoxContainer Margin="10 4 10 4" Orientation="Vertical">
         <Label Name="CorpNameLabel" Text="" StyleClasses="LabelKeyText" />
         <BoxContainer Orientation="Horizontal">
@@ -9,15 +9,17 @@
             <Label Name="CorpBalanceLabel" Text="0" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'corp-atm-player-balance-label'} " StyleClasses="LabelKeyText" />
-            <Label Name="PlayerBalanceLabel" Text="0" />
+            <Label Text="{Loc 'corp-atm-cash-inserted-label'} " StyleClasses="LabelKeyText" />
+            <Label Name="CashInsertedLabel" Text="0" />
         </BoxContainer>
         <Label Name="StatusLabel" Text="" Modulate="#FF6666" />
-        <BoxContainer Orientation="Horizontal">
-        <LineEdit Name="AmountEdit" MinSize="120 0" HorizontalExpand="True" />
-        </BoxContainer>
         <Button Name="DepositButton" Text="{Loc 'corp-atm-deposit-button'}" />
+        <PanelContainer StyleClasses="PanelLowered" Margin="0 4 0 0">
+            <BoxContainer Orientation="Horizontal" Margin="4 2 4 2">
+                <Label Text="{Loc 'corp-atm-withdraw-amount-label'} " StyleClasses="LabelKeyText" />
+                <LineEdit Name="AmountEdit" MinSize="100 0" HorizontalExpand="True" />
+            </BoxContainer>
+        </PanelContainer>
         <Button Name="WithdrawButton" Text="{Loc 'corp-atm-withdraw-button'}" />
-        <TextureButton VerticalExpand="True" />
     </BoxContainer>
 </controls:FancyWindow>

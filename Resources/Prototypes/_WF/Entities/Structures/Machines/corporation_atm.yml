@@ -10,6 +10,20 @@
   - type: Computer
     board: Null
   - type: CorporationAtm
+    cashSlot:
+      name: corp-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+          - Cash
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      corp-ATM-cashSlot: !type:ContainerSlot
   - type: UserInterface
     interfaces:
       enum.CorporationAtmUiKey.Key:

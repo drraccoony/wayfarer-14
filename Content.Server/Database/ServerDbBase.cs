@@ -2699,6 +2699,22 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return corp;
         }
 
+        public async Task<WayfarerCorporation> AdminCreateCorporation(string name, string description, int privacy, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var corp = new WayfarerCorporation
+            {
+                Name = name,
+                Description = description,
+                Privacy = privacy,
+                CreatedAt = DateTime.UtcNow,
+                Members = new List<WayfarerCorporationMember>(),
+            };
+            db.DbContext.WayfarerCorporations.Add(corp);
+            await db.DbContext.SaveChangesAsync(cancel);
+            return corp;
+        }
+
         public async Task UpdateCorporationDescription(int corporationId, string description, CancellationToken cancel = default)
         {
             await using var db = await GetDb(cancel);
@@ -2827,6 +2843,16 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             corp.Balance -= amount;
             await db.DbContext.SaveChangesAsync(cancel);
             return true;
+        }
+
+        public async Task SetCorporationBalance(int corporationId, int balance, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var corp = await db.DbContext.WayfarerCorporations
+                .FirstOrDefaultAsync(c => c.Id == corporationId, cancel);
+            if (corp == null) return;
+            corp.Balance = Math.Max(0, balance);
+            await db.DbContext.SaveChangesAsync(cancel);
         }
 
         public async Task<WayfarerCorporationStation?> GetCorporationStation(int corporationId, CancellationToken cancel = default)

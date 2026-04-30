@@ -13,7 +13,7 @@ public sealed class CorporationAtmBoundUserInterface : BoundUserInterface
     {
         base.Open();
         _menu = this.CreateWindow<CorporationAtmMenu>();
-        _menu.DepositRequest += amount => SendMessage(new CorporationAtmDepositMessage(amount));
+        _menu.DepositRequest += () => SendMessage(new CorporationAtmDepositMessage());
         _menu.WithdrawRequest += amount => SendMessage(new CorporationAtmWithdrawMessage(amount));
     }
 

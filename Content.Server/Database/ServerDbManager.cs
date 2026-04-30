@@ -543,6 +543,11 @@ namespace Content.Server.Database
             string founderDisplayName,
             CancellationToken cancel = default);
 
+        Task<WayfarerCorporation> AdminCreateCorporation(string name,
+            string description,
+            int privacy,
+            CancellationToken cancel = default);
+
         Task UpdateCorporationDescription(int corporationId, string description, CancellationToken cancel = default);
         Task UpdateCorporationPrivacy(int corporationId, int privacy, CancellationToken cancel = default);
         Task DeleteCorporation(int corporationId, CancellationToken cancel = default);
@@ -561,6 +566,7 @@ namespace Content.Server.Database
         Task<int?> GetCorporationBalance(int corporationId, CancellationToken cancel = default);
         Task<bool> TryDepositToCorporation(int corporationId, int amount, CancellationToken cancel = default);
         Task<bool> TryWithdrawFromCorporation(int corporationId, int amount, CancellationToken cancel = default);
+        Task SetCorporationBalance(int corporationId, int balance, CancellationToken cancel = default);
 
         Task<WayfarerCorporationStation?> GetCorporationStation(int corporationId, CancellationToken cancel = default);
         Task<WayfarerCorporationStation> CreateCorporationStation(int corporationId, string stationName, string savePath, CancellationToken cancel = default);
@@ -1633,6 +1639,15 @@ namespace Content.Server.Database
                     _db.CreateCorporation(name, description, privacy, founderUserId, founderDisplayName, cancel));
             }
 
+            public Task<WayfarerCorporation> AdminCreateCorporation(string name,
+                string description,
+                int privacy,
+                CancellationToken cancel = default)
+            {
+                DbWriteOpsMetric.Inc();
+                return RunDbCommand(() => _db.AdminCreateCorporation(name, description, privacy, cancel));
+            }
+
             public Task UpdateCorporationDescription(int corporationId,
                 string description,
                 CancellationToken cancel = default)
@@ -1712,6 +1727,11 @@ namespace Content.Server.Database
             public Task<bool> TryWithdrawFromCorporation(int corporationId, int amount, CancellationToken cancel = default)
             {
                 return RunDbCommand(() => _db.TryWithdrawFromCorporation(corporationId, amount, cancel));
+            }
+
+            public Task SetCorporationBalance(int corporationId, int balance, CancellationToken cancel = default)
+            {
+                return RunDbCommand(() => _db.SetCorporationBalance(corporationId, balance, cancel));
             }
 
             public Task<WayfarerCorporationStation?> GetCorporationStation(int corporationId, CancellationToken cancel = default)

@@ -1,6 +1,9 @@
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._WF.Corporations;
 
@@ -13,6 +16,14 @@ public enum CorporationAtmUiKey : byte
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CorporationAtmComponent : Component
 {
+    [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer: typeof(PrototypeIdSerializer<StackPrototype>))]
+    public string CashType = "Credit";
+
+    public static string CashSlotId = "corp-ATM-cashSlot";
+
+    [DataField]
+    public ItemSlot CashSlot = new();
+
     [DataField]
     public SoundSpecifier ErrorSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
 
@@ -31,28 +42,24 @@ public sealed class CorporationAtmUiState : BoundUserInterfaceState
     public int Balance;
     /// <summary>Whether the player can withdraw (Manager or Leader).</summary>
     public bool CanWithdraw;
-    /// <summary>Player's own bank balance.</summary>
-    public int PlayerBalance;
+    /// <summary>Amount of cash physically inserted in the slot. -1 = wrong cash type, 0 = empty.</summary>
+    public int Deposit;
     /// <summary>Error/status message loc key, or empty string.</summary>
     public string StatusMessage;
 
-    public CorporationAtmUiState(string? corporationName, int corporationId, int balance, bool canWithdraw, int playerBalance, string statusMessage)
+    public CorporationAtmUiState(string? corporationName, int corporationId, int balance, bool canWithdraw, int deposit, string statusMessage)
     {
         CorporationName = corporationName;
         CorporationId = corporationId;
         Balance = balance;
         CanWithdraw = canWithdraw;
-        PlayerBalance = playerBalance;
+        Deposit = deposit;
         StatusMessage = statusMessage;
     }
 }
 
 [Serializable, NetSerializable]
-public sealed class CorporationAtmDepositMessage : BoundUserInterfaceMessage
-{
-    public int Amount;
-    public CorporationAtmDepositMessage(int amount) => Amount = amount;
-}
+public sealed class CorporationAtmDepositMessage : BoundUserInterfaceMessage { }
 
 [Serializable, NetSerializable]
 public sealed class CorporationAtmWithdrawMessage : BoundUserInterfaceMessage
