@@ -90,3 +90,16 @@ corp-error-target-in-corp = That player is already in a corporation.
 corp-error-already-invited = That player has already been invited.
 corp-error-invite-not-found = Invite not found or already expired.
 corp-error-invalid-rank = Invalid rank.
+
+## Corporation station
+corp-section-station = Corporation Station
+corp-station-label = Station:
+corp-station-none = No station purchased.
+corp-create-station-name = Station Name:
+corp-create-station-placeholder = Enter station name…
+corp-btn-purchase-station = Purchase Station ($5,000,000)
+corp-station-scanner-visible = Show on Shuttle Scanners
+corp-station-coords = Coordinates: {$x}, {$y}
+corp-error-station-exists = Your corporation already has a station.
+corp-error-station-name-empty = Please enter a station name.
+corp-error-station-name-too-long = Station name must be 40 characters or less.

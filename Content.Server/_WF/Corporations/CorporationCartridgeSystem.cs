@@ -28,6 +28,7 @@ public sealed class CorporationCartridgeSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly CorporationStationSystem _stations = default!;
 
     private ISawmill _log = default!;
 
@@ -105,6 +106,14 @@ public sealed class CorporationCartridgeSystem : EntitySystem
 
             case CorporationChangeRankMessage changeRank:
                 await HandleChangeRank(uid, loader, comp, actor, userId, changeRank.TargetUserId, changeRank.NewRank);
+                break;
+
+            case CorporationPurchaseStationMessage purchaseStation:
+                await HandlePurchaseStation(uid, loader, comp, actor, userId, purchaseStation.StationName);
+                break;
+
+            case CorporationToggleStationVisibilityMessage:
+                await HandleToggleStationVisibility(uid, loader, comp, actor, userId);
                 break;
         }
     }
@@ -482,6 +491,61 @@ public sealed class CorporationCartridgeSystem : EntitySystem
         await UpdateListUi(uid, loader, comp);
     }
 
+    private async Task HandlePurchaseStation(EntityUid uid, EntityUid loader, CorporationCartridgeComponent comp,
+        EntityUid actor, NetUserId userId, string stationName)
+    {
+        var corp = await _db.GetCorporationForPlayer(userId.UserId);
+        var myMember = GetMember(corp, userId);
+
+        if (corp == null || myMember == null || (CorporationRank)myMember.Rank < CorporationRank.Manager)
+        {
+            await UpdateListUi(uid, loader, comp, "corp-error-no-permission");
+            return;
+        }
+
+        stationName = stationName.Trim();
+        if (string.IsNullOrEmpty(stationName))
+        {
+            await UpdateListUi(uid, loader, comp, "corp-error-station-name-empty");
+            return;
+        }
+
+        if (stationName.Length > 40)
+        {
+            await UpdateListUi(uid, loader, comp, "corp-error-station-name-too-long");
+            return;
+        }
+
+        var purchased = await _stations.PurchaseStation(corp.Id, stationName);
+        if (!purchased)
+        {
+            // Could be already has station or insufficient funds — check which
+            var existing = await _db.GetCorporationStation(corp.Id);
+            var errorKey = existing != null ? "corp-error-station-exists" : "corp-error-insufficient-funds";
+            await UpdateListUi(uid, loader, comp, errorKey);
+            return;
+        }
+
+        _log.Info($"Player {userId} purchased station '{stationName}' for corporation '{corp.Name}'.");
+        await UpdateListUi(uid, loader, comp);
+    }
+
+    private async Task HandleToggleStationVisibility(EntityUid uid, EntityUid loader, CorporationCartridgeComponent comp,
+        EntityUid actor, NetUserId userId)
+    {
+        var corp = await _db.GetCorporationForPlayer(userId.UserId);
+        var myMember = GetMember(corp, userId);
+
+        if (corp == null || myMember == null || (CorporationRank)myMember.Rank < CorporationRank.Manager)
+        {
+            await UpdateListUi(uid, loader, comp, "corp-error-no-permission");
+            return;
+        }
+
+        _stations.ToggleStationVisibility(corp.Id);
+        await UpdateListUi(uid, loader, comp);
+    }
+
     // ─── UI state helpers ────────────────────────────────────────────────────
 
     private async Task UpdateListUi(EntityUid uid, EntityUid loader, CorporationCartridgeComponent comp,
@@ -500,6 +564,7 @@ public sealed class CorporationCartridgeSystem : EntitySystem
         var myCorp = await _db.GetCorporationForPlayer(userId.UserId);
         var myMember = GetMember(myCorp, userId);
         var myRank = myMember != null ? (CorporationRank)myMember.Rank : CorporationRank.Member;
+        var myStation = myCorp != null ? await _db.GetCorporationStation(myCorp.Id) : null;
 
         var members = myCorp?.Members.Select(m => new CorporationMemberInfo
         {
@@ -547,6 +612,10 @@ public sealed class CorporationCartridgeSystem : EntitySystem
                 Privacy = (CorporationPrivacy)myCorp.Privacy,
                 MemberCount = myCorp.Members.Count,
                 Balance = myCorp.Balance,
+                HasStation = myStation != null,
+                StationName = myStation?.StationName,
+                StationVisible = myCorp != null && _stations.IsStationVisible(myCorp.Id),
+                StationCoordinates = myCorp != null ? _stations.GetStationCoordinates(myCorp.Id) : null,
             } : null,
             MyRank = myRank,
             Members = members,

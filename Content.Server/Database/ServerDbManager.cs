@@ -562,6 +562,10 @@ namespace Content.Server.Database
         Task<bool> TryDepositToCorporation(int corporationId, int amount, CancellationToken cancel = default);
         Task<bool> TryWithdrawFromCorporation(int corporationId, int amount, CancellationToken cancel = default);
 
+        Task<WayfarerCorporationStation?> GetCorporationStation(int corporationId, CancellationToken cancel = default);
+        Task<WayfarerCorporationStation> CreateCorporationStation(int corporationId, string stationName, string savePath, CancellationToken cancel = default);
+        Task DeleteCorporationStation(int corporationId, CancellationToken cancel = default);
+
         #endregion
     }
 
@@ -1708,6 +1712,21 @@ namespace Content.Server.Database
             public Task<bool> TryWithdrawFromCorporation(int corporationId, int amount, CancellationToken cancel = default)
             {
                 return RunDbCommand(() => _db.TryWithdrawFromCorporation(corporationId, amount, cancel));
+            }
+
+            public Task<WayfarerCorporationStation?> GetCorporationStation(int corporationId, CancellationToken cancel = default)
+            {
+                return RunDbCommand(() => _db.GetCorporationStation(corporationId, cancel));
+            }
+
+            public Task<WayfarerCorporationStation> CreateCorporationStation(int corporationId, string stationName, string savePath, CancellationToken cancel = default)
+            {
+                return RunDbCommand(() => _db.CreateCorporationStation(corporationId, stationName, savePath, cancel));
+            }
+
+            public Task DeleteCorporationStation(int corporationId, CancellationToken cancel = default)
+            {
+                return RunDbCommand(() => _db.DeleteCorporationStation(corporationId, cancel));
             }
 
             #endregion

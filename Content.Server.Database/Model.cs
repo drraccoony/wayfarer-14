@@ -57,6 +57,7 @@ namespace Content.Server.Database
         public DbSet<WayfarerCorporation> WayfarerCorporations { get; set; } = null!;
         public DbSet<WayfarerCorporationMember> WayfarerCorporationMembers { get; set; } = null!;
         public DbSet<WayfarerCorporationInvite> WayfarerCorporationInvites { get; set; } = null!;
+        public DbSet<WayfarerCorporationStation> WayfarerCorporationStations { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -469,6 +470,17 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<WayfarerCorporationInvite>()
                 .HasIndex(i => i.CorporationId);
+
+            // Wayfarer Corporation Stations configuration
+            modelBuilder.Entity<WayfarerCorporationStation>()
+                .HasOne(s => s.Corporation)
+                .WithMany()
+                .HasForeignKey(s => s.CorporationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<WayfarerCorporationStation>()
+                .HasIndex(s => s.CorporationId)
+                .IsUnique();
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -1867,5 +1879,28 @@ namespace Content.Server.Database
 
         [Required, Column("sent_at")]
         public DateTime SentAt { get; set; }
+    }
+
+    [Table("wayfarer_corporation_stations")]
+    public class WayfarerCorporationStation
+    {
+        [Key, Column("id")]
+        public int Id { get; set; }
+
+        [Column("corporation_id")]
+        public int CorporationId { get; set; }
+
+        public WayfarerCorporation Corporation { get; set; } = null!;
+
+        /// <summary>Display name of the station, also used as the FTL beacon label.</summary>
+        [Required, Column("station_name")]
+        public string StationName { get; set; } = null!;
+
+        /// <summary>Relative save path under user data, e.g. "corp_stations/corp_1.yml".</summary>
+        [Required, Column("save_path")]
+        public string SavePath { get; set; } = null!;
+
+        [Required, Column("purchased_at")]
+        public DateTime PurchasedAt { get; set; }
     }
 }

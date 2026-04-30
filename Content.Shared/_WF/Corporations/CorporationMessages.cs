@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.CartridgeLoader;
 using Robust.Shared.Serialization;
 
@@ -17,6 +18,10 @@ public sealed class CorporationInfo
     public CorporationPrivacy Privacy { get; init; }
     public int MemberCount { get; init; }
     public int Balance { get; init; }
+    public bool HasStation { get; init; }
+    public string? StationName { get; init; }
+    public bool StationVisible { get; init; }
+    public Vector2? StationCoordinates { get; init; }
 }
 
 /// <summary>
@@ -138,3 +143,12 @@ public sealed class CorporationChangeRankMessage : CartridgeMessageEvent
     public string TargetUserId { get; init; } = string.Empty;
     public CorporationRank NewRank { get; init; }
 }
+
+[Serializable, NetSerializable]
+public sealed class CorporationPurchaseStationMessage : CartridgeMessageEvent
+{
+    public string StationName { get; init; } = string.Empty;
+}
+
+[Serializable, NetSerializable]
+public sealed class CorporationToggleStationVisibilityMessage : CartridgeMessageEvent { }

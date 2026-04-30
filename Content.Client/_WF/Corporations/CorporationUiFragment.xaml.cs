@@ -23,6 +23,8 @@ public sealed partial class CorporationUiFragment : BoxContainer
     public event Action<int, bool>? OnRespondInvite;
     public event Action<string>? OnKick;
     public event Action<string, CorporationRank>? OnChangeRank;
+    public event Action<string>? OnPurchaseStation;
+    public event Action? OnToggleStationVisibility;
 
     // ─── Controls ────────────────────────────────────────────────────────────
     private readonly Button _backButton;
@@ -44,6 +46,13 @@ public sealed partial class CorporationUiFragment : BoxContainer
     private readonly Label _corpBankBalanceLabel;
     private readonly ConfirmButton _leaveCorpButton;
     private readonly ConfirmButton _disbandCorpButton;
+    private readonly BoxContainer _stationExistsBox;
+    private readonly Label _stationNameLabel;
+    private readonly Label _stationCoordsLabel;
+    private readonly CheckBox _stationVisibleCheckBox;
+    private readonly BoxContainer _stationPurchaseBox;
+    private readonly LineEdit _stationNameEdit;
+    private readonly Button _purchaseStationButton;
     private readonly BoxContainer _noCorporationSection;
     private readonly Button _createCorpButton;
     private readonly BoxContainer _publicCorpsList;
@@ -96,6 +105,13 @@ public sealed partial class CorporationUiFragment : BoxContainer
         _corpBankBalanceLabel = FindControl<Label>("CorpBankBalanceLabel");
         _leaveCorpButton = FindControl<ConfirmButton>("LeaveCorpButton");
         _disbandCorpButton = FindControl<ConfirmButton>("DisbandCorpButton");
+        _stationExistsBox = FindControl<BoxContainer>("StationExistsBox");
+        _stationNameLabel = FindControl<Label>("StationNameLabel");
+        _stationCoordsLabel = FindControl<Label>("StationCoordsLabel");
+        _stationVisibleCheckBox = FindControl<CheckBox>("StationVisibleCheckBox");
+        _stationPurchaseBox = FindControl<BoxContainer>("StationPurchaseBox");
+        _stationNameEdit = FindControl<LineEdit>("StationNameEdit");
+        _purchaseStationButton = FindControl<Button>("PurchaseStationButton");
         _noCorporationSection = FindControl<BoxContainer>("NoCorporationSection");
         _createCorpButton = FindControl<Button>("CreateCorpButton");
         _publicCorpsList = FindControl<BoxContainer>("PublicCorpsList");
@@ -194,6 +210,16 @@ public sealed partial class CorporationUiFragment : BoxContainer
             OnSendInvite?.Invoke(_inviteCharacters[idx]);
         };
         _cancelInviteButton.OnPressed += _ => OnNavigate?.Invoke(CorporationView.List);
+
+        // Station purchase
+        _purchaseStationButton.OnPressed += _ =>
+        {
+            var name = _stationNameEdit.Text.Trim();
+            OnPurchaseStation?.Invoke(name);
+        };
+
+        // Station visibility toggle
+        _stationVisibleCheckBox.OnPressed += _ => OnToggleStationVisibility?.Invoke();
     }
 
     // ─── State update entry points ────────────────────────────────────────────
@@ -307,6 +333,21 @@ public sealed partial class CorporationUiFragment : BoxContainer
 
         foreach (var member in sorted)
             _membersList.AddChild(BuildMemberRow(member, myRank, state.MyUserId));
+
+        // Station section
+        _stationExistsBox.Visible = corp.HasStation;
+        _stationPurchaseBox.Visible = isManager && !corp.HasStation;
+        if (corp.HasStation && corp.StationName != null)
+        {
+            _stationNameLabel.Text = corp.StationName;
+            _stationVisibleCheckBox.Pressed = corp.StationVisible;
+            _stationVisibleCheckBox.Disabled = !isManager;
+            if (corp.StationCoordinates is { } coords)
+                _stationCoordsLabel.Text = Loc.GetString("corp-station-coords",
+                    ("x", (int)coords.X), ("y", (int)coords.Y));
+            else
+                _stationCoordsLabel.Text = string.Empty;
+        }
     }
 
     private void PopulatePublicCorps(CorporationListUiState state)

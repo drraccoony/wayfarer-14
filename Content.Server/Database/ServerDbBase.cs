@@ -2829,6 +2829,38 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
+        public async Task<WayfarerCorporationStation?> GetCorporationStation(int corporationId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.WayfarerCorporationStations
+                .FirstOrDefaultAsync(s => s.CorporationId == corporationId, cancel);
+        }
+
+        public async Task<WayfarerCorporationStation> CreateCorporationStation(int corporationId, string stationName, string savePath, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var station = new WayfarerCorporationStation
+            {
+                CorporationId = corporationId,
+                StationName = stationName,
+                SavePath = savePath,
+                PurchasedAt = DateTime.UtcNow,
+            };
+            db.DbContext.WayfarerCorporationStations.Add(station);
+            await db.DbContext.SaveChangesAsync(cancel);
+            return station;
+        }
+
+        public async Task DeleteCorporationStation(int corporationId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var station = await db.DbContext.WayfarerCorporationStations
+                .FirstOrDefaultAsync(s => s.CorporationId == corporationId, cancel);
+            if (station == null) return;
+            db.DbContext.WayfarerCorporationStations.Remove(station);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
         #endregion
     }
 }

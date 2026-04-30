@@ -66,6 +66,15 @@ public sealed partial class CorporationUi : UIFragment
                 TargetUserId = targetUserId,
                 NewRank = newRank,
             }));
+
+        _fragment.OnPurchaseStation += stationName =>
+            userInterface.SendMessage(new CartridgeUiMessage(new CorporationPurchaseStationMessage
+            {
+                StationName = stationName,
+            }));
+
+        _fragment.OnToggleStationVisibility += () =>
+            userInterface.SendMessage(new CartridgeUiMessage(new CorporationToggleStationVisibilityMessage()));
     }
 
     public override void UpdateState(BoundUserInterfaceState state)

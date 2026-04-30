@@ -69,6 +69,30 @@
                         <controls:ConfirmButton Name="LeaveCorpButton" Text="{Loc 'corp-btn-leave'}" ConfirmationText="{Loc 'corp-btn-leave-confirm'}" Margin="0,0,8,0"/>
                         <controls:ConfirmButton Name="DisbandCorpButton" Text="{Loc 'corp-btn-disband'}" ConfirmationText="{Loc 'corp-btn-disband-confirm'}" Visible="False"/>
                     </BoxContainer>
+
+                    <!-- Station -->
+                    <PanelContainer StyleClasses="LowDivider" Margin="0,12,0,8"/>
+                    <Label Text="{Loc 'corp-section-station'}" StyleClasses="LabelBig" Margin="0,0,0,4"/>
+                    <!-- Existing station display -->
+                    <BoxContainer Name="StationExistsBox" Orientation="Vertical" Visible="False">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="{Loc 'corp-station-label'}" FontColorOverride="#AAAAAA" StyleClasses="LabelSmall" Margin="0,0,4,0"/>
+                            <Label Name="StationNameLabel" StyleClasses="LabelSmall"/>
+                        </BoxContainer>
+                        <Label Name="StationCoordsLabel" StyleClasses="LabelSmall" FontColorOverride="#AAAAAA" Margin="0,2,0,0"/>
+                        <CheckBox Name="StationVisibleCheckBox" Text="{Loc 'corp-station-scanner-visible'}" Margin="0,4,0,0"/>
+                    </BoxContainer>
+                    <!-- Purchase station form (Manager+, no station yet) -->
+                    <BoxContainer Name="StationPurchaseBox" Orientation="Vertical" Visible="False">
+                        <Label Text="{Loc 'corp-station-none'}" FontColorOverride="#AAAAAA" StyleClasses="LabelSmall" Margin="0,0,0,4"/>
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="{Loc 'corp-create-station-name'}" Margin="0,0,4,0" VerticalAlignment="Center"/>
+                            <PanelContainer StyleClasses="Inset" HorizontalExpand="True">
+                                <LineEdit Name="StationNameEdit" HorizontalExpand="True" PlaceHolder="{Loc 'corp-create-station-placeholder'}"/>
+                            </PanelContainer>
+                        </BoxContainer>
+                        <Button Name="PurchaseStationButton" Text="{Loc 'corp-btn-purchase-station'}" HorizontalAlignment="Left" Margin="0,4,0,0"/>
+                    </BoxContainer>
                 </BoxContainer>
 
                 <!-- ── NOT IN CORP ── -->
