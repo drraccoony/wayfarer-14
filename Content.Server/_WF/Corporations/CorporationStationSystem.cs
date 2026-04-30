@@ -12,6 +12,7 @@ using Content.Shared._WF.CCVar;
 using Content.Shared._WF.Corporations;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
+using Content.Shared.Tag;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Robust.Server.Player;
@@ -27,6 +28,7 @@ using Robust.Shared.Log;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -51,6 +53,8 @@ public sealed class CorporationStationSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     private ISawmill _log = default!;
 
@@ -84,7 +88,7 @@ public sealed class CorporationStationSystem : EntitySystem
             return;
 
         _nextAutosave = _timing.CurTime + TimeSpan.FromHours(4);
-        SaveAllStations();
+        SaveAllStations(stripBlacklist: false);
     }
 
     private async void OnRoundStart(RoundStartingEvent ev)
@@ -121,7 +125,7 @@ public sealed class CorporationStationSystem : EntitySystem
         if (ev.New == GameRunLevel.PostRound)
         {
             await ChargeUpkeep();
-            SaveAllStations();
+            SaveAllStations(stripBlacklist: true);
         }
     }
 
@@ -355,12 +359,15 @@ public sealed class CorporationStationSystem : EntitySystem
         }
     }
 
-    public void SaveAllStations()
+    public void SaveAllStations(bool stripBlacklist = false)
     {
         foreach (var (corpId, gridUid) in _activeStations)
         {
             if (!EntityManager.EntityExists(gridUid))
                 continue;
+
+            if (stripBlacklist)
+                StripBlacklistedEntities(gridUid);
 
             var savePath = new ResPath($"/corp_stations/corp_{corpId}.yml");
             if (_loader.TrySaveGrid(gridUid, savePath))
@@ -368,6 +375,51 @@ public sealed class CorporationStationSystem : EntitySystem
             else
                 _log.Error($"Failed to save station for corp {corpId}");
         }
+    }
+
+    /// <summary>
+    /// Deletes all entities on <paramref name="gridUid"/> whose prototype or tags appear in the
+    /// <c>corpStationSaveBlacklist</c> prototype, so they are not persisted in the save file.
+    /// </summary>
+    private void StripBlacklistedEntities(EntityUid gridUid)
+    {
+        if (!_proto.TryIndex<CorpStationSaveBlacklistPrototype>("Default", out var blacklist))
+            return;
+
+        if (blacklist.Prototypes.Count == 0 && blacklist.Tags.Count == 0)
+            return;
+
+        var toDelete = new List<EntityUid>();
+        var query = AllEntityQuery<TransformComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var xform, out var meta))
+        {
+            if (xform.GridUid != gridUid)
+                continue;
+
+            // Check prototype blacklist.
+            var protoId = meta.EntityPrototype?.ID;
+            if (protoId != null && blacklist.Prototypes.Contains((EntProtoId) protoId))
+            {
+                toDelete.Add(uid);
+                continue;
+            }
+
+            // Check tag blacklist.
+            foreach (var tag in blacklist.Tags)
+            {
+                if (_tag.HasTag(uid, tag))
+                {
+                    toDelete.Add(uid);
+                    break;
+                }
+            }
+        }
+
+        foreach (var uid in toDelete)
+            Del(uid);
+
+        if (toDelete.Count > 0)
+            _log.Debug($"Stripped {toDelete.Count} blacklisted entities from {ToPrettyString(gridUid)} before save");
     }
 
     private static Vector2 RandomOffset()
