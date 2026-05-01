@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.InteractionVerbs;
 using Content.Shared.Popups;
@@ -81,6 +82,10 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
         if (effect.Popup != null && PrototypeManager.TryIndex(effect.Popup.Value, out var popupProto))
         {
             var hasUsed = args.Used != null;
+            // Use identity entities for public-facing messages so hidden IDs are respected.
+            var identityUser = Identity.Entity(args.User, EntityManager);
+            var identityTarget = Identity.Entity(args.Target, EntityManager);
+
             var selfMessage = Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.SelfSuffix}-popup",
                 ("user", args.User),
                 ("target", args.Target),
@@ -90,7 +95,7 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
 
             var targetMessage = popupProto.TargetSuffix != null
                 ? Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.TargetSuffix}-popup",
-                    ("user", args.User),
+                    ("user", identityUser),
                     ("target", args.Target),
                     ("used", args.Used ?? EntityUid.Invalid),
                     ("selfTarget", args.User == args.Target),
@@ -99,8 +104,8 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
 
             var othersMessage = popupProto.OthersSuffix != null
                 ? Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.OthersSuffix}-popup",
-                    ("user", args.User),
-                    ("target", args.Target),
+                    ("user", identityUser),
+                    ("target", identityTarget),
                     ("used", args.Used ?? EntityUid.Invalid),
                     ("selfTarget", args.User == args.Target),
                     ("hasUsed", hasUsed))
@@ -127,8 +132,8 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
             if (popupProto.EmoteSuffix != null)
             {
                 var chatMessage = Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.EmoteSuffix}-popup",
-                    ("user", args.User),
-                    ("target", args.Target),
+                    ("user", identityUser),
+                    ("target", identityTarget),
                     ("used", args.Used ?? EntityUid.Invalid),
                     ("selfTarget", args.User == args.Target),
                     ("hasUsed", hasUsed));
