@@ -182,7 +182,7 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
                 : null;
 
             // Show popup to user
-            _popupSystem.PopupEntity(selfMessage, args.Target, args.User, PopupType.Medium);
+            // _popupSystem.PopupEntity(selfMessage, args.Target, args.User, PopupType.Medium);
 
             // Show popup to target if different from user
             if (args.User != args.Target && targetMessage != null)
