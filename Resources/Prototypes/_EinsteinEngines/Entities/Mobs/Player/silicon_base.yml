@@ -302,6 +302,7 @@
       - Hug
       - Pet
       - LookAt
+      - ForceDown
 
 - type: damageModifierSet
   id: IPC

@@ -183,6 +183,7 @@
     - Hug
     - Pet
     - LookAt
+    - ForceDown
   - type: CanHostGuardian
   - type: NpcFactionMember
     factions:

@@ -170,3 +170,28 @@
   priority: 0
   categoryKey: interaction
   global: true  # Allow looking at any entity, not just mobs
+
+# Force Down Interaction
+- type: Interaction
+  id: ForceDown
+  action:
+    !type:ForceDownAction
+  effectSuccess:
+    popup: DefaultInteraction
+    effectTarget: TargetThenUser
+    soundPerceivedByOthers: true
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+      params:
+        volume: -3
+        variation: 0.15
+  delay: 2
+  cooldown: 5
+  range:
+    min: 0
+    max: 1.5
+  requiresCanInteract: true
+  requiresHands: true
+  allowSelfInteract: false
+  priority: 0
+  categoryKey: interaction
