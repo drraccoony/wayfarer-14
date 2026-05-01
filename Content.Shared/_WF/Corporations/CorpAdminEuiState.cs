@@ -22,6 +22,8 @@ public sealed class CorpAdminCorpData
     public int Balance { get; init; }
     public List<CorpAdminMemberData> Members { get; init; } = new();
     public CorpAdminStationData? Station { get; init; }
+    /// <summary>Filenames (not full paths) of archived/deleted station saves for this corp.</summary>
+    public List<string> ArchivedStationFiles { get; init; } = new();
 }
 
 [Serializable, NetSerializable]
@@ -121,5 +123,14 @@ public static class CorpAdminEuiMsg
     {
         public int CorporationId { get; init; }
         public Guid UserId { get; init; }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class RecoverStation : EuiMessageBase
+    {
+        public int CorporationId { get; init; }
+        /// <summary>Filename (not full path) of the archived save to restore, e.g. "corp_3_55.yml".</summary>
+        public string ArchiveFileName { get; init; } = string.Empty;
+        public string StationName { get; init; } = string.Empty;
     }
 }

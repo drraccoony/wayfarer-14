@@ -106,6 +106,7 @@ corp-station-upkeep-warning = Insufficient funds to cover next upkeep!
 corp-banner-upkeep-warning = Warning: Your corporation cannot afford the station upkeep.
 corp-notify-upkeep-charged = [CORP] Station upkeep of {$amount} spesos has been deducted from your corporation's bank account.
 corp-notify-upkeep-evicted = [CORP] Your corporation could not afford the station upkeep of {$amount} spesos. The station has been blasted from the sector by Zekke landlords and all materials has been lost.
+corp-notify-low-balance-warning = [CORP] Warning: {$corpName}'s account balance ({$balance} spesos) is less than this shift's station upkeep ({$upkeep} spesos). Deposit funds into the corporation ATM before shift end or the station will be evicted.
 corp-notify-invited = [CORP] You have been invited to join {$corp}. Check your PDA's Corporation app to accept or decline.
 corp-error-station-exists = Your corporation already has a station.
 corp-error-station-name-empty = Please enter a station name.

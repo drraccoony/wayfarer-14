@@ -26,6 +26,7 @@ public sealed class CorpAdminEui : BaseEui
         _window.OnGrantStation += (corpId, name) => SendMessage(new CorpAdminEuiMsg.GrantStation { CorporationId = corpId, StationName = name });
         _window.OnCreateCorporation += (name, desc, privacy) => SendMessage(new CorpAdminEuiMsg.CreateCorporation { Name = name, Description = desc, Privacy = privacy });
         _window.OnAddMember += (corpId, userId) => SendMessage(new CorpAdminEuiMsg.AddMember { CorporationId = corpId, UserId = userId });
+        _window.OnRecoverStation += (corpId, file, name) => SendMessage(new CorpAdminEuiMsg.RecoverStation { CorporationId = corpId, ArchiveFileName = file, StationName = name });
     }
 
     public override void Opened()

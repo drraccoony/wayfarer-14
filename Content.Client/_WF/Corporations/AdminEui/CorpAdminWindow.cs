@@ -25,6 +25,7 @@ public sealed class CorpAdminWindow : DefaultWindow
     public event Action<int, string>? OnGrantStation;
     public event Action<string, string, CorporationPrivacy>? OnCreateCorporation;
     public event Action<int, Guid>? OnAddMember;
+    public event Action<int, string, string>? OnRecoverStation; // corpId, archiveFileName, stationName
 
     // ─── Layout ──────────────────────────────────────────────────────────────
 
@@ -293,6 +294,49 @@ public sealed class CorpAdminWindow : DefaultWindow
             grantRow.AddChild(stationNameEdit);
             grantRow.AddChild(grantBtn);
             _detailPanel.AddChild(grantRow);
+        }
+
+        // ── Archived stations ────────────────────────────────────────────────
+        if (corp.ArchivedStationFiles.Count > 0)
+        {
+            AddSectionHeader($"Archived Stations ({corp.ArchivedStationFiles.Count})");
+            foreach (var archiveFile in corp.ArchivedStationFiles)
+            {
+                var capturedFile = archiveFile;
+                var archiveRow = new BoxContainer { Orientation = LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 2) };
+
+                archiveRow.AddChild(new Label
+                {
+                    Text = capturedFile,
+                    HorizontalExpand = true,
+                    VerticalAlignment = VAlignment.Center,
+                    Margin = new Thickness(0, 0, 4, 0),
+                });
+
+                var nameEdit = new LineEdit
+                {
+                    PlaceHolder = "Restore as name...",
+                    MinWidth = 140,
+                    Margin = new Thickness(0, 0, 4, 0),
+                };
+
+                if (corp.Station == null)
+                {
+                    // Only show restore button if corp has no active station
+                    var recoverBtn = new ConfirmButton { Text = "Restore", ConfirmationText = "Confirm" };
+                    recoverBtn.OnPressed += _ =>
+                    {
+                        var name = nameEdit.Text.Trim();
+                        if (string.IsNullOrEmpty(name))
+                            name = corp.Name;
+                        OnRecoverStation?.Invoke(corpId, capturedFile, name);
+                    };
+                    archiveRow.AddChild(nameEdit);
+                    archiveRow.AddChild(recoverBtn);
+                }
+
+                _detailPanel.AddChild(archiveRow);
+            }
         }
 
         // ── Danger zone ─────────────────────────────────────────────────────

@@ -70,6 +70,7 @@ public sealed class CorpAdminEui : BaseEui
                     SavePath = station.SavePath,
                     ActiveThisRound = _stationSystem.HasActiveStation(corp.Id),
                 },
+                ArchivedStationFiles = _stationSystem.GetArchivedStationFiles(corp.Id),
             });
         }
 
@@ -153,6 +154,11 @@ public sealed class CorpAdminEui : BaseEui
                     ? session.Name
                     : add.UserId.ToString();
                 await _db.AddCorporationMember(add.CorporationId, add.UserId, displayName, (int) CorporationRank.Member);
+                break;
+
+            case CorpAdminEuiMsg.RecoverStation recover:
+                if (!string.IsNullOrWhiteSpace(recover.ArchiveFileName))
+                    await _stationSystem.RecoverStation(recover.CorporationId, recover.ArchiveFileName, recover.StationName);
                 break;
         }
 
