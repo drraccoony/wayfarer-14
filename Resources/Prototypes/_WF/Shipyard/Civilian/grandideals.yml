@@ -15,20 +15,20 @@
   engine:
   - AME
 
-- type: gameMap
-  id: Grandideals
-  mapName: 'TGA Grand Ideals'
-  mapPath: /Maps/_WF/Shuttles/Civilian/grandideals.yml
-  minPlayers: 0
-  stations:
-    Grandideals:
-      stationProto: StandardFrontierVessel
-      components:
-      - type: StationNameSetup
-        mapNameTemplate: 'Grand Ideals Civ{1}'
-        nameGenerator:
-          !type:NanotrasenNameGenerator
-          prefixCreator: '14'
-      - type: StationJobs
-        availableJobs:
-          WayfarerInterview: [ 0, 0 ]
+# - type: gameMap
+#   id: Grandideals
+#   mapName: 'TGA Grand Ideals'
+#   mapPath: /Maps/_WF/Shuttles/Civilian/grandideals.yml
+#   minPlayers: 0
+#   stations:
+#     Grandideals:
+#       stationProto: StandardFrontierVessel
+#       components:
+#       - type: StationNameSetup
+#         mapNameTemplate: 'Grand Ideals Civ{1}'
+#         nameGenerator:
+#           !type:NanotrasenNameGenerator
+#           prefixCreator: '14'
+#       - type: StationJobs
+#         availableJobs:
+#           WayfarerInterview: [ 0, 0 ]
