@@ -25,6 +25,12 @@ public sealed partial class ShuttleDeedComponent : Component
     [DataField, AutoNetworkedField]
     public string? ShuttleOwner = "Unknown";
 
+    /// <summary>
+    /// The EntityUid of the player mob that owns this deed. Used to ensure sale proceeds go to the correct player.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? ShuttleOwnerEntityUid;
+
     [DataField, AutoNetworkedField]
     public bool PurchasedWithVoucher;
 }

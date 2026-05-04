@@ -168,6 +168,13 @@ public sealed partial class ShuttleRecordsSystem
 
         AssignShuttleDeedProperties(record, targetId);
 
+        // The actor operating the console is the new deed holder - they should receive sale proceeds.
+        if (_entityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var deed))
+        {
+            deed.ShuttleOwnerEntityUid = args.Actor;
+            _entityManager.Dirty(targetId, deed);
+        }
+
         // Refreshing the state, so that the newly applied deed is shown in the UI.
         // We cannot do this client side because of the checks that we have to do serverside.
         RefreshState(uid, component);

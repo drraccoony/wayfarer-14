@@ -220,7 +220,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
 
         var shuttleOwner = Name(player).Trim();
-        AssignShuttleDeedProperties((targetId, deedID), shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties((targetId, deedID), shuttleUid, name, shuttleOwner, voucherUsed, player);
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
         AssignShuttleDeedProperties((shuttleUid, deedShuttle), shuttleUid, name, shuttleOwner, voucherUsed);
@@ -467,7 +467,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             bill = int.Max(0, bill);
 
-            _bank.TryBankDeposit(player, bill);
+            // Deposit to the deed owner, not necessarily the console operator.
+            // This ensures the correct player gets the rebate when someone sells using another player's ID.
+            var depositTarget = deed.ShuttleOwnerEntityUid ?? player;
+            _bank.TryBankDeposit(depositTarget, bill);
             PlayConfirmSound(player, uid, component);
         }
 
@@ -877,12 +880,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         EntityUid? shuttleUid,
         string? shuttleName,
         string? shuttleOwner,
-        bool purchasedWithVoucher)
+        bool purchasedWithVoucher,
+        EntityUid? ownerEntityUid = null)
     {
         deed.Comp.ShuttleUid = shuttleUid;
         TryParseShuttleName(deed.Comp, shuttleName!);
         deed.Comp.ShuttleOwner = shuttleOwner;
         deed.Comp.PurchasedWithVoucher = purchasedWithVoucher;
+        deed.Comp.ShuttleOwnerEntityUid = ownerEntityUid;
         Dirty(deed);
     }
 
@@ -910,7 +915,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             shuttleDeed.ShuttleUid,
             shuttleDeed.ShuttleName,
             shuttleDeed.ShuttleOwner,
-            shuttleDeed.PurchasedWithVoucher);
+            shuttleDeed.PurchasedWithVoucher,
+            shuttleDeed.ShuttleOwnerEntityUid);
     }
 
     #endregion
