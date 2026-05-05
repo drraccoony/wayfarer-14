@@ -96,11 +96,13 @@
     - Binary
     - Common
     - Science
+    - Traffic
   - type: ActiveRadio
     channels:
     - Binary
     - Common
     - Science
+    - Traffic
   - type: ZombieImmune
   - type: Repairable
     doAfterDelay: 10
