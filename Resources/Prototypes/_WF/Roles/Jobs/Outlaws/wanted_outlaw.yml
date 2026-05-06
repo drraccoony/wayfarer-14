@@ -30,6 +30,8 @@
       recordGeneration: Normal # Real DNA/fingerprint/job on the criminal record so CGP can match to the wanted entry.
     - type: WantedOutlaw # Wayfarer: triggers sector record + Wanted status + CGP radio ping at spawn
     - type: DisableSuitSensors
+    - type: OutlawDisclaimer # Wayfarer: shows disclaimer popup on spawn
+      isWanted: true
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.

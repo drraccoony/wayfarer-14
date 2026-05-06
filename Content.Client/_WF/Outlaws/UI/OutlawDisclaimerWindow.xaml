@@ -1,0 +1,33 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+    <PanelContainer MouseFilter="Stop">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#000000CC" />
+        </PanelContainer.PanelOverride>
+
+        <Control HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="560">
+            <PanelContainer StyleClasses="AngleRect" />
+
+            <BoxContainer Orientation="Vertical" Margin="16">
+                <Label Name="TitleLabel"
+                       HorizontalAlignment="Center"
+                       StyleClasses="LabelHeading"
+                       Margin="0 0 0 12" />
+
+                <ScrollContainer HScrollEnabled="False"
+                                 VerticalExpand="True"
+                                 ReturnMeasure="True"
+                                 MaxHeight="320"
+                                 Margin="0 0 0 12">
+                    <RichTextLabel Name="MessageLabel"
+                                   HorizontalExpand="True" />
+                </ScrollContainer>
+
+                <Button Name="AcknowledgeButton"
+                        HorizontalAlignment="Center"
+                        MinWidth="160"
+                        Disabled="True" />
+            </BoxContainer>
+        </Control>
+    </PanelContainer>
+</Control>

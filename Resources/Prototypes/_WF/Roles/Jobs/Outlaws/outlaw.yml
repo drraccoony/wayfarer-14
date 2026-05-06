@@ -29,6 +29,8 @@
     - type: SpecialSectorStationRecord # must be given on spawn
       recordGeneration: FalseRecord
     - type: DisableSuitSensors
+    - type: OutlawDisclaimer # Wayfarer: shows disclaimer popup on spawn
+      isWanted: false
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
