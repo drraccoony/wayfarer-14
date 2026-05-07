@@ -2201,6 +2201,12 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb(cancel);
 
+            var profileId = await db.DbContext.Profile
+                .Include(p => p.Preference)
+                .Where(p => p.Preference.UserId == ownerUserId && p.Slot == characterIndex)
+                .Select(p => (int?) p.Id)
+                .FirstOrDefaultAsync(cancel);
+
             var box = new WayfarerSafetyDepositBox
             {
                 BoxId = Guid.NewGuid(),
@@ -2208,7 +2214,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 CharacterIndex = characterIndex,
                 OwnerName = ownerName,
                 BoxSize = boxSize,
-                PurchaseDate = DateTime.UtcNow
+                PurchaseDate = DateTime.UtcNow,
+                ProfileId = profileId
             };
 
             db.DbContext.WayfarerSafetyDepositBox.Add(box);
