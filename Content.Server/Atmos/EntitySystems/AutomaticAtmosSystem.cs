@@ -24,6 +24,12 @@ public sealed class AutomaticAtmosSystem : EntitySystem
         if (_atmosphereSystem.HasAtmosphere(ent))
             return;
 
+        // Wayfarer Start
+        // Skip grids explicitly marked as not needing automatic atmosphere (e.g. large asteroid dungeons).
+        if (HasComp<NoAutoAtmosphereComponent>(ent))
+            return;
+        // Wayfarer End
+
         // We can't actually count how many tiles there are efficiently, so instead estimate with the mass.
         if (ev.NewMass / ShuttleSystem.TileDensityMultiplier >= 7.0f)
         {
