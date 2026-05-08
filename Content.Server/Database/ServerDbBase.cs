@@ -2480,6 +2480,18 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .CountAsync(cancel);
         }
 
+        public async Task<string?> GetCharacterNameByProfileIdAsync(
+            int profileId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.Profile
+                .Where(p => p.Id == profileId)
+                .Select(p => p.CharacterName)
+                .FirstOrDefaultAsync(cancel);
+        }
+
         #endregion
 
         #region Wayfarer Community Goals
