@@ -1,4 +1,4 @@
-namespace Content.Server.Atmos.Components;
+namespace Content.Server._WF.Atmos.Components;
 
 /// <summary>
 /// Prevents <see cref="AutomaticAtmosSystem"/> from automatically adding a
