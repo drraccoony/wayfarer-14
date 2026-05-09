@@ -2596,7 +2596,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         public async Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(
             int goalId,
-            string entityPrototypeId,
+            string? entityPrototypeId,
+            string? tagId,
             string? displayName,
             long requiredAmount,
             CancellationToken cancel = default)
@@ -2607,6 +2608,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             {
                 GoalId = goalId,
                 EntityPrototypeId = entityPrototypeId,
+                TagId = tagId,
                 DisplayName = displayName,
                 RequiredAmount = requiredAmount,
                 CurrentAmount = 0,
@@ -2671,7 +2673,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     RequirementId = requirementId,
                     PlayerUserId = playerUserId.Value,
                     CharacterName = characterName,
-                    EntityPrototypeId = entityPrototypeId ?? req.EntityPrototypeId,
+                    EntityPrototypeId = entityPrototypeId ?? req.EntityPrototypeId ?? string.Empty,
                     Amount = amount,
                     RoundId = roundId,
                     ContributedAt = DateTime.UtcNow,

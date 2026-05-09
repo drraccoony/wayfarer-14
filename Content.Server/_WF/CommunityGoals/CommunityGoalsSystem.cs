@@ -8,6 +8,7 @@ using Content.Server.GameTicking;
 using Content.Server._NF.RoundNotifications.Events;
 using Content.Shared._WF.CommunityGoals;
 using Content.Shared.Stacks;
+using Content.Shared.Tag;
 using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 
@@ -30,6 +31,7 @@ public sealed class CommunityGoalsSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -65,6 +67,7 @@ public sealed class CommunityGoalsSystem : EntitySystem
             {
                 Id = r.Id,
                 EntityPrototypeId = r.EntityPrototypeId,
+                TagId = r.TagId,
                 DisplayName = r.DisplayName,
                 RequiredAmount = r.RequiredAmount,
                 CurrentAmount = r.CurrentAmount,
@@ -76,8 +79,9 @@ public sealed class CommunityGoalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Records a contribution of <paramref name="amount"/> units for every active requirement
-    /// whose EntityPrototypeId matches <paramref name="entityPrototypeId"/> (exact or same stack type).
+    /// Records a contribution of <paramref name="amount"/> units for every active prototype-based
+    /// requirement that matches <paramref name="entityPrototypeId"/> (exact or same stack type).
+    /// Tag-based requirements must go through <see cref="RecordContributionByEntity"/> instead.
     /// Returns the number of requirements updated.
     /// </summary>
     public async Task<int> RecordContribution(string entityPrototypeId, long amount, Guid? playerUserId = null, string? characterName = null)
@@ -90,6 +94,11 @@ public sealed class CommunityGoalsSystem : EntitySystem
         {
             foreach (var req in goal.Requirements)
             {
+                // Tag-based requirements are handled separately via RecordContributionByEntity
+                if (req.TagId != null)
+                    continue;
+                if (req.EntityPrototypeId == null)
+                    continue;
                 if (!MatchesRequirement(entityPrototypeId, itemStackType, req.EntityPrototypeId))
                     continue;
 
@@ -109,12 +118,59 @@ public sealed class CommunityGoalsSystem : EntitySystem
     }
 
     /// <summary>
+    /// Records a contribution of <paramref name="amount"/> for every active requirement
+    /// (prototype-based OR tag-based) that the given entity satisfies.
+    /// Returns the number of requirements updated.
+    /// </summary>
+    public async Task<int> RecordContributionByEntity(EntityUid item, long amount, Guid? playerUserId = null, string? characterName = null)
+    {
+        var protoId = MetaData(item).EntityPrototype?.ID;
+        var stackType = protoId != null ? GetProtoStackTypeId(protoId) : null;
+        var updated = 0;
+        var roundId = _gameTicker.RoundId;
+
+        foreach (var goal in _activeGoals)
+        {
+            foreach (var req in goal.Requirements)
+            {
+                bool matches;
+                if (req.TagId != null)
+                {
+                    matches = _tags.HasTag(item, new ProtoId<TagPrototype>(req.TagId));
+                }
+                else if (req.EntityPrototypeId != null && protoId != null)
+                {
+                    matches = MatchesRequirement(protoId, stackType, req.EntityPrototypeId);
+                }
+                else
+                {
+                    continue;
+                }
+
+                if (!matches)
+                    continue;
+
+                var recordProtoId = req.EntityPrototypeId ?? protoId;
+                await _db.AddCommunityGoalContribution(req.Id, amount, playerUserId, characterName, recordProtoId, roundId);
+                req.CurrentAmount += amount;
+                updated++;
+
+                _sawmill.Debug($"Contribution: +{amount} entity={protoId ?? "?"}  → goal #{goal.Id} req #{req.Id} " +
+                               $"({req.CurrentAmount}/{req.RequiredAmount})");
+            }
+        }
+
+        if (updated > 0)
+            RaiseLocalEvent(new CommunityGoalsUpdatedEvent());
+
+        return updated;
+    }
+
+    /// <summary>
     /// Returns true if an item with <paramref name="itemProtoId"/> (and optional
-    /// <paramref name="itemStackTypeId"/>) satisfies a requirement defined as
+    /// <paramref name="itemStackTypeId"/>) satisfies a prototype-based requirement defined as
     /// <paramref name="reqProtoId"/>.
-    /// Matches by exact prototype ID, shared stack type (so SheetSteel10
-    /// satisfies a SheetSteel requirement), or shared research-disk category
-    /// (any ResearchDisk variant satisfies a ResearchDisk requirement).
+    /// For tag-based requirements use <see cref="RecordContributionByEntity"/> instead.
     /// </summary>
     public bool MatchesRequirement(string itemProtoId, string? itemStackTypeId, string reqProtoId)
     {
@@ -134,6 +190,26 @@ public sealed class CommunityGoalsSystem : EntitySystem
             return true;
 
         return false;
+    }
+
+    /// <summary>
+    /// Returns true if the given entity satisfies the given requirement data
+    /// (handles both prototype-based and tag-based requirements).
+    /// </summary>
+    public bool EntityMatchesRequirement(EntityUid item, CommunityGoalRequirementData req)
+    {
+        if (req.TagId != null)
+            return _tags.HasTag(item, new ProtoId<TagPrototype>(req.TagId));
+
+        if (req.EntityPrototypeId == null)
+            return false;
+
+        var protoId = MetaData(item).EntityPrototype?.ID;
+        if (protoId == null)
+            return false;
+
+        var stackType = TryComp<StackComponent>(item, out var sc) ? sc.StackTypeId : null;
+        return MatchesRequirement(protoId, stackType, req.EntityPrototypeId);
     }
 
     /// <summary>
@@ -222,6 +298,7 @@ public sealed class CommunityGoalsSystem : EntitySystem
             {
                 Id = r.Id,
                 EntityPrototypeId = r.EntityPrototypeId,
+                TagId = r.TagId,
                 DisplayName = r.DisplayName,
                 RequiredAmount = r.RequiredAmount,
                 CurrentAmount = r.CurrentAmount,

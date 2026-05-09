@@ -424,7 +424,7 @@ namespace Content.Server.Database
         Task<WayfarerCommunityGoal> CreateCommunityGoal(string title, string description, int? startRound, int? endRound, CancellationToken cancel = default);
         Task UpdateCommunityGoal(int goalId, string title, string description, int? startRound, int? endRound, bool isActive, CancellationToken cancel = default);
         Task DeleteCommunityGoal(int goalId, CancellationToken cancel = default);
-        Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(int goalId, string entityPrototypeId, string? displayName, long requiredAmount, CancellationToken cancel = default);
+        Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(int goalId, string? entityPrototypeId, string? tagId, string? displayName, long requiredAmount, CancellationToken cancel = default);
         Task RemoveCommunityGoalRequirement(int requirementId, CancellationToken cancel = default);
         Task UpdateCommunityGoalRequirement(int requirementId, long requiredAmount, CancellationToken cancel = default);
         Task AddCommunityGoalContribution(int requirementId, long amount, Guid? playerUserId = null, string? characterName = null, string? entityPrototypeId = null, int roundId = 0, CancellationToken cancel = default);
@@ -1333,10 +1333,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.DeleteCommunityGoal(goalId, cancel));
         }
 
-        public Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(int goalId, string entityPrototypeId, string? displayName, long requiredAmount, CancellationToken cancel = default)
+        public Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(int goalId, string? entityPrototypeId, string? tagId, string? displayName, long requiredAmount, CancellationToken cancel = default)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddCommunityGoalRequirement(goalId, entityPrototypeId, displayName, requiredAmount, cancel));
+            return RunDbCommand(() => _db.AddCommunityGoalRequirement(goalId, entityPrototypeId, tagId, displayName, requiredAmount, cancel));
         }
 
         public Task RemoveCommunityGoalRequirement(int requirementId, CancellationToken cancel = default)
