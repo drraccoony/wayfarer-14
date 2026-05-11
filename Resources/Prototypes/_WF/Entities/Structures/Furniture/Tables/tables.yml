@@ -1,0 +1,66 @@
+- type: entity
+  id: TableRoulette
+  parent: BaseStructure
+  name: roulette table
+  description: Try your luck at the wheel. Max bet 10,000 spesos. The house always wins... usually.
+  components:
+  - type: Sprite
+    sprite: Structures/Furniture/Tables/carpet.rsi
+    state: full
+  - type: Icon
+    sprite: Structures/Furniture/Tables/carpet.rsi
+    state: full
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+          MaterialCloth1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCarpet
+  - type: Tag
+    tags:
+    - Wooden
+  - type: RouletteTable
+  - type: ActivatableUI
+    key: enum.RouletteTableUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RouletteTableUiKey.Key:
+        type: RouletteTableBoundUserInterface
