@@ -58,8 +58,8 @@ public sealed partial class CryoSleepSystem
         if (!force && (mind.CurrentEntity is not { Valid: true } ghost || !HasComp<GhostComponent>(ghost)))
             return ReturnToBodyStatus.NotAGhost;
 
-        // Use the last stored body (most recent character)
-        var storedBody = storedBodies[^1];
+        // Use the first stored body
+        var storedBody = storedBodies[0];
         var cryopod = storedBody.Cryopod;
         var body = storedBody.Body;
         
@@ -87,11 +87,7 @@ public sealed partial class CryoSleepSystem
                 return ReturnToBodyStatus.Occupied;
         }
 
-        // Remove only the specific body being resumed, not all stored bodies
-        storedBodies.Remove(storedBody);
-        if (storedBodies.Count == 0)
-            _storedBodies.Remove(id.Value);
-        
+        _storedBodies.Remove(id.Value);
         _mind.ControlMob(id.Value, body);
 
         // Restore the character slot so bank operations target the right account.
