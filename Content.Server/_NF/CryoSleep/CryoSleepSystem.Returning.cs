@@ -85,10 +85,10 @@ public sealed partial class CryoSleepSystem
         _mind.ControlMob(id.Value, body);
 
         // Restore the character slot so bank operations target the right account.
-        if (storedBody.CharacterSlot >= 0)
+        if (storedBody.Value.CharacterSlot >= 0)
         {
             var bankComp = EnsureComp<BankAccountComponent>(body);
-            bankComp.CharacterSlot = storedBody.CharacterSlot;
+            bankComp.CharacterSlot = storedBody.Value.CharacterSlot;
         }
 
         // Force the mob to sleep

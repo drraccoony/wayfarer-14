@@ -7,6 +7,7 @@ using Content.Server.Ghost;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.CryoSleep;
 using Content.Shared._NF.CryoSleep.Events;
@@ -429,7 +430,11 @@ public sealed partial class CryoSleepSystem : EntitySystem
             id = mind.UserId;
             if (id != null)
             {
-                _storedBodies[id.Value] = new StoredBody() { Body = body, Cryopod = cryopod };
+                var characterSlot = -1;
+                if (TryComp<BankAccountComponent>(bodyId, out var bankComp) && bankComp.CharacterSlot >= 0)
+                    characterSlot = bankComp.CharacterSlot;
+
+                _storedBodies[id.Value] = new StoredBody() { Body = body, Cryopod = cryopod, CharacterSlot = characterSlot };
             }
 
             _ghost.OnGhostAttempt(mindEntity, false, true, mind: mind);
@@ -492,5 +497,6 @@ public sealed partial class CryoSleepSystem : EntitySystem
     {
         public EntityUid Body;
         public EntityUid Cryopod;
+        public int CharacterSlot;
     }
 }
