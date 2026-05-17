@@ -4,6 +4,8 @@
   suffix: Filled
   parent: NightWithTheBoysKit
   components:
+  - type: StaticPrice
+    price: 200
   - type: StorageFill
     contents:
     - id: CardDeckBlack
