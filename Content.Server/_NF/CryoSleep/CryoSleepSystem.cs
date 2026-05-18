@@ -10,6 +10,8 @@ using Content.Server.Ghost;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
+using Content.Server.GameTicking; // Wayfarer
+using Content.Server.Players.PlayTimeTracking; // Wayfarer
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.CryoSleep;
@@ -77,6 +79,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!; //For cryosleep warnings
     [Dependency] private readonly Shared.Roles.SharedRoleSystem _roles = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!; // Wayfarer
+    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!; // Wayfarer
 
     private readonly Dictionary<NetUserId, List<StoredBody>> _storedBodies = new();
     private EntityUid? _storageMap;
@@ -632,6 +636,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
                 return;
         }
 
+        // Begin Wayfarer
         // Remove from stored bodies and transfer control to the player
         storedBodies.Remove(storedBody.Value);
         if (storedBodies.Count == 0)
@@ -646,11 +651,15 @@ public sealed partial class CryoSleepSystem : EntitySystem
             bankComp.CharacterSlot = storedBody.Value.CharacterSlot;
         }
 
-        // Tell the client to switch to game state
+        // Properly transition the player from lobby to game state and refresh playtime tracking.
         if (_player.TryGetSessionById(userId, out var session))
         {
-            RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
+            _gameTicker.PlayerJoinGame(session, silent: true);
+            _playTimeTracking.QueueRefreshTrackers(session);
+            _playTimeTracking.QueueSendTimers(session);
         }
+
+        // End Wayfarer
 
         // Force the mob to sleep
         var sleep = EnsureComp<SleepingComponent>(body);

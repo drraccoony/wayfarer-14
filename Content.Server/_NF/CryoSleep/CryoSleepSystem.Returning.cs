@@ -101,6 +101,13 @@ public sealed partial class CryoSleepSystem
             bankComp.CharacterSlot = storedBody.CharacterSlot;
         }
 
+        // Refresh playtime tracking and push updated times to the client.
+        if (_player.TryGetSessionById(id.Value, out var session))
+        {
+            _playTimeTracking.QueueRefreshTrackers(session);
+            _playTimeTracking.QueueSendTimers(session);
+        }
+
         // Force the mob to sleep
         var sleep = EnsureComp<SleepingComponent>(body);
         sleep.CooldownEnd = TimeSpan.FromSeconds(5);
