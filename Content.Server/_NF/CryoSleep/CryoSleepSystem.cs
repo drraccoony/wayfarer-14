@@ -584,7 +584,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
                 GetNetEntity(sb.Cryopod),
                 MetaData(sb.Body).EntityName,
                 jobName,
-                sb.StationName));
+                sb.StationName,
+                sb.CharacterSlot));
         }
         RaiseNetworkEvent(new GetStoredCharactersResponseMessage(characters), args.SenderSession);
     }
@@ -619,7 +620,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
                         GetNetEntity(cryopod),
                         characterName,
                         jobName,
-                        storedBody.StationName
+                        storedBody.StationName,
+                        storedBody.CharacterSlot
                     ));
                 }
             }

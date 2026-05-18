@@ -38,3 +38,4 @@ resume-character-window-cancel-button = Cancel
 resume-character-window-no-characters = No characters in cryosleep.
 resume-character-window-remove-button = Remove
 resume-character-window-remove-confirm = Are you sure?
+lobby-state-join-button-cryo-tooltip = This character is already in cryosleep. Resume them or select a different character.
