@@ -47,7 +47,7 @@ namespace Content.Client.Lobby
         // Track whether the user clicked the Resume button
         private bool _pendingResumeRequest = false;
 
-        // Tracks which character preference slots currently have a body in cryosleep. // Wayfarer
+        // Wayfarer: Tracks which character preference slots currently have a body in cryosleep.
         private readonly HashSet<int> _cryoCharacterSlots = new();
 
         protected override void Startup()
@@ -114,7 +114,7 @@ namespace Content.Client.Lobby
             _cryoSleepSystem.OnCharactersResponse -= OnGetStoredCharactersResponse;
             _preferencesManager.OnCharacterSelected -= UpdateJoinButtonState; // Wayfarer
 
-            _cryoCharacterSlots.Clear();
+            _cryoCharacterSlots.Clear(); // Wayfarer
             Lobby = null;
         }
 
@@ -150,13 +150,14 @@ namespace Content.Client.Lobby
 
         private void OnGetStoredCharactersResponse(GetStoredCharactersResponseMessage msg)
         {
-            // Update cryo slot set so the Join button can reflect the correct state.
+            // Wayfarer: Update cryo slot set so the Join button can reflect the correct state.
             _cryoCharacterSlots.Clear();
             foreach (var c in msg.Characters)
             {
                 if (c.CharacterSlot >= 0)
                     _cryoCharacterSlots.Add(c.CharacterSlot);
             }
+            // End Wayfarer
 
             // Update Resume button visibility
             if (_gameTicker.IsGameStarted && Lobby != null)
@@ -164,7 +165,7 @@ namespace Content.Client.Lobby
                 Lobby.ResumeButton.Visible = msg.Characters.Count > 0;
             }
 
-            UpdateJoinButtonState();
+            UpdateJoinButtonState(); // Wayfarer
 
             // If this was triggered by clicking the Resume button, show the window
             if (_pendingResumeRequest)
@@ -275,7 +276,6 @@ namespace Content.Client.Lobby
         /// Updates the Join/Ready button's disabled state, combining the DisallowedLateJoin flag
         /// and whether the currently selected character is already in cryosleep.
         /// </summary>
-        // Wayfarer
         private void UpdateJoinButtonState()
         {
             if (Lobby == null)
@@ -294,6 +294,7 @@ namespace Content.Client.Lobby
             var slot = _preferencesManager.Preferences?.SelectedCharacterIndex;
             return slot.HasValue && _cryoCharacterSlots.Contains(slot.Value);
         }
+        // End Wayfarer
 
         private void UpdateLobbyUi()
         {

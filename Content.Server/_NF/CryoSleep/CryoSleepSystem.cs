@@ -102,7 +102,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         SubscribeNetworkEvent<GetStoredCharactersRequestMessage>(OnGetStoredCharactersRequest);
         SubscribeNetworkEvent<ResumeCharacterRequestMessage>(OnResumeCharacterRequest);
-        SubscribeNetworkEvent<RemoveStoredCharacterRequestMessage>(OnRemoveStoredCharacterRequest);
+        SubscribeNetworkEvent<RemoveStoredCharacterRequestMessage>(OnRemoveStoredCharacterRequest); // Wayfarer
 
         InitReturning();
     }
@@ -535,6 +535,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         _storedBodies.Clear();
     }
 
+    // Wayfarer
     private void OnRemoveStoredCharacterRequest(RemoveStoredCharacterRequestMessage msg, EntitySessionEventArgs args)
     {
         var userId = args.SenderSession.UserId;
@@ -589,6 +590,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         }
         RaiseNetworkEvent(new GetStoredCharactersResponseMessage(characters), args.SenderSession);
     }
+    // End Wayfarer
 
     private void OnGetStoredCharactersRequest(GetStoredCharactersRequestMessage msg, EntitySessionEventArgs args)
     {
@@ -621,7 +623,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
                         characterName,
                         jobName,
                         storedBody.StationName,
-                        storedBody.CharacterSlot
+                        storedBody.CharacterSlot // Wayfarer
                     ));
                 }
             }
@@ -708,7 +710,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
             bankComp.CharacterSlot = storedBody.Value.CharacterSlot;
         }
 
-        // Properly transition the player from lobby to game state and refresh playtime tracking.
+        // Wayfarer: Properly transition the player from lobby to game state and refresh playtime tracking.
         if (_player.TryGetSessionById(userId, out var session))
         {
             _gameTicker.PlayerJoinGame(session, silent: true);

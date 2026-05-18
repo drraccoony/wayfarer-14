@@ -107,6 +107,7 @@ public sealed partial class CryoSleepSystem
             _playTimeTracking.QueueRefreshTrackers(session);
             _playTimeTracking.QueueSendTimers(session);
         }
+        // End Wayfarer
 
         // Force the mob to sleep
         var sleep = EnsureComp<SleepingComponent>(body);

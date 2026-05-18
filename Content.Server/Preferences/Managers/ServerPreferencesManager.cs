@@ -314,6 +314,7 @@ namespace Content.Server.Preferences.Managers
                 _entityManager.EventBus.RaiseLocalEvent(session.AttachedEntity.Value, new PreferencesLoadedEvent(session, prefsData.Prefs));
         }
 
+        // Wayfarer
         public void SendCachedPreferences(ICommonSession session)
         {
             // Wayfarer: Send already-loaded preferences to the client without a DB round-trip.
