@@ -330,6 +330,7 @@ namespace Content.Server.Preferences.Managers
             };
             _netManager.ServerSendMessage(msg, session.Channel);
         }
+        // End Wayfarer
 
         public void OnClientDisconnected(ICommonSession session)
         {
