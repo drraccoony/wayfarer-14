@@ -74,3 +74,21 @@ public sealed class ResumeCharacterRequestMessage : EntityEventArgs
         Body = body;
     }
 }
+
+/// <summary>
+/// Request from client to permanently remove a stored cryo character (abandon it).
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class RemoveStoredCharacterRequestMessage : EntityEventArgs
+{
+    public NetEntity Body { get; set; }
+
+    public RemoveStoredCharacterRequestMessage()
+    {
+    }
+
+    public RemoveStoredCharacterRequestMessage(NetEntity body)
+    {
+        Body = body;
+    }
+}

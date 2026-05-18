@@ -102,6 +102,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         SubscribeNetworkEvent<GetStoredCharactersRequestMessage>(OnGetStoredCharactersRequest);
         SubscribeNetworkEvent<ResumeCharacterRequestMessage>(OnResumeCharacterRequest);
+        SubscribeNetworkEvent<RemoveStoredCharacterRequestMessage>(OnRemoveStoredCharacterRequest);
 
         InitReturning();
     }
@@ -532,6 +533,60 @@ public sealed partial class CryoSleepSystem : EntitySystem
     private void OnRoundRestart(RoundRestartCleanupEvent args)
     {
         _storedBodies.Clear();
+    }
+
+    private void OnRemoveStoredCharacterRequest(RemoveStoredCharacterRequestMessage msg, EntitySessionEventArgs args)
+    {
+        var userId = args.SenderSession.UserId;
+
+        if (!_storedBodies.TryGetValue(userId, out var storedBodies))
+            return;
+
+        var body = GetEntity(msg.Body);
+
+        StoredBody? toRemove = null;
+        foreach (var sb in storedBodies)
+        {
+            if (sb.Body == body)
+            {
+                toRemove = sb;
+                break;
+            }
+        }
+
+        if (toRemove == null)
+            return;
+
+        storedBodies.Remove(toRemove.Value);
+        if (storedBodies.Count == 0)
+            _storedBodies.Remove(userId);
+
+        // Delete the body entity entirely so it no longer occupies a cryopod.
+        if (Exists(body) && !Deleted(body))
+            QueueDel(body);
+
+        _adminLogger.Add(LogType.Action, LogImpact.Medium,
+            $"{userId} removed their stored cryo character {body}.");
+
+        // Send updated list so the window refreshes.
+        var updatedBodies = _storedBodies.TryGetValue(userId, out var remaining) ? remaining : new List<StoredBody>();
+        var characters = new List<StoredCharacterInfo>();
+        foreach (var sb in updatedBodies)
+        {
+            if (!Exists(sb.Body) || Deleted(sb.Body))
+                continue;
+            var jobName = "Unknown";
+            if (_roles.MindHasRole<JobRoleComponent>(sb.Mind, out var jobRole)
+                && jobRole.Value.Comp1.JobPrototype is {} proto)
+                jobName = proto;
+            characters.Add(new StoredCharacterInfo(
+                GetNetEntity(sb.Body),
+                GetNetEntity(sb.Cryopod),
+                MetaData(sb.Body).EntityName,
+                jobName,
+                sb.StationName));
+        }
+        RaiseNetworkEvent(new GetStoredCharactersResponseMessage(characters), args.SenderSession);
     }
 
     private void OnGetStoredCharactersRequest(GetStoredCharactersRequestMessage msg, EntitySessionEventArgs args)
