@@ -101,7 +101,7 @@ public sealed partial class CryoSleepSystem
             bankComp.CharacterSlot = storedBody.CharacterSlot;
         }
 
-        // Refresh playtime tracking and push updated times to the client.
+        // Wayfarer: Refresh playtime tracking and push updated times to the client.
         if (_player.TryGetSessionById(id.Value, out var session))
         {
             _playTimeTracking.QueueRefreshTrackers(session);
