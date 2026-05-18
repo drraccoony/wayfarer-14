@@ -121,6 +121,10 @@ public sealed class RoleplayLevelingSystem : SharedRoleplayLevelingSystem
         // Load or create roleplay level data from database
         var levelData = await _dbManager.GetOrCreateRoleplayLevel(userId.UserId);
 
+        // Entity may have been deleted while awaiting the database call
+        if (!Exists(args.Entity))
+            return;
+
         // Add component to player
         var comp = EnsureComp<RoleplayLevelComponent>(args.Entity);
         comp.UserId = userId.UserId;
