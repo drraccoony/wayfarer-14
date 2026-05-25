@@ -1,6 +1,7 @@
 // Wayfarer: Added character resume from cryosleep feature - multiple stored characters per user, station name storage
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.DoAfter;
@@ -9,11 +10,15 @@ using Content.Server.Ghost;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
+using Content.Server.GameTicking; // Wayfarer
+using Content.Server.Players.PlayTimeTracking; // Wayfarer
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.CryoSleep;
 using Content.Shared._NF.CryoSleep.Events;
 using Content.Shared._WF.CryoSleep; // Wayfarer: Resume character messages
+using Content.Shared._NF.Bank.Components;
+using Content.Server.Preferences.Managers;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
@@ -30,6 +35,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Roles.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.PDA;
@@ -69,9 +75,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly InventorySystem _inventory = default!; //For cryosleep warnings
     [Dependency] private readonly Shared.Roles.SharedRoleSystem _roles = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!; // Wayfarer
+    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!; // Wayfarer
 
     private readonly Dictionary<NetUserId, List<StoredBody>> _storedBodies = new();
     private EntityUid? _storageMap;
@@ -93,6 +102,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         SubscribeNetworkEvent<GetStoredCharactersRequestMessage>(OnGetStoredCharactersRequest);
         SubscribeNetworkEvent<ResumeCharacterRequestMessage>(OnResumeCharacterRequest);
+        SubscribeNetworkEvent<RemoveStoredCharacterRequestMessage>(OnRemoveStoredCharacterRequest); // Wayfarer
 
         InitReturning();
     }
@@ -445,16 +455,26 @@ public sealed partial class CryoSleepSystem : EntitySystem
             {
                 if (!_storedBodies.ContainsKey(id.Value))
                     _storedBodies[id.Value] = new List<StoredBody>();
-                
+
                 // Get the station name
                 var stationUid = _station.GetOwningStation(cryopod);
                 var stationName = stationUid != null ? Name(stationUid.Value) : "Unknown Station";
-                
-                var newBody = new StoredBody() { Body = body, Cryopod = cryopod, Mind = mindEntity, StationName = stationName };
-                
+
+                // Capture the character slot so we can restore the correct bank account on resume.
+                var characterSlot = -1;
+                if (_player.TryGetSessionById(id.Value, out var playerSession) &&
+                    _prefsManager.TryGetCachedPreferences(id.Value, out var prefs) &&
+                    TryComp<BankAccountComponent>(bodyId, out var bankComp) &&
+                    bankComp.CharacterSlot >= 0)
+                {
+                    characterSlot = bankComp.CharacterSlot;
+                }
+
+                var newBody = new StoredBody() { Body = body, Cryopod = cryopod, Mind = mindEntity, StationName = stationName, CharacterSlot = characterSlot };
+
                 // Remove any existing entry for this body (in case of re-cryo)
                 _storedBodies[id.Value].RemoveAll(sb => sb.Body == body);
-                
+
                 // Add the new body
                 _storedBodies[id.Value].Add(newBody);
             }
@@ -515,6 +535,63 @@ public sealed partial class CryoSleepSystem : EntitySystem
         _storedBodies.Clear();
     }
 
+    // Wayfarer
+    private void OnRemoveStoredCharacterRequest(RemoveStoredCharacterRequestMessage msg, EntitySessionEventArgs args)
+    {
+        var userId = args.SenderSession.UserId;
+
+        if (!_storedBodies.TryGetValue(userId, out var storedBodies))
+            return;
+
+        var body = GetEntity(msg.Body);
+
+        StoredBody? toRemove = null;
+        foreach (var sb in storedBodies)
+        {
+            if (sb.Body == body)
+            {
+                toRemove = sb;
+                break;
+            }
+        }
+
+        if (toRemove == null)
+            return;
+
+        storedBodies.Remove(toRemove.Value);
+        if (storedBodies.Count == 0)
+            _storedBodies.Remove(userId);
+
+        // Delete the body entity entirely so it no longer occupies a cryopod.
+        if (Exists(body) && !Deleted(body))
+            QueueDel(body);
+
+        _adminLogger.Add(LogType.Action, LogImpact.Medium,
+            $"{userId} removed their stored cryo character {body}.");
+
+        // Send updated list so the window refreshes.
+        var updatedBodies = _storedBodies.TryGetValue(userId, out var remaining) ? remaining : new List<StoredBody>();
+        var characters = new List<StoredCharacterInfo>();
+        foreach (var sb in updatedBodies)
+        {
+            if (!Exists(sb.Body) || Deleted(sb.Body))
+                continue;
+            var jobName = "Unknown";
+            if (_roles.MindHasRole<JobRoleComponent>(sb.Mind, out var jobRole)
+                && jobRole.Value.Comp1.JobPrototype is {} proto)
+                jobName = proto;
+            characters.Add(new StoredCharacterInfo(
+                GetNetEntity(sb.Body),
+                GetNetEntity(sb.Cryopod),
+                MetaData(sb.Body).EntityName,
+                jobName,
+                sb.StationName,
+                sb.CharacterSlot));
+        }
+        RaiseNetworkEvent(new GetStoredCharactersResponseMessage(characters), args.SenderSession);
+    }
+    // End Wayfarer
+
     private void OnGetStoredCharactersRequest(GetStoredCharactersRequestMessage msg, EntitySessionEventArgs args)
     {
         var userId = args.SenderSession.UserId;
@@ -534,15 +611,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
                     var jobName = "Unknown";
 
                     // Get the job name from the stored mind's job role
-                    if (TryComp<MindComponent>(mindId, out var mindComp) && mindComp != null)
+                    if (_roles.MindHasRole<JobRoleComponent>(mindId, out var jobRole)
+                        && jobRole.Value.Comp1.JobPrototype is {} proto)
                     {
-                        if (_roles.MindHasRole<Shared.Roles.Jobs.JobRoleComponent>(mindId, out var jobRole))
-                        {
-                            if (jobRole.Value.Comp1.JobPrototype != null)
-                            {
-                                jobName = jobRole.Value.Comp1.JobPrototype;
-                            }
-                        }
+                        jobName = proto;
                     }
 
                     characters.Add(new StoredCharacterInfo(
@@ -550,7 +622,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
                         GetNetEntity(cryopod),
                         characterName,
                         jobName,
-                        storedBody.StationName
+                        storedBody.StationName,
+                        storedBody.CharacterSlot // Wayfarer
                     ));
                 }
             }
@@ -568,7 +641,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
             return;
 
         var body = GetEntity(msg.Body);
-        
+
         // Find the specific stored body
         StoredBody? storedBody = null;
         foreach (var sb in storedBodies)
@@ -579,7 +652,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
                 break;
             }
         }
-        
+
         if (storedBody == null)
             return;
 
@@ -590,11 +663,11 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         // Handle the return directly since we already have all the info
         var cryopod = storedBody.Value.Cryopod;
-        
+
         // Check if cryo return is enabled
         if (!_configurationManager.GetCVar(NFCCVars.CryoReturnEnabled))
             return;
-        
+
         // Try to insert the body into the cryopod
         if (!Exists(cryopod) || Deleted(cryopod) || !TryComp<CryoSleepComponent>(cryopod, out var cryoComp))
         {
@@ -609,7 +682,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
                     break;
                 }
             }
-            
+
             if (!foundFallback)
                 return;
         }
@@ -617,36 +690,43 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             if (IsOccupied(cryoComp))
                 return;
-            
+
             if (!_container.Insert(body, cryoComp.BodyContainer))
                 return;
         }
-        
+
+        // Begin Wayfarer
         // Remove from stored bodies and transfer control to the player
         storedBodies.Remove(storedBody.Value);
         if (storedBodies.Count == 0)
             _storedBodies.Remove(userId);
-        
+
         _mind.ControlMob(userId, body);
-        
-        // Tell the client to switch to game state
+
+        // Restore the character slot so bank operations target the right account.
+        if (storedBody.Value.CharacterSlot >= 0)
+        {
+            var bankComp = EnsureComp<BankAccountComponent>(body);
+            bankComp.CharacterSlot = storedBody.Value.CharacterSlot;
+        }
+
+        // Wayfarer: Properly transition the player from lobby to game state and refresh playtime tracking.
         if (_player.TryGetSessionById(userId, out var session))
         {
-            RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
+            _gameTicker.PlayerJoinGame(session, silent: true);
+            _playTimeTracking.QueueRefreshTrackers(session);
+            _playTimeTracking.QueueSendTimers(session);
         }
-        
+
+        // End Wayfarer
+
         // Force the mob to sleep
         var sleep = EnsureComp<SleepingComponent>(body);
         sleep.CooldownEnd = TimeSpan.FromSeconds(5);
-        
+
         _popup.PopupEntity(Loc.GetString("cryopod-wake-up", ("entity", body)), body);
         RaiseLocalEvent(body, new CryosleepWakeUpEvent(cryopod, userId), true);
-        
-        // Remove this body from stored bodies since they've resumed
-        storedBodies.Remove(storedBody.Value);
-        if (storedBodies.Count == 0)
-            _storedBodies.Remove(userId);
-        
+
         _adminLogger.Add(LogType.LateJoin, LogImpact.Medium, $"{userId} has returned from cryosleep!");
     }
 
@@ -656,5 +736,6 @@ public sealed partial class CryoSleepSystem : EntitySystem
         public EntityUid Cryopod;
         public EntityUid Mind;
         public string StationName;
+        public int CharacterSlot; // Which prefs slot the player was using when they entered cryo
     }
 }

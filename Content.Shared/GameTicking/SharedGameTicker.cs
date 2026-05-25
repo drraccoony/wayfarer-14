@@ -18,12 +18,18 @@ namespace Content.Shared.GameTicking
         [Dependency] private readonly IReplayRecordingManager _replay = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
 
+        /// <summary>
+        ///     A list storing the start times of all game rules that have been started this round.
+        ///     Game rules can be started and stopped at any time, including midround.
+        /// </summary>
+        public abstract IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules { get; }
+
         // See ideally these would be pulled from the job definition or something.
         // But this is easier, and at least it isn't hardcoded.
         //TODO: Move these, they really belong in StationJobsSystem or a cvar.
-        public static readonly ProtoId<JobPrototype> FallbackOverflowJob = "Contractor"; // Frontier: Passenger<Contractor
+        public static readonly ProtoId<JobPrototype> FallbackOverflowJob = "Wayfarer"; // WF Job
 
-        public const string FallbackOverflowJobName = "job-name-contractor"; // Frontier: job-name-passenger<job-name-contractor
+        public const string FallbackOverflowJobName = "job-name-wayfarer"; // WF Job
 
         // TODO network.
         // Probably most useful for replays, round end info, and probably things like lobby menus.

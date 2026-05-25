@@ -107,7 +107,7 @@
     - state: idintern-service
 
 - type: entity
-  parent: [IDCardStandard, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [IDCardStandard] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable # Wayfarer: Removed contraband
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -179,14 +179,14 @@
 - type: entity
   parent: IDCardStandard
   id: ParamedicIDCard
-  name: paramedic ID card
+  name: emergency responder ID card
   components:
   - type: Sprite
     layers:
     - state: default
     - state: idparamedic
   - type: PresetIdCard
-    job: Paramedic
+    job: MedicalER
 
 - type: entity
   parent: IDCardStandard
@@ -604,13 +604,13 @@
     listNumber: false
 
 - type: entity
-  name: contractor ID card # Frontier: passenger<contractor
-  parent: [IDCardStandard, BaseC3SyndicateContraband]
+  name: wayfarer ID card # WF Contractor to Wayfarer, Remove Contraband ( add back post contra rework )
+  parent: [ IDCardStandard, BaseChameleon ]
   id: AgentIDCard
   suffix: Agent
   components:
   - type: PresetIdCard
-    job: Contractor # Frontier: Passenger<Contractor
+    job: Wayfarer # WF
   - type: Access
     tags:
     - Maintenance
@@ -621,9 +621,11 @@
     - state: idcontractor # Frontier: idpassenger<idcontractor
       sprite: _NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
+  - type: UIRequiresLock
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
+    verbText: agent-id-open-ui-verb
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -637,8 +639,6 @@
         type: AgentIDCardBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
-  - type: Contraband # Frontier
-    hideValues: true # Frontier
   - type: NanoChatCard # DeltaV
     listNumber: false
 
@@ -652,7 +652,7 @@
     tags:
     - Maintenance
     - SyndicateAgent
-    - NuclearOperative
+#    - NuclearOperative
 
 - type: entity
   parent: IDCardStandard
@@ -667,22 +667,22 @@
     job: AtmosphericTechnician
 
 - type: entity
-  parent: [ BaseC3SyndicateContraband, IDCardStandard ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ IDCardStandard ] # Wayfarer: Removed Contraband
   id: SyndicateIDCard
-  name: syndicate ID card
+  name: ID card # Wayfarer: Renamed
   components:
   - type: Sprite
     layers:
     - state: syndie
   - type: Access
     tags:
-    - NuclearOperative
+#    - NuclearOperative
     - SyndicateAgent
   - type: NanoChatCard # DeltaV
     listNumber: false
 
 - type: entity
-  parent: [ BaseC3PirateContraband, IDCardStandard ] # Frontier: BaseMajorContraband<BaseC3PirateContraband
+  parent: [ IDCardStandard ] # Wayfarer: Removed Contraband
   id: PirateIDCard
   name: pirate ID card
   categories: [ HideSpawnMenu ] # Frontier
@@ -692,7 +692,6 @@
     - state: pirate
   - type: Access
     tags:
-    - NuclearOperative
     - SyndicateAgent
   - type: NanoChatCard # DeltaV
     listNumber: false

@@ -10,6 +10,11 @@
   - type: IgnitionSource
     temperature: 800
   - type: IgniteOnTrigger
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: WelderOn
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition
   - type: TriggerOnSignal
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -23,3 +28,11 @@
   - type: Tag
     tags:
     - Igniter
+  # Wayfarer: added recyclable component
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+    chemicalComposition:
+      Sulfur: 5
+      Carbon: 5
+  # End Wayfarer

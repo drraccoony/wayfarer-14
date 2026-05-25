@@ -21,7 +21,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Items/Toys/hew.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/hew.ogg
@@ -52,6 +52,18 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/Plushies/lizard.rsi
     state: plushie_engineer
+  - type: Item
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    heldPrefix: engineer
+  - type: Clothing
+    sprite: _NF/Objects/Fun/Plushies/lizard.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: engineer-equipped-HELMET
+        offset: "0, 0.03"
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieEngineer
@@ -68,6 +80,17 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: NFPlushieConstruction
+
+- type: entity
+  parent: [PlushieLizard, BaseHandheldInstrument]
+  id: NFPlushieLizardMusician #Weh!
+  name: squeaky lizard plushie
+  components:
+  - type: Instrument
+    program: 1
+    bank: 101
+  - type: StaticPrice
+    price: 400
 
 - type: entity
   parent: PlushieLizard
@@ -125,7 +148,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_NF/Effects/silence.ogg
@@ -492,7 +515,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
@@ -589,7 +612,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
@@ -932,10 +955,13 @@
     sound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_2.ogg
   - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_NF/Voice/Goblin/goblin_scream_1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_NF/Voice/Goblin/goblin_cackle_3.ogg
@@ -1006,7 +1032,7 @@
       sound:
        path: /Audio/Weapons/rubberhammer.ogg
     - type: StaminaDamageOnCollide
-      damage: 15 #WF reduction stamina rebalance
+      damage: 20
 
 - type: entity
   parent: [BaseClearContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamberCap]
@@ -1024,7 +1050,7 @@
     clumsyProof: true
 
 - type: entity
-  parent: [BaseC3SyndicateContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamber45Cap]
+  parent: [NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamber45Cap] # Wayfarer: Remove contraband
   id: NFRevolverCapGunFake
   suffix: Fake, Frontier
   name: cap gun
@@ -1038,12 +1064,12 @@
   - type: Item
     sprite: Objects/Fun/capgun.rsi
     heldPrefix: capgun
-  - type: Contraband
-    hideValues: true
+#  - type: Contraband # Wayfarer
+#    hideValues: true
 
 # Grown cap gun, in toys.yml for consistency with fake parent
 - type: entity
-  parent: [BaseC3SyndicateContrabandNoValue, NFRevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
+  parent: [BaseBMContraband, NFRevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband # Wayfarer: BaseC3SyndicateContrabandNoValue<BaseBMContraband
   id: NFRevolverCapGunFakeGrown
   categories: [ HideSpawnMenu ]
   suffix: Fake, Grown

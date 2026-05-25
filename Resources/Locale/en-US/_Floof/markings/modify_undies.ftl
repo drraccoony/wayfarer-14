@@ -1,8 +1,8 @@
-verb-categories-undies = Modify Undies
+verb-categories-undies = Modify Markings
 
 modify-undies-verb-text = {$isVisible ->
-*[false] Put on
-[true] Take off
+*[false] {$putOnVerb}
+[true] {$takeOffVerb}
 } {$isMine ->
 *[false] {$target}'s
 [true] your

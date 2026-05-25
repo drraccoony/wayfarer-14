@@ -22,6 +22,7 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
+    exactVolume: true
   - type: Hypospray
     onlyAffectsMobs: false
   - type: UseDelay
@@ -41,7 +42,7 @@
 
 - type: entity
   name: gorlex hypospray
-  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
+  parent: [BaseItem, BaseBMContraband] # Frontier: add BaseC3SyndicateContraband # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
   id: SyndiHypo
   components:
@@ -63,6 +64,7 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
+    exactVolume: true
   - type: Hypospray
     onlyAffectsMobs: false
   - type: UseDelay
@@ -154,6 +156,7 @@
         maxVol: 15
   - type: ExaminableSolution
     solution: pen
+    exactVolume: true
   - type: Hypospray
     solutionName: pen
     transferAmount: 15
@@ -534,7 +537,7 @@
 
 - type: entity
   name: hyperzine injector
-  parent: [ChemicalMedipen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ChemicalMedipen, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: Stimpack
   description: Contains enough hyperzine for you to have the chemical's effect for 30 seconds. Use it when you're sure you're ready to throw down.
   components:
@@ -578,7 +581,7 @@
 
 - type: entity
   name: hyperzine microinjector
-  parent: [ChemicalMedipen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ChemicalMedipen, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: StimpackMini
   description: A microinjector of hyperzine that give you about 15 seconds of the chemical's effects.
   components:
@@ -617,7 +620,7 @@
 
 - type: entity
   name: combat medipen
-  parent: [ChemicalMedipen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ChemicalMedipen, BaseBMContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   id: CombatMedipen
   description: A single-use medipen containing chemicals that regenerate most types of damage.
   components:
@@ -647,9 +650,11 @@
       pen:
         maxVol: 30
         reagents:
-        - ReagentId: Omnizine
+        - ReagentId: Ichor # WF - Omnizine > Ichor replacement
           Quantity: 25
-        - ReagentId: TranexamicAcid
+        #- ReagentId: TranexamicAcid # WF - not needed, ichor closes wounds
+        #  Quantity: 5
+        - ReagentId: Saline
           Quantity: 5
   - type: Hypospray
     solutionName: pen
@@ -662,7 +667,7 @@
 - type: entity
   name: pen
   suffix: Hypopen
-  parent: [Pen, BaseC3SyndicateContraband] # It is just like normal pen, isn't it?
+  parent: [Pen, BaseBMContraband] # It is just like normal pen, isn't it? # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   description: A dark ink pen.
   id: Hypopen
   components:
@@ -675,6 +680,7 @@
   - type: ExaminableSolution
     solution: hypospray
     heldOnly: true # Allow examination only when held in hand.
+    exactVolume: true
   - type: Hypospray
     onlyAffectsMobs: false
   - type: UseDelay
@@ -685,9 +691,14 @@
     handle: false # don't want the sound to stop the self-inject from triggering
   - type: Contraband # Frontier
     hideValues: true # Frontier - stealthy
+  # Wayfarer: Deposit blacklist tag
+  - type: Tag
+    tags:
+    - DepositBlacklist
+  # End Wayfarer
 
 - type: entity
-  parent: [ BaseItem, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ BaseItem, BaseBMContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   id: HypopenBox
   name: hypopen box
   description: A small box containing a hypopen. Packaging disintegrates when opened, leaving no evidence behind.

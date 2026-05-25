@@ -81,8 +81,8 @@
         reagents:
           - ReagentId: Nicotine
             Quantity: 10
-          - ReagentId: Ichor
-            Quantity: 5
+          - ReagentId: Bicaridine # Wayfarer: Omnizine<Bicaridine
+            Quantity: 10 # Wayfarer: 5<10
 
 - type: entity
   id: CigaretteOmnizine
@@ -96,8 +96,8 @@
         reagents:
           - ReagentId: Nicotine
             Quantity: 10
-          - ReagentId: Omnizine
-            Quantity: 10
+          - ReagentId: Ichor # WF - Omnizine > Ichor replacement
+            Quantity: 2 # WF 10->2
 
 - type: entity
   id: CigaretteIron

@@ -27,10 +27,10 @@ public sealed partial class LatheMenu : DefaultWindow
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
-    public event Action<int>? QueueDeleteAction; // Frontier
-    public event Action<int>? QueueMoveUpAction; // Frontier
-    public event Action<int>? QueueMoveDownAction; // Frontier
-    public event Action? DeleteFabricatingAction; // Frontier
+    public event Action<int>? QueueDeleteAction;
+    public event Action<int>? QueueMoveUpAction;
+    public event Action<int>? QueueMoveDownAction;
+    public event Action? DeleteFabricatingAction;
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
@@ -55,14 +55,21 @@ public sealed partial class LatheMenu : DefaultWindow
         };
         AmountLineEdit.OnTextChanged += _ =>
         {
+            if (int.TryParse(AmountLineEdit.Text, out var amount))
+            {
+                if (amount > LatheSystem.MaxItemsPerRequest)
+                    AmountLineEdit.Text = LatheSystem.MaxItemsPerRequest.ToString();
+                else if (amount < 0)
+                    AmountLineEdit.Text = "0";
+            }
+
             PopulateRecipes();
         };
 
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
-        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
-        DeleteFabricating.AddStyleClass("OpenLeft"); // Frontier
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
     }
 
     public void SetEntity(EntityUid uid)
@@ -127,20 +134,28 @@ public sealed partial class LatheMenu : DefaultWindow
 
         foreach (var prototype in sortedRecipesToShow)
         {
-            var canProduce = _lathe.CanProduce(Entity, prototype, quantity, component: lathe);
+            //var canProduce = _lathe.CanProduce(Entity, prototype, quantity, component: lathe);
+            // Coyote: Use custom availability check that includes the buffer
+            var canProduce = CanProduceWithBuffer(prototype, quantity);
 
-            var control = new RecipeControl(_lathe, prototype, () => GenerateTooltipText(prototype), canProduce, GetRecipeDisplayControl(prototype));
+            //var control = new RecipeControl(_lathe, prototype, () => GenerateTooltipText(prototype), canProduce, GetRecipeDisplayControl(prototype));
+            // Coyote: Pass the current buffer amount to the tooltip generator
+            var control = new RecipeControl(_lathe, prototype, () => GenerateTooltipText(prototype, _bufferAmount), canProduce, GetRecipeDisplayControl(prototype));
             control.OnButtonPressed += s =>
             {
                 if (!int.TryParse(AmountLineEdit.Text, out var amount) || amount <= 0)
                     amount = 1;
+
+                if (AmountLineEdit.Text.ToLower() == "max" || AmountLineEdit.Text.ToLower() == "all") // Wayfarer: Allow crafting a recipe the maximum number of times
+                    amount = GetMaximumCraftQuantity(prototype);
+
                 RecipeQueueAction?.Invoke(s, amount);
             };
             RecipeList.AddChild(control);
         }
     }
 
-    private string GenerateTooltipText(LatheRecipePrototype prototype)
+    private string GenerateTooltipText(LatheRecipePrototype prototype, int? bufferAmount) // Coyote: Modified tooltip generator – accepts buffer amount
     {
         StringBuilder sb = new();
         var multiplier = _entityManager.GetComponent<LatheComponent>(Entity).FinalMaterialUseMultiplier; // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
@@ -156,7 +171,8 @@ public sealed partial class LatheMenu : DefaultWindow
             var unit = Loc.GetString(proto.Unit);
             var sheets = adjustedAmount / (float) sheetVolume;
 
-            var availableAmount = _materialStorage.GetMaterialAmount(Entity, id);
+            //var availableAmount = _materialStorage.GetMaterialAmount(Entity, id);
+            int availableAmount = GetTotalMaterialAmount(id, bufferAmount); // Coyote: Get total available amount (including buffer for biomass)
             var missingAmount = Math.Max(0, adjustedAmount - availableAmount);
             var missingSheets = missingAmount / (float) sheetVolume;
 
@@ -230,41 +246,28 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: IReadOnlyCollection<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
+    public void PopulateQueueList(IReadOnlyCollection<LatheRecipeBatch> queue)
     {
         QueueList.DisposeAllChildren();
 
         var idx = 1;
-        foreach (var batch in queue) // Frontier: recipe<batch
+        foreach (var batch in queue)
         {
-            // Frontier: custom boxes
-            // var recipe = _prototypeManager.Index(recipeProto);
-            // var queuedRecipeBox = new BoxContainer();
-            // queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
+            var recipe = _prototypeManager.Index(batch.Recipe);
 
-            // // Frontier: batch handling
-            // queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe)); // Frontier: GetRecipeDisplayControl<GetQueueRecipeDisplayControl
-
-            // var queuedRecipeLabel = new Label();
-            // if (batch.ItemsRequested > 1)
-            //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
-            // else
-            //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            // // End Frontier
-            // queuedRecipeBox.AddChild(queuedRecipeLabel);
-            // QueueList.AddChild(queuedRecipeBox);
-
+            var itemName = _lathe.GetRecipeName(batch.Recipe);
             string displayText;
             if (batch.ItemsRequested > 1)
-                displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+                displayText = Loc.GetString("lathe-menu-item-batch", ("index", idx), ("name", itemName), ("printed", batch.ItemsPrinted), ("total", batch.ItemsRequested));
             else
-                displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(_prototypeManager.Index(batch.Recipe)));
+                displayText = Loc.GetString("lathe-menu-item-single", ("index", idx), ("name", itemName));
+
+            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(recipe));
             queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
             queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
             queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
+
             QueueList.AddChild(queuedRecipeBox);
-            // End Frontier: custom boxes
             idx++;
         }
     }

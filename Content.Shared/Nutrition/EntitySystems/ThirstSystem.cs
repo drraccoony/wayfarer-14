@@ -109,15 +109,15 @@ public sealed class ThirstSystem : EntitySystem
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
+                _prototype.Resolve(ThirstIconOverhydratedId, out prototype);
                 break;
 
             case ThirstThreshold.Thirsty:
-                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
+                _prototype.Resolve(ThirstIconThirstyId, out prototype);
                 break;
 
             case ThirstThreshold.Parched:
-                _prototype.TryIndex(ThirstIconParchedId, out prototype);
+                _prototype.Resolve(ThirstIconParchedId, out prototype);
                 break;
 
             default:
@@ -152,7 +152,7 @@ public sealed class ThirstSystem : EntitySystem
         {
             case ThirstThreshold.OverHydrated:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 1.2f;
+                component.ActualDecayRate = component.BaseDecayRate * 0.9f; // Wayfarer 1.2 to 0.9
                 return;
 
             case ThirstThreshold.Okay:

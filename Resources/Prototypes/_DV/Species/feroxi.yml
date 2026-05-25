@@ -5,7 +5,7 @@
   prototype: MobFeroxi
   sprites: MobFeroxiSprites
   defaultSkinTone: "#8DB9D6"
-  markingLimits: MobFeroxiMarkingLimits
+  markingLimits: MobHumanMarkingLimits #MobFeroxiMarkingLimits WF
   dollPrototype: MobFeroxiDummy
   skinColoration: Hues
   maleFirstNames: NamesVulpkaninMale
@@ -15,6 +15,7 @@
 - type: speciesBaseSprites
   id: MobFeroxiSprites
   sprites:
+    Special: MobHumanoidAnyMarking
     TailBehind: MobHumanoidAnyMarking
     TailOversuit: MobHumanoidAnyMarking
     Head: MobFeroxiHead
@@ -26,6 +27,7 @@
     HeadSide: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobFeroxiLArm
@@ -36,48 +38,7 @@
     RLeg: MobFeroxiRLeg
     LFoot: MobFeroxiLFoot
     RFoot: MobFeroxiRFoot
-
-- type: markingPoints
-  id: MobFeroxiMarkingLimits
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 1
-      required: false
-    Head:
-      points: 3
-      required: false
-    HeadTop:
-      points: 1
-      required: true
-      defaultMarkings: [ FeroxiEars ]
-    Snout:
-      points: 1
-      required: true
-      defaultMarkings: [ FeroxiSnout ]
-    Chest:
-      points: 3
-      required: false
-    Arms:
-      points: 1
-      required: false
-    Legs:
-      points: 1
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ FeroxiTailAndDorsal ]
-    # Frontier: apparently these don't exist on Delta
-    UndergarmentTop:
-      points: 3
-      required: false
-    UndergarmentBottom:
-      points: 3
-      required: false
-    # End Frontier
+    RArmExtension: MobHumanoidAnyMarking # Adds Wing Slot
 
 - type: humanoidBaseSprite
   id: MobFeroxiHead

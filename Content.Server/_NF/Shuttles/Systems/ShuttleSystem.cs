@@ -102,7 +102,7 @@ public sealed partial class ShuttleSystem
             _autopilot.DisableAutopilot(transform.GridUid.Value);
             _autopilot.SendShuttleMessage(transform.GridUid.Value, "Autopilot disengaged - manual mode change");
         }
-        // Wayfarer end
+        // End Wayfarer
 
         if (SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, args.Mode) && args.Mode != InertiaDampeningMode.Query)
             component.DampeningMode = args.Mode;
@@ -409,8 +409,8 @@ public sealed partial class ShuttleSystem
         {
             SoundSpecifier eBrakeBeep = quietly switch
             {
-                true => new SoundPathSpecifier("/Audio/_COYOTE/ShuttleStuff/ShuttleEBrakeEngagedQuietly.ogg"),
-                false => new SoundPathSpecifier("/Audio/_COYOTE/ShuttleStuff/ShuttleEBrakeEngaged.ogg"),
+                true => new SoundPathSpecifier("/Audio/_CS/ShuttleStuff/ShuttleEBrakeEngagedQuietly.ogg"),
+                false => new SoundPathSpecifier("/Audio/_CS/ShuttleStuff/ShuttleEBrakeEngaged.ogg"),
             };
             var audioParams = quietly switch
             {

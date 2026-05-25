@@ -50,6 +50,11 @@ namespace Content.Server.Database
         public DbSet<WayfarerRoundSummary> WayfarerRoundSummaries { get; set; } = null!;
         public DbSet<WayfarerSafetyDepositBox> WayfarerSafetyDepositBox { get; set; } = null!;
         public DbSet<WayfarerSafetyDepositBoxItem> WayfarerSafetyDepositBoxItem { get; set; } = null!;
+        public DbSet<WayfarerRoleplayLevel> WayfarerRoleplayLevels { get; set; } = null!;
+        public DbSet<WayfarerRoleplayCommend> WayfarerRoleplayCommends { get; set; } = null!;
+        public DbSet<WayfarerCommunityGoal> WayfarerCommunityGoals { get; set; } = null!;
+        public DbSet<WayfarerCommunityGoalRequirement> WayfarerCommunityGoalRequirements { get; set; } = null!;
+        public DbSet<WayfarerCommunityGoalContribution> WayfarerCommunityGoalContributions { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -394,14 +399,63 @@ namespace Content.Server.Database
             modelBuilder.Entity<WayfarerSafetyDepositBox>()
                 .HasIndex(b => b.OwnerUserId);
 
+            modelBuilder.Entity<WayfarerSafetyDepositBox>()
+                .HasOne(b => b.Profile)
+                .WithMany()
+                .HasForeignKey(b => b.ProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<WayfarerSafetyDepositBoxItem>()
                 .HasOne(i => i.Box)
                 .WithMany(b => b.Items)
                 .HasForeignKey(i => i.BoxId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Wayfarer Roleplay Levels configuration
+            modelBuilder.Entity<WayfarerRoleplayLevel>()
+                .HasIndex(rl => rl.UserId)
+                .IsUnique();
+
+            modelBuilder.Entity<WayfarerRoleplayLevel>()
+                .HasIndex(rl => rl.Level);
+
+            // Wayfarer Roleplay Commends configuration
+            modelBuilder.Entity<WayfarerRoleplayCommend>()
+                .HasIndex(rc => rc.RecipientUserId);
+
+            modelBuilder.Entity<WayfarerRoleplayCommend>()
+                .HasIndex(rc => rc.GiverUserId);
+
+            modelBuilder.Entity<WayfarerRoleplayCommend>()
+                .HasIndex(rc => rc.RoundId);
+
             modelBuilder.Entity<WayfarerSafetyDepositBoxItem>()
                 .HasIndex(i => i.BoxId);
+
+            // Wayfarer Community Goals configuration
+            modelBuilder.Entity<WayfarerCommunityGoal>()
+                .HasIndex(g => g.IsActive);
+
+            modelBuilder.Entity<WayfarerCommunityGoalRequirement>()
+                .HasOne(r => r.Goal)
+                .WithMany(g => g.Requirements)
+                .HasForeignKey(r => r.GoalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<WayfarerCommunityGoalRequirement>()
+                .HasIndex(r => r.GoalId);
+
+            modelBuilder.Entity<WayfarerCommunityGoalContribution>()
+                .HasOne(c => c.Requirement)
+                .WithMany(r => r.Contributions)
+                .HasForeignKey(c => c.RequirementId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<WayfarerCommunityGoalContribution>()
+                .HasIndex(c => c.RequirementId);
+
+            modelBuilder.Entity<WayfarerCommunityGoalContribution>()
+                .HasIndex(c => c.PlayerUserId);
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -449,6 +503,8 @@ namespace Content.Server.Database
         public string SkinColor { get; set; } = null!;
         public int SpawnPriority { get; set; } = 0;
         public bool HideFromPlayerlist { get; set; } = false; // Wayfarer
+        public float Height { get; set; } = 1f; // Wayfarer
+        public float Width { get; set; } = 1f; // Wayfarer
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
@@ -540,6 +596,10 @@ namespace Content.Server.Database
         /// </summary>
         [MaxLength(256)]
         public string? EntityName { get; set; }
+
+        // Wayfarer
+        [MaxLength(256)]
+        public string? CrimeReason { get; set; }
 
         /// <summary>
         /// Store the saved loadout groups. These may get validated and removed when loaded at runtime.
@@ -1427,6 +1487,20 @@ namespace Content.Server.Database
         /// </summary>
         [Column(TypeName = "jsonb")]
         public JsonDocument? PlayerManifest { get; set; }
+
+        /// <summary>
+        /// Mail metrics data stored as JSON object
+        /// Expected format: {"Earnings": 1000, "OpenedCount": 10, "DamagedCount": 2, ...}
+        /// </summary>
+        [Column(TypeName = "jsonb")]
+        public JsonDocument? MailMetricsData { get; set; }
+
+        /// <summary>
+        /// Spesos flow (ledger) data stored as JSON array
+        /// Expected format: [{"Account": "Frontier", "Type": "CargoTax", "Amount": 500}, ...]
+        /// </summary>
+        [Column(TypeName = "jsonb")]
+        public JsonDocument? SpesosFlowData { get; set; }
     }
 
     // Wayfarer Safety Deposit Box Tables
@@ -1449,6 +1523,14 @@ namespace Content.Server.Database
         /// The character profile index (slot number) of the owner
         /// </summary>
         public int CharacterIndex { get; set; }
+
+        /// <summary>
+        /// Foreign key to the character profile. Null for boxes created before this column was added.
+        /// When the profile is deleted, this box is also deleted via cascade.
+        /// </summary>
+        public int? ProfileId { get; set; }
+
+        public Profile? Profile { get; set; }
 
         /// <summary>
         /// Display name of the owner when the box was created
@@ -1479,6 +1561,12 @@ namespace Content.Server.Database
         public DateTime? LastWithdrawn { get; set; }
 
         /// <summary>
+        /// The round ID when the box was last withdrawn. Null if currently stored in database.
+        /// Used to detect if a box was lost (withdrawn in a previous round but never deposited back).
+        /// </summary>
+        public int? LastWithdrawnRoundId { get; set; }
+
+        /// <summary>
         /// Items stored in this box
         /// </summary>
         public List<WayfarerSafetyDepositBoxItem> Items { get; set; } = new();
@@ -1506,5 +1594,254 @@ namespace Content.Server.Database
         /// When this item was deposited
         /// </summary>
         public DateTime DepositDate { get; set; }
+    }
+
+    // Wayfarer Roleplay Leveling System Tables
+    [Table("wayfarer_roleplay_levels")]
+    public class WayfarerRoleplayLevel
+    {
+        [Key, Column("id")]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// The user ID (account-based tracking)
+        /// </summary>
+        [Required, Column("user_id")]
+        public Guid UserId { get; set; }
+
+        /// <summary>
+        /// Current roleplay level
+        /// </summary>
+        [Required, Column("level")]
+        public int Level { get; set; } = 1;
+
+        /// <summary>
+        /// Current experience points
+        /// </summary>
+        [Required, Column("experience")]
+        public long Experience { get; set; } = 0;
+
+        /// <summary>
+        /// Experience required to reach the next level
+        /// </summary>
+        [Required, Column("experience_to_next_level")]
+        public long ExperienceToNextLevel { get; set; } = 100;
+
+        /// <summary>
+        /// Total number of commends received from other players
+        /// </summary>
+        [Required, Column("total_commends")]
+        public int TotalCommends { get; set; } = 0;
+
+        /// <summary>
+        /// When this record was created
+        /// </summary>
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// When this record was last updated
+        /// </summary>
+        [Column("last_updated")]
+        public DateTime LastUpdated { get; set; }
+    }
+
+    [Table("wayfarer_roleplay_commends")]
+    public class WayfarerRoleplayCommend
+    {
+        [Key, Column("id")]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// The round number when this commend was given
+        /// </summary>
+        [Required, Column("round_id")]
+        public int RoundId { get; set; }
+
+        /// <summary>
+        /// The profile ID (character slot) of the recipient
+        /// </summary>
+        [Required, Column("recipient_profile_id")]
+        public int RecipientProfileId { get; set; }
+
+        /// <summary>
+        /// The user ID (account) of the recipient
+        /// </summary>
+        [Required, Column("recipient_user_id")]
+        public Guid RecipientUserId { get; set; }
+
+        /// <summary>
+        /// The profile ID (character slot) of the person giving the commend
+        /// </summary>
+        [Required, Column("giver_profile_id")]
+        public int GiverProfileId { get; set; }
+
+        /// <summary>
+        /// The user ID (account) of the person giving the commend
+        /// </summary>
+        [Required, Column("giver_user_id")]
+        public Guid GiverUserId { get; set; }
+
+        /// <summary>
+        /// Optional comment left with the commend
+        /// </summary>
+        [Column("comment")]
+        public string? Comment { get; set; }
+
+        /// <summary>
+        /// Whether this commend is private (only visible to recipient)
+        /// </summary>
+        [Required, Column("is_private")]
+        public bool IsPrivate { get; set; } = false;
+
+        /// <summary>
+        /// When this commend was given
+        /// </summary>
+        [Required, Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+    }
+
+    // Wayfarer Community Goals Tables
+    [Table("wayfarer_community_goals")]
+    public class WayfarerCommunityGoal
+    {
+        [Key, Column("id")]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Short display title of the community goal.
+        /// </summary>
+        [Required, Column("title")]
+        public string Title { get; set; } = null!;
+
+        /// <summary>
+        /// Full description text shown to players.
+        /// </summary>
+        [Required, Column("description")]
+        public string Description { get; set; } = null!;
+
+        /// <summary>
+        /// Optional round number on which this goal becomes active. Null = active immediately.
+        /// </summary>
+        [Column("start_round")]
+        public int? StartRound { get; set; }
+
+        /// <summary>
+        /// Optional round number after which this goal is no longer active. Null = never expires.
+        /// </summary>
+        [Column("end_round")]
+        public int? EndRound { get; set; }
+
+        /// <summary>
+        /// Whether this goal is enabled at all. Admins can soft-disable without deleting.
+        /// </summary>
+        [Required, Column("is_active")]
+        public bool IsActive { get; set; } = true;
+
+        /// <summary>
+        /// When this goal record was created.
+        /// </summary>
+        [Required, Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Item/entity requirements for this goal.
+        /// </summary>
+        public List<WayfarerCommunityGoalRequirement> Requirements { get; set; } = new();
+    }
+
+    [Table("wayfarer_community_goal_requirements")]
+    public class WayfarerCommunityGoalRequirement
+    {
+        [Key, Column("id")]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Foreign key to the parent community goal.
+        /// </summary>
+        [Column("goal_id")]
+        public int GoalId { get; set; }
+
+        public WayfarerCommunityGoal Goal { get; set; } = null!;
+
+        /// <summary>
+        /// The entity prototype ID to track (e.g. "SpaceCash", "Ingot_Gold", "Plasteel").
+        /// </summary>
+        [Required, Column("entity_prototype_id")]
+        public string EntityPrototypeId { get; set; } = null!;
+
+        /// <summary>
+        /// Optional human-readable display name override. Falls back to prototype name if null.
+        /// </summary>
+        [Column("display_name")]
+        public string? DisplayName { get; set; }
+
+        /// <summary>
+        /// How many of this item must be contributed to complete this requirement.
+        /// </summary>
+        [Column("required_amount")]
+        public long RequiredAmount { get; set; }
+
+        /// <summary>
+        /// How many have been contributed so far (accumulated across rounds).
+        /// </summary>
+        [Column("current_amount")]
+        public long CurrentAmount { get; set; }
+
+        /// <summary>
+        /// Per-character contribution records for this requirement.
+        /// </summary>
+        public List<WayfarerCommunityGoalContribution> Contributions { get; set; } = new();
+    }
+
+    [Table("wayfarer_community_goal_contributions")]
+    public class WayfarerCommunityGoalContribution
+    {
+        [Key, Column("id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Foreign key to the requirement this contribution is for.
+        /// </summary>
+        [Column("requirement_id")]
+        public int RequirementId { get; set; }
+
+        public WayfarerCommunityGoalRequirement Requirement { get; set; } = null!;
+
+        /// <summary>
+        /// The account user ID of the contributing player.
+        /// </summary>
+        [Required, Column("player_user_id")]
+        public Guid PlayerUserId { get; set; }
+
+        /// <summary>
+        /// The in-game character name at the time of contribution.
+        /// </summary>
+        [Required, Column("character_name")]
+        public string CharacterName { get; set; } = null!;
+
+        /// <summary>
+        /// The entity prototype ID that was contributed (canonical requirement proto).
+        /// </summary>
+        [Required, Column("entity_prototype_id")]
+        public string EntityPrototypeId { get; set; } = null!;
+
+        /// <summary>
+        /// How much was contributed in this submission.
+        /// </summary>
+        [Column("amount")]
+        public long Amount { get; set; }
+
+        /// <summary>
+        /// The round number in which this contribution was made.
+        /// </summary>
+        [Column("round_id")]
+        public int RoundId { get; set; }
+
+        /// <summary>
+        /// When this contribution was recorded.
+        /// </summary>
+        [Required, Column("contributed_at")]
+        public DateTime ContributedAt { get; set; }
     }
 }

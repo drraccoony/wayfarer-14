@@ -29,13 +29,39 @@ namespace Content.Shared.Humanoid.Markings
         {
         }
 
-        public Marking(string markingId, int colorCount)
+        public Marking(string markingId, int colorCount, MarkingCategories category) // Coyote: Add MarkingCategories category
         {
             MarkingId = markingId;
             List<Color> colors = new();
             for (int i = 0; i < colorCount; i++)
                 colors.Add(Color.White);
             _markingColors = colors;
+            // Coyote Start
+            if (category == MarkingCategories.UndergarmentBottom || category == MarkingCategories.UndergarmentTop)
+            {
+                CanToggleVisible = true;
+                OtherCanToggleVisible = true;
+            }
+            else if (category == MarkingCategories.Genital)
+            {
+                ShowAtStart = false;
+                CanToggleVisible = true;
+                OtherCanToggleVisible = false;
+                PutOnVerb = "show";
+                PutOnVerb2p = "shows";
+                TakeOffVerb = "hide";
+                TakeOffVerb2p = "hides";
+            }
+            else
+            {
+                CanToggleVisible = false;
+                OtherCanToggleVisible = false;
+                PutOnVerb = "show";
+                PutOnVerb2p = "shows";
+                TakeOffVerb = "hide";
+                TakeOffVerb2p = "hides";
+            }
+            // Coyote End
         }
 
         public Marking(Marking other)
@@ -44,6 +70,16 @@ namespace Content.Shared.Humanoid.Markings
             _markingColors = new(other.MarkingColors);
             Visible = other.Visible;
             Forced = other.Forced;
+            // Coyote Start
+            CustomName = other.CustomName;
+            CanToggleVisible = other.CanToggleVisible;
+            OtherCanToggleVisible = other.OtherCanToggleVisible;
+            PutOnVerb = other.PutOnVerb;
+            PutOnVerb2p = other.PutOnVerb2p;
+            TakeOffVerb = other.TakeOffVerb;
+            TakeOffVerb2p = other.TakeOffVerb2p;
+            ShowAtStart = other.ShowAtStart;
+            // Coyote End
         }
 
         /// <summary>
@@ -108,9 +144,19 @@ namespace Content.Shared.Humanoid.Markings
             return MarkingId.Equals(other.MarkingId)
                 && _markingColors.SequenceEqual(other._markingColors)
                 && Visible.Equals(other.Visible)
-                && Forced.Equals(other.Forced);
+                && Forced.Equals(other.Forced)
+            // Coyote Start
+                && CustomName == other.CustomName
+                && CanToggleVisible == other.CanToggleVisible
+                && OtherCanToggleVisible == other.OtherCanToggleVisible
+                && PutOnVerb == other.PutOnVerb
+                && PutOnVerb2p == other.PutOnVerb2p
+                && TakeOffVerb == other.TakeOffVerb
+                && TakeOffVerb2p == other.TakeOffVerb2p
+                && ShowAtStart == other.ShowAtStart;
+            // Coyote End
         }
-
+        /* Coyote: Commenting this block below as we no longer use those. We're now being fancy and using JSON.
         // VERY BIG TODO: TURN THIS INTO JSONSERIALIZER IMPLEMENTATION
 
 
@@ -144,5 +190,6 @@ namespace Content.Shared.Humanoid.Markings
 
             return new Marking(split[0], colorList);
         }
+        */
     }
 }

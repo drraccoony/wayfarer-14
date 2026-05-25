@@ -30,13 +30,14 @@ namespace Content.Server.Database
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-
+        private IPrototypeManager _protoMan; // Coyote
         public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
         public ServerDbBase(ISawmill opsLog)
         {
             _opsLog = opsLog;
+            _protoMan = IoCManager.Resolve<IPrototypeManager>(); // Coyote
         }
 
         #region Preferences
@@ -65,7 +66,7 @@ namespace Content.Server.Database
             var profiles = new Dictionary<int, ICharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
             {
-                profiles[profile.Slot] = ConvertProfiles(profile);
+                profiles[profile.Slot] = ConvertProfiles(profile, _protoMan); // Coyote: add _protoMan
             }
 
             var constructionFavorites = new List<ProtoId<ConstructionPrototype>>(prefs.ConstructionFavorites.Count);
@@ -203,13 +204,13 @@ namespace Content.Server.Database
         public async Task<int?> GetProfileIdAsync(NetUserId userId, int slot)
         {
             await using var db = await GetDb();
-            
+
             var profile = await db.DbContext.Profile
                 .Include(p => p.Preference)
                 .Where(p => p.Preference.UserId == userId.UserId && p.Slot == slot)
                 .Select(p => p.Id)
                 .FirstOrDefaultAsync();
-                
+
             return profile == 0 ? null : profile;
         }
 
@@ -219,7 +220,7 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
-        private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
+        private static HumanoidCharacterProfile ConvertProfiles(Profile profile, IPrototypeManager protoMan) // Coyote: add IprototypeManager protoMan
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -245,8 +246,30 @@ namespace Content.Server.Database
             {
                 foreach (var marking in markingsRaw)
                 {
-                    var parsed = Marking.ParseFromDbString(marking);
+                    //var parsed = Marking.ParseFromDbString(marking);
+                    // Coyote: Marking System Improvements parsing
+                    Marking? ParseFromDbJSON(string input)
+                    {
+                        return new Marking(JsonSerializer.Deserialize<MarkingDTO>(input));
+                    }
 
+                    Marking? ParseFromDbString(string input)
+                    {
+                        if (input.Length == 0) return null;
+                        // if it starts with '{', it's JSON, so deserialize it.
+                        if (input.StartsWith("{")) return ParseFromDbJSON(input);
+                        // otherwise, it's an old string, so parse it using legacy code
+                        // we could force a migration at some point to remove dependance on this old code
+                        var split = input.Split('@');
+                        if (split.Length != 2) return null;
+                        List<Color> colorList = new();
+                        foreach (string color in split[1].Split(','))
+                            colorList.Add(Color.FromHex(color));
+                        var proto = protoMan.Index<MarkingPrototype>(new EntProtoId(split[0])); // Coyote
+                        return new Marking(split[0], colorList, proto.MarkingCategory); // Coyote: add proto.MarkingCategory
+                    }
+                    var parsed = ParseFromDbString(marking);
+                    // Coyote end.
                     if (parsed is null) continue;
 
                     markings.Add(parsed);
@@ -260,6 +283,7 @@ namespace Content.Server.Database
                 var loadout = new RoleLoadout(role.RoleName)
                 {
                     EntityName = role.EntityName,
+                    CrimeReason = role.CrimeReason, // Wayfarer
                 };
 
                 foreach (var group in role.Groups)
@@ -303,7 +327,9 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 profile.HideFromPlayerlist // Wayfarer
-            );
+            )
+            .WithHeight(profile.Height) // Wayfarer
+            .WithWidth(profile.Width);  // Wayfarer
         }
 
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
@@ -313,7 +339,7 @@ namespace Content.Server.Database
             List<string> markingStrings = new();
             foreach (var marking in appearance.Markings)
             {
-                markingStrings.Add(marking.ToString());
+                markingStrings.Add(JsonSerializer.Serialize(marking.ToDTO())); // Coyote: marking.ToString() to JsonSerializer.Serialize(marking.ToDTO()) since we're using JSON now.
             }
             var markings = JsonSerializer.SerializeToDocument(markingStrings);
 
@@ -333,6 +359,8 @@ namespace Content.Server.Database
             profile.SkinColor = appearance.SkinColor.ToHex();
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.HideFromPlayerlist = humanoid.HideFromPlayerlist; // Wayfarer
+            profile.Height = humanoid.Height; // Wayfarer
+            profile.Width = humanoid.Width;   // Wayfarer
             profile.Markings = markings;
             profile.Slot = slot;
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
@@ -364,6 +392,7 @@ namespace Content.Server.Database
                 {
                     RoleName = role,
                     EntityName = loadouts.EntityName ?? string.Empty,
+                    CrimeReason = loadouts.CrimeReason, // Wayfarer
                 };
 
                 foreach (var (group, groupLoadouts) in loadouts.SelectedLoadouts)
@@ -2093,7 +2122,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             DateTime roundEndTime,
             JsonDocument? profitLossData,
             JsonDocument? playerStories,
-            JsonDocument? playerManifest)
+            JsonDocument? playerManifest,
+            JsonDocument? mailMetricsData,
+            JsonDocument? spesosFlowData)
         {
             await using var db = await GetDb();
 
@@ -2104,7 +2135,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 RoundEndTime = NormalizeDatabaseTime(roundEndTime),
                 ProfitLossData = profitLossData,
                 PlayerStories = playerStories,
-                PlayerManifest = playerManifest
+                PlayerManifest = playerManifest,
+                MailMetricsData = mailMetricsData,
+                SpesosFlowData = spesosFlowData
             };
 
             db.DbContext.WayfarerRoundSummaries.Add(summary);
@@ -2168,6 +2201,12 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb(cancel);
 
+            var profileId = await db.DbContext.Profile
+                .Include(p => p.Preference)
+                .Where(p => p.Preference.UserId == ownerUserId && p.Slot == characterIndex)
+                .Select(p => (int?) p.Id)
+                .FirstOrDefaultAsync(cancel);
+
             var box = new WayfarerSafetyDepositBox
             {
                 BoxId = Guid.NewGuid(),
@@ -2175,7 +2214,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 CharacterIndex = characterIndex,
                 OwnerName = ownerName,
                 BoxSize = boxSize,
-                PurchaseDate = DateTime.UtcNow
+                PurchaseDate = DateTime.UtcNow,
+                ProfileId = profileId
             };
 
             db.DbContext.WayfarerSafetyDepositBox.Add(box);
@@ -2238,6 +2278,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
             // Clear LastWithdrawn since the box is now safely stored
             box.LastWithdrawn = null;
+            box.LastWithdrawnRoundId = null;
 
             await db.DbContext.SaveChangesAsync(cancel);
         }
@@ -2261,6 +2302,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         public async Task ClearSafetyDepositBoxItems(
             Guid boxId,
+            int roundId,
             CancellationToken cancel = default)
         {
             await using var db = await GetDb(cancel);
@@ -2273,10 +2315,11 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 return;
 
             db.DbContext.WayfarerSafetyDepositBoxItem.RemoveRange(box.Items);
-            
+
             // Set LastWithdrawn to indicate the box is now in the world
             box.LastWithdrawn = DateTime.UtcNow;
-            
+            box.LastWithdrawnRoundId = roundId;
+
             await db.DbContext.SaveChangesAsync(cancel);
         }
 
@@ -2291,8 +2334,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             // Find boxes that have been withdrawn and have no items for longer than the cutoff period
             var staleBoxes = await db.DbContext.WayfarerSafetyDepositBox
                 .Include(b => b.Items)
-                .Where(b => b.LastWithdrawn != null && 
-                            b.LastWithdrawn < cutoffDate && 
+                .Where(b => b.LastWithdrawn != null &&
+                            b.LastWithdrawn < cutoffDate &&
                             b.Items.Count == 0)
                 .ToListAsync(cancel);
 
@@ -2317,6 +2360,325 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 return;
 
             db.DbContext.WayfarerSafetyDepositBox.Remove(box);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        #endregion
+
+        #region Wayfarer Roleplay Leveling
+
+        public async Task<WayfarerRoleplayLevel> GetOrCreateRoleplayLevel(
+            Guid userId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var existing = await db.DbContext.WayfarerRoleplayLevels
+                .FirstOrDefaultAsync(rl => rl.UserId == userId, cancel);
+
+            if (existing != null)
+                return existing;
+
+            // Create new roleplay level record
+            var newLevel = new WayfarerRoleplayLevel
+            {
+                UserId = userId,
+                Level = 1,
+                Experience = 0,
+                ExperienceToNextLevel = 100,
+                TotalCommends = 0,
+                CreatedAt = DateTime.UtcNow,
+                LastUpdated = DateTime.UtcNow
+            };
+
+            db.DbContext.WayfarerRoleplayLevels.Add(newLevel);
+            await db.DbContext.SaveChangesAsync(cancel);
+
+            return newLevel;
+        }
+
+        public async Task UpdateRoleplayLevel(
+            Guid userId,
+            int level,
+            long experience,
+            long experienceToNextLevel,
+            int totalCommends,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var roleplayLevel = await db.DbContext.WayfarerRoleplayLevels
+                .FirstOrDefaultAsync(rl => rl.UserId == userId, cancel);
+
+            if (roleplayLevel == null)
+            {
+                roleplayLevel = new WayfarerRoleplayLevel
+                {
+                    UserId = userId,
+                    CreatedAt = DateTime.UtcNow
+                };
+                db.DbContext.WayfarerRoleplayLevels.Add(roleplayLevel);
+            }
+
+            roleplayLevel.Level = level;
+            roleplayLevel.Experience = experience;
+            roleplayLevel.ExperienceToNextLevel = experienceToNextLevel;
+            roleplayLevel.TotalCommends = totalCommends;
+            roleplayLevel.LastUpdated = DateTime.UtcNow;
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task AddRoleplayCommend(
+            int roundId,
+            int recipientProfileId,
+            Guid recipientUserId,
+            int giverProfileId,
+            Guid giverUserId,
+            string? comment,
+            bool isPrivate,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var commend = new WayfarerRoleplayCommend
+            {
+                RoundId = roundId,
+                RecipientProfileId = recipientProfileId,
+                RecipientUserId = recipientUserId,
+                GiverProfileId = giverProfileId,
+                GiverUserId = giverUserId,
+                Comment = comment,
+                IsPrivate = isPrivate,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            db.DbContext.WayfarerRoleplayCommends.Add(commend);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<List<WayfarerRoleplayCommend>> GetPlayerCommends(
+            Guid userId,
+            bool includePrivate = false,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var query = db.DbContext.WayfarerRoleplayCommends
+                .Where(c => c.RecipientUserId == userId);
+
+            if (!includePrivate)
+                query = query.Where(c => !c.IsPrivate);
+
+            return await query
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync(cancel);
+        }
+
+        public async Task<int> GetRoundCommendsGivenByPlayer(
+            Guid giverUserId,
+            int roundId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.WayfarerRoleplayCommends
+                .Where(c => c.GiverUserId == giverUserId && c.RoundId == roundId)
+                .CountAsync(cancel);
+        }
+
+        public async Task<string?> GetCharacterNameByProfileIdAsync(
+            int profileId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.Profile
+                .Where(p => p.Id == profileId)
+                .Select(p => p.CharacterName)
+                .FirstOrDefaultAsync(cancel);
+        }
+
+        #endregion
+
+        #region Wayfarer Community Goals
+
+        public async Task<List<WayfarerCommunityGoal>> GetAllCommunityGoals(
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.WayfarerCommunityGoals
+                .Include(g => g.Requirements)
+                .OrderBy(g => g.Id)
+                .ToListAsync(cancel);
+        }
+
+        public async Task<List<WayfarerCommunityGoal>> GetActiveCommunityGoals(
+            int roundId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.WayfarerCommunityGoals
+                .Include(g => g.Requirements)
+                .Where(g => g.IsActive
+                    && (g.StartRound == null || g.StartRound <= roundId)
+                    && (g.EndRound == null || g.EndRound >= roundId))
+                .OrderBy(g => g.Id)
+                .ToListAsync(cancel);
+        }
+
+        public async Task<WayfarerCommunityGoal> CreateCommunityGoal(
+            string title,
+            string description,
+            int? startRound,
+            int? endRound,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var goal = new WayfarerCommunityGoal
+            {
+                Title = title,
+                Description = description,
+                StartRound = startRound,
+                EndRound = endRound,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+            };
+
+            db.DbContext.WayfarerCommunityGoals.Add(goal);
+            await db.DbContext.SaveChangesAsync(cancel);
+            return goal;
+        }
+
+        public async Task UpdateCommunityGoal(
+            int goalId,
+            string title,
+            string description,
+            int? startRound,
+            int? endRound,
+            bool isActive,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var goal = await db.DbContext.WayfarerCommunityGoals
+                .FirstOrDefaultAsync(g => g.Id == goalId, cancel);
+
+            if (goal == null)
+                return;
+
+            goal.Title = title;
+            goal.Description = description;
+            goal.StartRound = startRound;
+            goal.EndRound = endRound;
+            goal.IsActive = isActive;
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task DeleteCommunityGoal(int goalId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var goal = await db.DbContext.WayfarerCommunityGoals
+                .Include(g => g.Requirements)
+                .FirstOrDefaultAsync(g => g.Id == goalId, cancel);
+
+            if (goal == null)
+                return;
+
+            db.DbContext.WayfarerCommunityGoals.Remove(goal);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(
+            int goalId,
+            string entityPrototypeId,
+            string? displayName,
+            long requiredAmount,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var req = new WayfarerCommunityGoalRequirement
+            {
+                GoalId = goalId,
+                EntityPrototypeId = entityPrototypeId,
+                DisplayName = displayName,
+                RequiredAmount = requiredAmount,
+                CurrentAmount = 0,
+            };
+
+            db.DbContext.WayfarerCommunityGoalRequirements.Add(req);
+            await db.DbContext.SaveChangesAsync(cancel);
+            return req;
+        }
+
+        public async Task RemoveCommunityGoalRequirement(int requirementId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var req = await db.DbContext.WayfarerCommunityGoalRequirements
+                .FirstOrDefaultAsync(r => r.Id == requirementId, cancel);
+
+            if (req == null)
+                return;
+
+            db.DbContext.WayfarerCommunityGoalRequirements.Remove(req);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task UpdateCommunityGoalRequirement(int requirementId, long requiredAmount, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var req = await db.DbContext.WayfarerCommunityGoalRequirements
+                .FirstOrDefaultAsync(r => r.Id == requirementId, cancel);
+
+            if (req == null)
+                return;
+
+            req.RequiredAmount = requiredAmount;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task AddCommunityGoalContribution(
+            int requirementId,
+            long amount,
+            Guid? playerUserId = null,
+            string? characterName = null,
+            string? entityPrototypeId = null,
+            int roundId = 0,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var req = await db.DbContext.WayfarerCommunityGoalRequirements
+                .FirstOrDefaultAsync(r => r.Id == requirementId, cancel);
+
+            if (req == null)
+                return;
+
+            req.CurrentAmount += amount;
+
+            if (playerUserId.HasValue && characterName != null)
+            {
+                var contribution = new WayfarerCommunityGoalContribution
+                {
+                    RequirementId = requirementId,
+                    PlayerUserId = playerUserId.Value,
+                    CharacterName = characterName,
+                    EntityPrototypeId = entityPrototypeId ?? req.EntityPrototypeId,
+                    Amount = amount,
+                    RoundId = roundId,
+                    ContributedAt = DateTime.UtcNow,
+                };
+                db.DbContext.WayfarerCommunityGoalContributions.Add(contribution);
+            }
+
             await db.DbContext.SaveChangesAsync(cancel);
         }
 

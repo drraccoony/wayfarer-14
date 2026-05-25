@@ -87,6 +87,10 @@
       Steel: 100
   - type: StaticPrice
     price: 15 # Frontier 30<15
+  - type: HelmetAccessory # Wayfarer :>
+    rsi:
+      sprite: _WF/Clothing/Helmetaddons/Tools/screwdriver.rsi
+      state: helmet
 
 - type: entity
   name: wrench
@@ -513,6 +517,7 @@
   - type: Item
     sprite: Objects/Tools/rolling_pin.rsi
     size: Small
+    storedRotation: -45
   - type: Clothing
     sprite: Objects/Tools/rolling_pin.rsi
     quickEquip: false

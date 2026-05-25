@@ -233,20 +233,20 @@
   id: MobEnhancedMovement
   abstract: true
   components:
-  - type: MovementAlwaysTouching
-  - type: MovementIgnoreGravity
-  - type: NoSlip
+#  - type: MovementAlwaysTouching - Wayfarer
+#  - type: MovementIgnoreGravity - Wayfarer
+#  - type: NoSlip - Wayfarer
   - type: ProtectedFromStepTriggers
   - type: Climbing
   - type: Tool
-    speedModifier: 1.5
+    speedModifier: 3 # 1.5<3 Mono
     qualities:
       - Prying
     hideQualities: true
   - type: Prying
     pryPowered: true
     force: true
-    speedModifier: 1.5
+    speedModifier: 3 # 1.5<3 Mono
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Access
@@ -375,9 +375,10 @@
   id: MobHumanoidHostileAISimpleMelee
   abstract: true
   components:
+  # // Wayfarer - Use new N14HostileCompound preset
   - type: HTN
     rootTask:
-       task: SimpleHostileCompound
+      task: N14HostileCompound # Wayfarer: SimpleHostileCompound<N14HostileCompound
     blackboard:
       NavClimb: !type:Bool
         false
@@ -385,16 +386,20 @@
         true
       NavPry: !type:Bool
         true
-      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+      NavSmash: !type:Bool
         true
+      MeleeRange: !type:Single
+        1.5
+  # // Wayfarer
 
 - type: entity
   id: MobHumanoidHostileAISimpleRanged
   abstract: true
   components:
+  # // Wayfarer - Use new N14HostileCompound preset
   - type: HTN
     rootTask:
-       task: SimpleRangedHostileCompound
+      task: N14RangedHostileCompound # Wayfarer: SimpleRangedHostileCompound<N14RangedHostileCompound
     blackboard:
       NavClimb: !type:Bool
         false
@@ -402,25 +407,33 @@
         true
       NavPry: !type:Bool
         true
-      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+      NavSmash: !type:Bool
         true
+      MeleeRange: !type:Single
+        1.5
+  # // Wayfarer
 
 - type: entity
   id: MobHumanoidHostileAIComplex
   abstract: true
   components:
+  # // Wayfarer - Use new N14HostileCompound preset
   - type: HTN
     rootTask:
-       task: SimpleHumanoidHostileCompound
+      task: N14RangedHostileCompound # Wayfarer: SimpleHumanoidHostileCompound<N14RangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        false
+      #NavClimb: !type:Bool # Commented out because it made them trip over tables and it was really funny but they didn't stand up
+        #true
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
         true
-#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
-#        true
+      NavSmash: !type:Bool
+        true
+      MeleeRange: !type:Single
+        1.5
+  # // Wayfarer
+
 #endregion
 
 #region NPC types

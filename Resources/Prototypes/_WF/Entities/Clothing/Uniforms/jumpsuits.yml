@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: WFClothingUniformJumpsuitClear
+  name: discreet jumpsuit
+  description: Helps you keep all your things hardly visible or more visible, matter of perspective.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Uniforms/Jumpsuit/suitclear.rsi
+  - type: Clothing
+    sprite: _WF/Clothing/Uniforms/Jumpsuit/suitclear.rsi

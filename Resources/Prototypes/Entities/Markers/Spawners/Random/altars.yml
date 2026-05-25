@@ -10,7 +10,7 @@
           state: nanotrasen
     - type: RandomSpawner
       prototypes:
-        - AltarNanotrasen
+      #  - AltarNanotrasen # Wayfarer: removed nanotrasen altar from spawn pool
         - AltarChaos
         - AltarDruid
         - AltarToolbox

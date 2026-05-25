@@ -6,6 +6,7 @@
     species:
     - SlimePerson
     - Vox
+    - AurelianVox # Wayfarer
 
 - type: loadoutEffectGroup
   id: NFOxygenBreather
@@ -14,6 +15,7 @@
     species:
     - SlimePerson
     - Vox
+    - AurelianVox # Wayfarer
     - Sheleg # Different meds
     inverted: true
 

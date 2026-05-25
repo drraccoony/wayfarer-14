@@ -23,7 +23,7 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
         {"FollowRange", 7f},
         {"IdleRange", 7f},
         {"InteractRange", SharedInteractionSystem.InteractionRange},
-        {"LightbotRange", 32f},
+        {"LightbotRange", 32f}, // Wayfarer
         {"MaximumIdleTime", 7f},
         {MedibotInjectRange, 4f},
         {MeleeMissChance, 0.3f},
@@ -33,8 +33,9 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
         {"MovementRange", 1.5f},
         {"RangedRange", 10f},
         {"RotateSpeed", float.MaxValue},
-        {"VisionRadius", 10f},
-        {"AggroVisionRadius", 10f},
+        // #Misfits Change — slightly widen default detection bands so hostiles start reacting a bit earlier at player view edges.
+        {"VisionRadius", 14f},
+        {"AggroVisionRadius", 14f},
     };
 
     /// <summary>

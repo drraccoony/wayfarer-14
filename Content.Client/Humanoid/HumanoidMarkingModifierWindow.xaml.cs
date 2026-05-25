@@ -39,7 +39,7 @@ public sealed partial class HumanoidMarkingModifierWindow : DefaultWindow
 
         MarkingPickerWidget.OnMarkingAdded += set => OnMarkingAdded!(set);
         MarkingPickerWidget.OnMarkingRemoved += set => OnMarkingRemoved!(set);
-        MarkingPickerWidget.OnMarkingColorChange += set => OnMarkingColorChange!(set);
+        MarkingPickerWidget.OnMarkingDataChanged += set => OnMarkingColorChange!(set); // Coyote: MarkingPickerWidget.OnMarkingColorChange to MarkingPickerWidget.OnMarkingDataChanged
         MarkingPickerWidget.OnMarkingRankChange += set => OnMarkingRankChange!(set);
         MarkingForced.OnToggled += args => MarkingPickerWidget.Forced = args.Pressed;
         MarkingIgnoreSpecies.OnToggled += args => MarkingPickerWidget.Forced = args.Pressed;

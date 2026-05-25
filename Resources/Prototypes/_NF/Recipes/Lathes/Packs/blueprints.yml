@@ -97,6 +97,7 @@
   # Shuttlecraft
   - ShuttleConsoleCircuitboard
   - ThrusterMachineCircuitboard
+  - LargeThrusterMachineCircuitboard # Mono
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
   - MiniStationAnchorCircuitboard
@@ -138,6 +139,10 @@
   # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
+  # Wayfarer
+  - ShipyardRPD
+  # Far Horizons
+  - RadiationBlockingProjector
 
 # region Medical
 - type: latheRecipePack
@@ -150,6 +155,10 @@
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
+  # Cloning
+  - CloningPodMachineCircuitboard
+  - CloningConsoleComputerCircuitboard
+  - MedicalScannerMachineCircuitboard
   # MechanizedTreatment
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
@@ -287,6 +296,10 @@
   - ClothingOuterHardsuitSalvage
   # HardsuitsAdvanced
   - ClothingOuterHardsuitLuxury
+  ## Wayfarer
+  # Experimental
+  - ClothingHandsConcussiveGauntlets
+  ## Wayfarer
 
 # region Science
 - type: latheRecipePack
@@ -503,6 +516,10 @@
   - NFMagazineGrenadeEmpty
   # NFPortableMicrofusionWeaponry
   - NFPortableRecharger
+  # Monolith
+  - ArmorPlateMedium
+  - ArmorPlateTactical
+  - ArmorPlateRefractive
 
 # region Engineering & Science
 - type: latheRecipePack

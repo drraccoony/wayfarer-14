@@ -9,6 +9,7 @@
   - type: Appearance
   - type: InteractionOutline
   - type: Anchorable
+    delay: 6 # Wayfarer: Anchor delay to make it impractical to strip these mid combat
   - type: Rotatable
   - type: ContainerContainer
   - type: Gun
@@ -276,7 +277,7 @@
 
 - type: entity
   id: ShuttleGunPirateCannon
-  parent: [BaseStructureDisableToolUse, ShuttleGunBase, BaseC3PirateContrabandNoValue] # Frontier: Added BaseStructureDisableToolUse, BaseC3PirateContrabandNoValue
+  parent: [ ShuttleGunBase , BaseBMContraband ] # Wayfarer: BaseC3PirateContrabandNoValue<BaseBMContraband
   name: pirate ship cannon
   description: Kaboom!
   components:
@@ -299,6 +300,7 @@
     layers:
     - state: base
   - type: Gun
+    projectileSpeed: 40 # Wayfarer: Increase projectile velocity
     fireRate: 1
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg

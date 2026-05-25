@@ -7,6 +7,10 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
   - type: StationAiWhitelist
   - type: Sprite
     sprite: Structures/Doors/Shutters/shutters.rsi
@@ -14,8 +18,6 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-    - state: welded
-      map: ["enum.WeldableLayers.BaseWelded"]
   - type: AnimationPlayer
   - type: Physics
   - type: Fixtures

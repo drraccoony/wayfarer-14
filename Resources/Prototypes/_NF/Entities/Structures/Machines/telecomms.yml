@@ -3,6 +3,9 @@
   id: NFTelecomServerFilled
   suffix: Filled All
   components:
+  # Wayfarer: Room for Horny and Extreme Kink keys
+  - type: EncryptionKeyHolder
+    keySlots: 13
   - type: ContainerFill
     containers:
       key_slots:
@@ -17,6 +20,8 @@
       - EncryptionKeyNfsd
       - EncryptionKeyTraffic
       - EncryptionKeyGreeting
+      - EncryptionKeyHorny # Wayfarer
+      - EncryptionKeyExtremeKink # Wayfarer
 
 - type: entity
   parent: TelecomServer

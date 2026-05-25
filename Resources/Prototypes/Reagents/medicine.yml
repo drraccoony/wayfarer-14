@@ -12,9 +12,9 @@
       - !type:GenericStatusEffect
         key: Stutter
         component: ScrambledAccent
-      - !type:Drunk
-        slurSpeech: false
-        boozePower: 20
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSlurred
+        time: 20.0
 
 - type: reagent
   id: Dylovene
@@ -59,6 +59,16 @@
         conditions:
         - !type:ReagentThreshold
           min: 15
+        # Wayfarer Start
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: AurelianVox # Aurelian Vox blood is nitrogen based.
+        damage:
+          types:
+            Asphyxiation: -2
+            Bloodloss: -0.5
+        # End Wayfarer
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -10
@@ -104,8 +114,8 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:GenericStatusEffect
-        key: Drunk
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrunk
         time: 6.0
         type: Remove
       - !type:HealthChange
@@ -267,6 +277,15 @@
     Medicine:
       effects:
       - !type:HealthChange
+      # Wayfarer Start
+        conditions:
+          - !type:OrganType
+            type: AurelianVox
+            shouldHave: false
+          - !type:OrganType
+            type: Avali
+            shouldHave: false
+      # End Wayfarer
         damage:
           types:
             Asphyxiation: -1
@@ -279,6 +298,26 @@
           types:
             Asphyxiation: 3
             Cold: 1
+      # Wayfarer Start
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: AurelianVox
+        damage:
+          types:
+            Poison: 2 # Aurelian Vox blood is nitrogen based, so chems made to treat normal bloodloss poison them instead. Dex+ is worse.
+            Asphyxiation: 1
+            Bloodloss: 1
+      - !type:HealthChange #Starlight
+        conditions:
+        - !type:OrganType
+          type: Avali
+        damage:
+          types:
+            Poison: 1.5 # Avali blood is ammonia based, so chems made to treat normal bloodloss poison them instead (Lethal Dose: 20u)
+            Asphyxiation: 1
+            Bloodloss: 1
+      # End Wayfarer
 
 - type: reagent
   id: DexalinPlus
@@ -292,10 +331,19 @@
     Medicine:
       effects:
       - !type:HealthChange
+        # Wayfarer Start
+        conditions:
+        - !type:OrganType
+          type: AurelianVox
+          shouldHave: false
+        - !type:OrganType
+          type: Avali
+          shouldHave: false
         damage:
           types:
             Asphyxiation: -3.5
             Bloodloss: -3
+        # End Wayfarer
       - !type:AdjustReagent
         conditions:
         - !type:ReagentThreshold
@@ -311,6 +359,26 @@
           types:
             Asphyxiation: 5
             Cold: 3
+      # Wayfarer Start
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: AurelianVox
+        damage:
+          types:
+            Poison: 3 # Aurelian Vox blood is nitrogen based, so chems made to treat normal bloodloss poison them instead. Dex+ is worse.
+            Asphyxiation: 1
+            Bloodloss: 1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Avali
+        damage:
+          types:
+            Poison: 2.5 # Avali blood is ammonia based, so chems made to treat normal bloodloss poison them instead. Dex+ is worse. (Lethal Dose: 15u)
+            Asphyxiation: 1.5
+            Bloodloss: 1
+      # End Wayfarer
 
 # this ones a doozy
 - type: reagent
@@ -682,6 +750,32 @@
         amount: -0.5
 
 - type: reagent
+  id: Ruboxadone
+  name: reagent-name-ruboxadone
+  group: Medicine
+  desc: reagent-desc-ruboxadone
+  physicalDesc: reagent-physical-desc-milky
+  flavor: medicine
+  color: "#45cd45"
+  worksOnTheDead: true # Wayfarer
+  metabolisms:
+    Cryogenic: # Wayfarer: Medicine<Cryogenic
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:Temperature
+            max: 213.0
+          damage:
+            types:
+             Rot: -4 # Wayfarer: -4
+        # Wayfarer: No addition to damage yet. Rui was testing this to balance splitting rot and cellular mechanics.
+        - !type:ModifyBleedAmount # Wayfarer
+          conditions: # Wayfarer
+          - !type:Temperature # Wayfarer
+            max: 213.0 # Wayfarer
+          amount: -0.5 # Wayfarer
+
+- type: reagent
   id: Saline
   name: reagent-name-saline
   group: Medicine
@@ -704,7 +798,23 @@
             type: Feroxi
           factor: 2
         - !type:ModifyBloodLevel
+          # Wayfarer Start
+          conditions:
+            - !type:OrganType
+              type: Avali
+              shouldHave: false
+          # End Wayfarer
           amount: 6
+        # Wayfarer Start
+        - !type:HealthChange
+          conditions:
+            - !type:OrganType
+              type: Avali
+          damage:
+            types:
+              Caustic: 2 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
+              Heat: 2
+        # End Wayfarer
 
 - type: reagent
   id: Siderlac
@@ -819,6 +929,7 @@
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
+            Radiation: -0.05 # WF - Prevent annoying medibot spam when they see damage but can't heal radiation
 
 - type: reagent
   id: Lipozine
@@ -848,6 +959,12 @@
       effects:
       - !type:SatiateHunger
         factor: -1
+      #- !type:EvenHealthChange # WF - Kill Omni
+      #  damage:
+      #    Burn: -2
+      #    Toxin: -2
+      #    Airloss: -2
+      #    Brute: -2
 
 - type: reagent
   id: Ultravasculine
@@ -1235,7 +1352,7 @@
       - !type:HealthChange
         damage:
           types:
-            Shock: -4 # Frontier -4<-0.5 # 8 per u<5 per u
+            Shock: -4 # Frontier -1.5<-4 # 6 per u
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
@@ -1252,7 +1369,7 @@
           min: 12
         damage:
           types:
-            Cold: 2 # Frontier: 2<1 # 4 per u
+            Cold: 2 # Frontier: 1<2 # 4 per u
       - !type:AdjustTemperature
         conditions:
         - !type:ReagentThreshold
@@ -1386,8 +1503,8 @@
         key: Jitter
         time: 2.0
         type: Remove
-      - !type:GenericStatusEffect
-        key: Drunk
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrunk
         time: 6.0
         type: Remove
       - !type:PopupMessage # we dont have sanity/mood so this will have to do

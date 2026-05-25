@@ -4,66 +4,76 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard.xml"
   priority: 7
   children:
-  - ShipyardAdder
-  - ShipyardAegis
-  - ShipyardAkupara
-  - ShipyardAmbition
-  - ShipyardApothecary
-  - ShipyardBarge
-  - ShipyardBaroness
-  - ShipyardBocadillo
-  - ShipyardBodkin
-  - ShipyardBookworm
-  - ShipyardBrigand
-  - ShipyardBulker
-  - ShipyardCaladrius
-  - ShipyardCamper
-  - ShipyardCeres
-  - ShipyardCharon
-  - ShipyardChisel
-  - ShipyardComet
-  - ShipyardConstruct
-  - ShipyardCopperhead
-  - ShipyardCourier
-  - ShipyardCrescent
-  - ShipyardCrossroads
-  - ShipyardDragoon
-  - ShipyardDruid
-  - ShipyardEagle
-  - ShipyardGarden
-  - ShipyardGasbender
-  - ShipyardGaslight
-  - ShipyardGeode
-  - ShipyardHammer
-  - ShipyardHauler
-  - ShipyardHarbormaster
-  - ShipyardHonker
-  - ShipyardInvestigator
-  - ShipyardIzakaya
-  - ShipyardKestrel
-  - ShipyardKilderkin
-  - ShipyardLiquidator
-  - ShipyardLoader
-  - ShipyardLyrae
-  - ShipyardMcCargo
-  - ShipyardMcDelivery
-  - ShipyardNightlight
-  - ShipyardNook
-  - ShipyardPathfinder
-  - ShipyardPhoenix
-  - ShipyardPlacebo
-  - ShipyardProspector
-  - ShipyardPulsar
-  - ShipyardRetort
-  - ShipyardSearchlight
-  - ShipyardSkipper
-  - ShipyardSpirit
-  - ShipyardStasis
-  - ShipyardStringer
-  - ShipyardSurveyor
-  - ShipyardTide
-  - ShipyardVagabond
-  - ShipyardVitalis
+   - CgpShipyard        # WF edit
+   - CivShipyard        # WF edit
+#   - SyndicateShipyard  # WF edit
+   - ExpedShipyard      # WF edit
+   - MedShipyard        # WF edit
+   - OutlawShipyard     # WF edit
+   - ScrapShipyard      # WF edit
+   - StaffShipyard      # WF edit
+#   Moved over to be listed under the purchase shipyards. Resources/Prototypes/_WF/Guidebook/Shipyards.yml
+#  - ShipyardAdder
+#  - ShipyardAegis
+#  - ShipyardAkupara
+#  - ShipyardAmbition
+#  - ShipyardApothecary
+#  - ShipyardBarge
+#  - ShipyardBaroness
+#  - ShipyardBocadillo
+#  - ShipyardBodkin
+#  - ShipyardBookworm
+#  - ShipyardBrigand
+#  - ShipyardBulker
+#  - ShipyardCaladrius
+#  - ShipyardCamper
+#  - ShipyardCeres
+#  - ShipyardCharon
+#  - ShipyardChisel
+#  - ShipyardComet
+#  - ShipyardConstruct
+#  - ShipyardCopperhead
+#  - ShipyardCourier
+#  - ShipyardCrescent
+#  - ShipyardCrossroads
+#  - ShipyardDragoon
+#  - ShipyardDruid
+#  - ShipyardEagle
+#  - ShipyardGarden
+#  - ShipyardGasbender
+#  - ShipyardGaslight
+#  - ShipyardGeode
+#  - ShipyardHammer
+#  - ShipyardHauler
+#  - ShipyardHarbormaster
+#  - ShipyardHonker
+#  - ShipyardInvestigator
+#  - ShipyardIzakaya
+#  - ShipyardKestrel
+#  - ShipyardKilderkin
+#  - ShipyardLiquidator
+#  - ShipyardLoader
+#  - ShipyardLyrae
+#  - ShipyardMcCargo
+#  - ShipyardMcDelivery
+#  - ShipyardNightlight
+#  - ShipyardNook
+#  - ShipyardPathfinder
+#  - ShipyardPhoenix
+#  - ShipyardPlacebo
+#  - ShipyardProspector
+#  - ShipyardPulsar
+#  - ShipyardRetort
+#  - ShipyardSearchlight
+#  - ShipyardSkipper
+#  - ShipyardSpirit
+#  - ShipyardStasis
+#  - ShipyardStringer
+#  - ShipyardStronghold
+#  - ShipyardSurveyor
+#  - ShipyardTide
+#  - ShipyardVagabond
+#  - ShipyardVitalis
 
 - type: guideEntry
   id: ShipyardAdder
@@ -224,12 +234,12 @@
   id: ShipyardHammer
   name: guide-entry-shipyard-hammer
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Hammer.xml"
-
-- type: guideEntry
-  id: ShipyardHauler
-  name: guide-entry-shipyard-hauler
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Hauler.xml"
-
+# Wayfarer edit: comment out using new hauler ship
+#- type: guideEntry # Wayfarer edit: comment out using new hauler ship
+#  id: ShipyardHauler # Wayfarer edit: comment out using new hauler ship
+#  name: guide-entry-shipyard-hauler # Wayfarer edit: comment out using new hauler ship
+#  text: "/ServerInfo/_NF/Guidebook/Shipyard/Hauler.xml" # Wayfarer edit: comment out using new hauler ship
+# end of Wayfarer edit: comment out
 - type: guideEntry
   id: ShipyardHonker
   name: guide-entry-shipyard-honker
@@ -346,6 +356,11 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Stringer.xml"
 
 - type: guideEntry
+  id: ShipyardStronghold
+  name: guide-entry-shipyard-stronghold
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Stronghold.xml"
+
+- type: guideEntry
   id: ShipyardSurveyor
   name: guide-entry-shipyard-surveyor
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Surveyor.xml"
@@ -364,3 +379,4 @@
   id: ShipyardVitalis
   name: guide-entry-shipyard-vitalis
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Vitalis.xml"
+

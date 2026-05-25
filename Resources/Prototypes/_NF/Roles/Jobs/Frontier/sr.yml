@@ -13,10 +13,10 @@
   displayWeight: 60 # Top
   canBeAntag: false
   accessGroups:
-  - AllAccess
+  - StationCommand # Wayfarer: AllAccess<StationCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff

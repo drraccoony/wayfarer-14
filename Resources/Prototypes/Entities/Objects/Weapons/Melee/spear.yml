@@ -1,6 +1,6 @@
 - type: entity
   name: spear
-  parent: [BaseItem, BaseC1Contraband] # BaseMinorContraband<BaseC1Contraband
+  parent: BaseItem # BaseMinorContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: Spear
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -12,6 +12,7 @@
   - type: Tag
     tags:
     - Spear
+    - ScurretWearable
   - type: Fixtures
     fixtures:
       fix1:
@@ -217,7 +218,7 @@
 
 - type: entity
   name: sharkminnow tooth spear
-  parent: Spear 
+  parent: Spear
   id: SpearSharkMinnow
   description: A spear with a sharkminnow tooth as a tip.
   components:

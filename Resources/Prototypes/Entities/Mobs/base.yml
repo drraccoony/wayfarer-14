@@ -12,6 +12,7 @@
   - type: GravityAffected
   - type: Physics
     bodyType: KinematicController
+  - type: ProximityNPC # Misfits Add — sleep distant NPCs to reduce tick load
   - type: Fixtures
     fixtures:
       fix1:
@@ -86,6 +87,21 @@
 #      - !type:PlaySoundBehavior
 #        sound:
 #          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState
@@ -132,6 +148,9 @@
   - type: CombatMode
   - type: MeleeWeapon
     hidden: true
+# // WF - Use new values
+    attackRate: 1 # WF
+    range: 1.5 # WF
     soundHit:
       collection: MetalThud
     damage:

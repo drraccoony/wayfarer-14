@@ -10,6 +10,10 @@
     sprite: Objects/Devices/signaller.rsi
     state: signaller
   - type: Signaller
+  - type: SignalOnTrigger
+    port: Pressed
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition
   - type: UseDelay
   - type: StaticPrice
     price: 40
@@ -25,7 +29,13 @@
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
     range: 15
-
+  # Wayfarer: added recyclable component
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+    chemicalComposition:
+      Silicon: 10
+  # End Wayfarer
 - type: entity
   parent: RemoteSignaller
   id: RemoteSignallerAdvanced

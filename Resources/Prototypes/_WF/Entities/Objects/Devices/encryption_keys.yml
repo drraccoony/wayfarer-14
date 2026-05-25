@@ -1,0 +1,35 @@
+- type: entity
+  parent: [EncryptionKey]
+  id: EncryptionKeyHorny
+  name: horny encryption key
+  description: An encryption key for the Horny channel. For horny discussion.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Horny
+    defaultChannel: Horny
+  - type: Item
+    sprite: _WF/Objects/Devices/encryption_keys.rsi
+  - type: Sprite
+    sprite: _WF/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_horny
+    - state: horny_label
+
+- type: entity
+  parent: [EncryptionKey]
+  id: EncryptionKeyExtremeKink
+  name: extreme kink encryption key
+  description: An encryption key for the Extreme Kink channel. For the discussion of extreme kinks.
+  components:
+  - type: EncryptionKey
+    channels:
+    - ExtremeKink
+    defaultChannel: ExtremeKink
+  - type: Item
+    sprite: _WF/Objects/Devices/encryption_keys.rsi
+  - type: Sprite
+    sprite: _WF/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_extreme
+    - state: extreme_label

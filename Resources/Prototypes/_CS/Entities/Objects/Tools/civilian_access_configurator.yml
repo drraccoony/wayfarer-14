@@ -1,0 +1,30 @@
+- type: entity
+  parent: AccessConfigurator # Wayfarer: Removed contraband
+  id: AccessConfiguratorCivilian
+  name: civilian access configurator
+  description: An access configurator commonly used by ship captains, intended for the general market in the frontier.
+  components:
+  - type: Sprite
+    sprite: _CS/Objects/Tools/civilian_access_configurator.rsi
+  - type: Clothing
+    sprite: _CS/Objects/Tools/civilian_access_configurator.rsi
+  - type: AccessOverrider
+    accessLevels:
+      - Engineering
+      - External
+      - Frontier
+      - Janitor
+      - Mail
+      - Maintenance
+      - Medical
+      - Security
+      - Service
+  - type: StaticPrice
+    price: 500
+    vendPrice: 2500
+  # Wayfarer: Fix contraband parent
+  - type: Contraband
+    severity: NotContraband
+    hideValues: true
+    hideCarryStatus: true
+  # End Wayfarer

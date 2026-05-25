@@ -29,5 +29,4 @@
     - Passive
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
-  
+      task: N14HostileCompound # Wayfarer: SimpleHostileCompound<N14HostileCompound

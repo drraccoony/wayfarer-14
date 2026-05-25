@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Content.Server._Coyote;
+using Content.Server._CS;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -12,6 +12,7 @@ using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._WF;
+using Content.Shared._WF.Chat;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -24,6 +25,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Radio;
+using Content.Shared.Station.Components;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -71,9 +73,9 @@ public sealed partial class ChatSystem : SharedChatSystem
     public const int LOOCRange = 15; // how far LOOC goes in world units
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public const int SubtleLOOCRange = SubtleRange; // how far Subtle LOOC goes in world units
+    public const int ShipOOCRange = 750; // Wayfarer: how far Ship OOC goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public const string DefaultAnnouncementSound = "/Audio/Announcements/announce.ogg";
 
     public const bool SayGoesThroughWalls = true; // I like says going through walls
     public const bool SayEffectedByOcclusion = true; // Ensmallen says that are occluded by walls should be smaller
@@ -216,15 +218,14 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
 
-        // // this method is a disaster
-        // // every second i have to spend working with this code is fucking agony
-        // // scientists have to wonder how any of this was merged
-        // // coding any game admin feature that involves chat code is pure torture
-        // // changing even 10 lines of code feels like waterboarding myself
-        // // and i dont feel like vibe checking 50 code paths
-        // // so we set this here
-        // // to-do free me from chat code
-        // Oh come on its not that bad! -Superlagg
+        // this method is a disaster
+        // every second i have to spend working with this code is fucking agony
+        // scientists have to wonder how any of this was merged
+        // coding any game admin feature that involves chat code is pure torture
+        // changing even 10 lines of code feels like waterboarding myself
+        // and i dont feel like vibe checking 50 code paths
+        // so we set this here
+        // todo free me from chat code
         if (player != null)
         {
             _chatManager.EnsurePlayer(player.UserId).AddEntity(GetNetEntity(source));
@@ -257,10 +258,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         // The minimum contrast required by WCAG (Level AA) for text
         var nameHashColor = ColorExtensions.ConsistentRandomSeededColorFromString(entityName, 149);
         var nameColorString = nameHashColor.ToHex();
-        // Wayfarer end
+        // End Wayfarer
 
         // Was there an emote in the message? If so, send it.
-        if (emoteStr != message && emoteStr != null)
+        if (player != null && emoteStr != message && emoteStr != null)
         {
             SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker, chatColor: nameColorString);
         }
@@ -355,6 +356,15 @@ public sealed partial class ChatSystem : SharedChatSystem
                     message,
                     hideChat);
                 break;
+            // Wayfarer
+            case InGameOOCChatType.ShipOoc:
+                SendShipOOC(
+                    source,
+                    player,
+                    message,
+                    hideChat);
+                break;
+            // End Wayfarer
             case InGameOOCChatType.Looc:
                 SendLOOC(
                     source,
@@ -388,7 +398,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
         if (playSound)
         {
-            _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.ResolveSound(announcementSound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
@@ -418,7 +428,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
         if (playSound)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
@@ -458,7 +468,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playDefaultSound)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
@@ -515,11 +525,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         chatColorSemiTransparent.A = 0.5f; // COYOTESTATION ADD - make the chat color semi-transparent, so it looks better
         var chatColorSemiTransparentActually = chatColorSemiTransparent.ToHex(); // COYOTATION ADD - make the chat color semi-transparent, so it looks better
 
+        var appearanceEv = new TransformSpeechAppearanceEvent(); // Wayfarer
+        RaiseLocalEvent(source, appearanceEv); // Wayfarer
+        var fontId = appearanceEv.FontId ?? speech.FontId; // Wayfarer
+        var fontSize = appearanceEv.FontSize ?? speech.FontSize; // Wayfarer
+
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
+            ("fontType", fontId), // Wayfarer: use variable above
+            ("fontSize", fontSize), // Wayfarer: use variable above
             ("message", FormattedMessage.EscapeText(message)),
             ("color", chatColor ?? Color.White.ToHex())); // COYOTESTATION ADD - makes the your name color right
         // and the above message, but the font is shrunken by like 20%
@@ -527,8 +542,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessageSmall = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("fontType", speech.FontId),
-            ("fontSize", Convert.ToInt16(speech.FontSize * 0.7)), // COYOTESTATION ADD - shrunken by 20%
+            ("fontType", fontId), // Wayfarer: use variable above
+            ("fontSize", Convert.ToInt16(fontSize * 0.7)), // COYOTESTATION ADD - shrunken by 20% // Wayfarer: use variable above
             ("message", FormattedMessage.EscapeText(message)),
             ("color", chatColorSemiTransparentActually)); // COYOTESTATION ADD - makes the your name color right
         // COYOTESTATION ADD END
@@ -692,20 +707,22 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entityName", name),
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)),
-            ("chatColor", chatColor ?? Color.White.ToHex())); // COYOTESTATION ADD - makes the your name color right
+            ("chatColor", chatColor ?? Color.White.ToHex())); // COYOTESTATION ADD - makes your name color right
 
-        bool soundEmoteSent = true; // Frontier: if check emote is false, assume somebody's sending an emote
-        if (checkEmote)
-            soundEmoteSent = TryEmoteChatInput(source, action); // Frontier: assign value to soundEmoteSent
-
-        // Frontier: send emote message
-        if (!soundEmoteSent)
+        bool emoteEventInvoked = false; // Frontier: track emote event
+        if (checkEmote &&
+            !TryEmoteChatInput(source, action, out emoteEventInvoked)) // Frontier: track emote event
         {
-            var ev = new NFEntityEmotedEvent(source, action); // Frontier
-            RaiseLocalEvent(source, ev, true); // Frontier
             return;
         }
 
+        // Frontier: send custom emotes through custom event
+        if (!emoteEventInvoked)
+        {
+            var ev = new NFEntityEmotedEvent(source, action);
+            RaiseLocalEvent(source, ev, true);
+        }
+        // End Frontier
 
         SendInVoiceRange(ChatChannel.Emotes,
             action,
@@ -756,7 +773,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) == MessageRangeCheckResult.Disallowed)
                 continue;
             numHeareded++;
-            _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel, isSubtle: true);
+            _chatManager.ChatMessageToOne(ChatChannel.Subtle, action, wrappedMessage, source, false, session.Channel, isSubtle: true);
         }
         SendRPIncentive(source, ChatChannel.Subtle, action, numHeareded);
 
@@ -801,6 +818,52 @@ public sealed partial class ChatSystem : SharedChatSystem
             LogImpact.Low,
             $"SubtleLOOC from {player:Player}: {message}");
     }
+
+    // Wayfarer
+    private void SendShipOOC(EntityUid source, ICommonSession player, string message, bool hideChat)
+    {
+        var name = FormattedMessage.EscapeText(Identity.Name(source, EntityManager));
+        var shipName = Loc.GetString("chat-manager-entity-ship-ooc-unknown");
+
+        if (TryComp(source, out TransformComponent? transform))
+        {
+            if (transform.GridUid is not null && TryComp(transform.GridUid, out MetaDataComponent? metadata))
+            {
+                shipName = metadata.EntityName;
+            }
+        }
+
+        if (_adminManager.IsAdmin(player))
+        {
+            if (!_adminLoocEnabled)
+                return;
+        }
+        else if (!_loocEnabled)
+            return;
+        var wrappedMessage = Loc.GetString(
+            "chat-manager-entity-ship-ooc-wrap-message",
+            ("shipName", shipName),
+            ("entityName", name),
+            ("message", FormattedMessage.EscapeText(message)));
+
+        SendInVoiceRange(
+            ChatChannel.ShipOOC,
+            message,
+            wrappedMessage,
+            source,
+            hideChat
+                ? ChatTransmitRange.HideChat
+                : ChatTransmitRange.NoGhosts,
+            player.UserId,
+            voiceRange: ShipOOCRange,
+            blockedByOcclusion: false,
+            ensmallenedByOcclusion: false);
+        _adminLogger.Add(
+            LogType.Chat,
+            LogImpact.Low,
+            $"ShipOOC from {player:Player}: {message}");
+    }
+    // End Wayfarer
 
     // ReSharper disable once InconsistentNaming
     private void SendLOOC(EntityUid source, ICommonSession player, string message, bool hideChat)
@@ -1287,6 +1350,7 @@ public enum InGameOOCChatType : byte
 {
     Looc,
     SubtleLooc,
+    ShipOoc, // Wayfarer
     Dead
 }
 

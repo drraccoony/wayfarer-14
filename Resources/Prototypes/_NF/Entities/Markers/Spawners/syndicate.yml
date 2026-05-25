@@ -18,6 +18,8 @@
         - CrateTradeContrabandSecure1
         - CrateTradeContrabandSecure1
         - LandMineExplosive
+        - LandMineExplosive #WF adding an extra chance for a landmine cause that's fun!
+        - LandMineExplosive #WF adding an extra chance for a landmine cause that's fun!
         - BannerSyndicate
 
 - type: entity

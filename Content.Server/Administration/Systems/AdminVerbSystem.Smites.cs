@@ -1,10 +1,8 @@
 using System.Threading;
 using Content.Server.Administration.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Clothing.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
@@ -14,12 +12,12 @@ using Content.Server.Pointing.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.Components;
-using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Tabletop;
 using Content.Server.Tabletop.Components;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Clumsy;
@@ -40,7 +38,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
-using Content.Shared.Stunnable;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
@@ -50,7 +48,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
 using Robust.Shared.Audio.Systems; // Frontier
@@ -613,20 +610,20 @@ public sealed partial class AdminVerbSystem
             */
         }
 
-        var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
-        Verb angerPointingArrows = new()
-        {
-            Text = angerPointingArrowsName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/pointing.rsi"), "pointing"),
-            Act = () =>
-            {
-                EnsureComp<PointingArrowAngeringComponent>(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", angerPointingArrowsName, Loc.GetString("admin-smite-anger-pointing-arrows-description"))
-        };
-        args.Verbs.Add(angerPointingArrows);
+        // var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
+        // Verb angerPointingArrows = new()
+        // {
+        //     Text = angerPointingArrowsName,
+        //     Category = VerbCategory.Smite,
+        //     Icon = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/pointing.rsi"), "pointing"),
+        //     Act = () =>
+        //     {
+        //         EnsureComp<PointingArrowAngeringComponent>(args.Target);
+        //     },
+        //     Impact = LogImpact.Extreme,
+        //     Message = string.Join(": ", angerPointingArrowsName, Loc.GetString("admin-smite-anger-pointing-arrows-description"))
+        // };
+        // args.Verbs.Add(angerPointingArrows);
 
         var dustName = Loc.GetString("admin-smite-dust-name").ToLowerInvariant();
         Verb dust = new()
@@ -1015,5 +1012,36 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", crawlerName, Loc.GetString("admin-smite-crawler-description"))
         };
         args.Verbs.Add(crawler);
+
+        // Far Horizons - Start
+        var fuelRodifyName = Loc.GetString("admin-smite-become-fuelrod-name").ToLowerInvariant();
+        Verb fuelRodify = new()
+        {
+            Text = fuelRodifyName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi"), "default_rod"),
+            Act = () => _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite"),
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
+        };
+        args.Verbs.Add(fuelRodify);
+        // Far Horizons - End
+
+        // WF: Gib smite
+        var gibName = Loc.GetString("admin-smite-gib-name").ToLowerInvariant();
+        Verb gib = new()
+        {
+            Text = gibName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "heart-on"),
+            Act = () =>
+            {
+                _bodySystem.GibBody(args.Target);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", gibName, Loc.GetString("admin-smite-gib-description"))
+        };
+        args.Verbs.Add(gib);
+        // End WF
     }
 }

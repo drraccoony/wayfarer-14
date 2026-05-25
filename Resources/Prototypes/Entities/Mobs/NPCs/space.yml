@@ -7,7 +7,7 @@
   components:
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: N14HostileCompound # Wayfarer: SimpleHostileCompound:<N14HostileCompound
   - type: NpcFactionMember
     factions:
     - SimpleHostile

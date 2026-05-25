@@ -365,6 +365,9 @@
   id: ComputerTelevisionCircuitboard
 
 - type: Tag
+  id: ConstructionMaterial
+
+- type: Tag
   id: ConveyorAssembly
 
 - type: Tag
@@ -816,6 +819,9 @@
   id: Ingot
 
 - type: Tag
+  id: Inflatable
+
+- type: Tag
   id: InstantDoAfters
 
 - type: Tag
@@ -839,6 +845,11 @@
 - type: Tag
   id: Ketchup
 
+# Begin wayfarer 14
+- type: Tag
+  id: Key
+# End wayfarer 14
+
 - type: Tag
   id: KeyedInstrument
 
@@ -859,6 +870,11 @@
 
 - type: Tag
   id: LightBulb
+
+# Start Wayfarer
+- type: Tag
+  id: LightReplacerTool
+# End Wayfarer
 
 - type: Tag
   id: Lime
@@ -941,6 +957,9 @@
 
 - type: Tag
   id: Medkit
+
+- type: Tag
+  id: MessyDrinkerImmune
 
 - type: Tag
   id: Metal
@@ -1139,6 +1158,11 @@
 - type: Tag
   id: PlushieSharkPink
 
+# Start TheDen + Wayfarer14
+- type: Tag
+  id: PokerChip
+# End TheDen + Wayfarer14
+
 - type: Tag
   id: Potato
 
@@ -1174,6 +1198,9 @@
 
 - type: Tag
   id: RawMaterial
+
+- type: Tag
+  id: ReactorPart #FarHorizons
 
 # Give this to something that doesn't need any special recycler behavior and just needs deleting.
 - type: Tag
@@ -1220,6 +1247,9 @@
 
 - type: Tag
   id: RollingPin
+
+- type: Tag
+  id: Ruminant
 
 - type: Tag
   id: SaltShaker

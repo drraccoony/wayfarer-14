@@ -9,10 +9,14 @@
     - GasAnalyzer
     - trayScanner
     - AccessConfiguratorUniversal
+    - Omnitool # Wayfarer
     - Multitool
-    - PowerDrill
-    - JawsOfLife
-    - WelderIndustrialAdvanced
+#    - PowerDrill # Wayfarer
+#    - JawsOfLife # Wayfarer
+    - WelderExperimental # Wayfarer: WelderIndustrialAdvanced<WelderExperimental
+    - SprayPainterMagic # Wayfarer
+    - RCDExperimental # Wayfarer
+    - DoorRemoteAll # Wayfarer
 
 - type: startingGear
   id: MobClippyGear

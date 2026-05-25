@@ -366,7 +366,9 @@ namespace Content.Server.Database
             DateTime roundEndTime,
             JsonDocument? profitLossData,
             JsonDocument? playerStories,
-            JsonDocument? playerManifest);
+            JsonDocument? playerManifest,
+            JsonDocument? mailMetricsData,
+            JsonDocument? spesosFlowData);
 
         #endregion
 
@@ -398,9 +400,34 @@ namespace Content.Server.Database
         Task<WayfarerSafetyDepositBox?> GetSafetyDepositBox(Guid boxId, CancellationToken cancel = default);
         Task DepositSafetyDepositBoxItems(Guid boxId, List<string> entityDataList, CancellationToken cancel = default);
         Task UpdateSafetyDepositBoxNickname(Guid boxId, string? nickname, CancellationToken cancel = default);
-        Task ClearSafetyDepositBoxItems(Guid boxId, CancellationToken cancel = default);
+        Task ClearSafetyDepositBoxItems(Guid boxId, int roundId, CancellationToken cancel = default);
         Task<int> DeleteStaleSafetyDepositBoxes(int daysStale, CancellationToken cancel = default);
         Task DeleteSafetyDepositBox(Guid boxId, CancellationToken cancel = default);
+
+        #endregion
+
+        #region Wayfarer Roleplay Leveling
+
+        Task<WayfarerRoleplayLevel> GetOrCreateRoleplayLevel(Guid userId, CancellationToken cancel = default);
+        Task UpdateRoleplayLevel(Guid userId, int level, long experience, long experienceToNextLevel, int totalCommends, CancellationToken cancel = default);
+        Task AddRoleplayCommend(int roundId, int recipientProfileId, Guid recipientUserId, int giverProfileId, Guid giverUserId, string? comment, bool isPrivate, CancellationToken cancel = default);
+        Task<List<WayfarerRoleplayCommend>> GetPlayerCommends(Guid userId, bool includePrivate = false, CancellationToken cancel = default);
+        Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId, int roundId, CancellationToken cancel = default);
+        Task<string?> GetCharacterNameByProfileIdAsync(int profileId, CancellationToken cancel = default);
+
+        #endregion
+
+        #region Wayfarer Community Goals
+
+        Task<List<WayfarerCommunityGoal>> GetAllCommunityGoals(CancellationToken cancel = default);
+        Task<List<WayfarerCommunityGoal>> GetActiveCommunityGoals(int roundId, CancellationToken cancel = default);
+        Task<WayfarerCommunityGoal> CreateCommunityGoal(string title, string description, int? startRound, int? endRound, CancellationToken cancel = default);
+        Task UpdateCommunityGoal(int goalId, string title, string description, int? startRound, int? endRound, bool isActive, CancellationToken cancel = default);
+        Task DeleteCommunityGoal(int goalId, CancellationToken cancel = default);
+        Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(int goalId, string entityPrototypeId, string? displayName, long requiredAmount, CancellationToken cancel = default);
+        Task RemoveCommunityGoalRequirement(int requirementId, CancellationToken cancel = default);
+        Task UpdateCommunityGoalRequirement(int requirementId, long requiredAmount, CancellationToken cancel = default);
+        Task AddCommunityGoalContribution(int requirementId, long amount, Guid? playerUserId = null, string? characterName = null, string? entityPrototypeId = null, int roundId = 0, CancellationToken cancel = default);
 
         #endregion
     }
@@ -1147,7 +1174,9 @@ namespace Content.Server.Database
             DateTime roundEndTime,
             JsonDocument? profitLossData,
             JsonDocument? playerStories,
-            JsonDocument? playerManifest)
+            JsonDocument? playerManifest,
+            JsonDocument? mailMetricsData,
+            JsonDocument? spesosFlowData)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.AddWayfarerRoundSummary(
@@ -1156,7 +1185,9 @@ namespace Content.Server.Database
                 roundEndTime,
                 profitLossData,
                 playerStories,
-                playerManifest));
+                playerManifest,
+                mailMetricsData,
+                spesosFlowData));
         }
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
@@ -1210,10 +1241,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.UpdateSafetyDepositBoxNickname(boxId, nickname, cancel));
         }
 
-        public Task ClearSafetyDepositBoxItems(Guid boxId, CancellationToken cancel = default)
+        public Task ClearSafetyDepositBoxItems(Guid boxId, int roundId, CancellationToken cancel = default)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.ClearSafetyDepositBoxItems(boxId, cancel));
+            return RunDbCommand(() => _db.ClearSafetyDepositBoxItems(boxId, roundId, cancel));
         }
 
         public Task<int> DeleteStaleSafetyDepositBoxes(int daysStale, CancellationToken cancel = default)
@@ -1226,6 +1257,104 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.DeleteSafetyDepositBox(boxId, cancel));
+        }
+
+        #endregion
+
+        #region Wayfarer Roleplay Leveling
+
+        public Task<WayfarerRoleplayLevel> GetOrCreateRoleplayLevel(Guid userId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetOrCreateRoleplayLevel(userId, cancel));
+        }
+
+        public Task UpdateRoleplayLevel(Guid userId, int level, long experience, long experienceToNextLevel, int totalCommends, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpdateRoleplayLevel(userId, level, experience, experienceToNextLevel, totalCommends, cancel));
+        }
+
+        public Task AddRoleplayCommend(int roundId, int recipientProfileId, Guid recipientUserId, int giverProfileId, Guid giverUserId, string? comment, bool isPrivate, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddRoleplayCommend(roundId, recipientProfileId, recipientUserId, giverProfileId, giverUserId, comment, isPrivate, cancel));
+        }
+
+        public Task<List<WayfarerRoleplayCommend>> GetPlayerCommends(Guid userId, bool includePrivate = false, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerCommends(userId, includePrivate, cancel));
+        }
+
+        public Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId, int roundId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetRoundCommendsGivenByPlayer(giverUserId, roundId, cancel));
+        }
+
+        public Task<string?> GetCharacterNameByProfileIdAsync(int profileId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetCharacterNameByProfileIdAsync(profileId, cancel));
+        }
+
+        #endregion
+
+        #region Wayfarer Community Goals
+
+        public Task<List<WayfarerCommunityGoal>> GetAllCommunityGoals(CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAllCommunityGoals(cancel));
+        }
+
+        public Task<List<WayfarerCommunityGoal>> GetActiveCommunityGoals(int roundId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetActiveCommunityGoals(roundId, cancel));
+        }
+
+        public Task<WayfarerCommunityGoal> CreateCommunityGoal(string title, string description, int? startRound, int? endRound, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.CreateCommunityGoal(title, description, startRound, endRound, cancel));
+        }
+
+        public Task UpdateCommunityGoal(int goalId, string title, string description, int? startRound, int? endRound, bool isActive, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpdateCommunityGoal(goalId, title, description, startRound, endRound, isActive, cancel));
+        }
+
+        public Task DeleteCommunityGoal(int goalId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteCommunityGoal(goalId, cancel));
+        }
+
+        public Task<WayfarerCommunityGoalRequirement> AddCommunityGoalRequirement(int goalId, string entityPrototypeId, string? displayName, long requiredAmount, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddCommunityGoalRequirement(goalId, entityPrototypeId, displayName, requiredAmount, cancel));
+        }
+
+        public Task RemoveCommunityGoalRequirement(int requirementId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveCommunityGoalRequirement(requirementId, cancel));
+        }
+
+        public Task UpdateCommunityGoalRequirement(int requirementId, long requiredAmount, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpdateCommunityGoalRequirement(requirementId, requiredAmount, cancel));
+        }
+
+        public Task AddCommunityGoalContribution(int requirementId, long amount, Guid? playerUserId = null, string? characterName = null, string? entityPrototypeId = null, int roundId = 0, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddCommunityGoalContribution(requirementId, amount, playerUserId, characterName, entityPrototypeId, roundId, cancel));
         }
 
         #endregion

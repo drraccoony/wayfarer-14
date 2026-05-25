@@ -1,0 +1,62 @@
+- type: marking
+  id: ShelegOverlayGlaze
+  bodyPart: LLeg
+  markingCategory: Overlay
+  # speciesRestriction: [Sheleg]
+  layering:
+    rime_glaze: LLeg
+    rime_glaze-HANDS: RHand
+  colorLinks:
+    rime_glaze-HANDS: rime_glaze
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _WF/Mobs/Customization/sheleg_rime.rsi
+    state: rime_glaze
+  - sprite: _WF/Mobs/Customization/sheleg_rime.rsi
+    state: rime_glaze-HANDS
+
+- type: marking
+  id: ShelegOverlayFrosty
+  bodyPart: LLeg
+  markingCategory: Overlay
+  # speciesRestriction: [Sheleg]
+  layering:
+    rime_frosty: LLeg
+    rime_frosty-HANDS: RHand
+  colorLinks:
+    rime_frosty-HANDS: rime_frosty
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _WF/Mobs/Customization/sheleg_rime.rsi
+    state: rime_frosty
+  - sprite: _WF/Mobs/Customization/sheleg_rime.rsi
+    state: rime_frosty-HANDS
+
+- type: marking
+  id: ShelegOverlaySubzero
+  bodyPart: LLeg
+  markingCategory: Overlay
+  # speciesRestriction: [Sheleg]
+  layering:
+    rime_subzero: LLeg
+    rime_subzero-HANDS: RHand
+  colorLinks:
+    rime_subzero-HANDS: rime_subzero
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _WF/Mobs/Customization/sheleg_rime.rsi
+    state: rime_subzero
+  - sprite: _WF/Mobs/Customization/sheleg_rime.rsi
+    state: rime_subzero-HANDS

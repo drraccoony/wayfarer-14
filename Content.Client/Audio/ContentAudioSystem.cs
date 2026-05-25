@@ -24,11 +24,12 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
      */
 
     public const float MasterVolumeMultiplier = 3f;
-    public const float MidiVolumeMultiplier = 0.25f;
+    public const float MidiVolumeMultiplier = 2f; // Wayfarer: 0.25<2
     public const float AmbienceMultiplier = 3f;
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
+    public const float AndyAnnouncementMultiplier = 3f;
     public const float SalvageMultiplier = 1f; // Frontier
     public const float CombatMultiplier = 3f; //Mono
 
@@ -38,6 +39,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 
         UpdatesOutsidePrediction = true;
         InitializeAmbientMusic();
+        InitializeAndyAnnouncements();
         InitializeLobbyMusic();
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
     }
@@ -85,6 +87,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 
         UpdateAmbientMusic(frameTime);
         UpdateLobbyMusic();
+        UpdateAndyAnnouncementVolumes();
         UpdateFades(frameTime);
     }
 

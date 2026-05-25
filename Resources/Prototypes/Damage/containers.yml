@@ -6,6 +6,7 @@
     - Toxin
     - Airloss
     - Genetic
+    - Rot # Wayfarer: Added rot damage group to Biological container to split Cellular and Rot damage.
 
 - type: damageContainer
   id: Inorganic
@@ -72,3 +73,5 @@
   - Airloss
   - Genetic
   - Metaphysical
+  - Rot # Wayfarer: Added rot damage group to Biological container to split Cellular and Rot damage.
+

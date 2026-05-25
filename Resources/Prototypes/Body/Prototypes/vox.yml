@@ -8,8 +8,8 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganVoxStack
+        eyes: OrganVoxEyes
     torso:
       part: TorsoVox
       connections:
@@ -22,7 +22,7 @@
         lungs: OrganVoxLungs
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
     right arm:
       part: RightArmVox
       connections:

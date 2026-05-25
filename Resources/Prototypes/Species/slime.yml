@@ -5,13 +5,14 @@
   prototype: MobSlimePerson
   sprites: MobSlimeSprites
   defaultSkinTone: "#b8b8b8"
-  markingLimits: MobSlimeMarkingLimits
+  markingLimits: MobHumanMarkingLimits #MobSlimeMarkingLimits WF
   dollPrototype: MobSlimePersonDummy
   skinColoration: Hues
 
 - type: speciesBaseSprites
   id: MobSlimeSprites
   sprites:
+    Special: MobHumanoidAnyMarking
     TailBehind: MobHumanoidAnyMarking
     TailOversuit: MobHumanoidAnyMarking
     Head: MobSlimeHead
@@ -19,7 +20,10 @@
     FacialHair: MobSlimeMarkingFollowSkin
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Chest: MobSlimeTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobSlimeLArm
     RArm: MobSlimeRArm
@@ -29,34 +33,7 @@
     RLeg: MobSlimeRLeg
     LFoot: MobSlimeLFoot
     RFoot: MobSlimeRFoot
-
-
-- type: markingPoints
-  id: MobSlimeMarkingLimits
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 1
-      required: false
-    Chest:
-      points: 4 # imp 2<4
-      required: false
-    Legs:
-      points: 8 # imp 4<8
-      required: false
-    Arms:
-      points: 8 # imp 4<8
-      required: false
-    # Frontier: apparently these don't exist on Delta
-    UndergarmentTop:
-      points: 3
-      required: false
-    UndergarmentBottom:
-      points: 3
-      required: false
-    # End Frontier
+    RArmExtension: MobHumanoidAnyMarking # Adds Wing Slot
 
 - type: humanoidBaseSprite
   id: MobSlimeMarkingFollowSkin

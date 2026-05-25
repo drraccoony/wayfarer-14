@@ -29,38 +29,38 @@
     sprite: _NF/Structures/Storage/Crates/radiation_secure.rsi
 
 - type: entity
-  parent: CrateSecgear
+  parent: [CrateSecgear, BaseCGPContraband] # Wayfarer: add BaseCGPContraband
   id: CrateNfsdBrigmedic
   name: brigmedic crate
   components:
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/nfsd_brigmed.rsi
+    sprite: _WF/Structures/Storage/Crates/nfsd_brigmed.rsi # Wayfarer: _NF/Structures/Storage/Crates/nfsd_brigmed.rsi < _WF/Structures/Storage/Crates/nfsd_brigmed.rsi
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/nfsd_brigmed.rsi
+    sprite: _WF/Structures/Storage/Crates/nfsd_brigmed.rsi # Wayfarer: _NF/Structures/Storage/Crates/nfsd_brigmed.rsi < _WF/Structures/Storage/Crates/nfsd_brigmed.rsi
   - type: AccessReader
     access: [["Security"]]
 
 - type: entity
-  parent: CrateSecgear
+  parent: [CrateSecgear, BaseCGPContraband] # Wayfarer: add BaseCGPContraband
   id: CrateNfsdSecure1
   name: CGP crate
   components:
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi
+    sprite: _WF/Structures/Storage/Crates/nfsd_secure1.rsi # Wayfarer: _NF/Structures/Storage/Crates/nfsd_secure1.rsi < _WF/Structures/Storage/Crates/nfsd_secure2.rsi
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi
+    sprite: _WF/Structures/Storage/Crates/nfsd_secure2.rsi # Wayfarer: _NF/Structures/Storage/Crates/nfsd_secure1.rsi < _WF/Structures/Storage/Crates/nfsd_secure2.rsi
   - type: AccessReader
     access: [["Security"]]
 
 - type: entity
-  parent: CrateSecgear
+  parent: [CrateSecgear, BaseCGPContraband] # Wayfarer: add BaseCGPContraband
   id: CrateNfsdSecure2
   name: CGP crate
   components:
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi
+    sprite: _WF/Structures/Storage/Crates/nfsd_secure2.rsi # Wayfarer: _NF/Structures/Storage/Crates/nfsd_secure2.rsi < _WF/Structures/Storage/Crates/nfsd_secure2.rsi
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi
+    sprite: _WF/Structures/Storage/Crates/nfsd_secure2.rsi # Wayfarer: _NF/Structures/Storage/Crates/nfsd_secure2.rsi < _WF/Structures/Storage/Crates/nfsd_secure2.rsi
   - type: AccessReader
     access: [["Security"]]
 
@@ -81,20 +81,20 @@
   description: A space pirate chest, not for station lubbers.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi
+    sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi # TODO: OUTLAW
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi
+    sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi # TODO: OUTLAW
 
 - type: entity
   parent: CratePirate
   id: CratePirateBounty
-  name: pirate bounty chest
-  description: A chest for storing looted goods. Huh, this one's blank.
+  name: black market bounty chest # WF
+  description: A chest for ill-gotten gains. Huh, this one's blank.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/pirate_bounty.rsi
+    sprite: _NF/Structures/Storage/Crates/pirate_bounty.rsi # TODO: OUTLAW
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/pirate_bounty.rsi
+    sprite: _NF/Structures/Storage/Crates/pirate_bounty.rsi # TODO: OUTLAW
   - type: PirateBountyLabel # Needs to be filled out.
 
 - type: entity

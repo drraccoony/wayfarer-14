@@ -15,6 +15,7 @@
   - type: Speech
     speechVerb: Vox
     speechSounds: Vox
+    allowedEmotes: ['Click', 'Chitter', 'Hiss', 'Coo'] # Impstation
   - type: TypingIndicator
     proto: vox
   - type: Vocal
@@ -59,6 +60,7 @@
     damage:
       types:
         Slash: 5 # Reduce?
+  - type: Carriable # Wayfarer
   - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -70,6 +72,7 @@
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.Genital" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
@@ -86,6 +89,7 @@
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ] # This is not in the default order
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

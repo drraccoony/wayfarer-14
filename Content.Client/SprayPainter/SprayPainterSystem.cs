@@ -81,6 +81,7 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
         {
             if (!decalPrototype.Tags.Contains("station")
                 && !decalPrototype.Tags.Contains("markings")
+                && !decalPrototype.Tags.Contains("flora") // Coyote: Temporary solution... But you know what they say about those, right?
                 || decalPrototype.Tags.Contains("dirty"))
                 continue;
 

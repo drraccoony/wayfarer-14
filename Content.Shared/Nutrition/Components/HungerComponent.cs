@@ -34,7 +34,7 @@ public sealed partial class HungerComponent : Component
     /// </summary>
     /// <remarks>Any time this is modified, <see cref="HungerSystem.SetAuthoritativeHungerValue"/> should be called.</remarks>
     [DataField("baseDecayRate"), ViewVariables(VVAccess.ReadWrite)]
-    public float BaseDecayRate = 0.02f;
+    public float BaseDecayRate = 0.02f; // 0.2 -> 0.02 Wayfarer
 
     /// <summary>
     /// The actual amount at which <see cref="LastAuthoritativeHungerValue"/> decays.
@@ -97,7 +97,7 @@ public sealed partial class HungerComponent : Component
     [AutoNetworkedField]
     public Dictionary<HungerThreshold, float> HungerThresholdDecayModifiers = new()
     {
-        { HungerThreshold.Overfed, 1.2f },
+        { HungerThreshold.Overfed, 0.8f }, // Wayfarer 1.2 to 0.8 to give a "satieted" effect intead of draining hunger faster to get to the "Okay" threshold
         { HungerThreshold.Okay, 1f },
         { HungerThreshold.Peckish, 0.8f },
         { HungerThreshold.Starving, 0.6f },

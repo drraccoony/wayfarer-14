@@ -1,0 +1,26 @@
+# Wayfarer hauler autopilot event
+
+- type: entity
+  id: HaulerAutopilotEvent
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-hauler-autopilot-start-announcement
+    startAudio:
+      path: /Audio/_WF/Announcements/ship_alert.ogg
+    endAnnouncement: station-event-hauler-autopilot-end-announcement
+    earliestStart: 60 # Can start 60 minutes into the round
+    minimumPlayers: 10
+    weight: 30
+    duration: 1800 # 30 minutes
+    maxDuration: 2700 # 45 minutes
+    reoccurrenceDelay: 300 # 5 hours between events
+  - type: HaulerAutopilotRule
+    shuttlePath: /Maps/_WF/ShuttleEvent/armoredtransport.yml
+    minimumDistance: 7000
+    maximumDistance: 9000
+    addComponents:
+    - type: IFF
+      color: "#8178cc"
+    - type: Shuttle
+    # - type: PreventPilot

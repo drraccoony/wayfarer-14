@@ -156,6 +156,19 @@
   - type: GuideHelp
     guides:
     - ShuttleCraft
+  - type: NoSignalOnLink # Mono
+  # Mono
+  - type: DeviceLinkSource
+    ports:
+    - device-button-1
+    - device-button-2
+    - device-button-3
+    - device-button-4
+    - device-button-5
+    - device-button-6
+    - device-button-7
+    - device-button-8
+  # End Mono
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
@@ -265,7 +278,7 @@
     stealGroup: CargoShuttleConsoleCircuitboard
 
 - type: entity
-  parent: BaseComputerAiAccess
+  parent: [ BaseComputerAiAccess, BaseMilitaryContraband ] # Wayfarer: Added BaseMilitaryContraband Contraband
   id: ComputerIFF
   name: IFF computer
   description: Allows you to control the IFF characteristics of this vessel.
@@ -588,7 +601,7 @@
   parent: [BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: added BaseStructureIndestructible
   id: ComputerId
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming Concordia-issued employee ID cards to access parts of the station. # Wayfarer: remove nanotrasen mention in description
   components:
   - type: IdCardConsole
     privilegedIdSlot:
@@ -906,6 +919,7 @@
     taxAccounts: # Frontier
       Frontier: 0.25 # Frontier
       Nfsd: 0.15 # Frontier
+    allowedGroups: [ "market" ] # Wayfarer: Restrict to market group only.
     # removeLimitAccess: [ "Quartermaster" ] # Frontier
   # - type: ActiveRadio # Frontier
   #   channels: # Frontier
@@ -1412,6 +1426,21 @@
           type: WiresBoundUserInterface
 
 - type: entity
+  parent: ComputerSurveillanceWirelessCameraMonitor
+  id: ComputerSurveillanceWirelessXenoborgCameraMonitor
+  name: xenoborg camera monitor
+  description: A wireless xenoborg camera monitor. You're watching them. Maybe.
+  components:
+  - type: Computer
+    board: XenoborgCameraMonitorCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Mothership
+    transmitFrequencyId: Mothership
+  - type: WirelessNetworkConnection
+    range: 2000
+
+- type: entity
   id: ComputerPalletConsole
   parent: BaseComputerAiAccess
   name: cargo sale computer
@@ -1580,6 +1609,39 @@
     access: [["ResearchDirector"]]
   - type: Lock
     unlockOnClick: false
+
+- type: entity
+  parent: ComputerRoboticsControl
+  id: ComputerXenoborgsControl
+  name: xenoborgs control console
+  description: Used to remotely monitor all xenoborgs.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: xenorobot
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: RoboticsConsole
+    allowBorgControl: false
+    radioChannel: Xenoborg
+  - type: ActiveRadio
+    channels:
+    - Xenoborg
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Mothership
+    transmitFrequencyId: Xenoborg
+  - type: Computer
+    board: ComputerXenoborgsControlCircuitboard
+  - type: AccessReader # only used for dangerous things
+    access: [["Xenoborg"]]
 
 - type: entity
   id: StationAiUploadComputer

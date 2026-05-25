@@ -59,12 +59,18 @@
                   max: 2
     - type: StaticPrice
       price: 50 # Frontier: 100<50 - TODO: material value rework
+    # Wayfarer: added recyclable component
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 50
+        Plastic: 20
+    # End Wayfarer
 
 #Security Shields
 
 - type: entity
   name: riot shield
-  parent: [ BaseShield, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  parent: BaseShield # Frontier: BaseSecurityContraband<BaseC1Contraband # Wayfarer: Removed Contraband
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
@@ -85,7 +91,7 @@
 
 - type: entity
   name: laser shield
-  parent: [ BaseShield, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: BaseShield # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Wayfarer: Removed Contraband
   id: RiotLaserShield
   description: A shield built for withstanding lasers, but not much else.
   components:
@@ -105,7 +111,7 @@
 
 - type: entity
   name: ballistic shield
-  parent: [ BaseShield, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: BaseShield # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Wayfarer: Removed Contraband
   id: RiotBulletShield
   description: A shield built for protecting against ballistics, but not much else.
   components:
@@ -179,6 +185,58 @@
                   max: 5
     - type: StaticPrice
       price: 150
+
+- type: entity
+  name: cardboard shield
+  parent: BaseShield
+  id: CardShield
+  description: A shield made of cardboard. Won't protect you from much.
+  components:
+    - type: Sprite
+      state: cardshield-icon
+    - type: Item
+      heldPrefix: cardshield
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1
+          Slash: 2
+          Piercing: 0.6
+          Heat: 3
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 1.8
+          Piercing: 0.5
+          Heat: 2.5
+        flatReductions:
+          Blunt: 0.5
+    - type: Construction
+      graph: CardShield
+      node: cardShield
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 25
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 10 #Very very weak shield
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound: /Audio/Items/Toys/ToyFall2.ogg
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialCardboard:
+              min: 2
+              max: 4
+    - type: StaticPrice
+      price: 20
 
 - type: entity
   name: makeshift shield
@@ -368,7 +426,7 @@
 
 - type: entity
   name: energy shield
-  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseItem, BaseMilitaryContraband] # Wayfarer: BaseMilitaryContraband<BaseBMContraband
   id: EnergyShield
   description: Exotic energy shield, when folded, can even fit in your pocket.
   components:
@@ -438,32 +496,49 @@
           Heat: 1
           Piercing: 1
     - type: Appearance
-    - type: Damageable
-      damageContainer: Shield
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 180
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                BrokenEnergyShield:
-                  min: 1
-                  max: 1
+  # WF// Start
+  #  - type: Destructible
+  #    thresholds:
+  #    - trigger:
+  #        !type:DamageTrigger
+  #        damage: 180
+  #      behaviors:
+  #      - !type:DoActsBehavior
+  #        acts: [ "Destruction" ]
+  #    - trigger:
+  #        !type:DamageTrigger
+  #        damage: 100
+  #      behaviors:
+  #      - !type:DoActsBehavior
+  #        acts: [ "Destruction" ]
+  #      - !type:PlaySoundBehavior
+  #        sound:
+  #          collection: GlassBreak
+  #      - !type:SpawnEntitiesBehavior
+  #        spawn:
+  #          BrokenEnergyShield:
+  #            min: 1
+  #            max: 1
+    - type: Battery
+      maxCharge: 60
+      startingCharge: 60
+    - type: RechargeableBlocking
+      dischargedRechargeRate: 1.5
+      chargedRechargeRate: 3
+    - type: BatterySelfRecharger
+      autoRechargeRate: 3
+      autoRecharge: true
+  #WF// End
     - type: StaticPrice
       price: 350
+    - type: Damageable
+      damageContainer: Shield
+    # Wayfarer: added recyclable component
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 50
+        Plastic: 20
+    # End Wayfarer
 
 - type: entity
   name: broken energy shield
@@ -483,7 +558,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: [BaseShield, BaseC2ContrabandUnredeemable] # Frontier: BaseC2ContrabandUnredeemable
+  parent: BaseShield # Frontier: BaseC2ContrabandUnredeemable # Wayfarer: Removed Contraband
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:

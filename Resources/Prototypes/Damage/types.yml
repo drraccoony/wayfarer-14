@@ -66,6 +66,13 @@
   armorFlatPrice: 16
 
 - type: damageType
+  id: Rot
+  name: damage-type-rot
+  armorCoefficientPrice: 5
+  armorFlatPrice: 25
+#Wayfarer: Added rot.
+
+- type: damageType
   id: Shock
   name: damage-type-shock
   armorCoefficientPrice: 2.5

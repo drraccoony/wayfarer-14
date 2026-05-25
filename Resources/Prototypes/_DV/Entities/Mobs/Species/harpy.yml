@@ -48,6 +48,7 @@
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.Genital" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: [ "socks" ]
       - map: [ "jumpsuit" ]
@@ -116,7 +117,38 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
-    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish', 'Bubble', 'Pop'] # Frontier: add Belch, Squish, Bubble, Pop
+    # Wayfarer: Add Chirp Hisses, Trill, Scree, Call and Squawk, also switch array type
+    allowedEmotes:
+      - Meow
+      - Hiss
+      - Mew
+      - Purr
+      - Growl
+      - Bark
+      - Snarl
+      - Whine
+      - Howl
+      - Awoo
+      - HarpyHonk
+      - HarpyRing
+      - HarpyPew
+      - HarpyBang
+      - HarpyBeep
+      - HarpyRev
+      - HarpyCaw
+      - Squish
+      - Chitter
+      - Squeak
+      - Click
+      - Belch
+      - Bubble
+      - Pop
+      - Chirp
+      - Hisses
+      - Trill
+      - Scree
+      - Call
+      - Squawk
   - type: Vocal
     sounds:
       Male: SoundsHarpy
@@ -182,6 +214,7 @@
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.Genital" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: [ "socks" ]
       - map: [ "jumpsuit" ]

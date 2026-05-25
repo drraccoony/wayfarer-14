@@ -57,6 +57,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         _metaQuery = GetEntityQuery<MetaDataComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
 
+        InitializeDeviceLinking(); // Mono
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
         SubscribeLocalEvent<ShuttleConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChange);
@@ -262,10 +263,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                     GetNetEntity(otherDockXform.GridUid) :
                     null,
                 LabelName = comp.Name != null ? Loc.GetString(comp.Name) : null, // Frontier: docking labels
-                RadarColor = comp.RadarColor, // Frontier
-                HighlightedRadarColor = comp.HighlightedRadarColor, // Frontier
                 DockType = comp.DockType, // Frontier
                 ReceiveOnly = comp.ReceiveOnly, // Frontier
+                Color = comp.RadarColor,
+                HighlightedColor = comp.HighlightedRadarColor
             };
 
             gridDocks.Add(state);

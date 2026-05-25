@@ -8,12 +8,10 @@
   - type: HumanoidAppearance
     species: Feroxi
   - type: Hunger
-    baseDecayRate: 0.005
   - type: Carriable
   - type: Inventory
     speciesId: feroxi
   - type: Thirst
-    baseDecayRate: 0.005
   - type: Icon
     sprite: DeltaV/Mobs/Species/Feroxi/parts.rsi
     state: full
@@ -54,6 +52,7 @@
         # sprite refactor when
         state: l_leg
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.Genital" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: [ "jumpsuit" ]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
@@ -102,11 +101,11 @@
     damageModifierSet: Feroxi
   - type: TypingIndicator
     proto: feroxi
-  - type: FeroxiDehydrate # hey bby, the CPAP stays on while we make out
-    overhydrated: 1.05
-    okay: 0.75
-    thirsty: 0.25
-    parched: 0.1
+ # - type: FeroxiDehydrate # hey bby, the CPAP stays on while we make out
+   # overhydrated: 1.05
+   # okay: 0.75
+   # thirsty: 0.25
+   # parched: 0.1
 
 - type: entity
   parent: MobHumanDummy

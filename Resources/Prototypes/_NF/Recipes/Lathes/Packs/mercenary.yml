@@ -15,6 +15,7 @@
   - ClothingBeltMilitaryWebbing
   - ClothingHandsMercenaryGlovesCombat
   - ClothingHandsGlovesCombat
+  - ClothingHandsGlovesCombatWhite # Wayfarer
   - ClothingShoesBootsMercenary
   - ClothingShoesBootsCombat
   - ClothingShoesBootsJack
@@ -35,6 +36,7 @@
   - WeaponCaseLong
   - WeaponCaseHeavy
   - WeaponCaseShortAmmo
+  - WeaponCaseHeavyAmmo # Coyote
   - WeaponCaseShortExplosives
 
 - type: latheRecipePack
@@ -111,6 +113,9 @@
   - ClothingEyesHudBountyHunter
   - BolaNF
   - NFHandcuffs
+  # Monolith
+  - ArmorPlateLight
+  - ArmorPlateSteel
 
 - type: latheRecipePack
   id: NFMercenaryArchetypeMeleeStatic

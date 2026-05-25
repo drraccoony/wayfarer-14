@@ -12,13 +12,13 @@ public sealed partial class CCVars
     ///     Change this to have the changelog and rules "last seen" date stored separately.
     /// </summary>
     public static readonly CVarDef<string> ServerId =
-        CVarDef.Create("server.id", "new_frontier", CVar.REPLICATED | CVar.SERVER); // Frontier: new_frontier
+        CVarDef.Create("server.id", "wayfarer", CVar.REPLICATED | CVar.SERVER); // Wayfarer: new_frontier<wayfarer
 
     /// <summary>
     ///     Guide Entry Prototype ID to be displayed as the server rules.
     /// </summary>
     public static readonly CVarDef<string> RulesFile =
-        CVarDef.Create("server.rules_file", "FrontierRuleset", CVar.REPLICATED | CVar.SERVER); // Frontier: Rules
+        CVarDef.Create("server.rules_file", "WayfarerRules", CVar.REPLICATED | CVar.SERVER); // Wayfarer: Rules
 
     /// <summary>
     ///     Guide entry that is displayed by default when a guide is opened.

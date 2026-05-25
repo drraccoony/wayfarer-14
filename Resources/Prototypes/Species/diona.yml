@@ -5,7 +5,7 @@
   prototype: MobDiona
   sprites: MobDionaSprites
   defaultSkinTone: "#cdb369"
-  markingLimits: MobDionaMarkingLimits
+  markingLimits: MobHumanMarkingLimits #MobDionaMarkingLimits WF
   dollPrototype: MobDionaDummy
   skinColoration: Hues
   maleFirstNames: NamesDionaFirst
@@ -16,13 +16,19 @@
 - type: speciesBaseSprites
   id: MobDionaSprites
   sprites:
+    Special: MobHumanoidAnyMarking
     TailBehind: MobHumanoidAnyMarking
     TailOversuit: MobHumanoidAnyMarking
     Head: MobDionaHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Chest: MobDionaTorso
     Eyes: MobDionaEyes
     LArm: MobDionaLArm
@@ -33,39 +39,7 @@
     RLeg: MobDionaRLeg
     LFoot: MobDionaLFoot
     RFoot: MobDionaRFoot
-
-- type: markingPoints
-  id: MobDionaMarkingLimits
-  onlyWhitelisted: true
-  points:
-    Head:
-      points: 2
-      required: false
-    HeadTop:
-      points: 1
-      required: false
-    HeadSide:
-      points: 1
-      required: false
-    UndergarmentTop:
-      points: 3
-      required: false
-    UndergarmentBottom:
-      points: 3
-      required: false
-    Chest:
-      points: 2
-      required: false
-    Legs:
-      points: 2
-      required: false
-    Arms:
-      points: 2
-      required: false
-    Overlay:
-      points: 1
-      required: true
-      defaultMarkings: [ DionaVineOverlay ]
+    RArmExtension: MobHumanoidAnyMarking # Adds Wing Slot
 
 - type: humanoidBaseSprite
   id: MobDionaEyes

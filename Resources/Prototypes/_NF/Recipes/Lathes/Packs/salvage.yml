@@ -11,6 +11,8 @@
   - NFWeaponHoloflareGun
   - NFMetalShield
   - Signaller
+  # Monolith
+  - ArmorPlateSteel
 
 - type: latheRecipePack
   id: NFSalvageBoardsStatic
@@ -31,6 +33,7 @@
   recipes:
   - BluespaceAirTank
   - SmallBluespaceAirTank
+  - ClothingHandsConcussiveGauntlets
 
 - type: latheRecipePack
   id: NFSalvageTechfabEmag

@@ -17,6 +17,8 @@ using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.EffectConditions;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.SSDIndicator; // Wayfarer
+using Content.Shared.Mind.Components; // Wayfarer
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -77,6 +79,13 @@ public sealed class RespiratorSystem : EntitySystem
 
             if (_mobState.IsDead(uid))
                 continue;
+
+            // Wayfarer: Prevents SSD clients that have a mind associated to them from breathing to prevent offline asphyx deaths.
+            if (TryComp<SSDIndicatorComponent>(uid, out var ssd) && ssd.IsSSD
+             && TryComp<MindContainerComponent>(uid, out var mindContComp)
+              && mindContComp.HasMind)
+                continue;
+            // End Wayfarer
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 

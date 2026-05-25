@@ -1,0 +1,120 @@
+- type: blipColorSet
+  id: BlipColorRed
+  name: Rough And Tumble Red
+  order: 1
+  color: red
+  highlightedColor: lightcoral
+
+- type: blipColorSet
+  id: BlipColorOrange
+  name: Orange You Glad
+  order: 2
+  color: orange
+  highlightedColor: lightseagreen
+
+- type: blipColorSet
+  id: BlipColorGold
+  name: Gorgeous Gold
+  order: 3
+  color: gold
+  highlightedColor: lightgoldenrodyellow
+
+- type: blipColorSet
+  id: BlipColorYellow
+  name: Visible Yellow
+  order: 4
+  color: yellow
+  highlightedColor: lightyellow
+
+- type: blipColorSet
+  id: BlipColorGreen
+  name: Good Guy Green
+  order: 5
+  color: limegreen
+  highlightedColor: lime
+
+- type: blipColorSet
+  id: BlipColorBlue
+  name: Bob Blue
+  order: 6
+  color: blue
+  highlightedColor: lightblue
+
+- type: blipColorSet
+  id: BlipColorCyan
+  name: Sky Blue May Be
+  order: 7
+  color: cyan
+  highlightedColor: lightcyan
+
+- type: blipColorSet
+  id: BlipColorTeal
+  name: Vivid Gamboge
+  order: 8
+  color: VividGamboge
+  highlightedColor: VividGamboge
+
+- type: blipColorSet
+  id: BlipColorPurple
+  name: Proyal Purple
+  order: 9
+  color: purple
+  highlightedColor: purple
+
+- type: blipColorSet
+  id: BlipColorMagenta
+  name: Maddening Magenta
+  order: 10
+  color: magenta
+  highlightedColor: pink
+
+- type: blipColorSet
+  id: BlipColorPink
+  name: Pink As Hell
+  order: 11
+  color: pink
+  highlightedColor: magenta
+
+- type: blipColorSet
+  id: BlipColorBrown
+  name: Muddy Mae Brown
+  order: 12
+  color: brown
+  highlightedColor: brown
+
+- type: blipColorSet
+  id: BlipColorWhite
+  name: White Bright
+  order: 13
+  color: white
+  highlightedColor: lightgray
+
+- type: blipColorSet
+  id: BlipColorBlack
+  name: Stealthy Black
+  order: 14
+  color: black
+  highlightedColor: darkgray
+
+- type: blipColorSet
+  id: BlipColorGray
+  name: Boring Gray
+  order: 15
+  color: gray
+  highlightedColor: lightgray
+
+# Wayfarer
+- type: blipColorSet
+  id: BlipColorEnigmatic
+  name: Enigmatic Orchid
+  order: 16
+  color: darkorchid
+  highlightedColor: darkorchid
+
+- type: blipColorSet
+  id: BlipColorSilver
+  name: Quicksilver
+  order: 16
+  color: Silver
+  highlightedColor: silver
+# End Wayfarer

@@ -1,7 +1,7 @@
 #region Rockets
 
 - type: entity
-  parent: [BaseItem, BaseC2ContrabandUnredeemable]
+  parent: [ BaseItem, BaseDDContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseDDContraband
   id: NFBaseCartridgeRocket
   abstract: true
   components:
@@ -18,6 +18,12 @@
     state: rpg
   - type: StaticPrice
     price: 20
+  # Wayfarer: added recyclable component
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 20
+  # End Wayfarer
 
 - type: entity
   parent: NFBaseCartridgeRocket
@@ -62,6 +68,12 @@
     tags:
     - Grenade
     - NFCartridgeGrenade40mm
+  # Wayfarer: added recyclable component
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 20
+  # End Wayfarer
 
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeBaton ]
@@ -121,9 +133,9 @@
   - type: CartridgeAmmo
     proto: NFBulletGrenadeEMP
   - type: EmpDescription
-    range: 5
+    range: 8 #Wayfarer 5<8 # Makes them not useless
     energyConsumption: 2700000
-    disableDuration: 10
+    disableDuration: 30 #Wayfarer 10<30
 
 # Cannon Balls
 

@@ -140,7 +140,6 @@
   - ContractorClothingUniformJumpskirtResearchDirector
   - ContractorClothingUniformJumpsuitSeniorEngineer
   - ContractorClothingUniformJumpskirtSeniorEngineer
-  - ContractorClothingUniformJumpsuitChiefEngineerNT
   - ContractorClothingUniformJumpsuitChiefEngineer
   - ContractorClothingUniformJumpskirtChiefEngineer
   - ContractorClothingUniformJumpsuitChiefEngineerTurtle
@@ -399,6 +398,12 @@
   name: loadout-group-contractor-belt
   minLimit: 0
   loadouts:
+  # WF
+  - MercenaryClothingBeltMercenaryWebbing
+  - MercenaryClothingBeltMilitaryWebbing
+  - MercenaryClothingBeltMilitaryWebbingMed
+  - MercenaryClothingBeltSecurity
+  # WF
   - ContractorClothingBeltPlant
   - ContractorClothingBeltPlantFilled
   - ContractorClothingBeltChef
@@ -437,6 +442,12 @@
   - ContractorClothingShoesColorBlack
   - ContractorClothingShoesClothwrap
   - ContractorClothingShoesTourist
+  # WF
+  - ContractorClothingShoesBootsCombat
+  - ContractorClothingShoesBootsMercenary
+  - MercenaryClothingShoesMagMercenary
+  - MercenaryClothingShoesMagSecurity
+  # WF
   - ContractorClothingShoesBootsSalvage
   - ContractorClothingShoesChef
   - ContractorClothingShoesColorBlue
@@ -711,7 +722,7 @@
   id: ContractorPDA
   name: loadout-group-contractor-pda
   loadouts:
-  - ContractorContractorPDA
+#  - ContractorContractorPDA
   - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
@@ -725,7 +736,6 @@
   - ContractorChaplainPDA
   - ContractorLibrarianPDA
   - ContractorMedicalPDA
-  - ContractorParamedicPDA
   - ContractorPsychologistPDA
   - ContractorChemistryPDA
   - ContractorSciencePDA
@@ -733,6 +743,14 @@
   - ContractorZookeeperPDA
   - ContractorEngineerPDA
   - ContractorAtmosPDA
+  - ContractorLabSciPDA
+  - ContractorCookPDA
+  - ContractorDeckworkerPDA
+  - ContractorPracticingNursePDA
+  - ContractorProspectorPDA
+  - ContractorResidentPDA
+  - ContractorTouristPDA
+  #T2
   - ContractorCaptainPDA
   - ContractorQuartermasterPDA
   - ContractorSeniorResearcherPDA
@@ -746,7 +764,7 @@
   - ContractorClownPDA
   - ContractorMimePDA
   fallbacks:
-  - ContractorContractorPDA
+  - ContractorClearNFPDA #don'tchangethisbecauseotherwiseit'sagrrrkitten
 
 - type: loadoutGroup
   id: ContractorGlasses
@@ -811,7 +829,6 @@
   - ContractorCrayonBox
   - ContractorSoapNT
   - PlushieLizard
-  - WehfarerPlushie
   - ContractorPlushieSharkGrey
   - ContractorPlushieSharkBlue
   - ContractorPlushieSharkPink
@@ -955,7 +972,7 @@
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
-  - ContractorMimePowersImplanter
-  - ContractorBibleUserImplanter
+  #- ContractorMimePowersImplanter # Wayfarer: Mime vow implanter removed, replaced by the new Mime trait
+  #- ContractorBibleUserImplanter # Wayfarer: Faith implanter removed, covered by the existing Pious trait
   fallbacks:
   - ContractorMedicalTrackingImplanter

@@ -1,0 +1,13 @@
+- type: entity
+  id: WFClothingBackpackSatchelClear
+  name: discreet satchel
+  parent: ClothingBackpackSatchel
+  description: Your friends may still question how you manage to hide it all.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Back/Satchels/satchelclear.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,1
+    - 0,3,5,4
+    - 0,6,5,6

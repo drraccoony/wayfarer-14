@@ -1118,6 +1118,11 @@
   parent: BaseNeckClothingRecipe
   result: ClothingNeckScarfChaplainStole
 
+- type: latheRecipe
+  id: ClothingNeckScarfSolidRed
+  parent: BaseNeckClothingRecipe
+  result: ClothingNeckScarfSolidRed
+
 # region Syndicate
 
 - type: latheRecipe
@@ -1294,6 +1299,13 @@
   id: ClothingHandsGlovesCombat
   parent: NFBaseBootRecipe
   result: ClothingHandsGlovesCombat
+
+# Wayfarer
+- type: latheRecipe
+  id: ClothingHandsGlovesCombatWhite
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesCombatWhite
+# Wayfer End
 
 - type: latheRecipe
   id: ClothingHandsGlovesSr

@@ -385,6 +385,23 @@
         tags:
           - SecurityUplink
 
+# Wayfarer: Tactical Magboots
+- type: listing
+  id: UplinkSecurityTacticalMagboots
+  name:  uplink-outlaw-magboots-name
+  description: uplink-outlaw-magboots-desc
+  productEntity: ClothingShoesBootsMagBM
+  icon: { sprite: _Mono/Clothing/Shoes/Boots/magboots-ashen.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+  - UplinkSecurityUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
 - type: listing
   id: UplinkSecurityMagboots
   name:  uplink-security-magboots-name
@@ -751,11 +768,11 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+#    - !type:BuyerJobCondition # Wayfarer: Breaching Hammers for all
+#      whitelist:
+#        - Bailiff
+#        - SeniorOfficer
+#        - Sheriff
 
 - type: listing
   id: UplinkSecurityTeleShield
@@ -1103,6 +1120,22 @@
         tags:
           - SecurityUplink
 
+- type: listing # Wayfarer: Duster Frag Rounds
+  id: UplinkSecurityFragGrenadeAmmoMags
+  name:  uplink-security-frag-ammo-mags-name
+  description: uplink-security-frag-ammo-mags-desc
+  productEntity: NFMagazineGrenadeFrag
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
 - type: listing
   id: UplinkSecurityTrackingDartsAmmo
   name:  uplink-security-trackingdart-ammo-name
@@ -1150,8 +1183,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-        - Bailiff
-        - SeniorOfficer
+#    - !type:BuyerJobCondition # Wayfarer
+#      whitelist:
+#        - Sheriff
+#        - Bailiff
+#        - SeniorOfficer

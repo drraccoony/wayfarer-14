@@ -58,7 +58,7 @@ public sealed class RottingSystem : SharedRottingSystem
         {
             if (TryComp<ProRottingContainerComponent>(container.Owner, out var rotContainer))
                 return rotContainer.DecayModifier;
-            
+
             if (TryComp<SlowDecayContainerComponent>(container.Owner, out var slowContainer))
                 return slowContainer.DecayModifier;
         }
@@ -106,10 +106,38 @@ public sealed class RottingSystem : SharedRottingSystem
                 continue;
             rotting.TotalRotTime += rotting.RotUpdateRate * GetRotRate(uid);
 
-            if (rotting.DealDamage)
+            if (rotting.DealDamage && TryComp<DamageableComponent>(uid, out var damageable)) // Wayfarer: add && TryComp<DamageableComponent>(uid, out var damageable)
             {
                 var damage = rotting.Damage * rotting.RotUpdateRate.TotalSeconds;
-                _damageable.TryChangeDamage(uid, damage, true, false);
+                //_damageable.TryChangeDamage(uid, damage, true, false); // Wayfarer: Comment this in favor of the checks below:
+                // Wayfarer: Rot gibbing damage cap.
+                // Check if we've hit the blunt damage cap
+                if (rotting.TotalBluntDamageDealt >= rotting.DamageCap)
+                {
+                    // Remove blunt damage from the damage to be dealt
+                    damage.DamageDict.Remove("Blunt");
+                }
+                else
+                {
+                    // Calculate how much blunt damage we're about to deal
+                    var bluntDamage = (float)damage.DamageDict.GetValueOrDefault("Blunt", 0);
+
+                    // If this would exceed the cap, reduce it
+                    if (rotting.TotalBluntDamageDealt + bluntDamage > rotting.DamageCap)
+                    {
+                        var remainingDamage = rotting.DamageCap - rotting.TotalBluntDamageDealt;
+                        damage.DamageDict["Blunt"] = remainingDamage;
+                        rotting.TotalBluntDamageDealt = rotting.DamageCap;
+                    }
+                    else
+                    {
+                        rotting.TotalBluntDamageDealt += bluntDamage;
+                    }
+                }
+
+                if (damage.DamageDict.Count > 0)
+                    _damageable.TryChangeDamage(uid, damage, true, false);
+                // End Wayfarer
             }
 
             if (TryComp<RotIntoComponent>(uid, out var rotInto))
@@ -127,9 +155,15 @@ public sealed class RottingSystem : SharedRottingSystem
                 continue;
             // We need a way to get the mass of the mob alone without armor etc in the future
             // or just remove the mass mechanics altogether because they aren't good.
-            var molRate = perishable.MolsPerSecondPerUnitMass * (float)rotting.RotUpdateRate.TotalSeconds;
-            var tileMix = _atmosphere.GetTileMixture(uid, excite: true);
-            tileMix?.AdjustMoles(Gas.Ammonia, molRate * physics.FixturesMass);
+
+            // Wayfarer: Wrapped the gas emmission to only emit ammonia if the blunt damage cap hasn't been hit yet
+            if (!rotting.DealDamage || rotting.TotalBluntDamageDealt < rotting.DamageCap)
+            {
+                var molRate = perishable.MolsPerSecondPerUnitMass * (float)rotting.RotUpdateRate.TotalSeconds;
+                var tileMix = _atmosphere.GetTileMixture(uid, excite: true);
+                tileMix?.AdjustMoles(Gas.Ammonia, molRate * physics.FixturesMass);
+            }
+            // End Wayfarer
         }
     }
 }

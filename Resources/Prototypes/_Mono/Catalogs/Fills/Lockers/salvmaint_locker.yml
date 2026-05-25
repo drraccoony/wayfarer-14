@@ -228,8 +228,8 @@
         # Cap Gun & Ammo
         - !type:AllSelector
           children:
-          - id: RevolverCapGun
-          - id: BoxCartridgeCap
+          - id: NFRevolverCapGun
+          - id: NFBoxCartridgeCap # WF
         # Dummy Duo
         - !type:AllSelector
           children:
@@ -663,17 +663,17 @@
       - !type:AllSelector
         children:
         - id: NFWeaponRifleAssaultGestio
-        - id: MagazineRifle
+        - id: NFMagazineRifle20 # Wayfarer
       #DoubleBarrel
       - !type:AllSelector
         children:
-        - id: WeaponShotgunDoubleBarreled
+        - id: NFWeaponShotgunDoubleBarreled
         - id: NFAmmunitionBoxShellShotgunSlug
       #Kammerer
       - !type:AllSelector
         children:
-        - id: WeaponShotgunDoubleBarreled
-        - id: WeaponShotgunKammerer
+        - id: NFWeaponShotgunDoubleBarreled
+        - id: NFWeaponShotgunKammerer
         - id: NFAmmunitionBoxShellShotgunSlug
       #Faith
       - !type:AllSelector
@@ -689,7 +689,7 @@
     - id: NFWeaponEnergyPistolLaser
     - id: BoxT3ComponentsAssorted
     - id: PlushieThrongler
-    
+
   #Yeh prize
     - !type:GroupSelector
       weight: 10

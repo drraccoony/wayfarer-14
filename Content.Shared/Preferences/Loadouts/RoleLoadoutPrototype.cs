@@ -20,7 +20,10 @@ public sealed partial class RoleLoadoutPrototype : IPrototype
     /// Can the user edit their entity name for this role loadout?
     /// </summary>
     [DataField]
-    public bool CanCustomizeName;
+    public bool CanCustomizeName = true;
+
+    [DataField]
+    public bool CanCustomizeCrimeReason; // Wayfarer
 
     /// <summary>
     /// Should we use a random name for this loadout?

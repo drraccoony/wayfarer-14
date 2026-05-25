@@ -10,41 +10,37 @@ namespace Content.Client.Examine.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CharacterDetailWindow : FancyWindow
 {
-    private Label _characterName = default!;
-    private Label _jobTitle = default!;
-    private TabContainer _tabContainer = default!;
-    private RichTextLabel _descriptionText = default!;
-    private RichTextLabel _consentText = default!;
+    // Wayfarer: Removed references to elements
 
     public CharacterDetailWindow()
     {
         RobustXamlLoader.Load(this);
 
-        _characterName = FindControl<Label>("CharacterName");
-        _jobTitle = FindControl<Label>("JobTitle");
-        _tabContainer = FindControl<TabContainer>("TabContainer");
-        _descriptionText = FindControl<RichTextLabel>("DescriptionText");
-        _consentText = FindControl<RichTextLabel>("ConsentText");
+        // Wayfarer: Removed FindControl, etc etc
 
         // Set tab titles
-        _tabContainer.SetTabTitle(0, Loc.GetString("character-window-tab-description"));
-        _tabContainer.SetTabTitle(1, Loc.GetString("character-window-tab-consent"));
+        TabContainer.SetTabTitle(0, Loc.GetString("character-window-tab-description")); // Wayfarer: _tabContainer<TabContainer
+        TabContainer.SetTabTitle(1, Loc.GetString("character-window-tab-consent")); // Wayfarer: _tabContainer<TabContainer
+        TabContainer.SetTabTitle(2, Loc.GetString("character-window-tab-commend")); // Wayfarer
+
+        CommendCommentInput.Placeholder = new Rope.Leaf(Loc.GetString("character-window-commend-placeholder")); // Wayfarer
     }
 
-    public void SetCharacterInfo(string characterName, string jobTitle)
+    // Wayfarer: Switch from jobTitle to RoleplayLevel
+    public void SetCharacterInfo(string characterName, string roleplayLevel)
     {
         Title = Loc.GetString("character-window-title");
-        _characterName.Text = characterName;
-        _jobTitle.Text = jobTitle;
+        CharacterName.Text = characterName; // Wayfarer: _characterName<CharacterName
+        RoleplayLevel.Text = roleplayLevel; // Wayfarer: _jobTitle<RoleplayLevel
     }
 
     public void SetDescription(FormattedMessage description)
     {
-        _descriptionText.SetMessage(description);
+        DescriptionText.SetMessage(description); // Wayfarer: _descriptionText<DescriptionText
     }
 
     public void SetConsent(FormattedMessage consent)
     {
-        _consentText.SetMessage(consent);
+        ConsentText.SetMessage(consent); // Wayfarer: _consentText<ConsentText
     }
 }

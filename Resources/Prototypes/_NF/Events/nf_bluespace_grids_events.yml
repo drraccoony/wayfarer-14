@@ -13,22 +13,27 @@
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
     earliestStart: 100
     weight: 5
-    duration: 1350
-    maxDuration: 1560
+    duration: 1800
+    maxDuration: 2100
     reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
+    # Wayfarer: Cache/Vault group universal Timer
+    wayfareCacheGroup: Caches
+    wayfareCacheGroupMins: 120
+    # Wayfarer: End timer
+    
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-SyndicateWeaponsCache
-        minimumDistance: 1500
-        maximumDistance: 2500
+        minimumDistance: 3250
+        maximumDistance: 4000
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
           color: "#E10F9B"
         - type: Shuttle
@@ -54,23 +59,28 @@
     endAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_leave.ogg
     warningAnnouncement: station-event-bluespace-vault-warning-announcement
-
     earliestStart: 100
     weight: 5
-    duration: 1020
-    maxDuration: 1350
+    duration: 1800
+    maxDuration: 2100
     reoccurrenceDelay: 360 # 6 hours
+    requiredJobs:
+      Sheriff: 1
+    # Wayfarer: Cache/Vault group universal Timer
+    wayfareCacheGroup: Caches
+    wayfareCacheGroupMins: 120
+    # Wayfarer: End Timer
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-SecureNTVault
-        minimumDistance: 1500
-        maximumDistance: 2500
+        minimumDistance: 3250
+        maximumDistance: 4000
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
           color: "#E10F9B"
         - type: LinkedLifecycleGridParent
@@ -84,7 +94,8 @@
       Nfsd: 0.25
       Frontier: 0.25
       Medical: 0.25
-      Edison: 0.25
+    #  Edison: 0.25 Wayfayer: Edison should make it's own money.
+
 - type: entity
   id: BluespaceVaultSmallError
   parent: BaseStationEventShortDelay
@@ -100,20 +111,26 @@
     earliestStart: 100
     maximumPlayers: 30
     weight: 5
-    duration: 590
-    maxDuration: 780
+    duration: 1200
+    maxDuration: 1500
     reoccurrenceDelay: 360 # 6 hours
+    requiredJobs:
+      Sheriff: 1
+    # Wayfarer: Cache/Vault group universal Timer
+    wayfareCacheGroup: Caches
+    wayfareCacheGroupMins: 120
+    # Wayfarer: End timer
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-SecureNTVault
-        minimumDistance: 1500
-        maximumDistance: 2500
+        minimumDistance: 3250
+        maximumDistance: 4000
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
           color: "#E10F9B"
         - type: LinkedLifecycleGridParent
@@ -127,7 +144,8 @@
       Nfsd: 0.25
       Frontier: 0.25
       Medical: 0.25
-      Edison: 0.25
+    #  Edison: 0.25 Wayfayer: Edison should make it's own money.
+
 - type: entity
   id: BluespaceSyndicateFTLInterception
   parent: BaseStationEventShortDelay
@@ -156,7 +174,7 @@
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
           color: "#E10F9B"
         - type: LinkedLifecycleGridParent
@@ -195,7 +213,7 @@
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
           color: "#E10F9B"
         - type: LinkedLifecycleGridParent
@@ -234,7 +252,7 @@
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
           color: "#E10F9B"
         - type: LinkedLifecycleGridParent
@@ -261,7 +279,8 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    maxOccurrences: 1
+    reoccurrenceDelay: 180 # 3 hours
+#    maxOccurrences: 1 # Wayfarer
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -272,7 +291,7 @@
         addComponents:
         - type: Gravity
           enabled: true
-          inherent: true
+          inherent: false # Wayfarer: true<false
         - type: IFF
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
@@ -300,7 +319,7 @@
     weight: 5
     duration: 900
     maxDuration: 1800
-    reoccurrenceDelay: 240 # once per 4 hours
+    reoccurrenceDelay: 480 # once per 4 hours
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup

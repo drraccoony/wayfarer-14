@@ -116,6 +116,7 @@
     taxAccounts:
       Frontier: 0.25
       Nfsd: 0.15
+      Medical: 0.10 # Wayfarer just a small bit towards medical
     cashSlot:
       whitelist:
         components:

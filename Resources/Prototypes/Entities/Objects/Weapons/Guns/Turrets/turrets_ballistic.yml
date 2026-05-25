@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseWeaponBallisticTurret, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseWeaponBallisticTurret, BaseBMContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   id: WeaponTurretSyndicate
   suffix: Syndicate
   components:
@@ -47,7 +47,7 @@
   - type: Repairable
     qualityNeeded: "Anchoring"
     doAfterDelay: 3
-  - type: TriggerWhenEmpty
+  - type: TriggerOnEmptyGunshot
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -107,7 +107,7 @@
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: HTN
     rootTask:
-      task: TurretCompound
+      task: N14TurretCompound # Wayfarer: TurretCompount<N14TurretCompound
     blackboard:
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Animals/snake_hiss.ogg

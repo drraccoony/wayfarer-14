@@ -42,8 +42,9 @@
     temperature: 400.0
   - type: PointLight
     enabled: false
-    radius: 1.1
-    color: darkorange
+    radius: 2.0
+    energy: 2.0
+    color: "#FF8C00"
   - type: Appearance
   - type: BurnStateVisuals
     unlitIcon: match_unlit
@@ -114,9 +115,14 @@
     tags:
     - Trash
   - type: SpaceGarbage
+  - type: HelmetAccessory # Wayfarer :>
+    rsi:
+      sprite: _WF/Clothing/Helmetaddons/Smoking/matches.rsi 
+      state: helmet
+
 
 - type: entity
-  parent: [Matchbox, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [Matchbox, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: GorlexMatchbox
   name: Gorlex match box
   description: "A pneumatic match box styled after the Gorlex Marauders' equipment. Contains 24 matches."
@@ -136,7 +142,7 @@
 
 - type: entity
   name: match stick
-  parent: [Matchstick, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [Matchstick, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: GorlexMatchstick
   description: A military grade match stick, used for lighting fine smokables and noncombatants alike.
   components:

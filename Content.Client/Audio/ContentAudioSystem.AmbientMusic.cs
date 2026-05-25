@@ -1,7 +1,10 @@
 using System.Linq;
+using System.Numerics; // Wayfarer
 using Content.Client.Gameplay;
+using Content.Client.Instruments; // Wayfarer
 using Content.Shared._Crescent.SpaceBiomes;
 using Content.Shared.Audio;
+using Content.Shared.Audio.Jukebox; // Wayfarer
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Client._Crescent.SpaceBiomes;
@@ -10,6 +13,7 @@ using Robust.Client.State;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map; // Wayfarer
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -30,6 +34,7 @@ public sealed partial class ContentAudioSystem
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -37,6 +42,7 @@ public sealed partial class ContentAudioSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly CombatModeSystem _combatModeSystem = default!; //CLIENT ONE. WHY ARE THERE 3??
     [Dependency] private readonly SpaceBiomeSystem _spaceBiome = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!; // Wayfarer
 
     //options menu ---
     private static float _volumeSliderAmbient;
@@ -94,6 +100,13 @@ public sealed partial class ContentAudioSystem
 
     private float _replayAmbientMusicTimer = 0;
     private bool _replayAmbientMusicBool;
+
+    // Wayfarer
+    private const float JukeboxAudibleRange = 10f; // matches JukeboxSystem WithMaxDistance
+    private const float InstrumentAudibleRange = 15f;
+    private bool _externallyMutedAmbient;
+    // End Wayfarer
+
     private float _combatWindUpTimer = 0;
     private bool _combatWindUpBool = false;
     private float _combatWindDownTimer = 0;
@@ -117,6 +130,8 @@ public sealed partial class ContentAudioSystem
         if (!_timing.IsFirstTimePredicted) //otherwise this will tick like 5x faster on client. thanks prediction
             return;
 
+        UpdateExternalMusicMute(); // Wayfarer
+
         if (_initialStationMusicBool)
         {
             _initialStationMusicTimer += frameTime;
@@ -137,7 +152,7 @@ public sealed partial class ContentAudioSystem
                 _replayAmbientMusicTimer = 0;
             }
         }
-        if (_combatWindUpBool)
+        /*if (_combatWindUpBool)
         {
             _combatWindUpTimer += frameTime;
             if (_combatWindUpTimer > _combatMusicTimeToStart)
@@ -156,24 +171,25 @@ public sealed partial class ContentAudioSystem
                 _combatWindDownBool = false;
                 _combatWindDownTimer = 0;
             }
-        }
+        }*/
     }
 
     private void InitializeAmbientMusic()
     {
         SubscribeLocalEvent<SpaceBiomeSwapMessage>(OnBiomeChange);
         SubscribeLocalEvent<PlayerParentChangedMessage>(OnPlayerParentChange);
-        SubscribeLocalEvent<ToggleCombatActionEvent>(OnCombatModeToggle);
+        //SubscribeLocalEvent<ToggleCombatActionEvent>(OnCombatModeToggle);
 
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetach); //in case u die in combatmode
 
         SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerSpawn);
 
         Subs.CVar(_configManager, CCVars.AmbientMusicVolume, AmbienceCVarChanged, true);
-        Subs.CVar(_configManager, MonoCVars.CombatMusicVolume, CombatCVarChanged, true);
-        Subs.CVar(_configManager, MonoCVars.CombatMusicEnabled, CombatToggleChanged, true);
-        Subs.CVar(_configManager, MonoCVars.CombatMusicWindUpTime, CombatWindUpChanged, true);
-        Subs.CVar(_configManager, MonoCVars.CombatMusicWindDownTime, CombatWindDownChanged, true);
+        _sawmill = _logManager.GetSawmill("audio.ambience");
+        //Subs.CVar(_configManager, MonoCVars.CombatMusicVolume, CombatCVarChanged, true);
+        //Subs.CVar(_configManager, MonoCVars.CombatMusicEnabled, CombatToggleChanged, true);
+        //Subs.CVar(_configManager, MonoCVars.CombatMusicWindUpTime, CombatWindUpChanged, true);
+        //Subs.CVar(_configManager, MonoCVars.CombatMusicWindDownTime, CombatWindDownChanged, true);
 
         // Setup tracks to pull from. Runs once.
         _musicTracks = GetTracks();
@@ -281,7 +297,7 @@ public sealed partial class ContentAudioSystem
         // therefore we check these top 2 bottom
 
         #region combat music
-        if (newCombatState != _lastCombatState) //we switch combat music on or off now
+        /*if (newCombatState != _lastCombatState) //we switch combat music on or off now
         {
             _lastCombatState = newCombatState; // cache combat state since its different than the last
             if (newCombatState) //true = we toggled combat ON.
@@ -325,15 +341,15 @@ public sealed partial class ContentAudioSystem
                 _lastBiome = null;
                 _lastGrid = null;
             }
-        }
+        }*/
         #endregion
 
-        if (_currentlyPlaying >= MusicType.Combat) //if we are in combatmode, we still want to cache info, but we want to return here so that we dont stop playing combatmode music
+        /*if (_currentlyPlaying >= MusicType.Combat) //if we are in combatmode, we still want to cache info, but we want to return here so that we dont stop playing combatmode music
         {
             _lastGrid = newGrid;
             _lastBiome = newBiome;
             return;
-        }
+        }*/
 
         #region grid music
 
@@ -562,4 +578,55 @@ public sealed partial class ContentAudioSystem
         _ambientMusicStream = null;
     }
 
+    // Wayfarer
+    private void UpdateExternalMusicMute()
+    {
+        var localEnt = _player.LocalEntity;
+        if (localEnt == null)
+            return;
+
+        var localXform = Transform(localEnt.Value);
+        var localPos = _xform.GetWorldPosition(localXform);
+        var audible = IsAnyExternalMusicAudible(localXform.MapID, localPos);
+
+        if (audible)
+        {
+            _replayAmbientMusicBool = false;
+            DisableAmbientMusic();
+            _externallyMutedAmbient = true;
+        }
+        else if (_externallyMutedAmbient)
+        {
+            _externallyMutedAmbient = false;
+            ReplayAmbientMusic();
+        }
+    }
+
+    private bool IsAnyExternalMusicAudible(MapId localMap, Vector2 localPos)
+    {
+        var jukeQuery = AllEntityQuery<JukeboxComponent, TransformComponent>();
+        while (jukeQuery.MoveNext(out _, out var jukebox, out var xform))
+        {
+            if (jukebox.AudioStream == null)
+                continue;
+            if (xform.MapID != localMap)
+                continue;
+            if (Vector2.Distance(_xform.GetWorldPosition(xform), localPos) <= JukeboxAudibleRange)
+                return true;
+        }
+
+        var instQuery = AllEntityQuery<InstrumentComponent, TransformComponent>();
+        while (instQuery.MoveNext(out _, out var instrument, out var xform))
+        {
+            if (!instrument.Playing)
+                continue;
+            if (xform.MapID != localMap)
+                continue;
+            if (Vector2.Distance(_xform.GetWorldPosition(xform), localPos) <= InstrumentAudibleRange)
+                return true;
+        }
+
+        return false;
+    }
+    // End Wayfarer
 }

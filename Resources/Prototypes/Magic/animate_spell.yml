@@ -33,7 +33,7 @@
       - type: MovementSpeedModifier
       - type: HTN
         rootTask:
-          task: SimpleHostileCompound
+          task: N14HostileCompound # Wayfarer: SimpleHostileCompound<N14HostileCompound
       - type: CombatMode
       - type: MeleeWeapon
         animation: WeaponArcPunch

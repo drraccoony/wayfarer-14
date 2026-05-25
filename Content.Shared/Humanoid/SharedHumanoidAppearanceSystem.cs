@@ -11,6 +11,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -177,16 +178,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.SkinColor = sourceHumanoid.SkinColor;
         targetHumanoid.EyeColor = sourceHumanoid.EyeColor;
         targetHumanoid.Age = sourceHumanoid.Age;
-        SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
 
-        targetHumanoid.Gender = sourceHumanoid.Gender;
+        SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
+        SetGender((target, targetHumanoid), sourceHumanoid.Gender);
 
-        if (TryComp<GrammarComponent>(target, out var grammar))
-            _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
-
-        _identity.QueueIdentityUpdate(target);
         Dirty(target, targetHumanoid);
     }
 
@@ -287,6 +284,23 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         if (sync)
             Dirty(uid, humanoid);
+    }
+
+    /// <summary>
+    /// Sets the gender in the entity's HumanoidAppearanceComponent and GrammarComponent.
+    /// </summary>
+    public void SetGender(Entity<HumanoidAppearanceComponent?> ent, Gender gender)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        ent.Comp.Gender = gender;
+        Dirty(ent);
+
+        if (TryComp<GrammarComponent>(ent, out var grammar))
+            _grammarSystem.SetGender((ent, grammar), gender);
+
+        _identity.QueueIdentityUpdate(ent);
     }
 
     /// <summary>
@@ -491,7 +505,11 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             {
                 if (!prototype.ForcedColoring)
                 {
-                    AddMarking(uid, marking.MarkingId, marking.MarkingColors, false);
+                    AddMarking(
+                        uid,
+                        marking, // Coyote: Add marking for the marking system improvements.
+                        marking.MarkingColors,
+                        false);
                 }
                 else
                 {
@@ -541,9 +559,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 prototype,
                 profile.Appearance.SkinColor,
                 profile.Appearance.EyeColor,
-                humanoid.MarkingSet
-            );
-            AddMarking(uid, marking.MarkingId, markingColors, false);
+                humanoid.MarkingSet);
+            AddMarking(
+                uid,
+                marking, // Coyote: Add marking for the marking system improvements.
+                markingColors,
+                false);
         }
 
         EnsureDefaultMarkings(uid, humanoid);
@@ -557,6 +578,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Age = profile.Age;
 
         humanoid.CustomSpecieName = profile.Customspeciesname;
+
+        // Wayfarer: apply base height/width from character customization
+        // SetHeight/SetWidth clamp to species limits; store as base values so
+        // temporary modifiers (e.g. SizeManipulator gun) can scale relative to them.
+        SetHeight((uid, humanoid), profile.Height, sync: false);
+        SetWidth((uid, humanoid), profile.Width, sync: false);
+        humanoid.BaseHeight = humanoid.Height;
+        humanoid.BaseWidth = humanoid.Width;
+        // End Wayfarer
 
         Dirty(uid, humanoid);
     }
@@ -612,10 +642,10 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="sync">Whether to immediately sync this marking or not</param>
     /// <param name="forced">If this marking was forced (ignores marking points)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void AddMarking(EntityUid uid, string marking, IReadOnlyList<Color> colors, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null)
+    public void AddMarking(EntityUid uid, Marking marking, IReadOnlyList<Color> colors, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null) // Coyote: change string marking to Marking marking.
     {
         if (!Resolve(uid, ref humanoid)
-            || !_markingManager.Markings.TryGetValue(marking, out var prototype))
+            || !_markingManager.Markings.TryGetValue(marking.MarkingId, out var prototype)) // Coyote: marking to marking.markingId
         {
             return;
         }
@@ -623,6 +653,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
         humanoid.MarkingSet.AddBack(prototype.MarkingCategory, markingObject);
+
+        // Automatically hide markings not set to be visible at start
+        if (!marking.ShowAtStart) // Coyote: prototype.MarkingCategory == MarkingCategories.Genital to !marking.ShowAtStart
+        {
+            humanoid.HiddenMarkings.Add(marking.MarkingId); // Coyote: marking to marking.markingId
+        }
 
         if (sync)
             Dirty(uid, humanoid);

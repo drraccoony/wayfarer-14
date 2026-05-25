@@ -891,6 +891,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_name");
 
+                    b.Property<float>("Height")
+                        .HasColumnType("REAL")
+                        .HasColumnName("height");
+
                     b.Property<bool>("HideFromPlayerlist")
                         .HasColumnType("INTEGER")
                         .HasColumnName("hide_from_playerlist");
@@ -929,6 +933,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
+
+                    b.Property<float>("Width")
+                        .HasColumnType("REAL")
+                        .HasColumnName("width");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");
@@ -996,6 +1004,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("profile_role_loadout_id");
+
+                    b.Property<string>("CrimeReason")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("crime_reason");
 
                     b.Property<string>("EntityName")
                         .HasMaxLength(256)
@@ -1405,12 +1418,239 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("uploaded_resource_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<int?>("EndRound")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("end_round");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<int?>("StartRound")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("start_round");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("title");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_community_goals");
+
+                    b.HasIndex("IsActive");
+
+                    b.ToTable("wayfarer_community_goals", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoalContribution", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<long>("Amount")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("amount");
+
+                    b.Property<string>("CharacterName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("character_name");
+
+                    b.Property<DateTime>("ContributedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("contributed_at");
+
+                    b.Property<string>("EntityPrototypeId")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("entity_prototype_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.Property<int>("RequirementId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("requirement_id");
+
+                    b.Property<int>("RoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("round_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_community_goal_contributions");
+
+                    b.HasIndex("PlayerUserId");
+
+                    b.HasIndex("RequirementId")
+                        .HasDatabaseName("IX_wayfarer_community_goal_contributions_requirement_id");
+
+                    b.ToTable("wayfarer_community_goal_contributions", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoalRequirement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<long>("CurrentAmount")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("current_amount");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("display_name");
+
+                    b.Property<string>("EntityPrototypeId")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("entity_prototype_id");
+
+                    b.Property<int>("GoalId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("goal_id");
+
+                    b.Property<long>("RequiredAmount")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("required_amount");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_community_goal_requirements");
+
+                    b.HasIndex("GoalId")
+                        .HasDatabaseName("IX_wayfarer_community_goal_requirements_goal_id");
+
+                    b.ToTable("wayfarer_community_goal_requirements", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerRoleplayCommend", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_at");
+
+                    b.Property<int>("GiverProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("giver_profile_id");
+
+                    b.Property<Guid>("GiverUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("giver_user_id");
+
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_private");
+
+                    b.Property<int>("RecipientProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("recipient_profile_id");
+
+                    b.Property<Guid>("RecipientUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("recipient_user_id");
+
+                    b.Property<int>("RoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("round_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_roleplay_commends");
+
+                    b.HasIndex("GiverUserId");
+
+                    b.HasIndex("RecipientUserId");
+
+                    b.HasIndex("RoundId");
+
+                    b.ToTable("wayfarer_roleplay_commends", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerRoleplayLevel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_at");
+
+                    b.Property<long>("Experience")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("experience");
+
+                    b.Property<long>("ExperienceToNextLevel")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("experience_to_next_level");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_updated");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("level");
+
+                    b.Property<int>("TotalCommends")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("total_commends");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_wayfarer_roleplay_levels");
+
+                    b.HasIndex("Level");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("wayfarer_roleplay_levels", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.WayfarerRoundSummary", b =>
                 {
                     b.Property<int>("RoundNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("round_number");
+
+                    b.Property<byte[]>("MailMetricsData")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("mail_metrics_data");
 
                     b.Property<byte[]>("PlayerManifest")
                         .HasColumnType("jsonb")
@@ -1431,6 +1671,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<DateTime>("RoundStartTime")
                         .HasColumnType("TEXT")
                         .HasColumnName("round_start_time");
+
+                    b.Property<byte[]>("SpesosFlowData")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("spesos_flow_data");
 
                     b.HasKey("RoundNumber")
                         .HasName("PK_wayfarer_round_summaries");
@@ -1462,6 +1706,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("last_withdrawn");
 
+                    b.Property<int?>("LastWithdrawnRoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("last_withdrawn_round_id");
+
                     b.Property<string>("Nickname")
                         .HasColumnType("TEXT")
                         .HasColumnName("nickname");
@@ -1475,6 +1723,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("owner_user_id");
 
+                    b.Property<int?>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("TEXT")
                         .HasColumnName("purchase_date");
@@ -1486,6 +1738,9 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsUnique();
 
                     b.HasIndex("OwnerUserId");
+
+                    b.HasIndex("ProfileId")
+                        .HasDatabaseName("IX_wayfarer_safety_deposit_box_profile_id");
 
                     b.ToTable("wayfarer_safety_deposit_box", (string)null);
                 });
@@ -2107,6 +2362,41 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoalContribution", b =>
+                {
+                    b.HasOne("Content.Server.Database.WayfarerCommunityGoalRequirement", "Requirement")
+                        .WithMany("Contributions")
+                        .HasForeignKey("RequirementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_wayfarer_community_goal_contributions_wayfarer_community_goal_requirements_requirement_id");
+
+                    b.Navigation("Requirement");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoalRequirement", b =>
+                {
+                    b.HasOne("Content.Server.Database.WayfarerCommunityGoal", "Goal")
+                        .WithMany("Requirements")
+                        .HasForeignKey("GoalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_wayfarer_community_goal_requirements_wayfarer_community_goals_goal_id");
+
+                    b.Navigation("Goal");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBox", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_wayfarer_safety_deposit_box_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBoxItem", b =>
                 {
                     b.HasOne("Content.Server.Database.WayfarerSafetyDepositBox", "Box")
@@ -2250,6 +2540,16 @@ namespace Content.Server.Database.Migrations.Sqlite
             modelBuilder.Entity("Content.Server.Database.ServerRoleBan", b =>
                 {
                     b.Navigation("Unban");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoal", b =>
+                {
+                    b.Navigation("Requirements");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerCommunityGoalRequirement", b =>
+                {
+                    b.Navigation("Contributions");
                 });
 
             modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBox", b =>

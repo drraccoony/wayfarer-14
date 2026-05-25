@@ -1,0 +1,1045 @@
+- type: loadout
+  id: WFClothingShoesColorBlack
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 0
+  equipment:
+    shoes: ClothingShoesColorBlack
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesClothwrap
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 50
+  equipment:
+    shoes: ClothingShoesClothwrap
+
+- type: loadout
+  id: WFClothingShoesBootsClear
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 0
+  equipment:
+    shoes: WFClothingShoesBootsClear
+
+# Socks
+
+- type: loadout
+  id: ClothingUnderSocksPlain
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksPlain
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksBartender
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksBartender
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksMusician
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksMusician
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksMerc
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksMerc
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksPrivSec
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksPrivSec
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksPilot
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksPilot
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksLogis
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksLogis
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksCourier
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksCourier
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksLOLogis
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksLOLogis
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksChaplain
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksChaplain
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksChef
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksChef
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksChemists
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksChemists
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksDetective
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksDetective
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksEngi
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksEngi
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksChiefEngi
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksChiefEngi
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksJanitor
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksJanitor
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksMedic
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksMedic
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksParaMedic
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksParaMedic
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksCMO
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksCMO
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksCoder
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksCoder
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksBee
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksBee
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksPlainWhite
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksPlainWhite
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksStripedPurple
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksStripedPurple
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksStripedRainbow
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksStripedRainbow
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksStripedWhite
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksStripedWhite
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksEpi
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksEpi
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksEpiHead
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksEpiHead
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksMantisEpi
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: ClothingUnderSocksMantisEpi
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksCC
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 5000
+  equipment:
+    shoes: ClothingUnderSocksCC
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksSecurity
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 5000
+  equipment:
+    shoes: ClothingUnderSocksSecurity
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksHeadSecurity
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 5000
+  equipment:
+    shoes: ClothingUnderSocksHeadSecurity
+  groupBy: "socks"
+
+- type: loadout
+  id: ClothingUnderSocksCoderValid
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 5000
+  equipment:
+    shoes: ClothingUnderSocksCoderValid
+  groupBy: "socks"
+
+# ==
+
+
+- type: loadout
+  id: WFClothingShoesTourist
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesTourist
+
+- type: loadout
+  id: WFClothingShoesBootsCombat
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1000
+  equipment:
+    shoes: ClothingShoesBootsCombat
+
+- type: loadout
+  id: WFClothingShoesBootsMercenary
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1000
+  equipment:
+    shoes: ClothingShoesBootsMercenary
+
+- type: loadout
+  id: WFClothingShoesBootsSalvage
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesBootsSalvage
+
+- type: loadout
+  id: WFClothingShoesChef
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesChef
+
+- type: loadout
+  id: WFClothingShoesColorBlue
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorBlue
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesColorOrange
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorOrange
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesColorPurple
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorPurple
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesColorRed
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorRed
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesColorBrown
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorBrown
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesColorGreen
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorGreen
+  groupBy: "basicshoes"
+
+- type: loadout
+  id: WFClothingShoesColorYellow
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 200
+  equipment:
+    shoes: ClothingShoesColorYellow
+  groupBy: "basicshoes"
+#T1
+- type: loadout
+  id: WFClothingShoesColorWhite
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  - !type:GroupLoadoutEffect
+    proto: NFNotDoc
+  price: 600
+  equipment:
+    shoes: ClothingShoesColorWhite
+  groupBy: "basicshoes"
+
+# Magboots
+- type: loadout
+  id: WFClothingShoesBootsMag
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 2000
+  equipment:
+    shoes: ClothingShoesBootsMag
+
+- type: loadout
+  id: WFClothingShoesMagMercenary
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 2000
+  equipment:
+    shoes: ClothingShoesBootsMagMercenary
+
+- type: loadout
+  id: WFClothingShoesMagSecurity
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 2000
+  equipment:
+    shoes: ClothingShoesBootsMagSecurity
+
+- type: loadout
+  id: WFClothingShoesBootsWinter
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinter
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterAtmos
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterAtmos
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterHydro
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterHydro
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterCap
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterCap
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterCargo
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterCargo
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterChef
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterChef
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterChem
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterChem
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterEngi
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterEngi
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterGenetics
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterGenetics
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterMiner
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterMiner
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterParamedic
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterParamedic
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterRobo
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterRobo
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterSci
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterSci
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterViro
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsWinterViro
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterSyndicate
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 2000
+  equipment:
+    shoes: ClothingShoesBootsWinterSyndicate
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterHoS
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 2000
+  equipment:
+    shoes: ClothingShoesBootsWinterHoS
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterWarden
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 2000
+  equipment:
+    shoes: ClothingShoesBootsWinterWarden
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsJack
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsJack
+
+- type: loadout
+  id: WFClothingShoesLeather
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesLeather
+
+- type: loadout
+  id: WFClothingShoesBootsLaceup
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFNotDocOrStc
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+- type: loadout
+  id: WFClothingShoesSlippers
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesSlippers
+
+- type: loadout
+  id: WFClothingShoeSlippersDuck
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoeSlippersDuck
+
+- type: loadout
+  id: WFClothingShoesFlippers
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesFlippers
+
+- type: loadout
+  id: WFClothingShoesBootsPunkRandomized
+  name: punk boots (random)
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 600
+  equipment:
+    shoes: ClothingShoesBootsPunkRandomized
+
+#T2
+- type: loadout
+  id: WFClothingShoesDameDane
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesDameDane
+
+- type: loadout
+  id: WFClothingShoesBootsWork
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWork
+
+- type: loadout
+  id: WFClothingShoesBootsCowboyBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsCowboyBlack
+
+- type: loadout
+  id: WFClothingShoesBootsCowboyBrown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsCowboyBrown
+
+- type: loadout
+  id: WFClothingShoesBootsCowboyWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsCowboyWhite
+
+- type: loadout
+  id: WFClothingShoesSnakeskinBoots
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesSnakeskinBoots
+
+- type: loadout
+  id: WFClothingShoesHighheelBoots
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesHighheelBoots
+
+- type: loadout
+  id: WFClothingShoesBootsCowboyFancy
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsCowboyFancy
+
+- type: loadout
+  id: WFClothingShoesBootsWinterChiefEngineer
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWinterChiefEngineer
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterCMO
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWinterCMO
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterQM
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWinterQM
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterRD
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWinterRD
+  groupBy: "winterboots"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWinterClown
+  groupBy: "clown"
+
+- type: loadout
+  id: WFClothingShoesBootsWinterMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsWinterMime
+  groupBy: "mime"
+
+- type: loadout
+  id: WFClothingShoesClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesClown
+  groupBy: "clown"
+
+- type: loadout
+  id: WFClothingShoesJester
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesJester
+  groupBy: "clown"
+
+- type: loadout
+  id: WFClothingShoesJesterALT
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesJesterALT
+  groupBy: "clown"
+
+- type: loadout
+  id: WFClothingShoesBootsPerformer
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesBootsPerformer
+
+- type: loadout
+  id: WFClothingShoesSkates
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT2
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 1200
+  equipment:
+    shoes: ClothingShoesSkates
+
+#T3 for lols
+- type: loadout
+  id: WFClothingShoesClownLarge
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT3
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 7500
+  equipment:
+    shoes: ClothingShoesClownLarge
+  groupBy: "clown"
+
+- type: loadout
+  id: WFClothingShoesBling
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WFT3
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 7500
+  equipment:
+    shoes: ClothingShoesBling
+
+# Starlight clothing
+- type: loadout
+  id: WFSLClothingShoesHighheelShoes
+  price: 500
+  equipment:
+    shoes: SLClothingShoesHighheelShoes
+
+- type: loadout
+  id: WFSLClothingUniformBootsVampir
+  price: 500
+  equipment:
+    shoes: SLClothingUniformBootsVampir
+
+- type: loadout
+  id: WFSLClothingShoesBootsSalvage1208134
+  price: 500
+  equipment:
+    shoes: SLClothingShoesBootsSalvage1208134
+
+# DeltaV clothing
+- type: loadout
+  id: WFDVClothingShoesBootsFishing
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: DVClothingShoesBootsFishing
+
+- type: loadout
+  id: WFDVClothingShoesMiscWhite
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 750
+  equipment:
+    shoes: DVClothingShoesMiscWhite

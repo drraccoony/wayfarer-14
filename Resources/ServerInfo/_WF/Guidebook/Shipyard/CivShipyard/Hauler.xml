@@ -1,0 +1,43 @@
+﻿<Document>
+  # HAULER-CLASS CARGO SHUTTLE
+  <Box>
+    <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="trading crate"/>
+    <GuideEntityEmbed Entity="CrateGenericSteel" Caption="mystery loot"/>
+    <GuideEntityEmbed Entity="CrateStorageRack" Caption="stack crates"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapHauler" Caption=""/>
+  </Box>
+
+  [color=#a4885c]Ship Size:[/color] Small
+
+  [color=#a4885c]Recommended Crew:[/color] 1-2
+
+  [color=#a4885c]Power Gen Type:[/color] Biofuel
+
+  # Shuttle Brief
+
+  "A small sized vessel specializing in long-haul cargo operations."
+
+  # Ship Functions
+
+  # Cargo
+
+  [textlink="Cargo Hauling" link="CargoHauling"/]
+
+  # Piloting
+
+  [textlink="Piloting" link="Piloting"/]
+
+  [textlink="Sector Topology" link="SectorTopology"/]
+
+  # Hiring crew
+
+  [textlink="Hiring" link="Hiring"/]
+
+  As a Captain of a Spacefaring vessel, you have the authority to hire, fire, demote, or promote crew members at will.
+
+  # PREFLIGHT CHECKLIST
+
+  [textlink="Preflight Checklist" link="PreflightChecklist"/]
+</Document>

@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHeadset
+  id: WFClothingHeadsetClear
+  name: discreet headset
+  description: A headset so sleek you can hardly see it. Careful not to lose it!
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Ears/Headsets/headsetclear.rsi
+  - type: Clothing
+    sprite: _WF/Clothing/Ears/Headsets/headsetclear.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+

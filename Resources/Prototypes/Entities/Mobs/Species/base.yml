@@ -9,6 +9,7 @@
   id: BaseMobSpecies
   abstract: true
   components:
+  - type: Carriable # Wayfarer, makes all mobs carriable. Weight still applies.
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.TailBehind" ]
@@ -21,6 +22,7 @@
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.Genital" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
@@ -37,6 +39,7 @@
     - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -83,6 +86,7 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
+  - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -121,10 +125,7 @@
       - !type:WashCreamPieReaction
   - type: StatusEffects
     allowed:
-    - Stutter
     - Electrocution
-    - Drunk
-    - SlurredSpeech
     - RatvarianLanguage
     - PressureImmunity
     - Muted
@@ -183,6 +184,7 @@
     - Hug
     - Pet
     - LookAt
+    - ForceDown
   - type: CanHostGuardian
   - type: NpcFactionMember
     factions:
@@ -221,6 +223,7 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: ModifyUndies  # FLOOF Add
+  - type: DamageCap # Wayfarer
 
 - type: entity
   save: false
@@ -323,6 +326,7 @@
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.Genital" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
@@ -342,8 +346,9 @@
     - map: [ "id" ]
     - map: [ "outerClothing" ]
     - map: [ "neck" ]
-    - map: [ "enum.HumanoidVisualLayers.TailOversuit" ]
     - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOversuit" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

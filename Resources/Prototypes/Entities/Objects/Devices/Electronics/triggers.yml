@@ -22,7 +22,13 @@
     price: 40
   - type: PayloadTrigger
     components:
-    - type: OnUseTimerTrigger
+    - type: TriggerOnUse
+      keyOut: startTimer
+    - type: TimerTrigger
+      keysIn:
+      - startTimer
+      # use the default trigger key so it can activate any inserted payload
+      keyOut: trigger
       delay: 5
       delayOptions: [3, 5, 10, 15, 30]
       initialBeepDelay: 0
@@ -30,6 +36,13 @@
         path: /Audio/Machines/Nuke/general_beep.ogg
         params:
           volume: -2
+  # Wayfarer: added recyclable component
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 150
+    chemicalComposition:
+      Silicon: 15
+  # End Wayfarer
 
 - type: entity
   parent: TimerTrigger
@@ -47,14 +60,19 @@
     - SignalTrigger
   - type: PayloadTrigger
     components:
-    - type: TimerStartOnSignal
     - type: DeviceNetwork
       deviceNetId: Wireless
       receiveFrequencyId: BasicDevice
     - type: WirelessNetworkConnection
       range: 200
     - type: DeviceLinkSink
-    - type: OnUseTimerTrigger
+    - type: TriggerOnSignal
+      keyOut: startTimer
+    - type: TimerTrigger
+      keysIn:
+      - startTimer
+      # use the default trigger key so it can activate any inserted payload
+      keyOut: trigger
       delay: 3
       initialBeepDelay: 0
       beepSound:
@@ -63,7 +81,7 @@
           volume: -2
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPlasticTiny] # Wayfarer: add RecyclableItemPlasticTiny
   id: VoiceTrigger
   name: voice trigger
   description: Adds a machine link that is triggered by vocal keywords.

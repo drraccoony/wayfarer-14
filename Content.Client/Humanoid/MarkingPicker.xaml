@@ -30,8 +30,41 @@
                 <Button Name="CMarkingRemove" Text="{Loc 'markings-remove'}" StyleClasses="OpenRight" />
             </BoxContainer>
         </BoxContainer>
-
-        <!-- Colors -->
-        <BoxContainer Name="CMarkingColors" Orientation="Vertical" Visible="False" />
+        <!-- Coyote Marking system improvements -->
+        <GridContainer Columns="2"
+            Name="MarkingData"
+            Visible="False"
+            HorizontalExpand="True">
+            <Label Text="{Loc marking-custom-name}" HorizontalExpand="True"></Label>
+            <LineEdit Name="CustomNameTextEdit" HorizontalExpand="True"></LineEdit>
+            <Label Text="{Loc visible-at-start}"></Label>
+            <CheckBox Name="StartVisibleToggle" HorizontalExpand="True"></CheckBox>
+            <Label Text="{Loc marking-can-toggle}"></Label>
+            <CheckBox Name="CanPutOnToggle" HorizontalExpand="True"></CheckBox>
+            <Label Name="PutOnTextEditLabel" Text="{Loc marking-put-on-text-label}"></Label>
+            <LineEdit Name="PutOnTextEdit" HorizontalExpand="True"></LineEdit>
+            <Label Name="TakeOffTextEditLabel" Text="{Loc marking-take-off-text-label}"></Label>
+            <LineEdit Name="TakeOffTextEdit" HorizontalExpand="True"></LineEdit>
+            <Label Text="{Loc marking-can-toggle-other}"></Label>
+            <CheckBox Name="CanPutOnByOtherToggle" HorizontalExpand="True"></CheckBox>
+            <Label Name="PutOnOtherTextEditLabel" Text="{Loc marking-put-on-text-label-other}" ></Label>
+            <LineEdit Name="PutOnOtherTextEdit" HorizontalExpand="True"></LineEdit>
+            <Label Name="TakeOffOtherTextEditLabel" Text="{Loc marking-take-off-text-label-other}"></Label>
+            <LineEdit Name="TakeOffOtherTextEdit" HorizontalExpand="True"></LineEdit>
+        </GridContainer>
+        <Button Name="SampleButton"></Button>
+        <BoxContainer
+            Name="SampleBox"
+            Orientation="Vertical"
+            Visible="False">
+            <Label Text="{Loc marking-sample-text}"></Label>
+            <Label Name="SampleText"></Label>
+            <Control></Control>
+        </BoxContainer>
+        <!--  Colors  -->
+        <BoxContainer
+            Name="CMarkingColors"
+            Orientation="Vertical"
+            Visible="False" />
     </BoxContainer>
 </Control>

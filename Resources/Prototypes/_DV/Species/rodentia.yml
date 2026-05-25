@@ -5,7 +5,7 @@
   prototype: MobRodentia
   sprites: MobRodentiaSprites
   defaultSkinTone: "#747474"
-  markingLimits: MobRodentiaMarkingLimits
+  markingLimits: MobHumanMarkingLimits #MobRodentiaMarkingLimits WF
   dollPrototype: MobRodentiaDummy
   # Coyote: Small enough to fit in a bag
   minHeight: 0.6
@@ -24,6 +24,7 @@
 - type: speciesBaseSprites
   id: MobRodentiaSprites
   sprites:
+    Special: MobHumanoidAnyMarking
     TailBehind: MobHumanoidAnyMarking
     TailOversuit: MobHumanoidAnyMarking
     Head: MobRodentiaHead
@@ -35,6 +36,7 @@
     HeadSide: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobRodentiaLArm
@@ -45,47 +47,7 @@
     RLeg: MobRodentiaRLeg
     LFoot: MobRodentiaLFoot
     RFoot: MobRodentiaRFoot
-
-- type: markingPoints
-  id: MobRodentiaMarkingLimits
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 1
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ RodentiaTailDefault ]
-    Legs:
-      points: 4
-      required: false
-    Arms:
-      points: 4
-      required: false
-    Snout:
-      points: 1
-      required: false
-    HeadTop:
-      points: 1
-      required: true
-      defaultMarkings: [ RodentiaHeadTopEarDefault ]
-    HeadSide:
-      points: 1
-      required: false
-    Chest:
-      points: 2
-      required: false
-    # Frontier: apparently these don't exist on Delta
-    UndergarmentTop:
-      points: 3
-      required: false
-    UndergarmentBottom:
-      points: 3
-      required: false
-    # End Frontier
+    RArmExtension: MobHumanoidAnyMarking # Adds Wing Slot
 
 - type: humanoidBaseSprite
   id: MobRodentiaHead

@@ -13,7 +13,7 @@
   parent: BaseVessel
   name: KC Pathfinder
   description: Once a scout ship serving with the Nanotrasen Marine Expeditionary Forces, this now decommissioned expedition capable ship can be yours!
-  price: 50000 #27908 0.2 33489.6
+  price: 50000 # 34200 0.3 44460 Still short of 50k, but slightly less
   category: Small
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/pathfinder.yml
@@ -28,7 +28,7 @@
   mapName: 'KC Pathfinder'
   mapPath: /Maps/_NF/Shuttles/Expedition/pathfinder.yml
   minPlayers: 0
-  stations: 
+  stations:
     Pathfinder:
       stationProto: StandardFrontierExpeditionVessel
       components:
@@ -39,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            ContractorInterview: [ 0, 0 ]
-            PilotInterview: [ 0, 0 ]
-            MercenaryInterview: [ 0, 0 ]
+            WayfarerInterview: [ 0, 0 ] # Wayfarer: ContractorInterview<WayfarerInterview
+            #PilotInterview: [ 0, 0 ]
+            #MercenaryInterview: [ 0, 0 ]

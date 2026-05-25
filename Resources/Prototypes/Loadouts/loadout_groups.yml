@@ -36,7 +36,12 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
-  - ClothingNeckPolyamoryPin # Wayfarer-14
+  - OffsetCane
+  - OffsetCaneWood
+  - OffsetCaneClown
+  - OffsetCaneMime
+  - OffsetCaneNT
+  - Cane
   - TowelColorBlack
   - TowelColorDarkBlue
   - TowelColorDarkGreen

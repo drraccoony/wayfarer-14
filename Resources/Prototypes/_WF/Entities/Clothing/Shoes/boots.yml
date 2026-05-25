@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingShoesBase
+  id: WFClothingShoesBootsClear
+  name: discreet boots
+  description: Stylish invisible boots for running in circles.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Shoes/Boots/bootsclear.rsi
+  - type: Clothing
+    sprite: _WF/Clothing/Shoes/Boots/bootsclear.rsi

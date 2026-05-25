@@ -1,0 +1,9 @@
+- type: loadout
+  id: ContractorAccessConfigurator
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 5000
+  storage:
+    back:
+    - AccessConfiguratorCivilian

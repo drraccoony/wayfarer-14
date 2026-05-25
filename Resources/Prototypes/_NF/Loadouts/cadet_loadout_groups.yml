@@ -7,13 +7,14 @@
   fallbacks:
   - CadetClothingUniformJumpsuitCadet
   - CadetClothingUniformJumpskirtCadet
-  
+
 - type: loadoutGroup
   id: CadetOuterClothing
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
   - NfsdOuterClothing
+  - CGPPatrolSuitBronze # Wayfarer
 
 - type: loadoutGroup
   id: CadetHead
@@ -32,10 +33,10 @@
   - CadetClothingNeckBadgeCadet
 
 - type: loadoutGroup
-  id: CadetPDA
+  id: JuniorPeacekeeperPDA
   name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
-  - CadetCadetPDA
+  - JuniorPeacekeeperJuniorPeacekeeperPDA
   fallbacks:
-  - CadetCadetPDA
+  - JuniorPeacekeeperJuniorPeacekeeperPDA

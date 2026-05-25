@@ -250,18 +250,18 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: harbormaster
-
-- type: entity
-  parent: PosterBase
-  id: ShuttleMapHauler
-  name: "NC Hauler"
-  description: "Detailed map of a Hauler shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: hauler
-
+# Wayfarer edit: comment out using new hauler ship
+#- type: entity # Wayfarer edit: comment out using new hauler ship
+#  parent: PosterBase # Wayfarer edit: comment out using new hauler ship
+#  id: ShuttleMapHauler # Wayfarer edit: comment out using new hauler ship
+#  name: "NC Hauler" # Wayfarer edit: comment out using new hauler ship
+#  description: "Detailed map of a Hauler shuttle." # Wayfarer edit: comment out using new hauler ship
+#  categories: [ HideSpawnMenu ] # Wayfarer edit: comment out using new hauler ship
+#  components: # Wayfarer edit: comment out using new hauler ship
+#  - type: Sprite # Wayfarer edit: comment out using new hauler ship
+#    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi # Wayfarer edit: comment out using new hauler ship
+#    state: hauler # Wayfarer edit: comment out using new hauler ship
+# end of Wayfarer edit: comment out using new hauler ship
 - type: entity
   parent: PosterBase
   id: ShuttleMapHonker
@@ -327,6 +327,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stringer
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapStronghold
+  name: "DBI Stronghold"
+  description: "Detailed map of a Stronghold shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: stronghold    
 
 - type: entity
   parent: PosterBase

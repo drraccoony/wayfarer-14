@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingMaskBreath
+  id: WFClothingMaskClear
+  name: discreet breath mask
+  description: A close-fitting breath mask, so close you hardly notice it.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Mask/breathclear.rsi
+  - type: Clothing
+    sprite: _WF/Clothing/Mask/breathclear.rsi

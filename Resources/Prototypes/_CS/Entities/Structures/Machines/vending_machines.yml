@@ -14,7 +14,7 @@
     denyState: kink-deny
     loopDeny: false
     ejectDelay: 1.9
-    initialStockQuality: 0.80
+    initialStockQuality: 1.0 # Wayfarer: 0.80<1.0
   - type: DatasetVocalizer
     dataset: HornyHawkerAds
   - type: SpeakOnUIClosed

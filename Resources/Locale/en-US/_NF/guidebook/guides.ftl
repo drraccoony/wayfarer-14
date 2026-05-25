@@ -1,6 +1,6 @@
 # Base entries
 guide-entry-nf14 = Frontier Guide
-guide-entry-bank = NT Galactic Bank
+guide-entry-bank = Galactic Bank
 guide-entry-shifts-and-persistence = Shifts and Persistence
 guide-entry-safety-deposit-box = Safety Deposit Box System
 guide-entry-piloting = Piloting
@@ -12,9 +12,9 @@ guide-entry-expeditions = Expeditions
 guide-entry-sector-topology = Sector Topology
 guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
-guide-entry-frontier-rules = Server Rules
 guide-entry-frontier-definitions = Definitions
 guide-entry-preflightchecklist = Preflight Checklist
+# Wayfarer: removed NT from guide-entry-bank
 
 # Engineering entries
 guide-entry-offshore-gas-mining = Offshore Gas Mining
@@ -85,6 +85,7 @@ guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
 guide-entry-shipyard-stringer = Stringer
+guide-entry-shipyard-stronghold = Stronghold
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-lyrae = Lyrae
@@ -108,19 +109,3 @@ guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
-
-# Rules entries
-guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
-guide-entry-frontier-rule-1 = 1. Community
-guide-entry-frontier-rule-2 = 2. IC Info
-guide-entry-frontier-rule-3 = 3. Escalation
-guide-entry-frontier-rule-4 = 4. Chat
-guide-entry-frontier-rule-5 = 5. Roleplay
-guide-entry-frontier-rule-6 = 6. Safezone
-guide-entry-frontier-rule-7 = 7. Antagonism
-guide-entry-frontier-rule-8 = 8. PVP
-guide-entry-frontier-rule-9 = 9. Piracy
-guide-entry-frontier-rule-10 = 10. Crimes
-guide-entry-frontier-rule-11 = 11. Silicons
-guide-entry-frontier-rule-12 = 12. Security
-guide-entry-frontier-rule-13 = 13. Command

@@ -122,6 +122,10 @@
       collection: DeathGasp
     Belch: # Frontier
       collection: Belch # Frontier
+    # Wayfarer: Fix Sigh
+    Sigh:
+      collection: MaleSigh
+    # End Wayfarer
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -158,6 +162,10 @@
       collection: FemaleDeathGasp
     Belch: # Frontier
       collection: Belch # Frontier
+    # Wayfarer: Fix Sigh
+    Sigh:
+      collection: FemaleSigh
+    # End Wayfarer
 
 - type: emoteSounds
   id: MaleSlime
@@ -266,16 +274,40 @@
       path: /Audio/Voice/Vox/shriek1.ogg
     Laugh:
       path: /Audio/Voice/Vox/vox_laugh.ogg
-    MonkeyScreeches: # Frontier
-      collection: MonkeyScreeches # Frontier
+    Cough:
+      path: /Audio/Voice/Vox/vox_cough.ogg
+    Sigh:
+      path: /Audio/Voice/Vox/vox_sigh.ogg
+    Click:
+      path: /Audio/Voice/Vox/vox_click.ogg
     Honk:
       collection: BikeHorn
+    Crying:
+      collection: VoxCry # Imp sounds
+      params: # Imp
+        volume: -7
     Weh:
       collection: Weh
     Hew:
       collection: Hew
-    Belch: # Frontier
-      collection: Belch # Frontier
+    Gasp:
+      collection: VoxGasp # Combined DeltaV and impstation sounds
+    DefaultDeathgasp:
+      collection: VoxDeathgasp # Combined DeltaV and impstation sounds
+    # Begin Impstation Additions
+    Chitter:
+      collection: VoxChitter # Combined DeltaV and impstation sounds
+      params:
+        volume: -5
+    Coo:
+      collection: VoxCoo
+      params:
+        volume: -7
+    Hiss:
+      collection: VoxHiss
+      params:
+        volume: -5
+    # End Impstation Additions
   params:
     variation: 0.125
     # We need vox sounds for the other emotes
@@ -501,6 +533,8 @@
   params:
     variation: 0.05
   sounds:
+    Scream:
+      collection: XenoborgScream
     Laugh:
       collection: XenoborgLaugh
     Beep:

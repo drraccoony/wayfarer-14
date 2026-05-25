@@ -27,6 +27,9 @@
   - type: Tag
     tags:
       - Meat
+      # Wayfarer: Allow organ to be picked up by trashcan (because holy fuck 4-8 organ per organism is painful)
+      - Trash
+      # End Wayfarer
 
 - type: entity
   id: BaseHumanOrgan
@@ -75,7 +78,7 @@
   - type: Item
     size: Small
     heldPrefix: brain
-  
+
 - type: entity
   id: OrganHumanEyes
   parent: BaseHumanOrgan
@@ -200,6 +203,23 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
+    # Wayfarer: Custom digestible system
+    carnivoreDigestible:
+      tags:
+      - Meat
+      - Pill
+      - Crayon
+      - Paper
+    herbivoreDigestible:
+      tags:
+      - Fruit
+      - Vegetable
+      - Flower
+      - Ambrosia
+      - Pill
+      - Crayon
+      - Paper
+    # End Wayfarer
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
   # to intestines instead.

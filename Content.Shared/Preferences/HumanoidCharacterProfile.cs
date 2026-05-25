@@ -54,13 +54,13 @@ namespace Content.Shared.Preferences
         [DataField]
         private HashSet<ProtoId<TraitPrototype>> _traitPreferences = new();
 
+        [DataField]
+        private Dictionary<string, RoleLoadout> _loadouts = new();
+
         /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
         public IReadOnlyDictionary<string, RoleLoadout> Loadouts => _loadouts;
-
-        [DataField]
-        private Dictionary<string, RoleLoadout> _loadouts = new();
 
         [DataField]
         public string Name { get; set; } = "John Doe";
@@ -115,6 +115,22 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public bool HideFromPlayerlist { get; private set; } = false;
+        // End Wayfarer
+
+        // Wayfarer: character height/width scale
+        /// <summary>
+        /// The base height scale for this character (1.0 = species default).
+        /// Clamped to the species' MinHeight/MaxHeight on validation.
+        /// </summary>
+        [DataField]
+        public float Height { get; private set; } = 1f;
+
+        /// <summary>
+        /// The base width scale for this character (1.0 = species default).
+        /// Clamped to the species' MinWidth/MaxWidth on validation.
+        /// </summary>
+        [DataField]
+        public float Width { get; private set; } = 1f;
         // End Wayfarer
 
         /// <summary>
@@ -206,6 +222,10 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.HideFromPlayerlist) // Wayfarer
         {
+            // Wayfarer: preserve height/width in copy
+            Height = other.Height;
+            Width = other.Width;
+            // End Wayfarer
         }
 
         /// <summary>
@@ -342,6 +362,16 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithHideFromPlayerlist(bool hideFromPlayerlist)
         {
             return new(this) { HideFromPlayerlist = hideFromPlayerlist };
+        }
+
+        public HumanoidCharacterProfile WithHeight(float height)
+        {
+            return new(this) { Height = height };
+        }
+
+        public HumanoidCharacterProfile WithWidth(float width)
+        {
+            return new(this) { Width = width };
         }
         // End Wayfarer
 
@@ -511,6 +541,8 @@ namespace Content.Shared.Preferences
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (HideFromPlayerlist != other.HideFromPlayerlist) return false; // Wayfarer
+            if (Math.Abs(Height - other.Height) > 0.001f) return false; // Wayfarer
+            if (Math.Abs(Width - other.Width) > 0.001f) return false; // Wayfarer
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
@@ -572,14 +604,10 @@ namespace Content.Shared.Preferences
 
             if (configManager.GetCVar(CCVars.RestrictedNames))
             {
-                name = Regex.Replace(name, @"[^\u0041-\u005A,\u0061-\u007A,\u00C0-\u00D6,\u00D8-\u00F6,\u00F8-\u00FF,\u0100-\u017F, -]", string.Empty);
+                name = Regex.Replace(name, @"[^\w\d ',\-.]", string.Empty);
                 /*
-                 * 0041-005A  Basic Latin: Uppercase Latin Alphabet
-                 * 0061-007A  Basic Latin: Lowercase Latin Alphabet
-                 * 00C0-00D6  Latin-1 Supplement: Letters I
-                 * 00D8-00F6  Latin-1 Supplement: Letters II
-                 * 00F8-00FF  Latin-1 Supplement: Letters III
-                 * 0100-017F  Latin Extended A: European Latin
+                 * Wayfarer: allow anything classified as a word character or digit, as well as spaces, apostrophes, commas, and hyphens.
+                 * Hyphen must be the first/last character in the regex, otherwise it's interpreted as defining a range.
                  */
             }
 
@@ -619,6 +647,11 @@ namespace Content.Shared.Preferences
             // End Frontier
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
+
+            // Wayfarer: clamp height/width to species limits
+            var height = Math.Clamp(Height, speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
+            var width = Math.Clamp(Width, speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
+            // End Wayfarer
 
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
@@ -672,6 +705,8 @@ namespace Content.Shared.Preferences
             BankBalance = bankBalance;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
+            Height = height; // Wayfarer
+            Width = width; // Wayfarer
 
             _jobPriorities.Clear();
 
@@ -761,10 +796,17 @@ namespace Content.Shared.Preferences
             var namingSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<NamingSystem>();
             return namingSystem.GetName(species, gender);
         }
+        public bool Equals(HumanoidCharacterProfile? other)
+        {
+            if (other is null)
+                return false;
+
+            return ReferenceEquals(this, other) || MemberwiseEquals(other);
+        }
 
         public override bool Equals(object? obj)
         {
-            return ReferenceEquals(this, obj) || obj is HumanoidCharacterProfile other && Equals(other);
+            return obj is HumanoidCharacterProfile other && Equals(other);
         }
 
         public override int GetHashCode()

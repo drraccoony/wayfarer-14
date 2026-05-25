@@ -1,4 +1,6 @@
 using Content.Server.DeviceLinking.Components;
+using Content.Server.DeviceNetwork;
+using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
@@ -140,6 +142,11 @@ public sealed class DeviceLinkSystem : SharedDeviceLinkSystem
     {
         if (args.Source != ent.Owner)
             return;
+
+        // Mono
+        if (HasComp<NoSignalOnLinkComponent>(ent))
+            return;
+        // End Mono
 
         // only do anything if a signal is being sent from a port
         if (!ent.Comp.LastSignals.TryGetValue(args.SourcePort, out var signal))

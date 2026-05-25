@@ -3,16 +3,15 @@
   name: job-name-nf-detective
   description: job-description-nf-detective
   playTimeTracker: JobDetective
-  whitelisted: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 43200 # 12 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 43200 # 12 hours as Deputy
   startingGear: NFDetectiveGear
   icon: JobIconNFDetective
   supervisors: job-supervisors-bailiff
-  weight: 110
-  displayWeight: 20
+  weight: 135 # Weight increased to be above Senior Officer
+  displayWeight: 55 # Weight increased to be above Senior Officer
   canBeAntag: false
   access:
   - Detective
@@ -20,7 +19,7 @@
   - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -39,7 +38,7 @@
     - ForensicScanner
     - BaseSecurityUplinkRadioOfficer
     - LogProbeCartridge
-    - RubberStampDetective
+    - RubberStampPal
     - ContrabandForensicsModule
 - type: chameleonOutfit
   id: NFDetectiveChameleonOutfit

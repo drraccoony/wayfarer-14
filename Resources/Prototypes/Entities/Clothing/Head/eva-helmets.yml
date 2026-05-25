@@ -34,7 +34,7 @@
 
 #Syndicate EVA Helmet
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [ClothingHeadEVAHelmetBase] # WF Removed Contraband
   id: ClothingHeadHelmetSyndicate
   name: syndicate EVA helmet
   description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.
@@ -91,6 +91,8 @@
       - state: equipped-head-light-vox
       head-dog:
       - state: equipped-head-light-dog
+      head-avali: #starlight
+      - state: equipped-head-light-avali
   - type: Clothing
     clothingVisuals:
       head:
@@ -99,6 +101,8 @@
       - state: equipped-head-vox
       head-dog:
       - state: equipped-head-dog
+      head-avali: #starlight
+      - state: equipped-head-light-avali
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1

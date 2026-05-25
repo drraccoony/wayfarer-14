@@ -5,7 +5,7 @@
   prototype: MobArachnid
   sprites: MobArachnidSprites
   defaultSkinTone: "#385878"
-  markingLimits: MobArachnidMarkingLimits
+  markingLimits: MobHumanMarkingLimits #MobArachnidMarkingLimits WF
   dollPrototype: MobArachnidDummy
   skinColoration: Hues
   maleFirstNames: NamesArachnidFirst
@@ -17,12 +17,16 @@
 - type: speciesBaseSprites
   id: MobArachnidSprites
   sprites:
+    Special: MobHumanoidAnyMarking
     TailBehind: MobHumanoidAnyMarking
     TailOversuit: MobHumanoidAnyMarking
     Head: MobArachnidHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Chest: MobArachnidTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -36,43 +40,13 @@
     RLeg: MobArachnidRLeg
     LFoot: MobArachnidLFoot
     RFoot: MobArachnidRFoot
+    RArmExtension: MobHumanoidAnyMarking # Adds Wing Slot
 
 - type: humanoidBaseSprite
   id: MobArachnidEyes
   baseSprite:
     sprite: Mobs/Species/Arachnid/parts.rsi
     state: eyes
-
-- type: markingPoints
-  id: MobArachnidMarkingLimits
-  onlyWhitelisted: true
-  points:
-    Hair:
-      points: 0
-      required: false
-    FacialHair:
-      points: 0
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ ArachnidAppendagesDefault ]
-    HeadTop:
-      points: 1
-      required: false
-    HeadSide:
-      points: 1
-      required: true
-      defaultMarkings: [ ArachnidCheliceraeDownwards ]
-    Chest:
-      points: 2
-      required: false
-    Legs:
-      points: 8 # imp 2<8
-      required: false
-    Arms:
-      points: 8 # imp 2<8
-      required: false
 
 - type: humanoidBaseSprite
   id: MobArachnidHead

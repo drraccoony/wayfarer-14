@@ -3,9 +3,13 @@ using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
+using Content.Shared._WF.RoleplayLeveling.Events; // Wayfarer
+using Content.Client._WF.RoleplayLeveling.UI; // Wayfarer
 using Robust.Client.GameObjects;
+using Robust.Client.Player; // Wayfarer
 using Robust.Client.UserInterface;
 using Robust.Shared.Utility;
+using static Robust.Client.UserInterface.Controls.BaseButton; // Wayfarer
 
 namespace Content.Client.Examine;
 
@@ -16,8 +20,12 @@ public sealed class CharacterExamineSystem : EntitySystem
 {
     [Dependency] private readonly ExamineSystem _examine = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly IPlayerManager _player = default!; // Wayfarer
 
     private readonly Dictionary<NetEntity, CharacterDetailWindow> _openWindows = new();
+    private readonly HashSet<NetEntity> _selfWindows = new(); // Wayfarer: windows for own character
+    private MyCommendsWindow? _myCommendsWindow; // Wayfarer
+    private int _cachedTotalCommends = 0; // Wayfarer
 
     public override void Initialize()
     {
@@ -26,6 +34,8 @@ public sealed class CharacterExamineSystem : EntitySystem
         SubscribeLocalEvent<HumanoidAppearanceComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
         SubscribeLocalEvent<MindContainerComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbsWithMind);
         SubscribeNetworkEvent<CharacterInfoEvent>(HandleCharacterInfo);
+        SubscribeNetworkEvent<AvailableCommendsMessage>(HandleAvailableCommends); // Wayfarer
+        SubscribeNetworkEvent<MyCommendsMessage>(HandleMyCommends); // Wayfarer
     }
 
     private void OnGetExamineVerbs(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -40,7 +50,7 @@ public sealed class CharacterExamineSystem : EntitySystem
             ClientExclusive = true,
             ShowOnExamineTooltip = true,
         });
-        // Wayfarer End
+        // End Wayfarer
     }
 
     private void OnGetExamineVerbsWithMind(EntityUid uid, MindContainerComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -78,12 +88,41 @@ public sealed class CharacterExamineSystem : EntitySystem
         window.OnClose += () =>
         {
             _openWindows.Remove(netEntity);
+            _selfWindows.Remove(netEntity);
         };
+
+        // Wayfarer: detect if opening your own character window
+        var isSelf = _player.LocalEntity == uid;
+        if (isSelf)
+        {
+            _selfWindows.Add(netEntity);
+            window.CommendFormSection.Visible = false;
+            window.SelfCommendSection.Visible = true;
+            window.ViewMyCommendsButton.OnPressed += _ => OnViewMyCommends();
+        }
+        else
+        {
+            // Wire up commend button for other players
+            window.SubmitCommendButton.OnPressed += args => OnSubmitCommend(args, uid, window);
+        }
+        // End Wayfarer
 
         window.OpenCentered();
 
         // Request character info from server
         RaiseNetworkEvent(new RequestCharacterInfoEvent { Entity = netEntity });
+
+        // Wayfarer
+        if (isSelf)
+        {
+            // No need to request available commends for self view
+        }
+        else
+        {
+            // Request available commends count for giving
+            RaiseNetworkEvent(new RequestAvailableCommendsMessage());
+        }
+        // End Wayfarer
     }
 
     private void HandleCharacterInfo(CharacterInfoEvent message)
@@ -92,7 +131,18 @@ public sealed class CharacterExamineSystem : EntitySystem
             return;
 
         // Set character info
-        window.SetCharacterInfo(message.CharacterName, message.JobTitle);
+        window.SetCharacterInfo(message.CharacterName, message.RoleplayLevel); // Wayfarer: message.JobTitle<message.RoleplayLevel
+
+        // Wayfarer: update self commends label if this is self window
+        if (_selfWindows.Contains(message.Entity))
+        {
+            _cachedTotalCommends = message.TotalCommends;
+            var count = message.TotalCommends;
+            window.SelfTotalCommendsLabel.Text = count == 1
+                ? "You have received 1 commend."
+                : $"You have received {count} commends.";
+        }
+        // End Wayfarer
 
         // Set description with markup parsing
         FormattedMessage descriptionMessage;
@@ -120,5 +170,90 @@ public sealed class CharacterExamineSystem : EntitySystem
         }
         window.SetConsent(consentMessage);
     }
-}
 
+    // Wayfarer
+    private void OnSubmitCommend(ButtonEventArgs args, EntityUid targetEntity, CharacterDetailWindow window)
+    {
+        // Prevent self-commending
+        if (_player.LocalEntity == targetEntity)
+        {
+            window.SubmitCommendButton.Text = "Cannot commend yourself!";
+            return;
+        }
+
+        var comment = Rope.Collapse(window.CommendCommentInput.TextRope);
+        if (string.IsNullOrWhiteSpace(comment))
+        {
+            window.SubmitCommendButton.Text = "Please enter a comment!";
+            return;
+        }
+
+        var isPrivate = window.CommendPrivateCheckbox.Pressed;
+
+        // Send the commend message
+        RaiseNetworkEvent(new GiveCommendMessage(GetNetEntity(targetEntity), comment, isPrivate));
+
+        // Clear the form and show success
+        window.CommendCommentInput.TextRope = new Rope.Leaf("");
+        window.CommendPrivateCheckbox.Pressed = false;
+        window.SubmitCommendButton.Text = "Commend sent!";
+    }
+    // End Wayfarer
+
+    private void HandleAvailableCommends(AvailableCommendsMessage message)
+    {
+        // Update only non-self windows with the new commends count
+        foreach (var (netEntity, window) in _openWindows)
+        {
+            if (_selfWindows.Contains(netEntity))
+                continue;
+            var hasCommends = message.AvailableCommends > 0;
+
+            // Update text with appropriate pluralization
+            var commendsText = message.AvailableCommends == 1
+                ? "You have 1 commend left to give"
+                : $"You have {message.AvailableCommends} commends left to give";
+            window.CommendsRemainingLabel.Text = commendsText;
+
+            // Enable/disable UI elements based on available commends
+            window.CommendCommentInput.Editable = hasCommends;
+            window.CommendPrivateCheckbox.Disabled = !hasCommends;
+            window.SubmitCommendButton.Disabled = !hasCommends;
+
+            // Update button text if no commends available
+            if (!hasCommends)
+            {
+                window.SubmitCommendButton.Text = "No Commends Available";
+            }
+            else if (window.SubmitCommendButton.Text == "No Commends Available" ||
+                     window.SubmitCommendButton.Text == "Commend sent!")
+            {
+                window.SubmitCommendButton.Text = "Submit Commend";
+            }
+        }
+    }
+
+    // Wayfarer
+    private void OnViewMyCommends()
+    {
+        // Close any existing window first
+        _myCommendsWindow?.Close();
+        _myCommendsWindow = new MyCommendsWindow();
+        _myCommendsWindow.OpenCentered();
+
+        // Request commends from server
+        RaiseNetworkEvent(new RequestMyCommendsMessage());
+    }
+
+    private void HandleMyCommends(MyCommendsMessage message)
+    {
+        if (_myCommendsWindow == null || !_myCommendsWindow.IsOpen)
+        {
+            _myCommendsWindow = new MyCommendsWindow();
+            _myCommendsWindow.OpenCentered();
+        }
+
+        _myCommendsWindow.Populate(message.Commends, _cachedTotalCommends);
+    }
+    // End Wayfarer
+}

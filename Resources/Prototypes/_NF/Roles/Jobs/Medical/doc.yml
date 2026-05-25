@@ -4,8 +4,9 @@
   description: job-description-doc
   playTimeTracker: JobDirectorOfCare
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 72000 # 20 hrs
+    - !type:RoleTimeRequirement
+      role: JobMedicalER
+      time: 86400 # 24 hours (WF job roletime requirement)
   whitelisted: true
   startingGear: DocGear
   alwaysUseSpawner: true
@@ -16,10 +17,10 @@
   displayWeight: 55 # Second from the top
   canBeAntag: false
   accessGroups:
-  - AllAccess
+  - StationCommand # Wayfarer: AllAccess<StationCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant, NFSDTrackingImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -33,7 +34,7 @@
 - type: startingGear
   id: DocGear
   equipment:
-    pocket1: HypoMini
+    pocket1: Hypospray #Wayfarer: HypoMini<Hypospray
     pocket2: MedicalAppraisalTool
   storage:
     back:

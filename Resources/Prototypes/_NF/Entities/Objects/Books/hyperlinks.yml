@@ -22,7 +22,7 @@
     layers:
     - state: law_space
   - type: HyperlinkBook
-    url: https://frontierstation.wiki.gg/wiki/Space_Law
+    url:  https://wayfarer14.com/crime-chart # wafarer https://frontierstation.wiki.gg/wiki/Space_Law > https://wayfarer14.com/crime-chart
   - type: Tag
     tags:
     - Book
@@ -35,11 +35,11 @@
   description: A book defining CGP General Orders, Roles and Procedures
   components:
   - type: Sprite
-    sprite: _NF/Objects/Misc/books.rsi
+    sprite: _WF/Objects/Misc/books.rsi # Wayfarer: _NF/Objects/Misc/books.rsi < _WF/Objects/Misc/books.rsi
     layers:
     - state: nfsd_sop
   - type: HyperlinkBook
-    url: https://frontierstation.wiki.gg/wiki/NFSDSOP
+    url: https://wayfarer14.com/wiki/cgp-gorp # WF Redirects to our wiki instead of Frontier SOP
   - type: Tag
     tags:
     - Book

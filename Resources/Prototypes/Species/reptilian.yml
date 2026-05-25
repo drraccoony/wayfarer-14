@@ -5,7 +5,7 @@
   prototype: MobReptilian
   sprites: MobReptilianSprites
   defaultSkinTone: "#34a223"
-  markingLimits: MobReptilianMarkingLimits
+  markingLimits: MobHumanMarkingLimits #MobReptilianMarkingLimits WF
   dollPrototype: MobReptilianDummy
   skinColoration: Hues
   maleFirstNames: NamesReptilianMale
@@ -15,12 +15,16 @@
 - type: speciesBaseSprites
   id: MobReptilianSprites
   sprites:
+    Special: MobHumanoidAnyMarking
     TailBehind: MobHumanoidAnyMarking
     TailOversuit: MobHumanoidAnyMarking
     Head: MobReptilianHead
+    Hair: MobHumanoidAnyMarking # Wayfarer
+    FacialHair: MobHumanoidAnyMarking # Wayfarer
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Genital: MobHumanoidAnyMarking
     Chest: MobReptilianTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -34,46 +38,7 @@
     RLeg: MobReptilianRLeg
     LFoot: MobReptilianLFoot
     RFoot: MobReptilianRFoot
-
-- type: markingPoints
-  id: MobReptilianMarkingLimits
-  onlyWhitelisted: true
-  points:
-    Hair:
-      points: 0
-      required: false
-    FacialHair:
-      points: 0
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ LizardTailSmooth ]
-    Snout:
-      points: 1
-      required: true
-      defaultMarkings: [ LizardSnoutRound ]
-    HeadTop:
-      points: 2
-      required: false
-    HeadSide:
-      points: 1
-      required: false
-    UndergarmentTop:
-      points: 3
-      required: false
-    UndergarmentBottom:
-      points: 3
-      required: false
-    Chest:
-      points: 4 # imp 3<4
-      required: false
-    Legs:
-      points: 8 # imp 2<8
-      required: false
-    Arms:
-      points: 8 # imp 2<8
-      required: false
+    RArmExtension: MobHumanoidAnyMarking # Adds Wing Slot
 
 - type: humanoidBaseSprite
   id: MobReptilianHead

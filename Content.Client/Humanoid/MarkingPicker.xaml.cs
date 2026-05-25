@@ -25,7 +25,7 @@ public sealed partial class MarkingPicker : Control
 
     public Action<MarkingSet>? OnMarkingAdded;
     public Action<MarkingSet>? OnMarkingRemoved;
-    public Action<MarkingSet>? OnMarkingColorChange;
+    public Action<MarkingSet>? OnMarkingDataChanged; // Coyote: OnMarkingColorChange to OnMarkingDataChanged
     public Action<MarkingSet>? OnMarkingRankChange;
 
     private List<Color> _currentMarkingColors = new();
@@ -130,7 +130,8 @@ public sealed partial class MarkingPicker : Control
 
         _sprite = _entityManager.System<SpriteSystem>();
 
-        CMarkingCategoryButton.OnItemSelected +=  OnCategoryChange;
+        // Subscribe to consent changes to refresh categories
+        CMarkingCategoryButton.OnItemSelected += OnCategoryChange;
         CMarkingsUnused.OnItemSelected += item =>
             _selectedUnusedMarking = CMarkingsUnused[item.ItemIndex];
 
@@ -145,6 +146,20 @@ public sealed partial class MarkingPicker : Control
         CMarkingRankUp.OnPressed += _ => SwapMarkingUp();
         CMarkingRankDown.OnPressed += _ => SwapMarkingDown();
 
+        // Coyote: Marking System Improvements start
+        CanPutOnToggle.OnToggled += x => SetCanToggle(x.Pressed);
+        CanPutOnByOtherToggle.OnToggled += x => SetOtherCanToggle(x.Pressed);
+        StartVisibleToggle.OnToggled += x => SetVisible(x.Pressed);
+
+        CustomNameTextEdit.OnTextChanged += x => SetCustomText();
+        PutOnTextEdit.OnTextChanged += x => SetCustomText();
+        TakeOffTextEdit.OnTextChanged += x => SetCustomText();
+        PutOnOtherTextEdit.OnTextChanged += x => SetCustomText();
+        TakeOffOtherTextEdit.OnTextChanged += x => SetCustomText();
+
+        SampleButton.OnPressed += _ => ToggleSample();
+        // Marking system improvements end
+
         CMarkingSearch.OnTextChanged += args => Populate(args.Text);
     }
 
@@ -157,8 +172,9 @@ public sealed partial class MarkingPicker : Control
         {
             var category = _markingCategories[i];
             var markings = GetMarkings(category);
-            if (_ignoreCategories.Contains(category) ||
-                markings.Count == 0)
+
+            // Check if the category should be ignored
+            if (_ignoreCategories.Contains(category) || markings.Count == 0)
             {
                 continue;
             }
@@ -240,8 +256,13 @@ public sealed partial class MarkingPicker : Control
     public void PopulateUsed()
     {
         CMarkingsUsed.Clear();
+        MarkingData.Visible = false; // Coyote
         CMarkingColors.Visible = false;
         _selectedMarking = null;
+
+        SampleBox.Visible = false; // Coyote
+        SampleButton.Visible = false; // Coyote
+        SampleButton.Text = Loc.GetString("marking-show-sample-text"); // Coyote
 
         if (!IgnoreSpecies)
         {
@@ -394,6 +415,11 @@ public sealed partial class MarkingPicker : Control
     {
         _selectedMarking = CMarkingsUsed[item.ItemIndex];
         var prototype = (MarkingPrototype) _selectedMarking.Metadata!;
+        // Coyote: Marking System Improvements
+        int markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, prototype.ID);
+        if (markingIndex < 0) return;
+        var marking = _currentMarkings.Markings[_selectedMarkingCategory][markingIndex];
+        // Coyote End
 
         if (prototype.ForcedColoring)
         {
@@ -467,10 +493,24 @@ public sealed partial class MarkingPicker : Control
             };
             colorSelector.OnColorChanged += colorChanged;
         }
+        // Coyote Marking System Improvements
+        CustomNameTextEdit.Text = marking.CustomName ?? "";
+        StartVisibleToggle.Pressed = marking.ShowAtStart;
+        CanPutOnToggle.Pressed = marking.CanToggleVisible;
+        CanPutOnByOtherToggle.Pressed = marking.OtherCanToggleVisible;
+        PutOnTextEdit.Text = marking.PutOnVerb ?? Loc.GetString("marking-toggle-self-default-verb-on");
+        TakeOffTextEdit.Text = marking.TakeOffVerb ?? Loc.GetString("marking-toggle-self-default-verb-off");
+        PutOnOtherTextEdit.Text = marking.PutOnVerb2p ?? Loc.GetString("marking-toggle-other-default-verb-on");
+        TakeOffOtherTextEdit.Text = marking.TakeOffVerb2p ?? Loc.GetString("marking-toggle-other-default-verb-off");
 
-        CMarkingColors.Visible = true;
+        MarkingData.Visible = true;
+        CMarkingColors.Visible = true; //Unchanged
+        SampleButton.Visible = true;
+        SetCheckboxVisibility();
+        // Coyote end
     }
 
+    //Wayfarer: This is where the digi legs code would go, if we had it.
     private void ColorChanged(int colorIndex)
     {
         if (_selectedMarking is null) return;
@@ -485,7 +525,7 @@ public sealed partial class MarkingPicker : Control
         marking.SetColor(colorIndex, _currentMarkingColors[colorIndex]);
         _currentMarkings.Replace(_selectedMarkingCategory, markingIndex, marking);
 
-        OnMarkingColorChange?.Invoke(_currentMarkings);
+        OnMarkingDataChanged?.Invoke(_currentMarkings); // Coyote: OnMarkingColorChange? to OnMarkingDataChanged?
     }
 
     private void MarkingAdd()
@@ -560,6 +600,7 @@ public sealed partial class MarkingPicker : Control
             Metadata = marking,
         };
         CMarkingsUsed.Insert(0, item);
+        OnUsedMarkingSelected(new ItemList.ItemListSelectedEventArgs(0, CMarkingsUsed)); // Coyote: Select the newly added marking
 
         _selectedUnusedMarking = null;
         OnMarkingAdded?.Invoke(_currentMarkings);
@@ -583,6 +624,7 @@ public sealed partial class MarkingPicker : Control
             item.Metadata = marking;
         }
         _selectedMarking = null;
+        MarkingData.Visible = false; // Coyote
         CMarkingColors.Visible = false;
         OnMarkingRemoved?.Invoke(_currentMarkings);
     }

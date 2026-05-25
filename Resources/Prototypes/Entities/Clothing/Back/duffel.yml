@@ -58,14 +58,20 @@
   name: clown duffel bag
   description: A large duffel bag for holding extra honk goods.
   components:
-    - type: Sprite
-      sprite: Clothing/Back/Duffels/clown.rsi
-    - type: Storage
-      storageOpenSound:
-        collection: BikeHorn
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/clown.rsi
+  - type: Storage
+    storageOpenSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
+    storageInsertSound:
+      collection: FootstepClown
+      params:
+        variation: 0.125
 
 - type: entity
-  parent: [NFClothingDuffel, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband, ClothingBackpackDuffel<NFClothingDuffel
+  parent: [NFClothingDuffel] # WF Removed Contraband
   id: ClothingBackpackDuffelSecurity
   name: security duffel bag
   description: A large duffel bag for holding extra security related goods.
@@ -74,7 +80,7 @@
       sprite: Clothing/Back/Duffels/security.rsi
 
 - type: entity
-  parent: [NFClothingDuffel, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable, ClothingBackpackDuffel<NFClothingDuffel
+  parent: [NFClothingDuffel] # WF Removed Contraband
   id: ClothingBackpackDuffelBrigmedic
   name: brigmedic duffel bag
   description: A large duffel bag for holding extra medical related goods.
@@ -160,7 +166,7 @@
       sprite: Clothing/Back/Duffels/salvage.rsi
 
 - type: entity
-  parent: [NFClothingDuffel, BaseC3Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3Contraband, added ContrabandClothing as parent
+  parent: [NFClothingDuffel] # WF Removed Contraband
   id: ClothingBackpackDuffelSyndicate
   name: syndicate duffel bag
   description: A large duffel bag for holding various traitor goods.
@@ -174,7 +180,7 @@
     - 0,0,8,4
 
 - type: entity
-  parent: [ NFClothingDuffel, BaseC3Contraband ] # Frontier: ClothingBackpackDuffelSyndicate>NFClothingDuffel, BaseSyndicateContraband>BaseC3Contraband
+  parent: [ ClothingBackpackDuffelSyndicate] # WF Removed Contraband
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:

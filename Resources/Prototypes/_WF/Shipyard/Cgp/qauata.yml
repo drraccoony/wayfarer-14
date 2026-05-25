@@ -1,14 +1,14 @@
 - type: vessel
   id: Qauata
   parent: BaseVessel
-  name: CGP Qauata
+  name: UCA Qauata
   description: A CGP Medical Ship that serves as second line support, performing Officer recovery and assistance.
-  price: 51650
+  price: 60970
   category: Small
   group: Security
   access: Brigmedic
   shuttlePath: /Maps/_WF/Shuttles/Cgp/qauata.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardQauata
   class:
   - Pursuit
   - Medical
@@ -19,15 +19,15 @@
 
 - type: gameMap
   id: Qauata
-  mapName: 'CGP Qauata'
+  mapName: 'Qauata'
   mapPath: /Maps/_WF/Shuttles/Cgp/qauata.yml
   minPlayers: 0
   stations:
     Qauata:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Qauata {1}'
+        mapNameTemplate: 'Qauata CGP{1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

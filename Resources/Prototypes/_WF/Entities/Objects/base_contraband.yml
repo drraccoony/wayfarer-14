@@ -1,0 +1,68 @@
+- type: entity
+  id: BaseDataContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: DataTarget
+    hideCarryStatus: true
+    turnInValues:
+      Doubloon: 1 # 1 Robux
+
+- type: entity
+  id: BaseScienceContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: ExoticMatter
+    hideCarryStatus: true
+
+- type: entity
+  id: BaseDDContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: DestructiveDevice
+
+- type: entity
+  id: BaseMilitaryContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: MilitaryGrade
+    allowedDepartments: [ Security, Command ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+      Doubloon: 1
+
+- type: entity
+  id: BaseBMContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: BlackMarket
+    turnInValues:
+      FrontierUplinkCoin: 1
+
+- type: entity
+  id: BaseBMContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    severity: BlackMarket
+
+- type: entity
+  id: BaseCGPContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: CommandOnly
+    allowedDepartments: [ Security, Command ]
+
+- type: entity # This is dumb I know but some things are parented to contraband items and this is easier than rewriting the entire prototype.
+  id: BaseNotContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: NotContraband
+    hideValues: true
+    hideCarryStatus: true

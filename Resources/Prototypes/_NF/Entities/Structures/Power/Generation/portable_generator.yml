@@ -55,7 +55,7 @@
     Highly radioactive without protection.
   parent:
   - PortableGeneratorSuperPacman
-  - BaseC2ContrabandUnredeemable # Need a doctor's note to run this.
+  #- BaseC2ContrabandUnredeemable # Need a doctor's note to run this. # Wayfarer: Removed contraband
   id: PortableGeneratorDK
   suffix: Bananium, Rad+, 60 kW
   components:
@@ -138,7 +138,7 @@
     Runs off bananium and is rated for up to 100 kW.
     Quite radioactive without protection.
   parent:
-  - BaseC1Contraband # Mildly illegal. Just enough to add some spice to your life.
+#  - BaseC1Contraband # Mildly illegal. Just enough to add some spice to your life. # Wayfarer: Removed contraband
   - PortableGeneratorDK
   id: PortableGeneratorDKJr
   suffix: Bananium, Rad-, 60 kW
@@ -182,3 +182,20 @@
     - type: MaterialStorage
       storage:
         FuelGradeBananium: 1000
+
+# Start Wayfarer
+- type: entity
+  parent:
+  - BaseGeneratorShuttle
+  - PortableGeneratorBioPacman
+  id: PortableGeneratorBioPacmanShuttle
+  suffix: BioFuel, 15 kW, Ship
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 400 # Frontier - 50<400 (doubled)
+        reagents:
+        - ReagentId: BioFuel
+          Quantity: 140 # Frontier - 35<140 (doubled)
+# End Wayfarer

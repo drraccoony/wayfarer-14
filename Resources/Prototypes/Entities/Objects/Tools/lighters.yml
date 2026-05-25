@@ -215,6 +215,12 @@
   - type: IgnitionSource
     ignited: false
   - type: Engraveable # Frontier
+  - type: HelmetAccessory # Wayfarer :>
+    rsi:
+      sprite: _WF/Clothing/Helmetaddons/Smoking/Zippos/zippo.rsi
+      state: helmet
+
+
 
 - type: entity
   name: flippo engraved lighter
@@ -316,7 +322,7 @@
     ignited: false
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBrandedLighter, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: SyndicateFlippo
   name: Blood-red flippo
   description: "A 'Valid' choice in lighters. Contains no copper."
@@ -391,7 +397,7 @@
         maxVol: 3
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBrandedLighter, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: CybersunFlippo
   name: CyberSun Flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
@@ -411,7 +417,7 @@
     color: magenta
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBrandedLighter, BaseBMContraband] # Wayfarer: BaseSyndicateContraband<BaseBMContraband
   id: InterdyneFlippo
   name: Interdyne Flippo
   description: "A deep blue flippo lighter, decorated with the logo of Interdyne Pharmaceuticals' 'Gene Clean' clinics. Become the master of your own cigarette."
@@ -511,7 +517,7 @@
     access: [["CentralCommand"]]
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3Contraband] # Frontier BaseMajorContraband<BaseC3Contraband
+  parent: [BaseBrandedLighter] # Frontier BaseMajorContraband<BaseC3Contraband # Wayfarer: Removed contraband
   id: SpiderclanFlippo
   name: Spider-Clan lighter
   description: "A high tech jet lighter, engineered to function even in deep space. Runs on a tiny microfusion cell."
@@ -531,7 +537,7 @@
     color: green
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBrandedLighter] # Wayfarer: Removed contraband
   id: WaffleCoFlippo
   name: Waffle Co. flippo
   description: "A robust mass produced lighter. The Waffle Co. logo turns the spark wheel when pushed up, minimising risk of lighter burns for even the most inept user."
@@ -625,7 +631,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor # WF - Omnizine > Ichor replacement
           Quantity: 10
   - type: FlavorProfile
     flavors:
