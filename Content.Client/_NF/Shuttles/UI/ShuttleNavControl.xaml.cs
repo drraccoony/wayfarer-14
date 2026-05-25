@@ -28,6 +28,8 @@ public sealed partial class ShuttleNavControl
     private const float RadarUpdateInterval = 0f;
     private const float FireRateLimit = 0.1f; // 100ms between shots
     private static readonly Color TargetColor = Color.FromHex("#99ff66");
+    // Wayfarer: inactive crew shuttles are gray and can be hidden at radar edge.
+    private static readonly Color InactiveShuttleColor = Color.Gray;
     private float _updateAccumulator = 0f;
     
     // Edge detection for label hiding
@@ -191,6 +193,10 @@ public sealed partial class ShuttleNavControl
             // If it's a group and not hovered, draw one blip with a count and grouped label
             if (group.Blips.Count > 1 && !isMouseOverGroup)
             {
+                // Wayfarer: If every blip in this collapsed group is an inactive edge blip, hide the group marker entirely.
+                if (group.Blips.All(NFShouldSuppressInactiveEdgeBlip))
+                    continue;
+
                 var blipData = new BlipData
                 {
                     IsOutsideRadarCircle = group.IsOutsideRadarCircle,
@@ -220,9 +226,14 @@ public sealed partial class ShuttleNavControl
                         // Check if blip is near edge
                         var isNearEdge = blip.UiPosition.X < EdgeMargin || blip.UiPosition.X > (Width - EdgeMargin) ||
                                          blip.UiPosition.Y < EdgeMargin || blip.UiPosition.Y > (Height - EdgeMargin);
+
+                        // Wayfarer: optional suppression for inactive shuttle edge labels.
+                        var suppressInactiveEdgeLabel = IgnoreEdgeInactiveShuttles &&
+                                                         isNearEdge &&
+                                                         NFIsInactiveShuttleLabel(blip.Color);
                         
                         // Only show label if not near edge (when hide edge labels is enabled), or if mouse is over the blip
-                        if ((!isNearEdge || !HideEdgeLabels) || blip.IsMouseOver || isMouseOverGroup)
+                        if (!suppressInactiveEdgeLabel && (((!isNearEdge || !HideEdgeLabels) || blip.IsMouseOver || isMouseOverGroup)))
                         {
                             var displayedDistance = blip.Distance < 50f ? $"{blip.Distance:0.0}" : blip.Distance < 1000 ? $"{blip.Distance:0}" : $"{blip.Distance / 1000:0.0}k";
                             var labelText = Loc.GetString("shuttle-console-iff-label", ("name", blip.ShuttleName)!, ("distance", displayedDistance));
@@ -282,6 +293,9 @@ public sealed partial class ShuttleNavControl
                         IsMouseOver = blip.IsMouseOver,
                         GridMapCoords = blip.GridMapCoords
                     };
+
+                    if (NFShouldSuppressInactiveEdgeBlip(blipDataWithOpacity))
+                        continue;
 
                     DrawSingleBlip(handle, blipDataWithOpacity, blipValueList);
                 }
@@ -357,6 +371,22 @@ public sealed partial class ShuttleNavControl
     private void HandleMouseEntered(GUIMouseHoverEventArgs args)
     {
         _isMouseInside = true;
+    }
+
+    private static bool NFIsInactiveShuttleLabel(Color color)
+    {
+        const float epsilon = 0.01f;
+        return Math.Abs(color.R - InactiveShuttleColor.R) < epsilon
+               && Math.Abs(color.G - InactiveShuttleColor.G) < epsilon
+               && Math.Abs(color.B - InactiveShuttleColor.B) < epsilon;
+    }
+
+    // Wayfarer: suppresses edge triangle rendering for inactive shuttles.
+    private bool NFShouldSuppressInactiveEdgeBlip(BlipData blip)
+    {
+        return IgnoreEdgeInactiveShuttles
+               && blip.IsOutsideRadarCircle
+               && NFIsInactiveShuttleLabel(blip.Color);
     }
 
     private void HandleMouseExited(GUIMouseHoverEventArgs args)

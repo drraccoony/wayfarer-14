@@ -64,6 +64,13 @@ public sealed partial class CCVars
         CVarDef.Create("shuttle.hide_edge_labels", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    ///     Ignore edge labels for inactive (gray) shuttles.
+    /// </summary>
+    // Wayfarer: client nav radar setting for hiding inactive shuttle edge markers/labels.
+    public static readonly CVarDef<bool> ShuttleIgnoreEdgeInactiveShuttles =
+        CVarDef.Create("shuttle.ignore_edge_inactive_shuttles", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     Are players allowed to return on the arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsReturns =

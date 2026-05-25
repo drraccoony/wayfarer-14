@@ -35,6 +35,8 @@ nav-radar-settings-window-title = Nav Radar Settings
 nav-radar-settings-iff-grouping = IFF Grouping:
 nav-radar-settings-label-font-size = Label Font Size:
 nav-radar-settings-hide-edge-labels = Hide Edge Labels
+# Wayfarer
+nav-radar-settings-ignore-edge-inactive-shuttles = Ignore Edge Inactive Shuttles
 nav-radar-settings-apply = Apply
 nav-radar-settings-close = Close
 

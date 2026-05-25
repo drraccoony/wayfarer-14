@@ -589,4 +589,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     
     private bool HideEdgeLabels => _cfg.GetCVar(CCVars.ShuttleHideEdgeLabels);
 
+    // Wayfarer: ignores edge indicators for inactive (gray) shuttles.
+    private bool IgnoreEdgeInactiveShuttles => _cfg.GetCVar(CCVars.ShuttleIgnoreEdgeInactiveShuttles);
+
 }

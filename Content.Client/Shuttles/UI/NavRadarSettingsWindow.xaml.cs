@@ -58,6 +58,9 @@ public sealed partial class NavRadarSettingsWindow : FancyWindow
         
         // Load Hide Edge Labels
         HideEdgeLabelsCheckBox.Pressed = _cfg.GetCVar(CCVars.ShuttleHideEdgeLabels);
+
+        // Wayfarer: Load Ignore Edge Inactive Shuttles
+        IgnoreEdgeInactiveShuttlesCheckBox.Pressed = _cfg.GetCVar(CCVars.ShuttleIgnoreEdgeInactiveShuttles);
     }
 
     private void ApplySettings()
@@ -79,6 +82,9 @@ public sealed partial class NavRadarSettingsWindow : FancyWindow
         
         // Save Hide Edge Labels
         _cfg.SetCVar(CCVars.ShuttleHideEdgeLabels, HideEdgeLabelsCheckBox.Pressed);
+
+        // Wayfarer: Save Ignore Edge Inactive Shuttles
+        _cfg.SetCVar(CCVars.ShuttleIgnoreEdgeInactiveShuttles, IgnoreEdgeInactiveShuttlesCheckBox.Pressed);
 
         Close();
     }
