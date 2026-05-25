@@ -33,7 +33,9 @@ public sealed class CharactersInfoManager
     public void Initialize()
     {
         _statusHost.AddHandler(HandleCharactersRequest);
+        // Wayfarer
         _statusHost.AddHandler(HandleShiftTimeRemainingRequest);
+        // End Wayfarer
     }
 
     private async Task<bool> HandleCharactersRequest(IStatusHandlerContext context)
@@ -99,6 +101,7 @@ public sealed class CharactersInfoManager
         return true;
     }
 
+    // Wayfarer
     private async Task<bool> HandleShiftTimeRemainingRequest(IStatusHandlerContext context)
     {
         if (!context.IsGetLike || context.Url.AbsolutePath != "/shift-time-remaining")
@@ -146,6 +149,7 @@ public sealed class CharactersInfoManager
         await context.RespondAsync(jObject.ToJsonString(), HttpStatusCode.OK, "application/json");
         return true;
     }
+    // End Wayfarer
 
     private async Task<T> RunOnMainThread<T>(Func<T> func)
     {
