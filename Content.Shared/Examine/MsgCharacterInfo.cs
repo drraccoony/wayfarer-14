@@ -21,7 +21,8 @@ public sealed class CharacterInfoEvent : EntityEventArgs
     public NetEntity Entity { get; set; }
     public string CharacterName { get; set; } = string.Empty;
     public string JobTitle { get; set; } = string.Empty;
-    public string RoleplayLevel { get; set; } = string.Empty;
+    public string RoleplayLevel { get; set; } = string.Empty; // Wayfarer
+    public int TotalCommends { get; set; } = 0; // Wayfarer
     public string Description { get; set; } = string.Empty;
     public string ConsentText { get; set; } = string.Empty;
 }

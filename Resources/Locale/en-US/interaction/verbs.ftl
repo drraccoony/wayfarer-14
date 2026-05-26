@@ -69,3 +69,11 @@ interaction-LookAt-success-self-popup = You look at {THE($target)}.
 interaction-LookAt-success-target-popup = {THE($user)} looks at you.
 interaction-LookAt-success-others-popup = {THE($user)} looks at {THE($target)}.
 interaction-LookAt-success-emote-popup = looks at {THE($target)}.
+
+# Force Down Interaction
+interaction-ForceDown-name = Force down
+interaction-ForceDown-description = Force someone to the ground.
+interaction-ForceDown-success-self-popup = You force {THE($target)} to the ground!
+interaction-ForceDown-success-target-popup = {THE($user)} forces you to the ground!
+interaction-ForceDown-success-others-popup = {THE($user)} forces {THE($target)} to the ground!
+interaction-ForceDown-success-emote-popup = forces {THE($target)} to the ground!

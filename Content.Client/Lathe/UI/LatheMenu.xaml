@@ -148,6 +148,12 @@
                     Orientation="Vertical"
                     VerticalExpand="True"
                     HorizontalExpand="True">
+                    <!-- Coyote: Biomass buffer display row -->
+                    <BoxContainer Name="BufferContainer" Orientation="Horizontal" Margin="5">
+                        <Label Text="Biomass Buffer: " />
+                        <Label Name="BufferLabel" Text="0" HorizontalAlignment="Right" />
+                    </BoxContainer>
+                    <!-- End Coyote-->
                     <ui:MaterialStorageControl Name="MaterialsList" SizeFlagsStretchRatio="8"/>
                 </BoxContainer>
             </PanelContainer>

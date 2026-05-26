@@ -17,6 +17,7 @@
   name: loadout-group-contractor-jumpsuit
   loadouts:
   - ClothingUniformJumpsuitParamedicSyndie
+  - WFClothingUniformJumpsuitClear
   - WFClothingUniformJumpsuitParamedic
   - WFClothingUniformJumpskirtParamedic
   - WFClothingUniformJumpsuitVirology

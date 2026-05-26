@@ -494,6 +494,7 @@ namespace Content.Server.Database
             CancellationToken cancel = default);
 
         Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId, int roundId, CancellationToken cancel = default);
+        Task<string?> GetCharacterNameByProfileIdAsync(int profileId, CancellationToken cancel = default);
 
         #endregion
 
@@ -526,7 +527,7 @@ namespace Content.Server.Database
 
         Task RemoveCommunityGoalRequirement(int requirementId, CancellationToken cancel = default);
         Task UpdateCommunityGoalRequirement(int requirementId, long requiredAmount, CancellationToken cancel = default);
-        Task AddCommunityGoalContribution(int requirementId, long amount, CancellationToken cancel = default);
+        Task AddCommunityGoalContribution(int requirementId, long amount, Guid? playerUserId = null, string? characterName = null, string? entityPrototypeId = null, int roundId = 0, CancellationToken cancel = default);
 
         #endregion
 
@@ -1523,6 +1524,17 @@ namespace Content.Server.Database
                 return RunDbCommand(() => _db.GetPlayerCommends(userId, includePrivate, cancel));
             }
 
+        public Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId, int roundId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetRoundCommendsGivenByPlayer(giverUserId, roundId, cancel));
+        }
+
+        public Task<string?> GetCharacterNameByProfileIdAsync(int profileId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetCharacterNameByProfileIdAsync(profileId, cancel));
+        }
             public Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId,
                 int roundId,
                 CancellationToken cancel = default)
@@ -1748,6 +1760,11 @@ namespace Content.Server.Database
             {
                 return RunDbCommand(() => _db.DeleteCorporationStation(corporationId, cancel));
             }
+        public Task AddCommunityGoalContribution(int requirementId, long amount, Guid? playerUserId = null, string? characterName = null, string? entityPrototypeId = null, int roundId = 0, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddCommunityGoalContribution(requirementId, amount, playerUserId, characterName, entityPrototypeId, roundId, cancel));
+        }
 
             #endregion
 

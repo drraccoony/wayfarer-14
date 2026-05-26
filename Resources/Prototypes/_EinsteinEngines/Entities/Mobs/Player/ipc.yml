@@ -86,7 +86,7 @@
       0: 0.10 # Coyote
   - type: BatteryDrinker
   - type: EncryptionKeyHolder
-    keySlots: 4
+    keySlots: 13 # Wayfarer 4<13
     examineWhileLocked: false
     keysExtractionMethod: Cutting
     keysUnlocked: false
@@ -102,12 +102,14 @@
   - type: EmitBuzzWhileDamaged
   - type: CanHostGuardian
   - type: WeldingHealable
+  - type: RoleplayIncentive # Wayfarer
 
 - type: entity
   save: false
   name: Urist McPositronic
   parent: MobHumanDummy
   id: MobIPCDummy
+  categories: [ HideSpawnMenu ]
   description: A dummy IPC meant to be used in character setup.
   components:
   - type: HumanoidAppearance

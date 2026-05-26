@@ -224,6 +224,9 @@ uplink-security-emp-ammo-desc = A box containing 4 EMP projectile grenades.
 uplink-security-emp-ammo-mags-name = EMP Grenade Cartridge
 uplink-security-emp-ammo-mags-desc = A single EMP grenade cartridge, for shipboard weapons.
 
+uplink-security-frag-ammo-mags-name = Frag Grenade Cartridge
+uplink-security-frag-ammo-mags-desc = A single Frag grenade cartridge, for shipboard weapons.
+
 uplink-security-trackingdart-ammo-name = Tracking Darts Ammo
 uplink-security-trackingdart-ammo-desc = A box containing 3 tracking darts and 3 pinpointers.
 
@@ -283,7 +286,7 @@ uplink-pirate-satchel-name = Pirate Satchel
 uplink-pirate-satchel-desc = An inconspicuous satchel filled with pirate goodies.
 
 uplink-pirate-flintlock-name = Flintlock Pistol
-uplink-pirate-flintlock-desc = A pirate captain's companion. Yarrr! Uses .60 anti-materiel ammo.
+uplink-pirate-flintlock-desc = A pirate captain's companion. Yarrr! Uses .45 pistol ammo.
 
 uplink-pirate-shotgunammo-name = Blunderbuss Shell Box
 uplink-pirate-shotgunammo-desc = A box of .50 shotgun shells, used in the blunderbuss.

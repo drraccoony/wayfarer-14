@@ -2201,6 +2201,12 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb(cancel);
 
+            var profileId = await db.DbContext.Profile
+                .Include(p => p.Preference)
+                .Where(p => p.Preference.UserId == ownerUserId && p.Slot == characterIndex)
+                .Select(p => (int?) p.Id)
+                .FirstOrDefaultAsync(cancel);
+
             var box = new WayfarerSafetyDepositBox
             {
                 BoxId = Guid.NewGuid(),
@@ -2208,7 +2214,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 CharacterIndex = characterIndex,
                 OwnerName = ownerName,
                 BoxSize = boxSize,
-                PurchaseDate = DateTime.UtcNow
+                PurchaseDate = DateTime.UtcNow,
+                ProfileId = profileId
             };
 
             db.DbContext.WayfarerSafetyDepositBox.Add(box);
@@ -2480,6 +2487,18 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .CountAsync(cancel);
         }
 
+        public async Task<string?> GetCharacterNameByProfileIdAsync(
+            int profileId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.Profile
+                .Where(p => p.Id == profileId)
+                .Select(p => p.CharacterName)
+                .FirstOrDefaultAsync(cancel);
+        }
+
         #endregion
 
         #region Wayfarer Community Goals
@@ -2629,6 +2648,10 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         public async Task AddCommunityGoalContribution(
             int requirementId,
             long amount,
+            Guid? playerUserId = null,
+            string? characterName = null,
+            string? entityPrototypeId = null,
+            int roundId = 0,
             CancellationToken cancel = default)
         {
             await using var db = await GetDb(cancel);
@@ -2640,6 +2663,22 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 return;
 
             req.CurrentAmount += amount;
+
+            if (playerUserId.HasValue && characterName != null)
+            {
+                var contribution = new WayfarerCommunityGoalContribution
+                {
+                    RequirementId = requirementId,
+                    PlayerUserId = playerUserId.Value,
+                    CharacterName = characterName,
+                    EntityPrototypeId = entityPrototypeId ?? req.EntityPrototypeId,
+                    Amount = amount,
+                    RoundId = roundId,
+                    ContributedAt = DateTime.UtcNow,
+                };
+                db.DbContext.WayfarerCommunityGoalContributions.Add(contribution);
+            }
+
             await db.DbContext.SaveChangesAsync(cancel);
         }
 

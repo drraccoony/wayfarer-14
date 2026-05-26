@@ -35,6 +35,7 @@
     - Hug
     - Pet
     - LookAt
+    - ForceDown
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: full

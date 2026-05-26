@@ -18,6 +18,11 @@
     reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
+    # Wayfarer: Cache/Vault group universal Timer
+    wayfareCacheGroup: Caches
+    wayfareCacheGroupMins: 120
+    # Wayfarer: End timer
+    
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -61,6 +66,10 @@
     reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
+    # Wayfarer: Cache/Vault group universal Timer
+    wayfareCacheGroup: Caches
+    wayfareCacheGroupMins: 120
+    # Wayfarer: End Timer
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -85,7 +94,7 @@
       Nfsd: 0.25
       Frontier: 0.25
       Medical: 0.25
-      Edison: 0.25
+    #  Edison: 0.25 Wayfayer: Edison should make it's own money.
 
 - type: entity
   id: BluespaceVaultSmallError
@@ -107,6 +116,10 @@
     reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
+    # Wayfarer: Cache/Vault group universal Timer
+    wayfareCacheGroup: Caches
+    wayfareCacheGroupMins: 120
+    # Wayfarer: End timer
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -131,7 +144,7 @@
       Nfsd: 0.25
       Frontier: 0.25
       Medical: 0.25
-      Edison: 0.25
+    #  Edison: 0.25 Wayfayer: Edison should make it's own money.
 
 - type: entity
   id: BluespaceSyndicateFTLInterception

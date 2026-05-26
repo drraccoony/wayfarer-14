@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingShoesBootsCombat
+  parent: ClothingShoesBase
   id: WFClothingShoesBootsClear
   name: discreet boots
   description: Stylish invisible boots for running in circles.

@@ -143,6 +143,7 @@
     Piercing: 1.0
     Heat: 2.0
     Structural: 0.5
+    Rot: 0.1 #Wayfarer: Added rot. Wood rots.
   flatReductions:
     Blunt: 5
 
@@ -215,6 +216,7 @@
     Heat: 1.25
     Poison: 0.0
     Radiation: 0.0
+    Rot: 0.0 #Wayfarer: Added protection against rot.
 
 # immune to everything except physical and heat damage
 - type: damageModifierSet
@@ -229,6 +231,7 @@
     Asphyxiation: 0.0
     Bloodloss: 0.0
     Cellular: 0.0
+    Rot: 0.0 #Wayfarer: Added protection against rot.
   flatReductions:
     Blunt: 5
 
@@ -242,6 +245,7 @@
     Asphyxiation: 0.0
     Bloodloss: 0.0
     Cellular: 0.0
+    Rot: 0.0 #Wayfarer: Added protection against rot.
 
 # Represents which damage types should be modified
 # in relation to how they cause bleed rate.
@@ -263,6 +267,7 @@
     Shock: 0.0
     Slash: 0.25
     Structural: 0.0
+    Rot: 0.0 #Wayfarer: Added rot.
 
 - type: damageModifierSet
   id: SlimePet # Very survivable slimes
@@ -275,6 +280,7 @@
     Cellular: 0.0
     Radiation: 0.2
     Caustic: 0.0
+    Rot: 0.0 #Wayfarer: Added rot.
 
 - type: damageModifierSet
   id: HellSpawn
@@ -284,6 +290,7 @@
     Shock: 0.8
     Bloodloss: 0.4
     Holy: 1
+    Rot: 0.0 #Wayfarer: Added rot.
 
 - type: damageModifierSet
   id: Cockroach
@@ -296,6 +303,7 @@
     Cellular: 1.0
     Radiation: 0.0 # hehe funny cockroach immune to rads
     Caustic: 1.0
+    Rot: 0.0 #Wayfarer: Added rot.
 
 # Massive heat damage, presumably to kill with lasers
 - type: damageModifierSet
@@ -311,6 +319,7 @@
     Cellular: 0.0
     Heat: 2.5
     Caustic: 0.0
+    Rot: 0.0 #Wayfarer: Added rot.
 
 # protects against radiation
 - type: damageModifierSet

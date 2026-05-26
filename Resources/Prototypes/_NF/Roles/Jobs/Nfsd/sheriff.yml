@@ -3,11 +3,10 @@
   name: job-name-sheriff
   description: job-description-sheriff
   playTimeTracker: JobHeadOfSecurity
-  whitelisted: true
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 43200 # 12 hours
+      time: 43200 # 12 hours as Bailiff
   startingGear: SheriffGear
   alwaysUseSpawner: true
   icon: JobIconSheriff
@@ -32,7 +31,7 @@
 - type: startingGear
   id: SheriffGear
   equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+    pocket1: BaseSecurityUplinkRadioSheriff # Wayfarer: NFWeaponPistolUniversalNfsdLessLethal<BaseSecurityUplinkRadioSheriff
     pocket2: NFWeaponEnergyPistolLaserX01Multiphase
   storage:
     back:
@@ -40,10 +39,10 @@
     - Multitool
     - HoloprojectorNfsd
     - DoorRemoteNfsd
-    - BaseSecurityUplinkRadioSheriff
+#    - BaseSecurityUplinkRadioSheriff # Wayfarer: Moved to Pocket
     - RubberStampSheriff
     - ShipVoucherNfsdBailiff
-    - FrontierUplinkCoin5
+    - FrontierUplinkCoin10 # Wayfarer: 5<10
 
 - type: chameleonOutfit
   id: SheriffChameleonOutfit

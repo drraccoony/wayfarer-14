@@ -3,11 +3,10 @@
   name: job-name-brigmedic
   description: job-description-brigmedic-nf
   playTimeTracker: JobBrigmedic
-  whitelisted: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 43200 # 12 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 43200 # 12 hours as Deputy
   startingGear: BrigmedicGear
   icon: JobIconBrigmedicNF
   supervisors: job-supervisors-bailiff
@@ -28,14 +27,15 @@
 - type: startingGear
   id: BrigmedicGear
   equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+    pocket1: BaseSecurityUplinkRadioOfficer # Wayfarer: NFWeaponPistolUniversalNfsdLessLethal<BaseSecurityUplinkRadioOfficer
+    pocket2: Hypospray # Wayfarer
   storage:
     back:
     - EncryptionKeyMedical
     - Flash
-    - NFMagazineHighCapacityPistol35Overpressure
-    - NFMagazineHighCapacityPistol35Rubber
-    - BaseSecurityUplinkRadioOfficer
+#    - NFMagazineHighCapacityPistol35Overpressure
+#    - NFMagazineHighCapacityPistol35Rubber # Wayfarer
+#    - BaseSecurityUplinkRadioOfficer # Wayfarer: Moved to Pocket
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit
   job: Brigmedic

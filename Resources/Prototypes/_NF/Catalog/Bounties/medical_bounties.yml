@@ -287,3 +287,19 @@
       max: 50
       value: 25
   baseReward: 20250 # 5300-13500 # Coyote: multiplied by 3
+
+# Wayfarer: Added Rot damage as a chance to medical bounties.
+- type: medicalBounty
+  id: Stinky
+  damageSets:
+    Asphyxiation:
+      min: 200
+      max: 400
+      value: 10
+      penalty: 10
+    Rot:
+      min: 60
+      max: 500
+      value: 25
+      penalty: 25
+  baseReward: 26000 # 5500-9500 # Coyote: multiplied by 3

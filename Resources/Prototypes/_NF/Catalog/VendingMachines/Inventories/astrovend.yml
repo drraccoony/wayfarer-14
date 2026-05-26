@@ -47,6 +47,7 @@
     JetpackMiniFilled: 4294967295 # Infinite
     HandHeldMassScanner: 4294967295 # Infinite
     AppraisalCartridge: 4294967295 # Infinite
+    AccessConfiguratorCivilian: 4294967295 # Coyote, Infinite.
 # Keys
     EncryptionKeyCommon: 4294967295 # Infinite
     EncryptionKeyTraffic: 4294967295 # Infinite

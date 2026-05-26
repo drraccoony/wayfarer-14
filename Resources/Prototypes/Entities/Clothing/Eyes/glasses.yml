@@ -51,6 +51,11 @@
     damage:
       types:
         Blunt: 10
+  - type: HelmetAccessory # Wayfarer :>
+    rsi:
+      sprite: _WF/Clothing/Helmetaddons/Goggles/gargiga.rsi
+      state: helmet
+
 
 - type: entity
   parent: ClothingEyesBase # Frontier: removed BaseEngineeringContraband
@@ -71,6 +76,11 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+  - type: HelmetAccessory # Wayfarer :>
+    rsi:
+      sprite: _WF/Clothing/Helmetaddons/Goggles/engigoggles.rsi
+      state: helmet
+
 
 - type: entity
   parent: ClothingEyesBase
@@ -251,6 +261,12 @@
   - type: GroupExamine
   - type: IdentityBlocker
     coverage: EYES
+  - type: ThermalSight
+  - type: HelmetAccessory # Wayfarer :>
+    rsi:
+      sprite: _WF/Clothing/Helmetaddons/Goggles/thermalgoggles.rsi
+      state: helmet
+
 
 - type: entity
   parent: ClothingEyesBase
@@ -269,6 +285,11 @@
       tags:
       - PetWearable
       - WhitelistChameleon
+    - type: HelmetAccessory # Wayfarer :>
+      rsi:
+        sprite: _WF/Clothing/Helmetaddons/Goggles/chemgoggles.rsi
+        state: helmet
+
 
 - type: entity
   parent: [ClothingEyesBase] # WF Removed Contraband

@@ -115,5 +115,22 @@ namespace Content.Server._DV.Mail.Components
         public bool IsEnabled = true;
 
         public CancellationTokenSource? PriorityCancelToken;
+
+        // Coyote: Mail Tweaks
+        #region Coyote
+        /// <summary>
+        /// How long it takes for the mail to be considered trash.
+        /// After this time, the mail can be deleted without penalty.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public TimeSpan TrashDuration = TimeSpan.FromMinutes(120);
+
+        /// <summary>
+        /// The mail is safe to outright destroy at this time.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public TimeSpan TrashTime = TimeSpan.Zero;
+        #endregion Coyote
+        // Coyote End
     }
 }

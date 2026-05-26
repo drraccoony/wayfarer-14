@@ -79,7 +79,7 @@ public sealed partial class SmartFridgeComponent : Component
     /// The maximum number of entities that can be stored in the fridge
     /// </summary>
     [DataField]
-    public int MaxContainedCount = 300;
+    public int MaxContainedCount = 3000; //Wayfarer x10 increase 300-> 3000
 
     /// <summary>
     /// If true, insertion requires access

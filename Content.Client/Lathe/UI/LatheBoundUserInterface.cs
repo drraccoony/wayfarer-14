@@ -46,6 +46,7 @@ namespace Content.Client.Lathe.UI
                 case LatheUpdateState msg:
                     if (_menu != null)
                         _menu.Recipes = msg.Recipes;
+                    _menu?.UpdateBuffer(msg.BufferAmount); // Coyote
                     _menu?.PopulateRecipes();
                     _menu?.UpdateCategories();
                     _menu?.PopulateQueueList(msg.Queue);

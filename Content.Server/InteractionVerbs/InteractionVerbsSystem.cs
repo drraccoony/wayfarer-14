@@ -2,10 +2,14 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
+using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.InteractionVerbs;
+using Content.Shared.InteractionVerbs.Events;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -22,10 +26,58 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        // DoAfter events are DIRECTED events (raised on eventTarget), so we must use the component-based
+        // subscription. eventTarget is always the user, who always has MobStateComponent.
+        SubscribeLocalEvent<MobStateComponent, InteractionVerbDoAfterEvent>(OnInteractionVerbDoAfter);
+    }
+
+    private void OnInteractionVerbDoAfter(EntityUid uid, MobStateComponent _, InteractionVerbDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        if (!PrototypeManager.TryIndex(args.VerbPrototype, out InteractionVerbPrototype? verbProto))
+            return;
+
+        var user = uid; // uid == eventTarget == user
+        var target = GetEntity(args.Target);
+
+        if (!user.IsValid() || !target.IsValid())
+            return;
+
+        var hasHands = HasComp<HandsComponent>(user);
+        var canAccess = _interactionSystem.InRangeUnobstructed(user, target);
+        var canInteract = _actionBlockerSystem.CanInteract(user, target);
+
+        EntityUid? usedItem = null;
+        if (hasHands)
+            usedItem = _handsSystem.GetActiveItem(user);
+
+        var interactionArgs = new InteractionArgs(user, target, usedItem, canAccess, canInteract, hasHands, null);
+
+        if (verbProto.Action != null && !verbProto.Action.CanPerform(interactionArgs, verbProto, false, _verbDependencies))
+        {
+            if (verbProto.EffectFailure != null)
+                ShowEffects(verbProto, verbProto.EffectFailure, InteractionPopupPrototype.Prefix.Fail, interactionArgs);
+            return;
+        }
+
+        bool success = verbProto.Action?.Perform(interactionArgs, verbProto, _verbDependencies) ?? true;
+
+        if (success && verbProto.EffectSuccess != null)
+            ShowEffects(verbProto, verbProto.EffectSuccess, InteractionPopupPrototype.Prefix.Success, interactionArgs);
+        else if (!success && verbProto.EffectFailure != null)
+            ShowEffects(verbProto, verbProto.EffectFailure, InteractionPopupPrototype.Prefix.Fail, interactionArgs);
+
+        if (success && verbProto.DoContactInteraction)
+            _interactionSystem.DoContactInteraction(user, target);
+
+        args.Handled = true;
     }
 
     protected override void TryPerformVerb(InteractionVerbPrototype proto, EntityUid user, EntityUid target)
@@ -56,7 +108,26 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
                 return;
         }
 
-        // Perform the action
+        // If there's a delay, start a do-after and defer the rest
+        if (verbProto.Delay > TimeSpan.Zero)
+        {
+            var doAfterArgs = new DoAfterArgs(
+                EntityManager,
+                user,
+                verbProto.Delay,
+                new InteractionVerbDoAfterEvent(GetNetEntity(target), verbProto.ID),
+                eventTarget: user,
+                target: target)
+            {
+                BreakOnMove = true,
+                BreakOnDamage = true,
+                NeedHand = verbProto.RequiresHands,
+            };
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+            return;
+        }
+
+        // Perform the action immediately (no delay)
         bool success = verbProto.Action?.Perform(args, verbProto, _verbDependencies) ?? true;
 
         // Show effects
@@ -81,6 +152,10 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
         if (effect.Popup != null && PrototypeManager.TryIndex(effect.Popup.Value, out var popupProto))
         {
             var hasUsed = args.Used != null;
+            // Use identity entities for public-facing messages so hidden IDs are respected.
+            var identityUser = Identity.Entity(args.User, EntityManager);
+            var identityTarget = Identity.Entity(args.Target, EntityManager);
+
             var selfMessage = Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.SelfSuffix}-popup",
                 ("user", args.User),
                 ("target", args.Target),
@@ -90,7 +165,7 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
 
             var targetMessage = popupProto.TargetSuffix != null
                 ? Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.TargetSuffix}-popup",
-                    ("user", args.User),
+                    ("user", identityUser),
                     ("target", args.Target),
                     ("used", args.Used ?? EntityUid.Invalid),
                     ("selfTarget", args.User == args.Target),
@@ -99,15 +174,15 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
 
             var othersMessage = popupProto.OthersSuffix != null
                 ? Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.OthersSuffix}-popup",
-                    ("user", args.User),
-                    ("target", args.Target),
+                    ("user", identityUser),
+                    ("target", identityTarget),
                     ("used", args.Used ?? EntityUid.Invalid),
                     ("selfTarget", args.User == args.Target),
                     ("hasUsed", hasUsed))
                 : null;
 
             // Show popup to user
-            _popupSystem.PopupEntity(selfMessage, args.Target, args.User, PopupType.Medium);
+            // _popupSystem.PopupEntity(selfMessage, args.Target, args.User, PopupType.Medium);
 
             // Show popup to target if different from user
             if (args.User != args.Target && targetMessage != null)
@@ -127,8 +202,8 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
             if (popupProto.EmoteSuffix != null)
             {
                 var chatMessage = Loc.GetString($"interaction-{proto.ID}-{prefix.ToString().ToLower()}-{popupProto.EmoteSuffix}-popup",
-                    ("user", args.User),
-                    ("target", args.Target),
+                    ("user", identityUser),
+                    ("target", identityTarget),
                     ("used", args.Used ?? EntityUid.Invalid),
                     ("selfTarget", args.User == args.Target),
                     ("hasUsed", hasUsed));

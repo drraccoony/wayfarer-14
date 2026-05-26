@@ -109,6 +109,13 @@
     ClothingNeckCollarBlue: 2 # Floofstation - Collar addition
     ClothingNeckCollarBlack: 2 # Floofstation - Collar addition
     ClothingNeckCollarPink: 2 # Floofstation - Collar addition
+# Start Wayfarer
+    WFClothingUniformJumpsuitClear: 9 # Wayfarer
+    WFClothingMaskClear: 9 # Wayfarer
+    WFClothingHeadsetClear: 9 # Wayfarer
+    WFClothingShoesBootsClear: 9 # Wayfarer
+    WFClothingBackpackSatchelClear: 9 # Wayfarer
+# End Wayfarer
   contrabandInventory:
     ClothingMaskNeckGaiter: 2
     ClothingUniformJumpsuitTacticool: 1
@@ -119,3 +126,4 @@
     ClothingHeadHatSolidHeadband: 2
     ClothingHeadPropellerHat: 2 # Frontier
   # DO NOT ADD MORE, USE UNIFORM DYING
+

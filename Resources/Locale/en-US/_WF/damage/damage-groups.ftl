@@ -1,0 +1,1 @@
+damage-group-rot = Rot

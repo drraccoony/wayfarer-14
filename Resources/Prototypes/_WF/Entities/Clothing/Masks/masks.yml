@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskBreath
   id: WFClothingMaskClear
   name: discreet breath mask
   description: A close-fitting breath mask, so close you hardly notice it.

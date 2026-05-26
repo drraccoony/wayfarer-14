@@ -9,7 +9,7 @@
       amount: 1
   products:
     Traumoxadone: 2
-    
+
 - type: reaction
   id: Stelloxadone
   reactants:
@@ -36,6 +36,21 @@
       amount: 1
   products:
     Opporozidone: 3
+
+- type: reaction
+  id: WFRuboxadone
+  reactants:
+    Radium:
+      amount: 3
+    Oxygen:
+      amount: 3
+    Cryoxadone:
+      amount: 3
+    Saline:
+      amount: 1
+  products:
+    Ruboxadone: 5
+ # Wayfarer: Added Ruboxadone as a solution to Rot.
 
 - type: reaction
   id: NFAloxadone

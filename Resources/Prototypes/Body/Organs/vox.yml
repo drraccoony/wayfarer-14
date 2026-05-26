@@ -28,6 +28,14 @@
     specialDigestible:
       tags:
       - Trash
+    # Wayfarer: mmmm food
+    carnivoreDigestible:
+      tags:
+      - Trash
+    herbivoreDigestible:
+      tags:
+      - Trash
+    # End Wayfarer
     isSpecialDigestibleExclusive: false
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
@@ -90,10 +98,36 @@
 - type: entity
   id: OrganVoxTongueB
   parent: OrganHumanTongue
-  name: vox tongue 
+  name: vox tongue
   description: "A fleshy muscle mostly used for screaming."
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
   - type: Item
     size: Small
+
+- type: entity
+  parent: OrganHumanBrain
+  id: OrganVoxStack # Wayfarer
+  name: cortical stack
+  description: "A advanced bio-electronic device containing all the memories and identity of a Vox."
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vox/organs.rsi
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: GreyMatter
+          Quantity: 5
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: GreyMatter
+          Quantity: 5

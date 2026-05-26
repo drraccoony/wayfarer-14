@@ -10,14 +10,14 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    updateInterval: 2.0
+    #updateInterval: 2.0 # Coyote, gives it the same update interval as normal lungs.
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
     metabolizerTypes: [ Human ]
     groups:
     - id: Gas
-      rateModifier: 200.0
+      rateModifier: 150.0 # Coyote: 200 to 150. Reduces gasping.
   - type: SolutionContainerManager
     solutions:
       organ:

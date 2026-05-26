@@ -201,6 +201,11 @@ namespace Content.Tests.Shared
   id: Cellular
   name: damage-type-cellular
 
+#Wayfarer: Added rot damage to split rot and cellular.
+- type: damageType
+  id: Rot
+  name: damage-type-rot
+
 - type: damageGroup
   id: Brute
   name: damage-group-brute
@@ -242,6 +247,13 @@ namespace Content.Tests.Shared
   name: damage-group-genetic
   damageTypes:
     - Cellular
+
+# Wayfarer: Added rot damage group to damage group container to split Cellular and Rot damage.
+- type: damageGroup
+  id: Rot
+  name: damage-group-rot
+  damageTypes:
+    - Rot
 
 - type: damageModifierSet
   id: Metallic
@@ -293,6 +305,7 @@ namespace Content.Tests.Shared
     - Toxin
     - Airloss
     - Genetic
+    - Rot
 
 - type: damageContainer
   id: Inorganic

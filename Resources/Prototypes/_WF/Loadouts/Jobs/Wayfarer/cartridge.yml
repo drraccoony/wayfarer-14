@@ -1,32 +1,30 @@
 #T1
 - type: loadout
   id: WFAppraisalCartridge
-  price: 1000
+  price: 100
   cartridges:
   - AppraisalCartridge
 
 - type: loadout
   id: WFMedTekCartridge
-  price: 1000
+  price: 100
   cartridges:
   - MedTekCartridge
 
-# Wayfarer
 - type: loadout
   id: WFCriticalImplantTrackerCartridge
-  price: 1000
+  price: 100
   cartridges:
   - CriticalImplantTrackerCartridge
-# End Wayfarer
 
 - type: loadout
   id: WFNetProbeCartridge
-  price: 1000
+  price: 100
   cartridges:
   - NetProbeCartridge
 
 - type: loadout
   id: WFLogProbeCartridge
-  price: 1000
+  price: 100
   cartridges:
   - LogProbeCartridge

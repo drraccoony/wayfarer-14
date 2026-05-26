@@ -41,6 +41,13 @@
   damageTypes:
     - Cellular
 
+- type: damageGroup
+  id: Rot
+  name: damage-group-rot
+  damageTypes:
+    - Rot
+# Wayfarer: Added Rot as a damage group to split Cellular and Rot damage.
+
 # Metaphysical damage types should be used very sparingly, and likely not affect normal crew entities.
 # Revenants and other ghost-like/demonic creatures are more fitting. Healing should never be available via medicine.
 - type: damageGroup
@@ -48,3 +55,4 @@
   name: damage-group-metaphysical
   damageTypes:
   - Holy
+

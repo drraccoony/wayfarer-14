@@ -103,6 +103,10 @@
     FoodTinPeachesMaint: 10
     # Weapons
     WeaponSizeManipulator: 5
+    # Wayfarer
+    EncryptionKeyHorny: 100
+    EncryptionKeyExtremeKink: 100
+    # End Wayfarer
   contrabandInventory:
     # Snacks
     FoodTinPeachesMaint: 10

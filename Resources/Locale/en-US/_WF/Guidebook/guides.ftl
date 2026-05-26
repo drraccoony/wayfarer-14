@@ -1,6 +1,8 @@
 # Base entries
 guide-entry-wayfarer-rules = Server Rules
 guide-entry-community-goals = Community Goals
+guide-entry-consent = Consent
+guide-entry-contraband = Contraband
 
 # Rules entries
 guide-entry-wayfarer-rule-a0 = Rule A0: Storytelling First
@@ -28,6 +30,7 @@ guide-entry-shipyard-beater = Beater
 guide-entry-shipyard-buckler = Buckler
 guide-entry-shipyard-dagger = Dagger
 guide-entry-shipyard-dioddef = Dioddef
+guide-entry-shipyard-downtownsuperstar = DowntownSuperstar
 guide-entry-shipyard-grandqueen = Grand Queen
 guide-entry-shipyard-grandideals = Grand Ideals
 guide-entry-shipyard-hamger = Hamger

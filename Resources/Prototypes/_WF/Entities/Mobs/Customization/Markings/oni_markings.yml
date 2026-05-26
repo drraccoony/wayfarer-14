@@ -1,0 +1,78 @@
+# Head
+- type: marking
+  id: OniWarpaintJaw
+  bodyPart: Head
+  markingCategory: Head
+  # speciesRestriction: [Oni]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#000000"
+  sprites:
+  - sprite: _WF/Mobs/Customization/oni_markings.rsi
+    state: warpaint-jaw
+
+- type: marking
+  id: OniWarpaintSkull
+  bodyPart: Head
+  markingCategory: Head
+  # speciesRestriction: [Oni]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _WF/Mobs/Customization/oni_markings.rsi
+    state: warpaint-skull
+
+- type: marking
+  id: OniWarpaintDome
+  bodyPart: Head
+  markingCategory: Head
+  # speciesRestriction: [Oni]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _WF/Mobs/Customization/oni_markings.rsi
+    state: skulldome
+
+# Overlay
+- type: marking
+  id: OniOverlayAshenDust
+  bodyPart: LLeg
+  markingCategory: Overlay
+  # speciesRestriction: [Oni]
+  layering:
+    ashendust: LLeg
+    ashendust-HANDS: RHand
+  colorLinks:
+    ashendust-HANDS: ashendust
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#000000"
+  sprites:
+  - sprite: _WF/Mobs/Customization/oni_markings.rsi
+    state: ashendust
+  - sprite: _WF/Mobs/Customization/oni_markings.rsi
+    state: ashendust-HANDS
+
+- type: marking
+  id: OniOverlayImpBinds
+  bodyPart: LLeg
+  markingCategory: Overlay
+  # speciesRestriction: [Oni]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#000000"
+  sprites:
+  - sprite: _WF/Mobs/Customization/oni_markings.rsi
+    state: impbinds

@@ -1,0 +1,13 @@
+- type: radioChannel
+  id: Horny
+  name: chat-radio-horny
+  keycode: 'l'
+  frequency: 1469
+  color: "#ff66cc"
+
+- type: radioChannel
+  id: ExtremeKink
+  name: chat-radio-extreme-kink
+  keycode: 'k'
+  frequency: 1470
+  color: "#cc0066"
