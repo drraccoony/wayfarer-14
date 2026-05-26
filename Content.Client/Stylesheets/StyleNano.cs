@@ -1742,11 +1742,9 @@ namespace Content.Client.Stylesheets
                 Element<OptionButton>().Class("ButtonSmall")
                     .Prop(ContainerButton.StylePropertyStyleBox, smallButtonBase),
 
-                new StyleRule(
-                    new SelectorDescendant(
-                        new SelectorElement(typeof(OptionButton), new[] { "ButtonSmall" }, null, null),
-                        new SelectorElement(typeof(Label), new[] { OptionButton.StyleClassOptionButton }, null, null)),
-                    new[] { new StyleProperty(Label.StylePropertyFont, notoSans8) }),
+                Child().Parent(Element<OptionButton>().Class("ButtonSmall"))
+                    .Child(Element<Label>().Class(OptionButton.StyleClassOptionButton))
+                    .Prop(Label.StylePropertyFont, notoSans8),
                 // ---
 
                 Element<Label>().Class("StatusFieldTitle")

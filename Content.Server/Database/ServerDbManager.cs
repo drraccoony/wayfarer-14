@@ -1982,7 +1982,7 @@ namespace Content.Server.Database
                     return task;
                 }
 
-                public ValueTask<bool> MoveNextAsync()a
+                public ValueTask<bool> MoveNextAsync()
                 {
                     var task = _enumerator.MoveNextAsync();
                     if (!task.IsCompleted)
