@@ -40,7 +40,7 @@
   - type: Sprite
     netsync: false
     noRot: true
-    sprite: _NF/Structures/Machines/atm/atm.rsi
+    sprite: _WF/Structures/Machines/corpatm/depositatm.rsi
     layers:
     - map: ["computerLayerBody"]
       state: icon

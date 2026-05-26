@@ -5,14 +5,14 @@
   description: A business management program for founding and managing player corporations.
   components:
     - type: Sprite
-      sprite: Objects/Devices/cartridge.rsi
-      state: cart-sec
+      sprite: _WF/Objects/Devices/cartridge.rsi
+      state: corp-cart
     - type: UIFragment
       ui: !type:CorporationUi
     - type: Cartridge
       programName: corp-program-name
       icon:
-        sprite: Interface/Actions/shop.png
+        sprite: _WF/Interface/Actions/corpmanager.rsi
         state: icon
     - type: CorporationCartridge
     - type: StaticPrice
