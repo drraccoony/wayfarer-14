@@ -1524,23 +1524,18 @@ namespace Content.Server.Database
                 return RunDbCommand(() => _db.GetPlayerCommends(userId, includePrivate, cancel));
             }
 
-        public Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId, int roundId, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetRoundCommendsGivenByPlayer(giverUserId, roundId, cancel));
-        }
-
-        public Task<string?> GetCharacterNameByProfileIdAsync(int profileId, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetCharacterNameByProfileIdAsync(profileId, cancel));
-        }
             public Task<int> GetRoundCommendsGivenByPlayer(Guid giverUserId,
                 int roundId,
                 CancellationToken cancel = default)
             {
                 DbReadOpsMetric.Inc();
                 return RunDbCommand(() => _db.GetRoundCommendsGivenByPlayer(giverUserId, roundId, cancel));
+            }
+
+            public Task<string?> GetCharacterNameByProfileIdAsync(int profileId, CancellationToken cancel = default)
+            {
+                DbReadOpsMetric.Inc();
+                return RunDbCommand(() => _db.GetCharacterNameByProfileIdAsync(profileId, cancel));
             }
 
             #endregion
@@ -1617,7 +1612,7 @@ namespace Content.Server.Database
             public Task AddCommunityGoalContribution(int requirementId, long amount, CancellationToken cancel = default)
             {
                 DbWriteOpsMetric.Inc();
-                return RunDbCommand(() => _db.AddCommunityGoalContribution(requirementId, amount, cancel));
+                return RunDbCommand(() => _db.AddCommunityGoalContribution(requirementId, amount, cancel: cancel));
             }
 
             #endregion
