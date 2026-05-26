@@ -52,6 +52,9 @@ public sealed partial class CorporationUiFragment : BoxContainer
     private readonly Label _stationCoordsLabel;
     private readonly Label _stationUpkeepLabel;
     private readonly Label _stationUpkeepWarning;
+    private readonly Label _stationSectionLabel;
+    private readonly Label _stationPurchaseStatusLabel;
+    private readonly BoxContainer _stationPurchaseInputRow;
     private readonly CheckBox _stationVisibleCheckBox;
     private readonly BoxContainer _stationPurchaseBox;
     private readonly LineEdit _stationNameEdit;
@@ -114,6 +117,9 @@ public sealed partial class CorporationUiFragment : BoxContainer
         _stationCoordsLabel = FindControl<Label>("StationCoordsLabel");
         _stationUpkeepLabel = FindControl<Label>("StationUpkeepLabel");
         _stationUpkeepWarning = FindControl<Label>("StationUpkeepWarning");
+        _stationSectionLabel = FindControl<Label>("StationSectionLabel");
+        _stationPurchaseStatusLabel = FindControl<Label>("StationPurchaseStatusLabel");
+        _stationPurchaseInputRow = FindControl<BoxContainer>("StationPurchaseInputRow");
         _stationVisibleCheckBox = FindControl<CheckBox>("StationVisibleCheckBox");
         _stationPurchaseBox = FindControl<BoxContainer>("StationPurchaseBox");
         _stationNameEdit = FindControl<LineEdit>("StationNameEdit");
@@ -321,6 +327,7 @@ public sealed partial class CorporationUiFragment : BoxContainer
         var isManager = myRank >= CorporationRank.Manager;
         var isLeader = myRank == CorporationRank.Leader;
         var isRecruiter = myRank >= CorporationRank.Recruiter;
+        var purchaseEnabled = state.StationPurchaseEnabled;
 
         _editDescriptionButton.Visible = isManager;
         _inviteMemberButton.Visible = isRecruiter;
@@ -347,8 +354,29 @@ public sealed partial class CorporationUiFragment : BoxContainer
             _membersList.AddChild(BuildMemberRow(member, myRank, state.MyUserId));
 
         // Station section
+        _stationSectionLabel.Text = !purchaseEnabled && !corp.HasStation
+            ? Loc.GetString("corp-section-station-unavailable")
+            : Loc.GetString("corp-section-station");
+
         _stationExistsBox.Visible = corp.HasStation;
         _stationPurchaseBox.Visible = isManager && !corp.HasStation;
+
+        if (!corp.HasStation)
+        {
+            if (!purchaseEnabled)
+            {
+                _stationPurchaseStatusLabel.Text = Loc.GetString("corp-section-station-unavailable");
+                _stationPurchaseInputRow.Visible = false;
+                _purchaseStationButton.Visible = false;
+            }
+            else
+            {
+                _stationPurchaseStatusLabel.Text = Loc.GetString("corp-station-none");
+                _stationPurchaseInputRow.Visible = true;
+                _purchaseStationButton.Visible = true;
+            }
+        }
+
         if (corp.HasStation && corp.StationName != null)
         {
             _stationNameLabel.Text = corp.StationName;

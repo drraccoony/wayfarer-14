@@ -80,7 +80,7 @@
 
                     <!-- Station -->
                     <PanelContainer StyleClasses="LowDivider" Margin="0,12,0,8"/>
-                    <Label Text="{Loc 'corp-section-station'}" StyleClasses="LabelBig" Margin="0,0,0,4"/>
+                    <Label Name="StationSectionLabel" Text="{Loc 'corp-section-station'}" StyleClasses="LabelBig" Margin="0,0,0,4"/>
                     <!-- Existing station display -->
                     <BoxContainer Name="StationExistsBox" Orientation="Vertical" Visible="False">
                         <BoxContainer Orientation="Horizontal">
@@ -94,8 +94,8 @@
                     </BoxContainer>
                     <!-- Purchase station form (Manager+, no station yet) -->
                     <BoxContainer Name="StationPurchaseBox" Orientation="Vertical" Visible="False">
-                        <Label Text="{Loc 'corp-station-none'}" FontColorOverride="#AAAAAA" StyleClasses="LabelSmall" Margin="0,0,0,4"/>
-                        <BoxContainer Orientation="Horizontal">
+                        <Label Name="StationPurchaseStatusLabel" Text="{Loc 'corp-station-none'}" FontColorOverride="#AAAAAA" StyleClasses="LabelSmall" Margin="0,0,0,4"/>
+                        <BoxContainer Name="StationPurchaseInputRow" Orientation="Horizontal">
                             <Label Text="{Loc 'corp-create-station-name'}" Margin="0,0,4,0" VerticalAlignment="Center"/>
                             <PanelContainer StyleClasses="Inset" HorizontalExpand="True">
                                 <LineEdit Name="StationNameEdit" HorizontalExpand="True" PlaceHolder="{Loc 'corp-create-station-placeholder'}"/>

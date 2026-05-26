@@ -510,6 +510,12 @@ public sealed class CorporationCartridgeSystem : EntitySystem
     private async Task HandlePurchaseStation(EntityUid uid, EntityUid loader, CorporationCartridgeComponent comp,
         EntityUid actor, NetUserId userId, string stationName)
     {
+        if (!_cfg.GetCVar(WFCCVars.CorporationStationPurchaseEnabled))
+        {
+            await UpdateListUi(uid, loader, comp, "corp-error-station-purchase-disabled");
+            return;
+        }
+
         var corp = await _db.GetCorporationForPlayer(userId.UserId);
         var myMember = GetMember(corp, userId);
 
@@ -640,6 +646,7 @@ public sealed class CorporationCartridgeSystem : EntitySystem
             PendingInvites = pendingInvites,
             ErrorMessage = errorLocKey,
             MyUserId = userId.UserId.ToString(),
+            StationPurchaseEnabled = _cfg.GetCVar(WFCCVars.CorporationStationPurchaseEnabled),
         };
     }
 

@@ -28,4 +28,10 @@ public sealed class WFCCVars
     /// </summary>
     public static readonly CVarDef<float> StationUpkeepMultiplier =
         CVarDef.Create("wf.corporation.station_upkeep_multiplier", 1.5f, CVar.SERVER);
+
+    /// <summary>
+    /// Whether player corporations are allowed to purchase stations.
+    /// </summary>
+    public static readonly CVarDef<bool> CorporationStationPurchaseEnabled =
+        CVarDef.Create("wf.corporation.station_purchase_enabled", false, CVar.SERVER);
 }

@@ -94,6 +94,7 @@ corp-error-invalid-rank = Invalid rank.
 
 ## Corporation station
 corp-section-station = Your Corporation Station
+corp-section-station-unavailable = Currently station platforms are unavailable.
 corp-station-label = Station:
 corp-station-none = No station purchased.
 corp-create-station-name = Station Name:
@@ -111,3 +112,4 @@ corp-notify-invited = [CORP] You have been invited to join {$corp}. Check your P
 corp-error-station-exists = Your corporation already has a station.
 corp-error-station-name-empty = Please enter a station name.
 corp-error-station-name-too-long = Station name must be 40 characters or less.
+corp-error-station-purchase-disabled = Corporation station purchasing is currently disabled.

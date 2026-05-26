@@ -65,6 +65,9 @@ public sealed class CorporationListUiState : BoundUserInterfaceState
 
     /// <summary>The player's own NetUserId string so the client can identify itself in member lists.</summary>
     public string MyUserId { get; init; } = string.Empty;
+
+    /// <summary>Whether corporation station purchasing is currently enabled by server configuration.</summary>
+    public bool StationPurchaseEnabled { get; init; } = true;
 }
 
 /// <summary>
