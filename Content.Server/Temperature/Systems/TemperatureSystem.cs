@@ -265,6 +265,13 @@ public sealed class TemperatureSystem : EntitySystem
         var heatDamageThreshold = temperature.ParentHeatDamageThreshold ?? temperature.HeatDamageThreshold;
         var coldDamageThreshold = temperature.ParentColdDamageThreshold ?? temperature.ColdDamageThreshold;
 
+        if (!float.IsFinite(temperature.CurrentTemperature) ||
+            !float.IsFinite(heatDamageThreshold) ||
+            !float.IsFinite(coldDamageThreshold))
+        {
+            return;
+        }
+
         if (temperature.CurrentTemperature >= heatDamageThreshold)
         {
             if (!temperature.TakingDamage)
@@ -275,6 +282,10 @@ public sealed class TemperatureSystem : EntitySystem
 
             var diff = Math.Abs(temperature.CurrentTemperature - heatDamageThreshold);
             var tempDamage = c / (1 + a * Math.Pow(Math.E, -heatK * diff)) - y;
+
+            if (!double.IsFinite(tempDamage))
+                return;
+
             _damageable.TryChangeDamage(uid, temperature.HeatDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
         }
         else if (temperature.CurrentTemperature <= coldDamageThreshold)
@@ -285,9 +296,20 @@ public sealed class TemperatureSystem : EntitySystem
                 temperature.TakingDamage = true;
             }
 
+            if (coldDamageThreshold <= 0f)
+                return;
+
             var diff = Math.Abs(temperature.CurrentTemperature - coldDamageThreshold);
-            var tempDamage =
-                Math.Sqrt(diff * (Math.Pow(temperature.DamageCap.Double(), 2) / coldDamageThreshold));
+            var scaledDamage = diff * (Math.Pow(temperature.DamageCap.Double(), 2) / coldDamageThreshold);
+
+            if (!double.IsFinite(scaledDamage) || scaledDamage < 0)
+                return;
+
+            var tempDamage = Math.Sqrt(scaledDamage);
+
+            if (!double.IsFinite(tempDamage))
+                return;
+
             _damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
         }
         else if (temperature.TakingDamage)
