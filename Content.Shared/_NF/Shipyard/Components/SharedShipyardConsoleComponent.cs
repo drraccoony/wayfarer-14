@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using Content.Shared.Access;
 using Content.Shared._NF.Bank.Components;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._NF.Shipyard.Components;
@@ -80,4 +81,24 @@ public sealed partial class ShipyardConsoleComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan DenySoundDelay = TimeSpan.FromSeconds(2);
+
+    // Wayfarer start: Shipyard purchase docking preferences.
+    /// <summary>
+    /// Preferred priority dock tag when purchasing a shuttle.
+    /// </summary>
+    [DataField]
+    public string? DockPriorityTag;
+
+    /// <summary>
+    /// Restricts docking candidates by dock type on purchase when set.
+    /// </summary>
+    [DataField]
+    public DockType PurchaseDockType = DockType.None;
+
+    /// <summary>
+    /// If true, try the console's current grid before station fallback grids.
+    /// </summary>
+    [DataField]
+    public bool PreferConsoleGrid = true;
+    // Wayfarer end
 }

@@ -13,11 +13,13 @@ using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard;
+using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
 
@@ -122,7 +124,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
-    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
+    public bool TryPurchaseShuttle(
+        EntityUid stationUid,
+        ResPath shuttlePath,
+        [NotNullWhen(true)] out EntityUid? shuttleEntityUid,
+        EntityUid? preferredGrid = null,
+        string? dockPriorityTag = null,
+        DockType dockType = DockType.None)
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
             || !TryAddShuttle(shuttlePath, out var shuttleGrid)
@@ -133,10 +141,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var price = _pricing.AppraiseGrid(shuttleGrid.Value, null);
-        var targetGrid = _station.GetLargestGrid((stationUid, stationData));
 
-
-        if (targetGrid == null) //how are we even here with no station grid
+        // Wayfarer start: Prefer console-local docking first, then station fallback grids.
+        var candidateGrids = GetPurchaseTargetGrids(stationUid, stationData, preferredGrid);
+        if (candidateGrids.Count == 0) // how are we even here with no station grid
         {
             QueueDel(shuttleGrid);
             shuttleEntityUid = null;
@@ -144,11 +152,122 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString(stationUid)} for {price:f2}");
-        //can do TryFTLDock later instead if we need to keep the shipyard map paused
-        _shuttle.TryFTLDock(shuttleGrid.Value, shuttleComponent, targetGrid.Value);
+
+        // Attempt a constrained dock search first to avoid expensive all-pairs scans when a valid dock is obvious.
+        if (!TryFastPurchaseDock(
+                shuttleGrid.Value,
+                shuttleComponent,
+                candidateGrids,
+                preferredGrid,
+                dockPriorityTag,
+                dockType))
+        {
+            // Fallback keeps original behavior (full docking search + proximity fallback).
+            _shuttle.TryFTLDock(shuttleGrid.Value, shuttleComponent, candidateGrids[0], dockPriorityTag, dockType);
+        }
+        // Wayfarer end
+
         shuttleEntityUid = shuttleGrid;
         return true;
     }
+
+    // Wayfarer start: purchase docking target selection + fast constrained search.
+    private List<EntityUid> GetPurchaseTargetGrids(
+        EntityUid stationUid,
+        StationDataComponent stationData,
+        EntityUid? preferredGrid)
+    {
+        var grids = new List<EntityUid>();
+
+        if (preferredGrid is { Valid: true } pref
+            && HasComp<MapGridComponent>(pref)
+            && _station.GetOwningStation(pref) is { Valid: true } prefStation
+            && prefStation == stationUid)
+        {
+            grids.Add(pref);
+        }
+
+        var largest = _station.GetLargestGrid((stationUid, stationData));
+        if (largest is { Valid: true } largestGrid && !grids.Contains(largestGrid))
+            grids.Add(largestGrid);
+
+        return grids;
+    }
+
+    private bool TryFastPurchaseDock(
+        EntityUid shuttleUid,
+        ShuttleComponent shuttle,
+        List<EntityUid> candidateGrids,
+        EntityUid? searchOrigin,
+        string? dockPriorityTag,
+        DockType dockType)
+    {
+        if (!TryComp<TransformComponent>(shuttleUid, out var shuttleXform))
+            return false;
+
+        var shuttleDocks = _docking.GetDocks(shuttleUid)
+            .Where(d => !d.Comp.Docked && (dockType == DockType.None || (d.Comp.DockType & dockType) != DockType.None))
+            .ToList();
+
+        if (shuttleDocks.Count == 0)
+            return false;
+
+        Vector2? originPosition = null;
+        if (searchOrigin is { Valid: true } origin && TryComp<TransformComponent>(origin, out var originXform))
+            originPosition = _transform.GetWorldPosition(originXform);
+
+        const int maxDockPairChecksPerGrid = 48;
+
+        foreach (var targetGrid in candidateGrids)
+        {
+            var gridDocks = _docking.GetDocks(targetGrid)
+                .Where(d => !d.Comp.Docked)
+                .OrderByDescending(d => dockPriorityTag != null
+                    && TryComp<PriorityDockComponent>(d.Owner, out var priority)
+                    && priority.Tag == dockPriorityTag)
+                .ThenBy(d => originPosition.HasValue
+                    ? Vector2.DistanceSquared(_transform.GetWorldPosition(d.Owner), originPosition.Value)
+                    : 0f)
+                .ToList();
+
+            if (gridDocks.Count == 0)
+                continue;
+
+            var checks = 0;
+            foreach (var shuttleDock in shuttleDocks)
+            {
+                foreach (var gridDock in gridDocks)
+                {
+                    // Respect dock type compatibility up-front before expensive config checks.
+                    if ((shuttleDock.Comp.DockType & gridDock.Comp.DockType) == DockType.None)
+                        continue;
+
+                    if (checks++ >= maxDockPairChecksPerGrid)
+                        break;
+
+                    var config = _docking.GetDockingConfig(
+                        shuttleUid,
+                        targetGrid,
+                        shuttleDock.Owner,
+                        shuttleDock.Comp,
+                        gridDock.Owner,
+                        gridDock.Comp);
+
+                    if (config == null)
+                        continue;
+
+                    _shuttle.FTLDock((shuttleUid, shuttleXform), config);
+                    return true;
+                }
+
+                if (checks >= maxDockPairChecksPerGrid)
+                    break;
+            }
+        }
+
+        return false;
+    }
+    // Wayfarer end
 
     /// <summary>
     /// Loads a shuttle into the ShipyardMap from a file path

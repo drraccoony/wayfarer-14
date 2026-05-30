@@ -181,7 +181,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
+        // Wayfarer start: Pass purchase docking preferences to reduce expensive broad dock searches.
+        var preferredGrid = component.PreferConsoleGrid ? Transform(shipyardConsoleUid).GridUid : null;
+        if (!TryPurchaseShuttle(
+            station,
+            vessel.ShuttlePath,
+            out var shuttleUidOut,
+            preferredGrid,
+            component.DockPriorityTag,
+            component.PurchaseDockType))
+        // Wayfarer end
         {
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
