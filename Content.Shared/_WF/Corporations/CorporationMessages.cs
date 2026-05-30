@@ -54,7 +54,7 @@ public sealed class CorporationListUiState : BoundUserInterfaceState
     /// <summary>Full member list for the player's corporation. Only populated when MyCorporation != null.</summary>
     public List<CorporationMemberInfo> Members { get; init; } = new();
 
-    /// <summary>Public corporations the player can join (excludes their own).</summary>
+    /// <summary>Listed corporations (public and private) excluding unlisted corporations and the player's own corporation.</summary>
     public List<CorporationInfo> PublicCorporations { get; init; } = new();
 
     /// <summary>Corporations that have sent this player an invite.</summary>

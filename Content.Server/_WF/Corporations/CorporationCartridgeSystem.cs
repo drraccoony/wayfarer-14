@@ -213,8 +213,8 @@ public sealed class CorporationCartridgeSystem : EntitySystem
             return;
         }
 
-        // Private corps require an invite
-        if (corp.Privacy == (int)CorporationPrivacy.Private)
+        // Non-public corps require an invite.
+        if (corp.Privacy != (int)CorporationPrivacy.Public)
         {
             if (!await _db.HasCorporationInvite(corpId, userId.UserId))
             {
@@ -598,7 +598,7 @@ public sealed class CorporationCartridgeSystem : EntitySystem
         var allCorps = await _db.GetAllCorporations();
 
         var publicCorps = allCorps
-            .Where(c => c.Privacy == (int)CorporationPrivacy.Public &&
+            .Where(c => c.Privacy != (int)CorporationPrivacy.Unlisted &&
                         (myCorp == null || c.Id != myCorp.Id))
             .Select(c => new CorporationInfo
             {

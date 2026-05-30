@@ -195,6 +195,7 @@ public sealed class CorpAdminWindow : DefaultWindow
         var privacyRow = new BoxContainer { Orientation = LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 4) };
         var privacyBtn = new OptionButton { Margin = new Thickness(0, 0, 4, 0) };
         privacyBtn.AddItem("Public", (int) CorporationPrivacy.Public);
+        privacyBtn.AddItem("Unlisted", (int) CorporationPrivacy.Unlisted);
         privacyBtn.AddItem("Private", (int) CorporationPrivacy.Private);
         privacyBtn.SelectId((int) corp.Privacy);
         privacyBtn.OnItemSelected += args => privacyBtn.SelectId(args.Id);
