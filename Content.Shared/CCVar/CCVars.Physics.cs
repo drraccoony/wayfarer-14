@@ -11,7 +11,7 @@ public sealed partial class CCVars
         CVarDef.Create("physics.relative_movement", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
 
     public static readonly CVarDef<float> MinFriction =
-        CVarDef.Create("physics.min_friction", 0.0f, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("physics.min_friction", 0.005f, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER); // # Wayfarer: 0.0f<0.005f
 
     public static readonly CVarDef<float> AirFriction =
         CVarDef.Create("physics.air_friction", 0.2f, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);

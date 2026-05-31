@@ -77,7 +77,8 @@
   - DrinkDisposableCup #imp
   - FreezerElectronics
   - Syringe
-  - BucketPaper
+  - BucketPaper # Mono
+  - PaperCup # Mono
 
 - type: latheRecipePack
   id: NFServiceStatic

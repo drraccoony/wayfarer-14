@@ -102,7 +102,7 @@
       head-dog:
       - state: equipped-head-dog
       head-avali: #starlight
-      - state: equipped-head-light-avali
+      - state: equipped-head-avali # Wayfarer: fixed equipped-head-avali from equipped-head-light-avali
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1

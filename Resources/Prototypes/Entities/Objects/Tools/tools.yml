@@ -321,9 +321,82 @@
     - MVCable
     - HVCable
     - CableTerminal
+    # Wayfarer
+    - BaseAPC
+    - SMES
+    - Substation
+    - WallReinforced
+    - WallReinforcedDiagonal
+    - WallReinforcedWindow
+    - ReinforcedWindowDiagonal
+    - WallShuttle
+    - WallShuttleDiagonal
+    - ShuttleWindow
+    - ShuttleWindowDiagonal
+    - AirlockShuttle
+    - AirlockGlassShuttle
+    - Gaslock
+    - Thruster
+    - AtmosDeviceFanDirectional
+    # PLATING HELL
+    - PlatingCornerNE
+    - PlatingCornerNW
+    - PlatingCornerSE
+    - PlatingCornerSW
+    - PlatingHalfV
+    - PlatingHalfH
+    - PlatingWedgeN
+    - PlatingWedgeE
+    - PlatingWedgeS
+    - PlatingWedgeW
+    - PlatingHalfTiltNESLower
+    - PlatingHalfTiltSEWLower
+    - PlatingHalfTiltSWNLower
+    - PlatingHalfTiltNWELower
+    - PlatingHalfTiltNESUpper
+    - PlatingHalfTiltSEWUpper
+    - PlatingHalfTiltSWNUpper
+    - PlatingHalfTiltNWEUpper
+    - PlatingHalfTiltNEWLower
+    - PlatingHalfTiltSENLower
+    - PlatingHalfTiltSWELower
+    - PlatingHalfTiltNWSLower
+    - PlatingHalfTiltNEWUpper
+    - PlatingHalfTiltSENUpper
+    - PlatingHalfTiltSWEUpper
+    - PlatingHalfTiltNWSUpper
+    - Lattice
+    - LatticeCornerNE
+    - LatticeCornerNW
+    - LatticeCornerSE
+    - LatticeCornerSW
+    - LatticeHalfV
+    - LatticeHalfH
+    - LatticeWedgeN
+    - LatticeWedgeE
+    - LatticeWedgeS
+    - LatticeWedgeW
+    - LatticeHalfTiltNESLower
+    - LatticeHalfTiltSEWLower
+    - LatticeHalfTiltSWNLower
+    - LatticeHalfTiltNWELower
+    - LatticeHalfTiltNESUpper
+    - LatticeHalfTiltSEWUpper
+    - LatticeHalfTiltSWNUpper
+    - LatticeHalfTiltNWEUpper
+    - LatticeHalfTiltNEWLower
+    - LatticeHalfTiltSENLower
+    - LatticeHalfTiltSWELower
+    - LatticeHalfTiltNWSLower
+    - LatticeHalfTiltNEWUpper
+    - LatticeHalfTiltSENUpper
+    - LatticeHalfTiltSWEUpper
+    - LatticeHalfTiltNWSUpper
+    # End Wayfarer
     - Deconstruct
+    delayMultiplier: 0.65 # Mono
   - type: LimitedCharges
-    maxCharges: 30
+    maxCharges: 90 # Wayfarer: 30<90
   - type: Sprite
     sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: icon
@@ -365,7 +438,7 @@
   suffix: AutoRecharge
   components:
   - type: LimitedCharges
-    maxCharges: 20
+    maxCharges: 60 # Wayfarer: 20<60
   - type: AutoRecharge
     rechargeDuration: 10
 

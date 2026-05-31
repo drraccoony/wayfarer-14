@@ -363,7 +363,7 @@
   - NfsdFace
   - NfsdGlasses
   - NfsdBelt
-  - NfsdEarsAltBrown
+  - NfsdEarsBrown # Wayfarer: Removed command comm key from senior peacekeepers
   - NfsdBoxSurvival
   - SeniorPeacekeeperPDA
   - WFWallet

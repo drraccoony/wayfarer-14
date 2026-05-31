@@ -4008,3 +4008,69 @@ Entries:
   id: 6956
   time: '2026-05-30T00:52:15.0000000+00:00'
   url: https://github.com/project-wayfarer/wayfarer-14/pull/1035
+- author: VVersengt
+  changes:
+    - type: Add
+      message: >-
+        Added additional shipbuilding components to the RCD, and gave it a huge
+        buff.
+    - type: Fix
+      message: Reinforced windows now use the correct textures.
+  id: 6957
+  time: '2026-05-31T17:16:42.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1051
+- author: EkatrinaFC
+  changes:
+    - type: Remove
+      message: Removed senior peacekeeper command access and command comm key.
+  id: 6958
+  time: '2026-05-31T17:17:23.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1048
+- author: Luweth
+  changes:
+    - type: Add
+      message: Added Vox smoking sprites.
+  id: 6959
+  time: '2026-05-31T17:17:53.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1050
+- author: rivermyth
+  changes:
+    - type: Add
+      message: Added [form], [signature], and [check] paperwork tags.
+  id: 6960
+  time: '2026-05-31T17:18:37.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1043
+- author: Luweth
+  changes:
+    - type: Remove
+      message: Removed the loud as heck Yaar! from outlaw briefing.
+  id: 6961
+  time: '2026-05-31T17:19:08.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1041
+- author: DevArchwave
+  changes:
+    - type: Remove
+      message: >-
+        Removed likely unintended extra damage regen that had been added to only
+        a few species.
+  id: 6962
+  time: '2026-05-31T17:22:52.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1046
+- author: Erol509
+  changes:
+    - type: Add
+      message: >-
+        Added several new synthetic lizard themed snouts. Some come eyeless, so
+        buy eyes yourself.
+  id: 6963
+  time: '2026-05-31T18:30:54.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1019
+- author: Luweth
+  changes:
+    - type: Add
+      message: Added blood-red headset appearance to loadouts.
+    - type: Add
+      message: Vox sprites for both outlaw hardsuits.
+  id: 6964
+  time: '2026-05-31T18:41:52.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1049
