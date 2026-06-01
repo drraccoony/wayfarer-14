@@ -4,16 +4,77 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard.xml"
   priority: 7
   children:
-   - CgpShipyard        # WF edit
-   - CivShipyard        # WF edit
-#   - SyndicateShipyard  # WF edit
-   - ExpedShipyard      # WF edit
-   - MedShipyard        # WF edit
-   - OutlawShipyard     # WF edit
-   - ScrapShipyard      # WF edit
-   - StaffShipyard      # WF edit
-#   Moved over to be listed under the purchase shipyards. Resources/Prototypes/_WF/Guidebook/Shipyards.yml
-#  Adding a - ShipyardShip from frontier here? Head over to _WF/Guidebooks/Shipyards.yml.
+  - ShipyardAdder
+  - ShipyardAegis
+  - ShipyardAkupara
+  - ShipyardAmbition
+  - ShipyardAnchor
+  - ShipyardApothecary
+  - ShipyardBalena
+  - ShipyardBarge
+  - ShipyardBaroness
+  - ShipyardBocadillo
+  - ShipyardBodkin
+  - ShipyardBookworm
+  - ShipyardBrigand
+  - ShipyardBroom
+  - ShipyardBulker
+  - ShipyardCaladrius
+  - ShipyardCamper
+  - ShipyardCeres
+  - ShipyardCharon
+  - ShipyardChisel
+  - ShipyardComet
+  - ShipyardConstruct
+  - ShipyardCopperhead
+  - ShipyardCourier
+  - ShipyardCrescent
+  - ShipyardCrossroads
+  - ShipyardDragoon
+  - ShipyardDragonfly
+  - ShipyardDruid
+  - ShipyardDove
+  - ShipyardEagle
+  - ShipyardFirefighter
+  - ShipyardGarden
+  - ShipyardGasbender
+  - ShipyardGaslight
+  - ShipyardGeode
+  - ShipyardHammer
+  - ShipyardHauler
+  - ShipyardHarbormaster
+  - ShipyardHonker
+  - ShipyardHound
+  - ShipyardInvestigator
+  - ShipyardIzakaya
+  - ShipyardKestrel
+  - ShipyardKilderkin
+  - ShipyardLanternMk2
+  - ShipyardLiquidator
+  - ShipyardLoader
+  - ShipyardLyrae
+  - ShipyardMcCargo
+  - ShipyardMcDelivery
+  - ShipyardNightlight
+  - ShipyardNook
+  - ShipyardPathfinder
+  - ShipyardPhoenix
+  - ShipyardPlacebo
+  - ShipyardProspector
+  - ShipyardPulsar
+  - ShipyardRetort
+  - ShipyardSearchlight
+  - ShipyardSkipper
+  - ShipyardSpirit
+  - ShipyardStasis
+  - ShipyardStellaris
+  - ShipyardStringer
+  - ShipyardStronghold
+  - ShipyardSurveyor
+  - ShipyardTide
+  - ShipyardTyne
+  - ShipyardVagabond
+  - ShipyardVitalis
 
 - type: guideEntry
   id: ShipyardAdder
@@ -44,6 +105,11 @@
   id: ShipyardAegis
   name: guide-entry-shipyard-aegis
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Aegis.xml"
+
+- type: guideEntry
+  id: ShipyardBalena
+  name: guide-entry-shipyard-balena
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Balena.xml"
 
 - type: guideEntry
   id: ShipyardBarge
@@ -199,12 +265,12 @@
   id: ShipyardHammer
   name: guide-entry-shipyard-hammer
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Hammer.xml"
-# Wayfarer edit: comment out using new hauler ship
-#- type: guideEntry # Wayfarer edit: comment out using new hauler ship
-#  id: ShipyardHauler # Wayfarer edit: comment out using new hauler ship
-#  name: guide-entry-shipyard-hauler # Wayfarer edit: comment out using new hauler ship
-#  text: "/ServerInfo/_NF/Guidebook/Shipyard/Hauler.xml" # Wayfarer edit: comment out using new hauler ship
-# end of Wayfarer edit: comment out
+
+- type: guideEntry
+  id: ShipyardHauler
+  name: guide-entry-shipyard-hauler
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Hauler.xml"
+
 - type: guideEntry
   id: ShipyardHonker
   name: guide-entry-shipyard-honker
@@ -364,4 +430,3 @@
   id: ShipyardVitalis
   name: guide-entry-shipyard-vitalis
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Vitalis.xml"
-
