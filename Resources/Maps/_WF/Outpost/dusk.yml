@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 05/27/2026 08:02:15
-  entityCount: 20462
+  time: 06/01/2026 01:40:03
+  entityCount: 20461
 maps:
 - 1
 grids:
@@ -17595,7 +17595,7 @@ entities:
       pos: -26.5,-152.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -102.832054
+      secondsUntilStateChange: -341.47284
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -17853,6 +17853,7 @@ entities:
       pos: 56.5,-55.5
       parent: 2
     - type: Docking
+      dockType: Transit
       name: dock-label-main-bus
   - uid: 215
     components:
@@ -17860,6 +17861,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 57.5,-55.5
       parent: 2
+    - type: Docking
+      dockType: Transit
 - proto: AirlockExternalGlassShuttleTransitMinorPOI
   entities:
   - uid: 216
@@ -17869,6 +17872,7 @@ entities:
       pos: -47.5,-55.5
       parent: 2
     - type: Docking
+      dockType: Transit
       name: dock-label-minor-bus
   - uid: 217
     components:
@@ -17876,6 +17880,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -48.5,-55.5
       parent: 2
+    - type: Docking
+      dockType: Transit
 - proto: AirlockExternalGlassShuttleTransitTradeExpress
   entities:
   - uid: 218
@@ -17883,12 +17889,15 @@ entities:
     - type: Transform
       pos: 57.5,-61.5
       parent: 2
+    - type: Docking
+      dockType: Transit
   - uid: 219
     components:
     - type: Transform
       pos: 56.5,-61.5
       parent: 2
     - type: Docking
+      dockType: Transit
       name: dock-label-trade-bus
 - proto: AirlockExternalLocked
   entities:
@@ -18817,6 +18826,7 @@ entities:
       pos: -14.5,-7.5
       parent: 2
     - type: Docking
+      dockType: None
       name: dock-label-cgp
   - uid: 373
     components:
@@ -18824,12 +18834,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -14.5,-6.5
       parent: 2
+    - type: Docking
+      dockType: None
   - uid: 374
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -14.5,-8.5
       parent: 2
+    - type: Docking
+      dockType: None
 - proto: AirlockHatchMaintenance
   entities:
   - uid: 375
@@ -19277,12 +19291,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 23.5,-6.5
       parent: 2
+    - type: Docking
+      dockType: None
   - uid: 454
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 23.5,-8.5
       parent: 2
+    - type: Docking
+      dockType: None
   - uid: 455
     components:
     - type: Transform
@@ -19290,6 +19308,7 @@ entities:
       pos: 23.5,-7.5
       parent: 2
     - type: Docking
+      dockType: None
       name: dock-label-medical
 - proto: AirSensorVox
   entities:
@@ -62402,21 +62421,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -16.5,-54.5
       parent: 2
-  - uid: 8788
-    components:
-    - type: Transform
-      pos: 44.5,-51.5
-      parent: 2
   - uid: 8789
     components:
     - type: Transform
       pos: 42.5,-51.5
-      parent: 2
-  - uid: 8790
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -33.5,-51.5
       parent: 2
   - uid: 8791
     components:
@@ -64208,6 +64216,18 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -12.5,-155.5
+      parent: 2
+- proto: CorporationATM
+  entities:
+  - uid: 8788
+    components:
+    - type: Transform
+      pos: 44.5,-51.5
+      parent: 2
+  - uid: 8790
+    components:
+    - type: Transform
+      pos: -33.5,-51.5
       parent: 2
 - proto: CounterMetalFrame
   entities:
@@ -117961,14 +117981,6 @@ entities:
       anchored: False
       rot: 3.141592653589793 rad
       pos: 0.5,-55.3
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 16377
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 22.5,-39.5
       parent: 2
     - type: Fixtures
       fixtures: {}
