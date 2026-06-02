@@ -127,7 +127,7 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
         {
             if (!blip.Enabled)
             {
-                Log.Debug($"Blip {blipUid} skipped: not enabled.");
+                // Log.Debug($"Blip {blipUid} skipped: not enabled.");
                 continue;
             }
 
@@ -135,13 +135,13 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
             // Skip to avoid overlapping blips.
             if (blipXform.ParentUid.IsValid() && HasComp<RadarBlipComponent>(blipXform.ParentUid))
             {
-                Log.Debug($"Blip {blipUid} skipped: parent already has a blip.");
+                // Log.Debug($"Blip {blipUid} skipped: parent already has a blip.");
                 continue;
             }
 
             if (blipXform.MapID != radarMapId)
             {
-                Log.Debug($"Blip {blipUid} skipped: different map.");
+                // Log.Debug($"Blip {blipUid} skipped: different map.");
                 continue;
             }
 
