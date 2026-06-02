@@ -40,6 +40,18 @@ public sealed partial class RadarBlipSystem : EntitySystem
     {
         base.Initialize();
         SubscribeNetworkEvent<GiveBlipsEvent>(HandleReceiveBlips);
+        // Wayfarer: server tells us when a new blip entity appears so we can request a fresh
+        // list immediately instead of waiting on the polling throttle.
+        SubscribeNetworkEvent<RadarBlipsDirtyEvent>(HandleBlipsDirty);
+    }
+
+    /// <summary>
+    /// Wayfarer: drop the request throttle so the next radar frame issues an immediate
+    /// blip request. Useful for instantly showing newly-spawned projectiles.
+    /// </summary>
+    private void HandleBlipsDirty(RadarBlipsDirtyEvent ev, EntitySessionEventArgs args)
+    {
+        _lastRequestTime = TimeSpan.Zero;
     }
 
     /// <summary>

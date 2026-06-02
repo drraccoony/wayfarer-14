@@ -27,6 +27,11 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
 
     private Dictionary<NetUserId, TimeSpan> _nextBlipRequestPerUser = new();
 
+    // Wayfarer: rate-limit "blips dirty" pushes so a burst of new projectiles (e.g. grapeshot)
+    // doesn't flood the network. Clients still won't request more often than their own throttle.
+    private TimeSpan _nextDirtyPush = TimeSpan.Zero;
+    private static readonly TimeSpan DirtyPushInterval = TimeSpan.FromMilliseconds(100);
+
     // The minimum amount of time between handled blip requests.
     private static readonly TimeSpan MinRequestPeriod = TimeSpan.FromMilliseconds(850); // Wayfarer: TimeSpan.FromSeconds(1)<TimeSpan.FromMilliseconds(250) Faster update for tracking shipgun projectiles.
     // Maximum distance for blips to be considered visible
@@ -40,6 +45,10 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+
+        // Wayfarer: When a new radar blip enters the world (e.g. a fired projectile), tell
+        // active clients to immediately re-request blips instead of waiting on their throttle.
+        SubscribeLocalEvent<RadarBlipComponent, ComponentStartup>(OnBlipStartup);
     }
 
     /// <summary>
@@ -70,6 +79,22 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
     public void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
         _nextBlipRequestPerUser.Clear();
+        _nextDirtyPush = TimeSpan.Zero;
+    }
+
+    /// <summary>
+    /// Wayfarer: notify clients that the blip set has changed so they can fetch the new blip
+    /// without waiting for their normal poll interval. Also clears server-side per-user rate
+    /// limits so the resulting request is honored immediately.
+    /// </summary>
+    private void OnBlipStartup(EntityUid uid, RadarBlipComponent component, ComponentStartup args)
+    {
+        if (_timing.RealTime < _nextDirtyPush)
+            return;
+
+        _nextDirtyPush = _timing.RealTime + DirtyPushInterval;
+        _nextBlipRequestPerUser.Clear();
+        RaiseNetworkEvent(new RadarBlipsDirtyEvent());
     }
 
     /// <summary>

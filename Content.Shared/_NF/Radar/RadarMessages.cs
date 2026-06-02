@@ -88,3 +88,13 @@ public sealed class RequestBlipsEvent : EntityEventArgs
         Radar = radar;
     }
 }
+
+/// <summary>
+/// Wayfarer: Notifies clients that the set of radar blips has changed (e.g. a projectile
+/// has been spawned) and they should issue an immediate blip request so the new blip
+/// shows up without waiting for the regular polling interval.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class RadarBlipsDirtyEvent : EntityEventArgs
+{
+}
