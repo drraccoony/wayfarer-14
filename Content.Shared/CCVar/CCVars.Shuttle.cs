@@ -71,6 +71,14 @@ public sealed partial class CCVars
         CVarDef.Create("shuttle.ignore_edge_inactive_shuttles", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    ///     Draws a line from the shuttle console blip in the direction of the shuttle's velocity.
+    ///     The line scales with velocity magnitude.
+    /// </summary>
+    // Wayfarer: client nav radar setting for velocity vector line.
+    public static readonly CVarDef<bool> ShuttleVelocityVectorLine =
+        CVarDef.Create("shuttle.velocity_vector_line", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     Are players allowed to return on the arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsReturns =

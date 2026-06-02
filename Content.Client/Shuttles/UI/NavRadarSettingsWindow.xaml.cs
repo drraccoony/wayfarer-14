@@ -61,6 +61,9 @@ public sealed partial class NavRadarSettingsWindow : FancyWindow
 
         // Wayfarer: Load Ignore Edge Inactive Shuttles
         IgnoreEdgeInactiveShuttlesCheckBox.Pressed = _cfg.GetCVar(CCVars.ShuttleIgnoreEdgeInactiveShuttles);
+
+        // Wayfarer: Load Velocity Vector Line
+        VelocityVectorLineCheckBox.Pressed = _cfg.GetCVar(CCVars.ShuttleVelocityVectorLine);
     }
 
     private void ApplySettings()
@@ -85,6 +88,9 @@ public sealed partial class NavRadarSettingsWindow : FancyWindow
 
         // Wayfarer: Save Ignore Edge Inactive Shuttles
         _cfg.SetCVar(CCVars.ShuttleIgnoreEdgeInactiveShuttles, IgnoreEdgeInactiveShuttlesCheckBox.Pressed);
+
+        // Wayfarer: Save Velocity Vector Line
+        _cfg.SetCVar(CCVars.ShuttleVelocityVectorLine, VelocityVectorLineCheckBox.Pressed);
 
         Close();
     }

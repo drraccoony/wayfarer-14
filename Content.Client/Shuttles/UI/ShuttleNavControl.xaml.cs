@@ -210,6 +210,19 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
 
+        // Wayfarer: draw a velocity vector line from the shuttle console blip in the direction of grid velocity.
+        if (VelocityVectorLine
+            && xform.GridUid is { } velGridUid
+            && bodyQuery.TryGetComponent(velGridUid, out var velGridBody)
+            && velGridBody.LinearVelocity.LengthSquared() > 0.0001f)
+        {
+            const float velScale = 0.5f; // world units of line length per (m/s) of velocity.
+            var endWorld = mapPos.Position + velGridBody.LinearVelocity * velScale;
+            var endUI = Vector2.Transform(endWorld, worldToShuttle * shuttleToView);
+            var startUI = ScalePosition(Vector2.Zero);
+            handle.DrawLine(startUI, endUI, Color.Cyan);
+        }
+
         var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
         var viewAABB = viewBounds.CalcBoundingBox();
 
@@ -560,5 +573,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     // Wayfarer: ignores edge indicators for inactive (gray) shuttles.
     private bool IgnoreEdgeInactiveShuttles => _cfg.GetCVar(CCVars.ShuttleIgnoreEdgeInactiveShuttles);
+
+    // Wayfarer: shows a velocity vector line from the shuttle console blip.
+    private bool VelocityVectorLine => _cfg.GetCVar(CCVars.ShuttleVelocityVectorLine);
 
 }

@@ -37,6 +37,7 @@ nav-radar-settings-label-font-size = Label Font Size:
 nav-radar-settings-hide-edge-labels = Hide Edge Labels
 # Wayfarer
 nav-radar-settings-ignore-edge-inactive-shuttles = Ignore Edge Inactive Shuttles
+nav-radar-settings-velocity-vector-line = Velocity Vector Line
 nav-radar-settings-apply = Apply
 nav-radar-settings-close = Close
 
