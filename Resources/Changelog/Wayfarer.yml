@@ -4074,3 +4074,72 @@ Entries:
   id: 6964
   time: '2026-05-31T18:41:52.0000000+00:00'
   url: https://github.com/project-wayfarer/wayfarer-14/pull/1049
+- author: DevArchwave
+  changes:
+    - type: Tweak
+      message: Restores some of the old ambient tracks.
+  id: 6965
+  time: '2026-06-01T01:48:42.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1056
+- author: DevArchwave
+  changes:
+    - type: Tweak
+      message: >-
+        Certain stomachs have had their reagent capability increased from 40u to
+        50u.
+  id: 6966
+  time: '2026-06-01T01:49:10.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1054
+- author: DevArchwave
+  changes:
+    - type: Tweak
+      message: Disabled EMPs from affecting chameleon clothes by default.
+  id: 6967
+  time: '2026-06-01T01:49:41.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1055
+- author: DevArchwave
+  changes:
+    - type: Tweak
+      message: The Pick N Pack vendor is now on general access.
+  id: 6968
+  time: '2026-06-01T01:50:39.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1040
+- author: drraccoony
+  changes:
+    - type: Tweak
+      message: >-
+        Changed dusk to fix shuttle purchases originating at wrong airlocks
+        (CGP, Medical and Bus Ports)
+    - type: Tweak
+      message: Added Corporate ATMs
+  id: 6969
+  time: '2026-06-01T01:56:10.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1061
+- author: Luweth
+  changes:
+    - type: Add
+      message: Added Aurelian medical changes to regular Vox.
+    - type: Tweak
+      message: Vox claws deal one more point of damage.
+    - type: Tweak
+      message: Vox recover poison at a slightly better threshold.
+    - type: Fix
+      message: Fixed Ammonia being partially setup to do stuff with Vox.
+    - type: Add
+      message: Vox guide refresh for new changes. Matches Aurelian in format better.
+    - type: Add
+      message: Added recipes for diluted ammonia blood to be centrifuged and stirred.
+    - type: Fix
+      message: Fixed Avali body parts giving the wrong types of blood when grinded.
+    - type: Fix
+      message: Fixed Avali being poisoned from ammonia gas.
+  id: 6970
+  time: '2026-06-01T02:12:06.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1053
+- author: DevArchwave
+  changes:
+    - type: Fix
+      message: Fixed ship cruise
+  id: 6971
+  time: '2026-06-02T01:39:38.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1062
