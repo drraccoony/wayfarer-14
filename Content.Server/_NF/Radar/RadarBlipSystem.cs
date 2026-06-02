@@ -8,6 +8,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server._NF.Radar;
@@ -27,7 +28,7 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
     private Dictionary<NetUserId, TimeSpan> _nextBlipRequestPerUser = new();
 
     // The minimum amount of time between handled blip requests.
-    private static readonly TimeSpan MinRequestPeriod = TimeSpan.FromMilliseconds(250); // Wayfarer: TimeSpan.FromSeconds(1)<TimeSpan.FromMilliseconds(250) Faster update for tracking shipgun projectiles.
+    private static readonly TimeSpan MinRequestPeriod = TimeSpan.FromMilliseconds(850); // Wayfarer: TimeSpan.FromSeconds(1)<TimeSpan.FromMilliseconds(250) Faster update for tracking shipgun projectiles.
     // Maximum distance for blips to be considered visible
     private const float MaxBlipRenderDistance = 300f;
     // Blink interval for critical state (in seconds)
@@ -74,11 +75,12 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
     /// <summary>
     /// Assembles a list of radar blips visible to the given radar console.
     /// </summary>
-    private List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(Entity<RadarConsoleComponent> ent)
+    private List<(NetEntity? Grid, Vector2 Position, Vector2 Velocity, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(Entity<RadarConsoleComponent> ent)
     {
         var blips = new List<(
             NetEntity? Grid,
             Vector2 Position,
+            Vector2 Velocity,
             float Scale,
             Color Color,
             RadarBlipShape Shape)>();
@@ -140,12 +142,22 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
                 continue;
             }
 
+            // Wayfarer: capture linear velocity for client-side prediction so fast-moving
+            // entities (e.g. shipgun cannonballs) get smooth blip movement between the
+            // relatively-slow server blip updates.
+            var blipVelocity = Vector2.Zero;
+            if (TryComp<PhysicsComponent>(blipUid, out var blipPhysics))
+                blipVelocity = blipPhysics.LinearVelocity;
+
             // Convert blip position to grid coords if needed.
             NetEntity? blipNetGrid = null;
             if (blipGrid != null)
             {
                 blipNetGrid = GetNetEntity(blipGrid.Value);
                 blipPosition = Vector2.Transform(blipPosition, _xform.GetInvWorldMatrix(blipGrid.Value));
+                // Rotate velocity into the grid's local frame (translation does not affect a velocity vector).
+                var gridInvRot = -_xform.GetWorldRotation(blipGrid.Value);
+                blipVelocity = gridInvRot.RotateVec(blipVelocity);
             }
             var scale = blip.Scale;
             var shape = blip.Shape;
@@ -191,7 +203,7 @@ public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
             //     }
             // }
 
-            blips.Add((blipNetGrid, blipPosition, scale, color, shape));
+            blips.Add((blipNetGrid, blipPosition, blipVelocity, scale, color, shape));
         }
         return blips;
     }
