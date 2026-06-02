@@ -335,7 +335,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             var curGridToView = Matrix3Helpers.CreateTranslation(target) * worldToShuttle * shuttleToView;
 
             var labelColor = TargetColor;
-            var coordColor = new Color(TargetColor.R * 0.8f, TargetColor.G * 0.8f, TargetColor.B * 0.8f, 0.5f);
 
             //var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
             //gridCentre.Y = -gridCentre.Y;
@@ -372,38 +371,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             var distance = Vector2.Distance(target, mapPos.Position);
 
-            // Shows decimal when distance is < 50m, otherwise pointless to show it.
-            var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
-            var labelText = Loc.GetString("shuttle-console-iff-label", ("name", targetName)!, ("distance", displayedDistance));
-
-            var coordsText = $"({target.X:0.0}, {target.Y:0.0})";
-
-            // Calculate unscaled offsets.
-            var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
-            var blipSize = RadarBlipSize * 0.7f;
-            var labelOffset = new Vector2()
-            {
-                X = uiPosition.X > Width / 2f
-                    ? -labelDimensions.X - blipSize // right align the text to left of the blip
-                    : blipSize, // left align the text to the right of the blip
-                Y = -labelDimensions.Y / 2f
-            };
-
-            handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, labelColor);
-            if (isMouseOver && !HideCoords)
-            {
-                var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
-                var coordOffset = new Vector2()
-                {
-                    X = uiPosition.X > Width / 2f
-                        ? -coordDimensions.X - blipSize / 0.7f // right align the text to left of the blip (0.7 needed for scale)
-                        : blipSize, // left align the text to the right of the blip
-                    Y = coordDimensions.Y / 2
-                };
-                handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, coordColor);
-            }
-
-            NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, targetName, targetEntity ?? EntityUid.Invalid, distance); // Frontier code
+            // Label and coordinates are now drawn in NFDrawBlips to support grouping and avoid overlap.
+            NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, targetName, targetEntity ?? EntityUid.Invalid, distance, isDistantPOI: true, isMouseOver: isMouseOver, gridMapCoords: target); // Frontier code
             // End Frontier: IFF drawing functions
         }
 
