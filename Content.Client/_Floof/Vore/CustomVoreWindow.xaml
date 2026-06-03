@@ -1,0 +1,22 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="{Loc 'vore-custom-window-title'}"
+               Resizable="False"
+               MinSize="320 0">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+        <Label Name="TargetLabel" Access="Public" />
+        <Label Name="PresetLabel" Access="Public" Text="{Loc 'vore-custom-window-preset'}" />
+        <OptionButton Name="PresetSelector" Access="Public" HorizontalExpand="True" />
+        <Label Name="EmoteLabel" Access="Public" Text="{Loc 'vore-custom-window-emote-label'}" />
+        <LineEdit Name="EmoteLineEdit" Access="Public" HorizontalExpand="True" />
+        <Label Name="DigestionLabel" Access="Public" Text="{Loc 'vore-custom-window-digestion-label'}" />
+        <LineEdit Name="DigestionLineEdit" Access="Public" HorizontalExpand="True" />
+        <CheckBox Name="StomachSoundsCheckBox" Access="Public" Text="{Loc 'vore-custom-window-stomach-sounds'}" />
+        <CheckBox Name="AllowDigestionCheckBox" Access="Public" Text="{Loc 'vore-custom-window-allow-digestion'}" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Control HorizontalExpand="True" />
+            <Button Name="CancelButton" Access="Public" Text="{Loc 'vore-custom-window-cancel'}" />
+            <Button Name="GoButton" Access="Public" Text="{Loc 'vore-custom-window-go'}" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

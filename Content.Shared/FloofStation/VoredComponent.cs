@@ -12,6 +12,11 @@ public sealed partial class VoredComponent : Component
     [DataField("digesting")]
     public bool Digesting;
 
+    [DataField("allowDigestion")]
+    public bool AllowDigestion = true;
+
+    public string? CustomDigestionEmote;
+
     [DataField("accumulator")]
     public float Accumulator;
 

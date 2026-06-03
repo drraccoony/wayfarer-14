@@ -1,0 +1,14 @@
+<Control
+    xmlns="https://spacestation14.io"
+    Margin="4"
+    MinSize="50 50">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8" HorizontalExpand="True" VerticalExpand="True">
+        <Control VerticalExpand="True" />
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Control HorizontalExpand="True" />
+            <Button Name="CustomVoreButton" Access="Public" Text="Custom Vore" MinSize="220 40" />
+            <Control HorizontalExpand="True" />
+        </BoxContainer>
+        <Control VerticalExpand="True" />
+    </BoxContainer>
+</Control>

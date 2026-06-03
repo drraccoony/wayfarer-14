@@ -1,6 +1,7 @@
 verb-categories-vore = Vore
 
 vore-devour = [color=red]Devour[/color]
+vore-custom-verb = [color=orange]Custom Vore[/color]
 vore-place-in-mouth = Place {CAPITALIZE($entity)} in mouth
 vore-spit-out = Spit out {CAPITALIZE($entity)}
 vore-swallow = [color=orange]Swallow[/color] {CAPITALIZE($entity)}
@@ -41,3 +42,17 @@ vore-digested-prey-7 = [color=red]{CAPITALIZE($entity)} belly kneads on every fi
 vore-digested-prey-8 = [color=red]{CAPITALIZE($entity)} belly churns you down into a hot slush. Your nutrient-rich remains course through their digestive track with a series of long, wet glorps.[/color]
 
 vore-examine = Their belly is larger, you can see {$count} shapes.
+
+vore-custom-window-title = Custom Vore
+vore-custom-window-target = Target: {CAPITALIZE($target)}
+vore-custom-window-unknown-target = Target: Unknown
+vore-custom-window-preset = Preset
+vore-custom-window-emote-label = Custom vore text
+vore-custom-window-emote-placeholder = Enter custom emote (e.g. Presses in between boobs)
+vore-custom-window-digestion-label = Custom digestion text
+vore-custom-window-digestion-placeholder = Enter custom digestion text (optional)
+vore-custom-window-stomach-sounds = Play stomach sounds
+vore-custom-window-allow-digestion = Allow digestion
+vore-custom-window-digestion-disabled = Target consent does not allow digestion.
+vore-custom-window-cancel = Cancel
+vore-custom-window-go = Go

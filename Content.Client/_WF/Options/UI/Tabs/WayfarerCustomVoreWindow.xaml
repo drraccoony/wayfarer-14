@@ -1,0 +1,44 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="Wayfarer Custom Vore"
+    MinSize="700 420"
+    Resizable="True">
+    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+        <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical" SeparationOverride="6" MinSize="220 0" VerticalExpand="True">
+                    <Label Name="PresetLabel" Text="Presets" />
+                    <OptionButton Name="PresetSelector" Access="Public" HorizontalExpand="True" />
+                    <Button Name="NewPresetButton" Access="Public" Text="New preset" />
+                    <Button Name="DeletePresetButton" Access="Public" Text="Delete preset" />
+                    <Control VerticalExpand="True" />
+                    <Label Name="StatusLabel" Text="" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Vertical" SeparationOverride="6" HorizontalExpand="True">
+                    <Label Name="NicknameLabel" Text="Nickname" />
+                    <LineEdit Name="NicknameLineEdit" Access="Public" HorizontalExpand="True" />
+
+                    <Label Name="AttemptTextLabel" Text="Custom attempt text" />
+                    <LineEdit Name="AttemptTextLineEdit" Access="Public" HorizontalExpand="True" />
+
+                    <Label Name="VoreTextLabel" Text="Custom vore text" />
+                    <LineEdit Name="VoreTextLineEdit" Access="Public" HorizontalExpand="True" />
+
+                    <Label Name="DigestionTextLabel" Text="Custom digestion text" />
+                    <LineEdit Name="DigestionTextLineEdit" Access="Public" HorizontalExpand="True" />
+
+                    <CheckBox Name="PlayStomachSoundsCheckBox" Access="Public" Text="Play stomach sounds" />
+                    <CheckBox Name="AllowDigestionCheckBox" Access="Public" Text="Allow digestion" />
+
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="0 6 0 0">
+                        <Control HorizontalExpand="True" />
+                        <Button Name="ReloadButton" Access="Public" Text="Reload" />
+                        <Button Name="SaveButton" Access="Public" Text="Save" />
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </ScrollContainer>
+</controls:FancyWindow>

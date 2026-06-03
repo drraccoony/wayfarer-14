@@ -8,6 +8,7 @@ ui-options-tab-controls = Controls
 ui-options-tab-audio = Audio
 ui-options-tab-network = Network
 ui-options-tab-misc = General
+ui-options-tab-wayfarer = Wayfarer
 
 ui-options-apply = Save & apply
 ui-options-reset-all = Reset changed
