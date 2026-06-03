@@ -4143,3 +4143,12 @@ Entries:
   id: 6971
   time: '2026-06-02T01:39:38.0000000+00:00'
   url: https://github.com/project-wayfarer/wayfarer-14/pull/1062
+- author: VVersengt
+  changes:
+    - type: Tweak
+      message: >-
+        Gas deposits on Basalt and Chromite asteroids now contain much larger
+        amounts of Plasma.
+  id: 6972
+  time: '2026-06-03T01:22:56.0000000+00:00'
+  url: https://github.com/project-wayfarer/wayfarer-14/pull/1069

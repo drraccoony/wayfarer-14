@@ -149,7 +149,7 @@
   id: TableDungeonLootWeaponsMeleeUnique
   table: !type:GroupSelector
     children:
-    - id: HyperEutacticBlade
+    #- id: HyperEutacticBlade WayFarer Players should not have these..
     - id: ClothingHandsKnuckleBoneCrushers
     - id: ArmBlade
     - id: Kanabou
