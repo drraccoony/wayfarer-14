@@ -1,54 +1,51 @@
 #region hardsuits
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityHardsuit
-#  name:  uplink-security-hardsuit-name
-#  description: uplink-security-hardsuit-desc
-#  productEntity: ClothingOuterHardsuitNfsdBronze
-#  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 2
-#  categories:
-#    - UplinkSecurityHardsuits
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityHardsuit
+  name:  uplink-security-hardsuit-name
+  description: uplink-security-hardsuit-desc
+  productEntity: ClothingOuterHardsuitNfsdBronze
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityHardsuitPatrol
-#  name:  uplink-security-hardsuit-patrol-name
-#  description: uplink-security-hardsuit-patrol-desc
-#  productEntity: ClothingOuterHardsuitNfsdSilver
-#  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 2
-#  categories:
-#    - UplinkSecurityHardsuits
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityHardsuitPatrol
+  name:  uplink-security-hardsuit-patrol-name
+  description: uplink-security-hardsuit-patrol-desc
+  productEntity: ClothingOuterHardsuitNfsdSilver
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityHardsuitBrigmedic
-#  name:  uplink-security-hardsuit-brigmedic-name
-#  description: uplink-security-hardsuit-brigmedic-desc
-#  productEntity: ClothingOuterHardsuitNfsdBrigmedic
-#  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 2
-#  categories:
-#    - UplinkSecurityHardsuits
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-#    - !type:BuyerJobCondition
-#      whitelist:
-#        - Brigmedic
+- type: listing
+  id: UplinkSecurityHardsuitBrigmedic
+  name:  uplink-security-hardsuit-brigmedic-name
+  description: uplink-security-hardsuit-brigmedic-desc
+  productEntity: ClothingOuterHardsuitNfsdBrigmedic
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityHardsuitWarden
@@ -71,21 +68,21 @@
         - SeniorOfficer
         - Sheriff
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityCombatHardsuit
-#  name:  uplink-security-hardsuit-combat-name
-#  description: uplink-security-hardsuit-combat-desc
-#  productEntity: ClothingOuterHardsuitNfsdCombat
-#  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 10
-#  categories:
-#    - UplinkSecurityHardsuits
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityCombatHardsuit
+  name:  uplink-security-hardsuit-combat-name
+  description: uplink-security-hardsuit-combat-desc
+  productEntity: ClothingOuterHardsuitNfsdCombat
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityCommandHardsuit
@@ -134,7 +131,7 @@
   productEntity: ClothingOuterHardsuitNfsdExperimental
   icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 50
+    FrontierUplinkCoin: 20
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -142,39 +139,42 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
 
 #region weapons
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityMk32
-#  name:  uplink-security-mk32-name
-#  description: uplink-security-mk32-desc
-#  productEntity: NFWeaponPistolUniversalNfsd
-#  icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 2
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityMk32
+  name:  uplink-security-mk32-name
+  description: uplink-security-mk32-desc
+  productEntity: NFWeaponPistolUniversalNfsd
+  icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityDisabler
-#  name:  uplink-security-disabler-name
-#  description: uplink-security-disabler-desc
-#  productEntity: NFWeaponEnergyPistolDisabler
-#  icon: { sprite: Objects/Weapons/Guns/Battery/disabler.rsi, state: base }
-#  cost:
-#    FrontierUplinkCoin: 1
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityDisabler
+  name:  uplink-security-disabler-name
+  description: uplink-security-disabler-desc
+  productEntity: NFWeaponEnergyPistolDisabler
+  icon: { sprite: Objects/Weapons/Guns/Battery/disabler.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityStunbaton
@@ -208,21 +208,26 @@
         tags:
           - SecurityUplink
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityEnforcer
-#  name:  uplink-security-enforcer-name
-#  description: uplink-security-enforcer-desc
-#  productEntity: NFWeaponShotgunEnforcer
-#  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 3
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityEnforcer
+  name:  uplink-security-enforcer-name
+  description: uplink-security-enforcer-desc
+  productEntity: NFWeaponShotgunEnforcer
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityLecter
@@ -239,6 +244,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityVulcan
@@ -255,22 +265,32 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityLaserCarbine
-#  name:  uplink-security-lasercarbine-name
-#  description: uplink-security-lasercarbine-desc
-#  productEntity: NFWeaponEnergyRifleCarbine
-#  icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 5
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityLaserCarbine
+  name:  uplink-security-lasercarbine-name
+  description: uplink-security-lasercarbine-desc
+  productEntity: NFWeaponEnergyRifleCarbine
+  icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityLaserCannon
@@ -287,22 +307,30 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityDisablerSMG
-#  name:  uplink-security-disablersmg-name
-#  description: uplink-security-disablersmg-desc
-#  productEntity: NFWeaponEnergySubMachineGunDisabler
-#  icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
-#  cost:
-#    FrontierUplinkCoin: 4
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityDisablerSMG
+  name:  uplink-security-disablersmg-name
+  description: uplink-security-disablersmg-desc
+  productEntity: NFWeaponEnergySubMachineGunDisabler
+  icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityDrozd
@@ -339,6 +367,9 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityEnergyGun
@@ -355,6 +386,10 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityEmpRpg
@@ -371,47 +406,9 @@
       whitelist:
         tags:
           - SecurityUplink
-          
-# Wayfarer Start
-- type: listing
-  id: UplinkSecurityEnergyShotgun
-  name: uplink-security-eshotty-name
-  description: uplink-security-eshotty-desc
-  productEntity: WFWeaponCGPEnergyShotgun
-  icon: { sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 8
-  categories:
-  - UplinkSecurityWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-# Wayfarer End
-
-- type: listing
-  id: UplinkSecuritySniper
-  name:  uplink-security-sniper-name
-  description: uplink-security-sniper-desc
-  productEntity: BriefcaseBrownNfsdSniperBundle
-  icon: { sprite: _NF/Objects/Weapons/Guns/Snipers/aspect.rsi, state: base }
-  cost:
-    FrontierUplinkCoin: 8
-  categories:
-  - UplinkSecurityWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  # Wayfarer Start
-  #- !type:BuyerJobCondition
-  #  whitelist:
-  #  - SeniorOfficer
-  #  - Bailiff
-  #  - Sheriff
-  # Wayfarer End
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
 
 #region utililty
 - type: listing
@@ -446,21 +443,21 @@
         tags:
           - SecurityUplink
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityMagboots
-#  name:  uplink-security-magboots-name
-#  description: uplink-security-magboots-desc
-#  productEntity: ClothingShoesBootsMagNfsdFilled
-#  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 1
-#  categories:
-#    - UplinkSecurityUtility
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+- type: listing
+  id: UplinkSecurityMagboots
+  name:  uplink-security-magboots-name
+  description: uplink-security-magboots-desc
+  productEntity: ClothingShoesBootsMagNfsdFilled
+  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 - type: listing
   id: UplinkNfsdTechfab
@@ -479,7 +476,6 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff # Wayfarer
         - Sheriff
 
 - type: listing
@@ -501,22 +497,6 @@
       whitelist:
         - Sheriff
 
-# - type: listing # Wayfarer: Added Forensic Scanner
-#   id: UplinkSecurityForensicScanner
-#   name:  uplink-security-forensicscanner-name
-#   description: uplink-security-forensicscanner-desc
-#   productEntity: ForensicScanner
-#   icon: { sprite: _NF/Objects/Devices/forensic_scanner.rsi, state: forensicnew }
-#   cost:
-#     FrontierUplinkCoin: 2
-#   categories:
-#     - UplinkSecurityUtility
-#   conditions:
-#     - !type:StoreWhitelistCondition
-#       whitelist:
-#         tags:
-#           - SecurityUplink
-
 - type: listing
   id: UplinkSecurityEmpRocket
   name:  uplink-security-emprocket-name
@@ -532,6 +512,9 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityThrusterKit
@@ -548,69 +531,11 @@
       whitelist:
         tags:
           - SecurityUplink
-
-# Wayfarer: Duster
-- type: listing
-  id: ShuttleGunDusterCircuitboardNfsd
-  name: uplink-cgp-duster-name
-  description: uplink-cgp-duster-desc
-  productEntity: ShuttleGunDusterCircuitboardNfsd
-  icon: { sprite: _NF/Objects/Misc/module.rsi, state: nfsd }
-  cost:
-    FrontierUplinkCoin: 15
-  categories:
-  - UplinkSecurityUtility
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
+    - !type:BuyerJobCondition
       whitelist:
-      - Bailiff
-      - Sheriff
-
-# Wayfarer: Friendship
-- type: listing
-  id: ShuttleGunFriendshipCircuitboardNfsd
-  name: uplink-cgp-friendship-name
-  description: uplink-cgp-friendship-desc
-  productEntity: ShuttleGunFriendshipCircuitboardNfsd
-  icon: { sprite: _NF/Objects/Misc/module.rsi, state: nfsd }
-  cost:
-    FrontierUplinkCoin: 15
-  categories:
-  - UplinkSecurityUtility
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
-      whitelist:
-      - Bailiff
-      - Sheriff
-
-# Wayfarer: Radar
-- type: listing
-  id: AdvancedRadarConsoleCircuitboard
-  name: uplink-cgp-radar-name
-  description: uplink-cgp-radar-desc
-  productEntity: AdvancedRadarConsoleCircuitboard
-  icon: { sprite: _NF/Objects/Misc/module.rsi, state: nfsd }
-  cost:
-    FrontierUplinkCoin: 8
-  categories:
-  - UplinkSecurityUtility
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
-      whitelist:
-      - Bailiff
-      - Sheriff
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 #region magazines
 - type: listing
@@ -644,6 +569,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityMagazineRifle30Overpressure
@@ -660,6 +590,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityMagazineSubMachineGun35Overpressure
@@ -696,6 +631,9 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityPistolMagazineRubber
@@ -728,6 +666,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurity30RifleMagazineRubber
@@ -744,6 +687,11 @@
       whitelist:
         tags:
         - SecurityUplink
+    - !type:BuyerJobCondition
+        whitelist:
+          - Bailiff
+          - SeniorOfficer
+          - Sheriff
 
 - type: listing
   id: UplinkSecurityMagazineSubMachineGunRubber
@@ -764,51 +712,6 @@
       whitelist:
         - Bailiff
         - Sheriff
-
-- type: listing
-  id: UplinkSecurityAmmunitionBoxRifle60
-  name:  uplink-security-60sniperbox-name
-  description: uplink-security-60sniperbox-desc
-  productEntity: NFAmmunitionBoxRifle60
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  # Wayfarer Start
-  #- !type:BuyerJobCondition
-  #  whitelist:
-  #  - Bailiff
-  #  - Sheriff
-  # Wayfarer End
-
-- type: listing
-  id: UplinkSecurityAmmunitionBoxRifle60Rubber
-  name:  uplink-security-60sniperbox-rubber-name
-  description: uplink-security-60sniperbox-rubber-desc
-  productEntity: NFAmmunitionBoxRifle60Rubber
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60-rubber }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  # Wayfarer Start
-  #- !type:BuyerJobCondition
-  #  whitelist:
-  #  - SeniorOfficer
-  #  - Bailiff
-  #  - Sheriff
-  # Wayfarer End
 
 - type: listing
   id: UplinkSecurityHypo
@@ -865,63 +768,19 @@
       whitelist:
         tags:
           - SecurityUplink
-
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityInspector
-#  name:  uplink-security-inspector-name
-#  description: uplink-security-inspector-desc
-#  productEntity: NFWeaponRevolverInspector
-#  icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 1
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityTruncheon
-#  name:  uplink-security-truncheon-name
-#  description: uplink-security-truncheon-desc
-#  productEntity: Truncheon
-#  icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 1
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityArmingSword
-#  name:  uplink-security-armingsword-name
-#  description: uplink-security-armingsword-desc
-#  productEntity: PlasteelArmingSword
-#  icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 2
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic
+        - Sheriff
 
 - type: listing
-  id: UplinkSecurityCaptainSword
-  name:  uplink-security-captainsword-name
-  description: uplink-security-captainsword-desc
-  productEntity: ClothingBeltSheathFilled
-  icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
+  id: UplinkSecurityInspector
+  name:  uplink-security-inspector-name
+  description: uplink-security-inspector-desc
+  productEntity: NFWeaponRevolverInspector
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 5 #Coyote changed 5>8
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -930,12 +789,44 @@
         tags:
           - SecurityUplink
 
-- type: listing # Coyote added CGP esword
-  id: UplinkSecurityEnergySword
-  name:  uplink-security-energysword-name
-  description: uplink-security-energysword-desc
-  productEntity: EnergySwordNfsd
-  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
+- type: listing
+  id: UplinkSecurityTruncheon
+  name:  uplink-security-truncheon-name
+  description: uplink-security-truncheon-desc
+  productEntity: Truncheon
+  icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityArmingSword
+  name:  uplink-security-armingsword-name
+  description: uplink-security-armingsword-desc
+  productEntity: PlasteelArmingSword
+  icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityCaptainSword
+  name:  uplink-security-captainsword-name
+  description: uplink-security-captainsword-desc
+  productEntity: ClothingBeltSheathFilled
+  icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 8
   categories:
@@ -945,27 +836,51 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecurityHammer
-#  name:  uplink-security-hammer-name
-#  description: uplink-security-hammer-desc
-#  productEntity: SecBreachingHammer
-#  icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 4
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-#    - !type:BuyerJobCondition
-#      whitelist:
-#        - Bailiff
-#        - SeniorOfficer
-#        - Sheriff
+- type: listing
+  id: UplinkSecurityCCSword
+  name:  uplink-security-navyofficersabre-name
+  description: uplink-security-navyofficersabre-desc
+  productEntity: ClothingBeltCCSheathFilled
+  icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 15
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityHammer
+  name:  uplink-security-hammer-name
+  description: uplink-security-hammer-desc
+  productEntity: SecBreachingHammer
+  icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityTeleShield
@@ -998,61 +913,38 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
-#- type: listing # Wayfarer: Moved to Lathe
-#  id: UplinkSecuritySwat
-#  name:  uplink-security-swat-name
-#  description: uplink-security-swat-desc
-#  productEntity: ClothingMaskGasSheriff
-#  icon: { sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi, state: icon}
-#  cost:
-#    FrontierUplinkCoin: 1 # Wayfarer: 3<1
-#  categories:
-#    - UplinkSecurityUtility
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-
-#- type: listing
-#  id: UplinkSecuritySpeedloader
-#  name:  uplink-security-speedloader-name
-#  description: uplink-security-speedloader-desc
-#  productEntity: NFSpeedLoaderPistol45Overpressure
-#  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-overpressure }
-#  cost:
-#    FrontierUplinkCoin: 1
-#  categories:
-#     - UplinkSecurityAmmo
-#   conditions:
-#     - !type:StoreWhitelistCondition
-#       whitelist:
-#         tags:
-#           - SecurityUplink
-
-# - type: listing
-#   id: UplinkSecuritySpeedloaderRubber
-#   name:  uplink-security-speedloaderrubber-name
-#   description: uplink-security-speedloaderrubber-desc
-#   productEntity: NFSpeedLoaderPistol45Rubber
-#   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
-#   cost:
-#     FrontierUplinkCoin: 1
-#   categories:
-#     - UplinkSecurityAmmo
-#   conditions:
-#     - !type:StoreWhitelistCondition
-#       whitelist:
-#         tags:
-#           - SecurityUplink
-
-# Start Wayfarer
 - type: listing
-  id: UplinkSecuritySpeedloaderBox
-  name:  uplink-security-speedloaderbox-name
-  description: uplink-security-speedloaderbox-desc
-  productEntity: NFBoxMagazineSpeedLoaderPistol45Overpressure
+  id: UplinkSecuritySwat
+  name:  uplink-security-swat-name
+  description: uplink-security-swat-desc
+  productEntity: ClothingMaskGasSheriff
+  icon: { sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
+
+- type: listing
+  id: UplinkSecuritySpeedloader
+  name:  uplink-security-speedloader-name
+  description: uplink-security-speedloader-desc
+  productEntity: NFSpeedLoaderPistol45Overpressure
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-overpressure }
   cost:
     FrontierUplinkCoin: 1
@@ -1065,10 +957,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecuritySpeedloaderRubberBox
-  name:  uplink-security-speedloaderrubberbox-name
-  description: uplink-security-speedloaderrubberbox-desc
-  productEntity: NFBoxMagazineSpeedLoaderPistol45Rubber
+  id: UplinkSecuritySpeedloaderRubber
+  name:  uplink-security-speedloaderrubber-name
+  description: uplink-security-speedloaderrubber-desc
+  productEntity: NFSpeedLoaderPistol45Rubber
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
   cost:
     FrontierUplinkCoin: 1
@@ -1079,7 +971,6 @@
       whitelist:
         tags:
           - SecurityUplink
-# end Wayferer
 
 - type: listing
   id: UplinkSecurityShotLethal
@@ -1160,6 +1051,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecuritySmokeGrenadeBox
@@ -1224,6 +1120,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHoverbikeNfsdFlatpack
@@ -1240,6 +1141,11 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityLethalArmory
@@ -1332,40 +1238,6 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityEmpGrenadeAmmoMags
-  name:  uplink-security-emp-ammo-mags-name
-  description: uplink-security-emp-ammo-mags-desc
-  productEntity: NFMagazineGrenadeEMP
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-# Wayfarer: Duster HEAT Rounds
-- type: listing
-  id: UplinkSecurityFragGrenadeAmmoMags
-  name:  uplink-security-frag-ammo-mags-name
-  description: uplink-security-frag-ammo-mags-desc
-  productEntity: WFMagazineGrenadeHEAT
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-# End Wayfarer
-
-- type: listing
   id: UplinkSecurityTrackingDartsAmmo
   name:  uplink-security-trackingdart-ammo-name
   description: uplink-security-trackingdart-ammo-desc
@@ -1397,23 +1269,21 @@
         tags:
           - SecurityUplink
 
-# - type: listing
-#   id: UplinkSecurityContrabandForensicsModule
-#   name:  uplink-security-contraband-forensics-module-name
-#   description: uplink-security-contraband-forensics-module-desc
-#   productEntity: ContrabandForensicsModule
-#   icon: { sprite: _NF/Objects/Devices/cartridge.rsi, state: contraband_forensics }
-#   cost:
-#     FrontierUplinkCoin: 2 # Wayfarer: 4<2
-#   categories:
-#     - UplinkSecurityUtility
-#   conditions:
-#     - !type:StoreWhitelistCondition
-#       whitelist:
-#         tags:
-#           - SecurityUplink
-#    - !type:BuyerJobCondition # Wayfarer
-#      whitelist:
-#        - Sheriff
-#        - Bailiff
-#        - SeniorOfficer
+- type: listing
+  id: UplinkSecurityContrabandForensicsModule
+  name:  uplink-security-contraband-forensics-module-name
+  description: uplink-security-contraband-forensics-module-desc
+  productEntity: ContrabandForensicsModule
+  icon: { sprite: _NF/Objects/Devices/cartridge.rsi, state: contraband_forensics }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
