@@ -158,7 +158,7 @@
   id: NFVGRoidBlobScrap
   layers:
   - !type:NoiseDistanceDunGen
-    size: 272, 272
+    size: 100, 100
     distanceConfig: !type:DunGenEuclideanSquaredDistance
       blendWeight: 0.80
     layers:

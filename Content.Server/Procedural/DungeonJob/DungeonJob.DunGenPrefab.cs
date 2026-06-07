@@ -37,6 +37,10 @@ public sealed partial class DungeonJob
                 string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         }
 
+        await SuspendDungeon();
+        if (!ValidateResume())
+            return Dungeon.Empty;
+
         var roomProtos = new Dictionary<Vector2i, List<DungeonRoomPrototype>>(_prototype.Count<DungeonRoomPrototype>());
 
         foreach (var proto in _prototype.EnumeratePrototypes<DungeonRoomPrototype>())
@@ -68,6 +72,10 @@ public sealed partial class DungeonJob
             roomA.Sort((x, y) =>
                 string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         }
+
+        await SuspendDungeon();
+        if (!ValidateResume())
+            return Dungeon.Empty;
 
         var tiles = new List<(Vector2i, Tile)>();
         var dungeon = new Dungeon();
@@ -153,6 +161,10 @@ public sealed partial class DungeonJob
             // If we're not the first pack then connect to our edges.
             chosenPacks[i] = pack;
             packTransforms[i] = packTransform;
+
+            await SuspendDungeon();
+            if (!ValidateResume())
+                return Dungeon.Empty;
         }
 
         // Then for overlaps choose either 1x1 / 3x1
@@ -229,8 +241,9 @@ public sealed partial class DungeonJob
                 matty = Matrix3x2.Multiply(roomTransform, packTransform);
                 var dungeonMatty = Matrix3x2.Multiply(matty, dungeonTransform);
 
-                // The expensive bit yippy.
-                _dungeon.SpawnRoom(_gridUid, _grid, dungeonMatty, room, reservedTiles);
+                // Spawn tiles first (fast), then entities one-at-a-time with yields between each
+                // to stay within the job's time budget, then decals (fast).
+                await _dungeon.SpawnRoomAsync(_gridUid, _grid, dungeonMatty, room, reservedTiles, SuspendDungeon);
 
                 var roomCenter = (room.Offset + room.Size / 2f) * _grid.TileSize;
                 var roomTiles = new HashSet<Vector2i>(room.Size.X * room.Size.Y);

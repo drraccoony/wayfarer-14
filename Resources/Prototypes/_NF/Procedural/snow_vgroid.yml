@@ -174,7 +174,7 @@
   id: NFVGRoidBlobSnow
   layers:
   - !type:NoiseDistanceDunGen
-    size: 272, 272
+    size: 100, 100
     distanceConfig: !type:DunGenEuclideanSquaredDistance
       blendWeight: 0.80
     layers:
@@ -194,7 +194,7 @@
   maxOffset: 60
   layers:
   - !type:NoiseDistanceDunGen
-    size: 150, 150
+    size: 75, 75
     distanceConfig: !type:DunGenEuclideanSquaredDistance
     layers:
     - tile: FloorSnow

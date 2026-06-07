@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Decals;
@@ -23,6 +23,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using IDunGenLayer = Content.Shared.Procedural.IDunGenLayer;
 
@@ -47,6 +48,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
     private readonly SharedMapSystem _maps;
     private readonly SharedTransformSystem _transform;
 
+    private EntityQuery<HTNComponent> _htnQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -61,6 +63,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
 
     private readonly ISawmill _sawmill;
     private readonly string _genID; // Frontier: add ID
+    private readonly TimeSpan _npcWakeDelay;
 
     public DungeonJob(
         ISawmill sawmill,
@@ -80,6 +83,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         EntityUid gridUid,
         int seed,
         Vector2i position,
+        TimeSpan npcWakeDelay,
         string genID, // Frontier
         EntityCoordinates? targetCoordinates = null,
         CancellationToken cancellation = default) : base(maxTime, cancellation)
@@ -100,6 +104,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         _entTable = _entManager.System<EntityTableSystem>();
         _transform = transform;
 
+        _htnQuery = _entManager.GetEntityQuery<HTNComponent>();
         _physicsQuery = _entManager.GetEntityQuery<PhysicsComponent>();
         _xformQuery = _entManager.GetEntityQuery<TransformComponent>();
 
@@ -109,6 +114,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         _seed = seed;
         _position = position;
         _targetCoordinates = targetCoordinates;
+        _npcWakeDelay = npcWakeDelay;
         _genID = genID; // Frontier
     }
 
@@ -209,18 +215,34 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
             _entManager.DeleteEntity(oldMap);
         }
 
-        // Defer splitting so they don't get spammed and so we don't have to worry about tracking the grid along the way.
-        _grid.CanSplit = true;
-        _entManager.System<GridFixtureSystem>().CheckSplits(_gridUid);
-        var npcSystem = _entManager.System<NPCSystem>();
         var npcs = new HashSet<Entity<HTNComponent>>();
-
         _lookup.GetChildEntities(_gridUid, npcs);
+        var npcUids = new List<EntityUid>(npcs.Count);
 
         foreach (var npc in npcs)
         {
-            npcSystem.WakeNPC(npc.Owner, npc.Comp);
+            npcUids.Add(npc.Owner);
         }
+
+        // Split first, then wake NPCs on the next tick so HTN planning does not query
+        // a grid while its chunk/fixture state is still being reorganized.
+        _grid.CanSplit = true;
+        _entManager.System<GridFixtureSystem>().CheckSplits(_gridUid);
+        Robust.Shared.Timing.Timer.Spawn(_npcWakeDelay, () =>
+        {
+            if (Cancellation.IsCancellationRequested)
+                return;
+
+            var npcSystem = _entManager.System<NPCSystem>();
+
+            foreach (var npc in npcUids)
+            {
+                if (_entManager.Deleted(npc) || !_htnQuery.TryComp(npc, out var htn))
+                    continue;
+
+                npcSystem.WakeNPC(npc, htn);
+            }
+        }, Cancellation);
 
         _sawmill.Info($"Finished generating dungeon {_gen} with seed {_seed}");
         return dungeons;
