@@ -34,4 +34,11 @@ public sealed class WFCCVars
     /// </summary>
     public static readonly CVarDef<bool> CorporationStationPurchaseEnabled =
         CVarDef.Create("wf.corporation.station_purchase_enabled", false, CVar.SERVER);
+
+    /// <summary>
+    /// How many days of admin logs to keep when pruning at round start.
+    /// Set to 0 to disable pruning.
+    /// </summary>
+    public static readonly CVarDef<int> AdminLogPruneDays =
+        CVarDef.Create("wf.admin_log.prune_days", 5, CVar.SERVER);
 }

@@ -1149,6 +1149,14 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return await db.DbContext.AdminLog.CountAsync(log => log.RoundId == round);
         }
 
+        public async Task<int> PruneAdminLogs(DateTime before)
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.AdminLog
+                .Where(log => log.Date < before)
+                .ExecuteDeleteAsync();
+        }
+
         #endregion
 
         #region Whitelist
