@@ -6,6 +6,7 @@ using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Spawners.EntitySystems;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.EntityTable;
 using Content.Shared.Maps;
@@ -172,8 +173,33 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         // Tiles we can no longer generate on due to being reserved elsewhere.
         var reservedTiles = new HashSet<Vector2i>();
 
+        // Defer entity table / conditional spawner MapInit events on this grid until after
+        // geometry is fully placed, then flush them one-at-a-time with yields to avoid
+        // per-SpawnRoom frame spikes from cascading entity creation.
+        var conditionalSpawner = _entManager.System<ConditionalSpawnerSystem>();
+        conditionalSpawner.BeginDeferred(_gridUid);
+
         var dungeons = await GetDungeons(position, _gen, _gen.Layers, reservedTiles, _seed, random);
         // To make it slightly more deterministic treat this RNG as separate ig.
+
+        // Grid was deleted during generation; skip spawner flush and post-processing.
+        if (!ValidateResume())
+        {
+            conditionalSpawner.ClearDeferred(_gridUid);
+            return new List<Dungeon>();
+        }
+
+        // Flush deferred spawners with yields between each one so the server stays responsive.
+        while (conditionalSpawner.FlushNext(_gridUid))
+        {
+            await SuspendDungeon();
+            if (!ValidateResume())
+            {
+                conditionalSpawner.ClearDeferred(_gridUid);
+                return new List<Dungeon>();
+            }
+        }
+        conditionalSpawner.ClearDeferred(_gridUid);
 
         // Post-processing after finishing loading.
         if (_targetCoordinates != null)

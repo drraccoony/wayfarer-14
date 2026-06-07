@@ -16,6 +16,11 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
+        // Per-grid deferred queues. When a dungeon grid is registered via BeginDeferred,
+        // spawner entities on that grid skip their MapInit spawn and are queued here instead.
+        // DungeonJob flushes the queue after generation completes, with yields between items.
+        private readonly Dictionary<EntityUid, List<EntityUid>> _deferredByGrid = new();
+
         public override void Initialize()
         {
             base.Initialize();
@@ -26,13 +31,79 @@ namespace Content.Server.Spawners.EntitySystems
             SubscribeLocalEvent<EntityTableSpawnerComponent, MapInitEvent>(OnEntityTableSpawnMapInit);
         }
 
+        /// <summary>
+        /// Registers a dungeon grid for deferred spawning. All spawner entities placed on this
+        /// grid will be queued rather than firing immediately on MapInit.
+        /// Call <see cref="FlushNext"/> in a loop (with yields) then <see cref="ClearDeferred"/>
+        /// once dungeon generation is complete.
+        /// </summary>
+        public void BeginDeferred(EntityUid gridUid)
+        {
+            _deferredByGrid[gridUid] = new List<EntityUid>();
+        }
+
+        /// <summary>
+        /// Processes one deferred spawner entity for the given grid.
+        /// Returns true if more remain, false when the queue is empty.
+        /// </summary>
+        public bool FlushNext(EntityUid gridUid)
+        {
+            if (!_deferredByGrid.TryGetValue(gridUid, out var list) || list.Count == 0)
+                return false;
+
+            var uid = list[^1];
+            list.RemoveAt(list.Count - 1);
+
+            if (TryComp<EntityTableSpawnerComponent>(uid, out var tableComp))
+            {
+                Spawn((uid, tableComp));
+                if (tableComp.DeleteSpawnerAfterSpawn && !TerminatingOrDeleted(uid) && Exists(uid))
+                    QueueDel(uid);
+            }
+            else if (TryComp<RandomSpawnerComponent>(uid, out var randComp))
+            {
+                Spawn(uid, randComp);
+                if (randComp.DeleteSpawnerAfterSpawn)
+                    QueueDel(uid);
+            }
+            else if (TryComp<ConditionalSpawnerComponent>(uid, out var condComp))
+            {
+                TrySpawn(uid, condComp);
+            }
+
+            return list.Count > 0;
+        }
+
+        /// <summary>
+        /// Removes the deferred queue for a grid without spawning remaining items.
+        /// Always call this after <see cref="FlushNext"/> drains the queue (or on cancellation).
+        /// </summary>
+        public void ClearDeferred(EntityUid gridUid)
+        {
+            _deferredByGrid.Remove(gridUid);
+        }
+
+        private bool TryDefer(EntityUid uid)
+        {
+            if (!TryComp<TransformComponent>(uid, out var xform) || xform.GridUid is not { } grid)
+                return false;
+            if (!_deferredByGrid.TryGetValue(grid, out var list))
+                return false;
+            list.Add(uid);
+            return true;
+        }
+
         private void OnCondSpawnMapInit(EntityUid uid, ConditionalSpawnerComponent component, MapInitEvent args)
         {
+            if (TryDefer(uid))
+                return;
             TrySpawn(uid, component);
         }
 
         private void OnRandSpawnMapInit(EntityUid uid, RandomSpawnerComponent component, MapInitEvent args)
         {
+            if (TryDefer(uid))
+                return;
             Spawn(uid, component);
             if (component.DeleteSpawnerAfterSpawn)
                 QueueDel(uid);
@@ -40,6 +111,8 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void OnEntityTableSpawnMapInit(Entity<EntityTableSpawnerComponent> ent, ref MapInitEvent args)
         {
+            if (TryDefer(ent))
+                return;
             Spawn(ent);
             if (ent.Comp.DeleteSpawnerAfterSpawn && !TerminatingOrDeleted(ent) && Exists(ent))
                 QueueDel(ent);
