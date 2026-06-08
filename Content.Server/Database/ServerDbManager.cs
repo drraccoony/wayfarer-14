@@ -1025,13 +1025,13 @@ namespace Content.Server.Database
                 return RunDbCommand(() => _db.CountAdminLogs(round));
             }
 
-            // Wayfarer Begin
+            // Wayfarer
             public Task<int> PruneAdminLogs(DateTime before)
             {
                 DbWriteOpsMetric.Inc();
                 return RunDbCommand(() => _db.PruneAdminLogs(before));
             }
-            // Wayfarer End
+            // End Wayfarer
 
             public Task<bool> GetWhitelistStatusAsync(NetUserId player)
             {
