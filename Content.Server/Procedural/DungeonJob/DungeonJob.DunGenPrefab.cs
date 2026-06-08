@@ -37,7 +37,7 @@ public sealed partial class DungeonJob
                 string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         }
 
-        await SuspendDungeon();
+        await SuspendDungeon(); // Wayfarer - yield after pack prototype enumeration
         if (!ValidateResume())
             return Dungeon.Empty;
 
@@ -73,7 +73,7 @@ public sealed partial class DungeonJob
                 string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         }
 
-        await SuspendDungeon();
+        await SuspendDungeon(); // Wayfarer - yield after room prototype enumeration
         if (!ValidateResume())
             return Dungeon.Empty;
 
@@ -162,7 +162,7 @@ public sealed partial class DungeonJob
             chosenPacks[i] = pack;
             packTransforms[i] = packTransform;
 
-            await SuspendDungeon();
+            await SuspendDungeon(); // Wayfarer - yield between pack selections
             if (!ValidateResume())
                 return Dungeon.Empty;
         }
@@ -241,9 +241,7 @@ public sealed partial class DungeonJob
                 matty = Matrix3x2.Multiply(roomTransform, packTransform);
                 var dungeonMatty = Matrix3x2.Multiply(matty, dungeonTransform);
 
-                // Spawn tiles first (fast), then entities one-at-a-time with yields between each
-                // to stay within the job's time budget, then decals (fast).
-                await _dungeon.SpawnRoomAsync(_gridUid, _grid, dungeonMatty, room, reservedTiles, SuspendDungeon);
+                await _dungeon.SpawnRoomAsync(_gridUid, _grid, dungeonMatty, room, reservedTiles, SuspendDungeon); // Wayfarer: SpawnRoom<SpawnRoomAsync
 
                 var roomCenter = (room.Offset + room.Size / 2f) * _grid.TileSize;
                 var roomTiles = new HashSet<Vector2i>(room.Size.X * room.Size.Y);

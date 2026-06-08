@@ -6,7 +6,7 @@ using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Spawners.EntitySystems;
+using Content.Server.Spawners.EntitySystems; // Wayfarer
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.EntityTable;
 using Content.Shared.Maps;
@@ -179,9 +179,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         // Tiles we can no longer generate on due to being reserved elsewhere.
         var reservedTiles = new HashSet<Vector2i>();
 
-        // Defer entity table / conditional spawner MapInit events on this grid until after
-        // geometry is fully placed, then flush them one-at-a-time with yields to avoid
-        // per-SpawnRoom frame spikes from cascading entity creation.
+        // Wayfarer begin - defer spawner MapInit events, flush one-at-a-time after geometry is placed
         var conditionalSpawner = _entManager.System<ConditionalSpawnerSystem>();
         conditionalSpawner.BeginDeferred(_gridUid);
 
@@ -195,7 +193,6 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
             return new List<Dungeon>();
         }
 
-        // Flush deferred spawners with yields between each one so the server stays responsive.
         while (conditionalSpawner.FlushNext(_gridUid))
         {
             await SuspendDungeon();
@@ -206,6 +203,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
             }
         }
         conditionalSpawner.ClearDeferred(_gridUid);
+        // Wayfarer end
 
         // Post-processing after finishing loading.
         if (_targetCoordinates != null)

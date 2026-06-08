@@ -16,10 +16,9 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
-        // Per-grid deferred queues. When a dungeon grid is registered via BeginDeferred,
-        // spawner entities on that grid skip their MapInit spawn and are queued here instead.
-        // DungeonJob flushes the queue after generation completes, with yields between items.
+        // Wayfarer begin - per-grid deferred spawner queues for dungeon generation hitching reduction
         private readonly Dictionary<EntityUid, List<EntityUid>> _deferredByGrid = new();
+        // Wayfarer end
 
         public override void Initialize()
         {
@@ -31,6 +30,7 @@ namespace Content.Server.Spawners.EntitySystems
             SubscribeLocalEvent<EntityTableSpawnerComponent, MapInitEvent>(OnEntityTableSpawnMapInit);
         }
 
+        // Wayfarer begin - deferred spawner API for DungeonJob
         /// <summary>
         /// Registers a dungeon grid for deferred spawning. All spawner entities placed on this
         /// grid will be queued rather than firing immediately on MapInit.
@@ -92,17 +92,18 @@ namespace Content.Server.Spawners.EntitySystems
             list.Add(uid);
             return true;
         }
+        // Wayfarer end
 
         private void OnCondSpawnMapInit(EntityUid uid, ConditionalSpawnerComponent component, MapInitEvent args)
         {
-            if (TryDefer(uid))
+            if (TryDefer(uid)) // Wayfarer - defer on dungeon grids
                 return;
             TrySpawn(uid, component);
         }
 
         private void OnRandSpawnMapInit(EntityUid uid, RandomSpawnerComponent component, MapInitEvent args)
         {
-            if (TryDefer(uid))
+            if (TryDefer(uid)) // Wayfarer - defer on dungeon grids
                 return;
             Spawn(uid, component);
             if (component.DeleteSpawnerAfterSpawn)
@@ -111,7 +112,7 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void OnEntityTableSpawnMapInit(Entity<EntityTableSpawnerComponent> ent, ref MapInitEvent args)
         {
-            if (TryDefer(ent))
+            if (TryDefer(ent)) // Wayfarer - defer on dungeon grids
                 return;
             Spawn(ent);
             if (ent.Comp.DeleteSpawnerAfterSpawn && !TerminatingOrDeleted(ent) && Exists(ent))
