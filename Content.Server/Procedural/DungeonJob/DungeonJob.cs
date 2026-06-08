@@ -213,6 +213,13 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
             _entManager.DeleteEntity(oldMap);
         }
 
+        // Wayfarer begin: Disabled, not needed.
+        // // Defer splitting so they don't get spammed and so we don't have to worry about tracking the grid along the way.
+        // _grid.CanSplit = true;
+        // _entManager.System<GridFixtureSystem>().CheckSplits(_gridUid);
+        // var npcSystem = _entManager.System<NPCSystem>();
+        // Wayfarer end
+
         var npcs = new HashSet<Entity<HTNComponent>>();
         _lookup.GetChildEntities(_gridUid, npcs);
         var npcUids = new List<EntityUid>(npcs.Count); // Wayfarer
