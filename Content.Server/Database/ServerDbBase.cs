@@ -1149,6 +1149,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return await db.DbContext.AdminLog.CountAsync(log => log.RoundId == round);
         }
 
+        // Wayfarer Begin
         public async Task<int> PruneAdminLogs(DateTime before)
         {
             await using var db = await GetDb();
@@ -1156,6 +1157,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(log => log.Date < before)
                 .ExecuteDeleteAsync();
         }
+        // Wayfarer End
 
         #endregion
 

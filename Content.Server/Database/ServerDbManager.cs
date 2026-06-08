@@ -268,7 +268,7 @@ namespace Content.Server.Database
         IAsyncEnumerable<SharedAdminLog> GetAdminLogs(LogFilter? filter = null);
         IAsyncEnumerable<JsonDocument> GetAdminLogsJson(LogFilter? filter = null);
         Task<int> CountAdminLogs(int round);
-        Task<int> PruneAdminLogs(DateTime before);
+        Task<int> PruneAdminLogs(DateTime before); //Wayfarer - Prune old admin logs
 
         #endregion
 
@@ -1025,11 +1025,13 @@ namespace Content.Server.Database
                 return RunDbCommand(() => _db.CountAdminLogs(round));
             }
 
+            // Wayfarer Begin
             public Task<int> PruneAdminLogs(DateTime before)
             {
                 DbWriteOpsMetric.Inc();
                 return RunDbCommand(() => _db.PruneAdminLogs(before));
             }
+            // Wayfarer End
 
             public Task<bool> GetWhitelistStatusAsync(NetUserId player)
             {
