@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseItem
+  id: StationShuttleShunter
+  name: station shuttle shunter
+  description: A device issued to station traffic controllers for remotely ejecting unattended shuttles from docking ports.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Tools/appraisal-tool.rsi
+      state: icon
+    - type: Item
+      size: Small
+    - type: Clothing
+      sprite: _NF/Objects/Tools/appraisal-tool.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: ShuttleShunter
+    - type: UserInterface
+      interfaces:
+        enum.ShuttleShunterUiKey.Key:
+          type: ShuttleShunterBoundUserInterface
