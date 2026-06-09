@@ -37,9 +37,11 @@ public sealed partial class DungeonJob
                 string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         }
 
-        await SuspendDungeon(); // Wayfarer - yield after pack prototype enumeration
+        // Wayfarer: yield after room prototype enumeration
+        await SuspendDungeon();
         if (!ValidateResume())
             return Dungeon.Empty;
+        // End Wayfarer
 
         var roomProtos = new Dictionary<Vector2i, List<DungeonRoomPrototype>>(_prototype.Count<DungeonRoomPrototype>());
 
@@ -73,9 +75,11 @@ public sealed partial class DungeonJob
                 string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         }
 
-        await SuspendDungeon(); // Wayfarer - yield after room prototype enumeration
+        // Wayfarer: yield after room prototype enumeration
+        await SuspendDungeon();
         if (!ValidateResume())
             return Dungeon.Empty;
+            // End Wayfarer
 
         var tiles = new List<(Vector2i, Tile)>();
         var dungeon = new Dungeon();
@@ -162,9 +166,11 @@ public sealed partial class DungeonJob
             chosenPacks[i] = pack;
             packTransforms[i] = packTransform;
 
-            await SuspendDungeon(); // Wayfarer - yield between pack selections
+            // Wayfarer: yield between pack selections
+            await SuspendDungeon();
             if (!ValidateResume())
                 return Dungeon.Empty;
+            // End Wayfarer
         }
 
         // Then for overlaps choose either 1x1 / 3x1

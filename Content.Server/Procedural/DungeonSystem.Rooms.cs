@@ -1,5 +1,5 @@
 using System.Numerics;
-using System.Threading.Tasks;
+using System.Threading.Tasks; // Wayfarer
 using Content.Shared.Decals;
 using Content.Shared.Maps;
 using Content.Shared.Procedural;
@@ -268,7 +268,7 @@ public sealed partial class DungeonSystem
         }
     }
 
-    // Wayfarer begin - async SpawnRoom variant that yields between entity spawns to reduce hitching
+    // Wayfarer: async SpawnRoom variant that yields between entity spawns to reduce hitching
     /// <summary>
     /// Async variant of <see cref="SpawnRoom(EntityUid,MapGridComponent,Matrix3x2,DungeonRoomPrototype,HashSet{Vector2i}?,bool)"/>
     /// that calls <paramref name="suspension"/> between each entity spawn so the dungeon job can
@@ -398,5 +398,5 @@ public sealed partial class DungeonSystem
             }
         }
     }
-    // Wayfarer end
+    // End Wayfarer
 }

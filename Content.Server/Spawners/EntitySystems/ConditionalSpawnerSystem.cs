@@ -16,9 +16,9 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
-        // Wayfarer begin - per-grid deferred spawner queues for dungeon generation hitching reduction
+        // Wayfarer: per-grid deferred spawner queues for dungeon generation hitching reduction
         private readonly Dictionary<EntityUid, List<EntityUid>> _deferredByGrid = new();
-        // Wayfarer end
+        // End Wayfarer
 
         public override void Initialize()
         {
@@ -30,7 +30,7 @@ namespace Content.Server.Spawners.EntitySystems
             SubscribeLocalEvent<EntityTableSpawnerComponent, MapInitEvent>(OnEntityTableSpawnMapInit);
         }
 
-        // Wayfarer begin - deferred spawner API for DungeonJob
+        // Wayfarer: deferred spawner API for DungeonJob
         /// <summary>
         /// Registers a dungeon grid for deferred spawning. All spawner entities placed on this
         /// grid will be queued rather than firing immediately on MapInit.
@@ -92,19 +92,23 @@ namespace Content.Server.Spawners.EntitySystems
             list.Add(uid);
             return true;
         }
-        // Wayfarer end
+        // End Wayfarer
 
         private void OnCondSpawnMapInit(EntityUid uid, ConditionalSpawnerComponent component, MapInitEvent args)
         {
-            if (TryDefer(uid)) // Wayfarer - defer on dungeon grids
+            // Wayfarer: defer on dungeon grids
+            if (TryDefer(uid))
                 return;
+            // End Wayfarer
             TrySpawn(uid, component);
         }
 
         private void OnRandSpawnMapInit(EntityUid uid, RandomSpawnerComponent component, MapInitEvent args)
         {
-            if (TryDefer(uid)) // Wayfarer - defer on dungeon grids
+            // Wayfarer: defer on dungeon grids
+            if (TryDefer(uid))
                 return;
+            // End Wayfarer
             Spawn(uid, component);
             if (component.DeleteSpawnerAfterSpawn)
                 QueueDel(uid);
