@@ -352,8 +352,8 @@
       collection: Weh
     Gnash:
       collection: FeroxiGnashes
-    Thump:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+    Thump: #Wayfarer: Tail thump
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg #Wayfarer: Tail thump
 
 - type: emoteSounds
   id: UnisexChitinid
