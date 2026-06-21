@@ -112,7 +112,7 @@
                                      HorizontalExpand="True"
                                      MinWidth="85"
                                      StyleClasses="OpenRight"
-                                     Margin="0"/>
+                                     Margin="0 0 2 0"/>
                     <controls:Button Name="DampenerOn"
                                      Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
                                      TextAlign="Center"
@@ -120,7 +120,7 @@
                                      HorizontalExpand="True"
                                      MinWidth="85"
                                      StyleClasses="OpenBoth"
-                                     Margin="0"/>
+                                     Margin="0 0 6 0"/>
                     <controls:Button Name="AnchorOn"
                                      Text="{controls:Loc 'shuttle-console-inertia-dampener-anchor'}"
                                      TextAlign="Center"
@@ -128,7 +128,7 @@
                                      HorizontalExpand="True"
                                      MinWidth="85"
                                      StyleClasses="OpenLeft"
-                                     Margin="0"/>
+                                     Margin="0 0 2 0"/>
                 </controls:BoxContainer>
                 <!-- End Frontier - Inertia dampener controls-->
 
