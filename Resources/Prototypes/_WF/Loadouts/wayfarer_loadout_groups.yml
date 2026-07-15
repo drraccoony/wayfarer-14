@@ -1586,7 +1586,6 @@
   - WFPlushieSharkBlue
   - WFPlushieSharkPink
   - WFHarmonicaInstrument
-  - WFOcarinaInstrument
   - WFSaxophoneInstrument
   - WFAcousticGuitarInstrument
   - WFPonderingOrb
@@ -1734,14 +1733,14 @@
   id: WFCartridge
   name: loadout-group-contractor-cartridge
   minLimit: 0
-  maxLimit: 5
+  maxLimit: 6
   loadouts:
   - WFAppraisalCartridge
   - WFMedTekCartridge
   - WFCriticalImplantTrackerCartridge
   - WFNetProbeCartridge
   - WFLogProbeCartridge
-  - WFCorpCartridge
+  - WFCorporationCartridge
 
 # == IMPLANTERS
 - type: loadoutGroup
