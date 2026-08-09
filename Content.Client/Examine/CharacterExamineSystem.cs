@@ -50,7 +50,7 @@ public sealed class CharacterExamineSystem : EntitySystem
             ClientExclusive = true,
             ShowOnExamineTooltip = true,
         });
-        // Wayfarer End
+        // End Wayfarer
     }
 
     private void OnGetExamineVerbsWithMind(EntityUid uid, MindContainerComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -105,7 +105,7 @@ public sealed class CharacterExamineSystem : EntitySystem
             // Wire up commend button for other players
             window.SubmitCommendButton.OnPressed += args => OnSubmitCommend(args, uid, window);
         }
-        // Wayfarer End
+        // End Wayfarer
 
         window.OpenCentered();
 
@@ -122,7 +122,7 @@ public sealed class CharacterExamineSystem : EntitySystem
             // Request available commends count for giving
             RaiseNetworkEvent(new RequestAvailableCommendsMessage());
         }
-        // Wayfarer End
+        // End Wayfarer
     }
 
     private void HandleCharacterInfo(CharacterInfoEvent message)
@@ -142,7 +142,7 @@ public sealed class CharacterExamineSystem : EntitySystem
                 ? "You have received 1 commend."
                 : $"You have received {count} commends.";
         }
-        // Wayfarer End
+        // End Wayfarer
 
         // Set description with markup parsing
         FormattedMessage descriptionMessage;
@@ -198,7 +198,7 @@ public sealed class CharacterExamineSystem : EntitySystem
         window.CommendPrivateCheckbox.Pressed = false;
         window.SubmitCommendButton.Text = "Commend sent!";
     }
-    // Wayfarer End
+    // End Wayfarer
 
     private void HandleAvailableCommends(AvailableCommendsMessage message)
     {
@@ -255,5 +255,5 @@ public sealed class CharacterExamineSystem : EntitySystem
 
         _myCommendsWindow.Populate(message.Commends, _cachedTotalCommends);
     }
-    // Wayfarer End
+    // End Wayfarer
 }

@@ -383,6 +383,274 @@
   - WFSLVintageUniformSuit
   - WFSLCargoOverallsUniformSuit
   - WFSLRedRegaliaSuit
+  # Impstation clothing
+  - WFIMPClothingUniformCircusClown
+  - WFIMPClothingUniformJokester
+  - WFIMPClothingUniformHitmanSuit
+  - WFIMPClothingUniformBurglarJumpsuit
+  - WFIMPClothingUniformFuneralSuit
+  - WFIMPClothingUniformNightclubSuit
+  - WFIMPClothingUniformMrSpaceWide
+  - WFIMPClothingUniformBrownSuit
+  - WFIMPClothingUniformCreamSuit
+  - WFIMPClothingUniformDetectiveSuit
+  - WFIMPClothingUniformMiamiVice
+  - WFIMPClothingUniformSeniorBartender
+  - WFIMPClothingUniformBrosBlazer
+  - WFIMPClothingUniformJesterEvil
+  - WFIMPClothingUniformSailorSuit
+  - WFIMPClothingUniformJumpsuitMimeCropped
+  - WFIMPClothingUniformJumpsuitMimeNouveau
+  - WFIMPClothingUniformJumpsuitCourier
+  - WFIMPClothingUniformSpaceJumpsuitCasualBrown
+  - WFIMPClothingUniformSpaceJumpsuitCasualTriColor
+  - WFIMPClothingUniformSpaceJumpsuitCasualMulti
+  - WFIMPClothingUniformSpaceJumpsuitCasualBlue
+  - WFIMPClothingUniformJumpsuitMusicianMarchingBand
+  - WFIMPClothingUniformJumpsuitTailcoatSuit
+  # DeltaV clothing
+  - WFDVClothingUniformJumpsuitSuitBlack
+  - WFDVClothingUniformJumpsuitSuitBlackAlt
+  - WFDVClothingUniformJumpsuitSuitBlackMob
+  - WFDVClothingUniformJumpsuitSuitBrown
+  - WFDVClothingUniformJumpsuitSuitBrownAlt
+  - WFDVClothingUniformJumpsuitSuitBrownMob
+  - WFDVClothingUniformJumpsuitSuitWhite
+  - WFDVClothingUniformJumpsuitSuitWhiteAlt
+  - WFDVClothingUniformJumpsuitSuitWhiteMob
+  - WFDVClothingUniformJumpsuitJeansRed
+  - WFDVClothingUniformJumpsuitJeansGreen
+  - WFDVClothingUniformJumpsuitJeansBrown
+  - WFDVClothingUniformJumpsuitWrestlerCostumeGreen
+  - WFDVClothingUniformJumpsuitWrestlerCostumeRed
+  - WFDVClothingUniformJumpsuitWrestlerCostumeYellow
+  - WFDVClothingUniformJumpsuitWrestlerCostumeBlue
+  - WFDVClothingUniformElf
+  - WFDVClothingUniformHarbingerTunic
+  - WFDVClothingUniformJumpsuitSober
+  - WFDVClothingUniformJumpsuitLostTourist
+  - WFDVClothingUniformJumpskirtOveralls
+  - WFDVClothingUniformSkirtCourier
+  - WFDVClothingUniformJumpskirtFestiveDressRed
+  - WFDVClothingUniformJumpskirtElf
+  - WFDVClothingUniformJumpskirtWaitstaffFormal
+  - WFDVClothingUniformTurtleneckColorWhite
+  - WFDVClothingUniformTurtleneckColorGrey
+  - WFDVClothingUniformTurtleneckColorBlack
+  - WFDVClothingUniformTurtleneckColorBlue
+  - WFDVClothingUniformTurtleneckColorDarkBlue
+  - WFDVClothingUniformTurtleneckColorTeal
+  - WFDVClothingUniformTurtleneckColorGreen
+  - WFDVClothingUniformTurtleneckColorDarkGreen
+  - WFDVClothingUniformTurtleneckColorOrange
+  - WFDVClothingUniformTurtleneckColorPink
+  - WFDVClothingUniformTurtleneckColorRed
+  - WFDVClothingUniformTurtleneckColorYellow
+  - WFDVClothingUniformTurtleneckColorPurple
+  - WFDVClothingUniformTurtleneckColorLightBrown
+  - WFDVClothingUniformTurtleneckColorBrown
+  - WFDVClothingUniformTurtleneckColorMaroon
+  - WFDVClothingUniformTurtleneckSkirtColorWhite
+  - WFDVClothingUniformTurtleneckSkirtColorGrey
+  - WFDVClothingUniformTurtleneckSkirtColorBlack
+  - WFDVClothingUniformTurtleneckSkirtColorBlue
+  - WFDVClothingUniformTurtleneckSkirtColorDarkBlue
+  - WFDVClothingUniformTurtleneckSkirtColorTeal
+  - WFDVClothingUniformTurtleneckSkirtColorGreen
+  - WFDVClothingUniformTurtleneckSkirtColorDarkGreen
+  - WFDVClothingUniformTurtleneckSkirtColorOrange
+  - WFDVClothingUniformTurtleneckSkirtColorPink
+  - WFDVClothingUniformTurtleneckSkirtColorRed
+  - WFDVClothingUniformTurtleneckSkirtColorYellow
+  - WFDVClothingUniformTurtleneckSkirtColorPurple
+  - WFDVClothingUniformTurtleneckSkirtColorLightBrown
+  - WFDVClothingUniformTurtleneckSkirtColorBrown
+  - WFDVClothingUniformTurtleneckSkirtColorMaroon
+  # Coyote Sector clothing
+  - WFCSClothesAcolyte
+  - WFCSClothesAfrMerc
+  - WFCSClothesArtisan
+  - WFCSClothesAssyrian
+  - WFCSClothesBLandschneckt
+  - WFCSClothesBeggar
+  - WFCSClothesBlackTango
+  - WFCSClothesBlackDress
+  - WFCSClothesBlackNGold
+  - WFCSClothesBloodshot
+  - WFCSClothesBlueKimono
+  - WFCSClothesBlueSari
+  - WFCSClothesBlueSkirt
+  - WFCSClothesBlueDress
+  - WFCSClothesBlueRanger
+  - WFCSClothesBlueSun
+  - WFCSClothesBowSun
+  - WFCSClothesBridalBlue
+  - WFCSClothesBridalOrange
+  - WFCSClothesBridalPurple
+  - WFCSClothesBridalRed
+  - WFCSClothesBridalWhite
+  - WFCSClothesBrownPunkPants
+  - WFCSClothesBunnySuit
+  - WFCSClothesCartel
+  - WFCSClothesChad
+  - WFCSClothesCheong
+  - WFCSClothesCheongRed
+  - WFCSClothesCheongWhite
+  - WFCSClothesCheongWhiteShort
+  - WFCSClothesConquistador
+  - WFCSClothesCorset
+  - WFCSClothesCorsetDress
+  - WFCSClothesCountess
+  - WFCSClothesCrinoline
+  - WFCSClothesCustomToga
+  - WFCSClothesCyberHell
+  - WFCSClothesDarkHanfu
+  - WFCSClothesDivineRobe
+  - WFCSClothesDomina
+  - WFCSClothesDougDimmadome
+  - WFCSClothesDraculass
+  - WFCSClothesDress2
+  - WFCSClothesDress3
+  - WFCSClothesDressBlack
+  - WFCSClothesDressSaloon
+  - WFCSClothesDress5
+  - WFCSClothesDress6
+  - WFCSClothesDutch
+  - WFCSClothesExplorerStripper
+  - WFCSClothesFlamenco
+  - WFCSClothesFloofDress
+  - WFCSClothesFlashyGreenDress
+  - WFCSClothesFlowRed
+  - WFCSClothesFlowerDress
+  - WFCSClothesFlowerKimono
+  - WFCSClothesFormalRedDress
+  - WFCSClothesFoxFlannel
+  - WFCSClothesGoldDress
+  - WFCSClothesGoldWrap
+  - WFCSClothesGothic
+  - WFCSClothesGothic2
+  - WFCSClothesGreatShendyt
+  - WFCSClothesGreekDress
+  - WFCSClothesGreekTunic
+  - WFCSClothesDress7
+  - WFCSClothesGreenHanfu
+  - WFCSClothesGreenAsymmetric
+  - WFCSClothesHalfSkirt
+  - WFCSClothesHalfHuipil
+  - WFCSClothesHaori
+  - WFCSClothesHaoriSamurai
+  - WFCSClothesHuipil
+  - WFCSClothesHunter
+  - WFCSClothesHunterBra
+  - WFCSClothesIrisTribal
+  - WFCSClothesKeyholeSweater
+  - WFCSClothesKimonoBlue
+  - WFCSClothesKimonoEarth
+  - WFCSClothesKimonoGreen
+  - WFCSClothesKimonoOrange
+  - WFCSClothesKimonoPink
+  - WFCSClothesKimonoPurple
+  - WFCSClothesKimonoRed
+  - WFCSClothesKimonoViolet
+  - WFCSClothesKimonoYellow
+  - WFCSClothesLandschneckt
+  - WFCSClothesLatexHalf
+  - WFCSClothesLeavesSkirt
+  - WFCSClothesLeavesSkirtLong
+  - WFCSClothesLeia
+  - WFCSClothesLightHanfu
+  - WFCSClothesLittleBlackDress
+  - WFCSClothesLoincloth
+  - WFCSClothesSexyMaid
+  - WFCSClothesMaurader
+  - WFCSClothesMarlowDuds
+  - WFCSClothesMayanLoincloth
+  - WFCSClothesMikuBikini
+  - WFCSClothesOliveCargoPunk
+  - WFCSClothesPentatop
+  - WFCSClothesPharaoh
+  - WFCSClothesPinkDress
+  - WFCSClothesPinkSun
+  - WFCSClothesPinkTutu
+  - WFCSClothesPinkwshort
+  - WFCSClothesPolyPerformer
+  - WFCSClothesPortugueseSailor1d
+  - WFCSClothesPromDress
+  - WFCSClothesPuffyDress
+  - WFCSClothesQipao
+  - WFCSClothesQipaoNosleeve
+  - WFCSClothesQipaoRed
+  - WFCSClothesQipaoRedNosleeve
+  - WFCSClothesQipaoTealNosleeve
+  - WFCSClothesQipaoWhite
+  - WFCSClothesQipaoWhiteNosleeve
+  - WFCSClothesRedLandschneckt
+  - WFCSClothesRadkini
+  - WFCSClothesRattyCyberpunk
+  - WFCSClothesRattySkirtGreen
+  - WFCSClothesRattySkirtPink
+  - WFCSClothesRattySkirtYellow
+  - WFCSClothesRedEveningDress
+  - WFCSClothesRedSari
+  - WFCSClothesRedWshort
+  - WFCSClothesRevealingDress
+  - WFCSClothesRippedPunk
+  - WFCSClothesSecslutskirt
+  - WFCSClothesSecslutskirtpink
+  - WFCSClothesSecstripper
+  - WFCSClothesSexyclown
+  - WFCSClothesSexymime
+  - WFCSClothesSexynursesuit
+  - WFCSClothesShamanblue
+  - WFCSClothesSheerblue
+  - WFCSClothesShortPink
+  - WFCSClothesShortsBlue
+  - WFCSClothesShortsRed
+  - WFCSClothesSocietyDress
+  - WFCSClothesSunSkirt
+  - WFCSClothesSunSkirtGrey
+  - WFCSClothesSundressBlue
+  - WFCSClothesSundressOrange
+  - WFCSClothesSundressPurple
+  - WFCSClothesSundressRed
+  - WFCSClothesSundressYellow
+  - WFCSClothesSwimBlack
+  - WFCSClothesSwimBlue
+  - WFCSClothesSwimEarth
+  - WFCSClothesSwimGreen
+  - WFCSClothesSwimPurp
+  - WFCSClothesSwimRed
+  - WFCSClothesSyclothing
+  - WFCSClothesTacticoolHawaiianBlue
+  - WFCSClothesTacticoolHawaiianOrange
+  - WFCSClothesTacticoolHawaiianPurple
+  - WFCSClothesTexas
+  - WFCSClothesToga
+  - WFCSClothesToga2
+  - WFCSClothesTradwifeBlue
+  - WFCSClothesTradwifeOrange
+  - WFCSClothesTradwifePurple
+  - WFCSClothesTradwifeRed
+  - WFCSClothesTradwifeYellow
+  - WFCSClothesTribalColorful
+  - WFCSClothesTribalColorfulTop
+  - WFCSClothesUNIrish
+  - WFCSClothesUNGreentrousersOG107
+  - WFCSClothesVictorianDress
+  - WFCSClothesVictorianblackdress
+  - WFCSClothesVictorianblred
+  - WFCSClothesHappyVampire
+  - WFCSClothesVictorianlightfire
+  - WFCSClothesVictorianRedDress
+  - WFCSClothesVictorianRedVest
+  - WFCSClothesVictorianVest
+  - WFCSClothesWaistcoat
+  - WFCSClothesWestender
+  - WFCSClothesWesternBustle
+  - WFCSClothesWhitebunnysuit
+  - WFCSClothesWhitegown
+  - WFCSClothesWhitesun
+  - WFCSClothesYellowwshort
   fallbacks:
   - WFClothingUniformJumpsuitColorGrey
   - WFClothingUniformJumpskirtColorGrey
@@ -396,6 +664,7 @@
   - WFClothingBackpack
   - WFClothingBackpackDuffel
   - WFClothingBackpackSatchel
+  - WFClothingBackpackSmugglerSatchel
   - WFClothingBackpackMessenger
   - WFClothingBackpackSatchelClear
   - WFClothingBackpackCaptain
@@ -496,6 +765,9 @@
   - WFClothingOuterVestWebMercenary
   - WFClothingOuterVestWebMercenaryBlack
   - WFClothingOuterArmorCaptainCarapace
+  - MercenaryClothingOuterArmoredJacketPMCBlue
+  - MercenaryClothingOuterArmoredJacketPMCGreen
+  - MercenaryClothingOuterArmoredJacketPMCOlive
   # Winter Coats
   - WFClothingOuterWinterCoat
   - WFClothingOuterWinterCoatLong
@@ -522,6 +794,14 @@
   - WFClothingOuterWinterRD
   - WFClothingOuterWinterCMO
   - WFClothingOuterWinterCE
+  - ContractorClothingLongcoatBlack
+  - ContractorClothingLongcoatBrown
+  - ContractorClothingLongcoatNanoTrasen
+  - ContractorClothingLongcoatArashiLabs
+  - ContractorClothingLongcoatQM
+  - ContractorClothingLongcoatRD
+  - ContractorClothingLongcoatCE
+  - ContractorClothingLongcoatCaptain
   - ClothingOuterWinterHoSUnarmored
   - WFClothingOuterWinterWardenUnarmored
   - ClothingOuterWinterSyndie
@@ -599,6 +879,37 @@
   - WFWetFloorSign
   - WFClothingOuterCoatExpensive
   - WFClothingOuterCoatSpaceAsshole
+  # Impstation clothing
+  - WFIMPClothingOuterCoatJokester
+  - WFIMPClothingOuterCoatPufferDark
+  - WFIMPClothingOuterCoatPufferRed
+  - WFIMPClothingOuterCoatPufferBlue
+  - WFIMPClothingOuterCoatPufferMime
+  - WFIMPClothingOuterCoatPufferSilver
+  - WFIMPClothingOuterCoatPufferPink
+  - WFIMPClothingOuterCoatBomberBlack
+  - WFIMPClothingOuterCoatBomberWhite
+  - WFIMPClothingOuterCoatBomberCargo
+  - WFIMPClothingOuterCoatBomberAtmosHolo
+  - WFIMPClothingOuterCoatWebSweater
+  - WFIMPClothingOuterCoatMusicianFurCoat
+  - WFIMPClothingOuterCoatVRexFurCoat
+  - WFIMPClothingOuterRainCape
+  - WFIMPClothingOuterWhitePoncho
+  - WFIMPClothingOuterQMPoncho
+  - WFIMPClothingOuterBlackPoncho
+  - WFIMPClothingOuterCowVest
+  - WFIMPClothingOuterBlackVest
+  - WFIMPClothingOuterChapsBrown
+  - WFIMPClothingOuterChapsWhite
+  - WFIMPClothingOuterChapsBlack
+  - WFIMPClothingOuterChapsFancy
+  # DeltaV clothing
+  - WFDVClothingOuterCoatOvercoat
+  - WFDVClothingOuterCoatLeatherJacket
+  - WFDVClothingOuterDusterCoat
+  - WFDVClothingOuterCoatNavalCoat
+  - WFDVClothingOuterClerkVest
 
 # == BELT
 - type: loadoutGroup
@@ -633,6 +944,9 @@
   - WFClothingBeltChaplainSash
   - WFClothingBeltChaplainSashFilled
   - WFClothingBeltChaplainDragon
+  - ContractorTrashBagBlue
+  - ContractorTrashBag
+  - ContractorTrashBagBlueFilledTrash
   - WFBooksBag
   - WFChemBag
   - WFOreBag
@@ -754,6 +1068,9 @@
   - WFSLClothingShoesHighheelShoes
   - WFSLClothingUniformBootsVampir
   - WFSLClothingShoesBootsSalvage1208134
+  # DeltaV clothing
+  - WFDVClothingShoesBootsFishing
+  - WFDVClothingShoesMiscWhite
   fallbacks:
   - WFClothingShoesColorBlack
 
@@ -866,6 +1183,39 @@
   # Starlight clothing
   - WFSLClothingHeadBase0121
   - WFSLRedRegaliaHat
+  # Impstation clothing
+  - WFIMPClothingHeadHatCircusClown
+  - WFIMPClothingHeadDevilHorns
+  - WFIMPClothingHeadJesterEvilHat
+  - WFIMPClothingHeadDeerstalker
+  - WFIMPClothingHeadSailorCap
+  - WFIMPClothingHeadFloatingFloraCrown
+  - WFIMPClothingHeadHatMimeBowler
+  - WFIMPClothingHeadHatBucketHat
+  - WFIMPClothingHeadHatPompombow
+  - WFIMPClothingHeadHatPompomear
+  - WFIMPClothingHeadHatCuteTiara
+  - WFIMPClothingHeadHatSimpleTiara
+  - WFIMPClothingHeadHatPrincess
+  - WFIMPClothingHeadHatGreenEscoffion
+  - WFIMPClothingHeadHatBlackVeil
+  # DeltaV clothing
+  - WFDVClothingHeadHatFedoraBlack
+  - WFDVClothingHeadHatFedoraChoc
+  - WFDVClothingHeadHatFedoraWhite
+  - WFDVClothingHeadPropellerHat
+  - WFDVClothingHeadHatReindeer
+  - WFDVClothingHeadHatRedRibbon
+  - WFDVClothingHeadHatFestiveHatRed
+  - WFDVClothingHeadHatFestiveHatGreen
+  - WFDVClothingHeadHatCandyCane
+  - WFDVClothingHeadHatStar
+  - WFDVClothingHeadHatFestiveLights
+  - WFDVClothingHeadHatElf
+  - WFDVClothingHeadHatWrestlingMaskLuchaRed
+  - WFDVClothingHeadHatWrestlingMaskLuchaBlue
+  - WFDVClothingHeadHatFlatBlack
+  - WFDVClothingHeadHatFlatBrown
 
 # == HEADSETS
 - type: loadoutGroup
@@ -894,6 +1244,24 @@
   - WFClothingHeadsetAltEngineeringCommon
   - WFClothingHeadsetAltMedicalCommon
   - WFClothingHeadsetAltScienceCommon
+  - WFClothingHeadsetAltBloodCommon
+# wristsets
+  - ContractorNFClothingWristsetContractorCommon
+  - ContractorNFClothingWristsetContractorCommonAlt
+  - ContractorNFClothingWristsetCaptainCommon
+  - ContractorNFClothingWristsetCargoCommon
+  - ContractorNFClothingWristsetMiningCommon
+  - ContractorNFClothingWristsetEngineeringCommon
+  - ContractorNFClothingWristsetAtmosphericsCommon
+  - ContractorNFClothingWristsetMedicalCommon
+  - ContractorNFClothingWristsetScienceCommon
+  - ContractorNFClothingWristsetMedicalScienceCommon
+  - ContractorNFClothingWristsetRoboticsCommon
+  - ContractorNFClothingWristsetServiceCommon
+  - ContractorNFClothingWristsetServiceJanitorCommon
+  - ContractorNFClothingWristsetServiceClownCommon
+  - ContractorNFClothingWristsetServiceMimeCommon
+  - ContractorNFClothingWristsetPunkCommon
   fallbacks:
   - WFClothingHeadsetGreyCommon
 
@@ -908,6 +1276,7 @@
   - WFClothingHandsGlovesMercFingerless
   - WFClothingHandsMercenaryGlovesCombat
   - WFClothingHandsGlovesCombat
+  - ClothingHandsGlovesCombatWhite
   - ClothingHandsTacticalMaidGloves
   # Warmers
   - ClothingHandsPlainWhiteWarmers
@@ -1062,6 +1431,13 @@
   - WFSLClothingUniformShinelVampir
   - WFSLClothingNeckTieGeoffroyblack12
   - WFSLRedRegaliaCloak
+  # DeltaV clothing
+  - WFDVClothingNeckTieWhite
+  - WFDVClothingNeckTieBlack
+  - WFDVClothingNeckTieBrown
+  - WFDVClothingNeckTieBlue
+  - WFDVClothingNeckTieGreen
+  - WFDVClothingNeckCopperNecklace
   # Flooftier collars end
 
 # == PDAS
@@ -1125,6 +1501,8 @@
   - WFJesterPDA
   - WFSyndiAgentPDA
   - WFSyndiPDA
+  - WFPiratePDA
+  - WFCrackedPDA
 
 
   fallbacks:
@@ -1199,12 +1577,16 @@
   - WFBeachBall
   - WFCrayonBox
   - WFSoapNT
+  - ContractorClothingHeadHatHairflower
   - PlushieLizard
+  - PlushieVox # SKREEEEEEEEEEEE!
+  - PlushieExperiment # Wayfarer: EXPIEEEEEEEEE
   - WehfarerPlushie
   - WFPlushieSharkGrey
   - WFPlushieSharkBlue
   - WFPlushieSharkPink
   - WFHarmonicaInstrument
+  - WFOcarinaInstrument
   - WFSaxophoneInstrument
   - WFAcousticGuitarInstrument
   - WFPonderingOrb
@@ -1216,6 +1598,7 @@
   - ContractorAccessConfigurator # Coyote: Add Civilian Access Configurator
   # Bureaucracy
   - WFBoxFolderMedicalDoctor
+  - ContractorBoxFolderMixedPapers
   - WFBrbSign
   - WFHandLabeler
   - WFStampsApprovedDenied
@@ -1266,10 +1649,12 @@
   - WFWeaponProtoKineticAccelerator
   - WFPinpointerUniversal
   - WFShipyardRCD
+  - WFShipyardRPD
   - WFShipyardDoorRemote
   - WFHandheldCrewMonitor
   - WFHypoMini
   - WFBible
+  - ContractorBodycam
 
 # == FACE SLOT
 - type: loadoutGroup
@@ -1293,6 +1678,7 @@
   - WFClothingMaskSadMime
   - WFClothingMaskClown
   - WFClothingMaskClownBald
+  - WFClothingMaskClownNose # Wayfarer
   fallbacks:
   - WFClothingMaskBreath
 
@@ -1337,6 +1723,9 @@
   loadouts:
   - WFClothingWalletLeatherBrown
   - WFClothingWalletLeatherBlack
+  - ContractorClothingWalletLeatherRed
+  - ContractorClothingWalletLeatherBlue
+  - ContractorClothingWalletLeatherGreen
   fallbacks:
   - WFClothingWalletLeatherBrown
 
@@ -1352,6 +1741,7 @@
   - WFCriticalImplantTrackerCartridge
   - WFNetProbeCartridge
   - WFLogProbeCartridge
+  - WFCorpCartridge
 
 # == IMPLANTERS
 - type: loadoutGroup
@@ -1364,7 +1754,9 @@
   - WFLightImplanter
   - WFBikeHornImplanter
   - WFSadTromboneImplanter
-  - WFMimePowersImplanter
-  - WFBibleUserImplanter
+  # Mime vow and faith implanters removed. The mime vow is replaced by the new Mime trait. Faith is covered by the existing Pious trait.
+  #- WFMimePowersImplanter
+  #- WFBibleUserImplanter
+  - ContractorWehImplanter
   fallbacks:
   - WFMedicalTrackingImplanter

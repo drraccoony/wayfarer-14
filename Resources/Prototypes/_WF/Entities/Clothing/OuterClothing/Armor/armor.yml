@@ -51,3 +51,25 @@
     severity: BlackMarket
     turnInValues:
       FrontierUplinkCoin: 1
+      
+# Merchant Coat
+- type: entity
+  parent: [AllowSuitStorageClothing, ClothingOuterWinterCoat]
+  id: ClothingOuterArmoredWinterMerchant
+  name: Merchant's Armored Winter Coat
+  description: A mixture of style and protection. As warm as a thanks from the merchant's guild.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/OuterClothing/Misc/merchant_armored_coat.rsi
+  - type: Clothing
+    sprite: _WF/Clothing/OuterClothing/Misc/merchant_armored_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.8

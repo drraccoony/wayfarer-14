@@ -1,0 +1,41 @@
+- type: jukebox
+  id: WFChillpeach200am
+  name: 2:00 AM
+  artist: chillpeach
+  path:
+    path: /Audio/_WF/Jukebox/chillpeach-200am.ogg
+
+- type: jukebox
+  id: WFChillpeachInDreamLand
+  name: In Dream Land
+  artist: chillpeach
+  path:
+    path: /Audio/_WF/Jukebox/chillpeach-indreamland.ogg
+
+- type: jukebox
+  id: WFChillpeachPurple
+  name: Purple
+  artist: chillpeach
+  path:
+    path: /Audio/_WF/Jukebox/chillpeach-purple.ogg
+
+- type: jukebox
+  id: WFRamalowAnxiety
+  name: Anxiety
+  artist: ramalow
+  path:
+    path: /Audio/_WF/Jukebox/ramalow-anxiety.ogg
+
+- type: jukebox
+  id: WFRiddimanDeepSpace
+  name: Deep Space
+  artist: riddiman
+  path:
+    path: /Audio/_WF/Jukebox/riddiman-deepspace.ogg
+
+- type: jukebox
+  id: WFSethClownMusic
+  name: Clown Music
+  artist: Seth Makes Sounds
+  path:
+    path: /Audio/_WF/Jukebox/seth_clown_music.ogg

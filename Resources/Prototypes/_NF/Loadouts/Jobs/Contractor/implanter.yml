@@ -26,6 +26,16 @@
   implants:
   - BikeHornImplanter
 
+- type: loadout 
+  id: ContractorWehImplanter
+  name: weh implanter
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 1000
+  implants:
+  - WehImplanter
+
 - type: loadout
   id: ContractorSadTromboneImplanter
   name: sad trombone implanter
@@ -37,24 +47,26 @@
   - SadTromboneImplanter
 
 #T2
-- type: loadout
-  id: ContractorMimePowersImplanter
-  name: mime vow implanter
-  description: For the budding mime. Take your vow today.
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 5000
-  implants:
-  - MimePowersImplanter
-
-- type: loadout
-  id: ContractorBibleUserImplanter
-  name: faith implanter
-  description: For the budding chaplain. Perform miracles, proselytize, and grow your flock.
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 5000
-  implants:
-  - BibleUserImplanter
+# Wayfarer: Mime vow and faith implanters removed. The mime vow is replaced by the new Mime trait. Faith is covered by the existing Pious trait.
+#- type: loadout
+#  id: ContractorMimePowersImplanter
+#  name: mime vow implanter
+#  description: For the budding mime. Take your vow today.
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: ContractorT2
+#  price: 5000
+#  implants:
+#  - MimePowersImplanter
+#
+#- type: loadout
+#  id: ContractorBibleUserImplanter
+#  name: faith implanter
+#  description: For the budding chaplain. Perform miracles, proselytize, and grow your flock.
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: ContractorT2
+#  price: 5000
+#  implants:
+#  - BibleUserImplanter
+# End Wayfarer

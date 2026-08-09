@@ -53,6 +53,9 @@ uplink-security-lecter-desc = Standard issue fully automatic rifle. Uses .20 rif
 uplink-security-vulcan-name = Vulcan
 uplink-security-vulcan-desc = Heavy duty, select fire battle rifle. Uses .30 rifle.
 
+uplink-security-drozd-name = Drozd
+uplink-security-drozd-desc = A fully automatic SMG. Uses .35 auto.
+
 uplink-security-lasercarbine-name = Laser Rifle
 uplink-security-lasercarbine-desc = Standard issue laser carbine. Has an internal battery, but requires using a security charging dock. Fires through glass.
 
@@ -70,6 +73,15 @@ uplink-security-energygun-desc = A semi-automatic energy gun capable of firing b
 
 uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
+
+uplink-security-sniper-name = Sniper Bundle
+# Wayfarer Start
+# uplink-security-sniper-desc = "Aspect" sniper rifle provided with non lethal .60 rounds for long range support on the field, for lethal ammunition ask your higher ups. < Changed
+uplink-security-sniper-desc = "Aspect" sniper rifle provided with .60 rounds for breaching and support.
+
+uplink-security-eshotty-name = Experimental Energy Shotgun
+uplink-security-eshotty-desc = Experimental Energy Shotgun with three different firing modes. Wide, which fires more shots. Narrow, which decreases spread. And disabler, which fires disabling energy bolts.
+# Wayfarer End
 
 uplink-security-empgrenade-name = EMP Grenade
 uplink-security-empgrenade-desc = A handheld grenade that emits a high energy pulse that disrupts electronics and power systems in a moderately large radius.
@@ -116,8 +128,20 @@ uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (over
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 
+uplink-security-60sniperbox-name = .60 Rifle Box
+uplink-security-60sniperbox-desc = a Box containing 30 rounds of .60 rifle bullets.
+
+uplink-security-60sniperbox-rubber-name = .60 Rifle Rubber Box
+uplink-security-60sniperbox-rubber-desc = a Box containing 30 rounds of .60 rifle (rubber) bullets.
+
 uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
+
+uplink-security-smgmagazine-name = .35 +P SMG Magazines
+uplink-security-smgmagazine-desc = A box containing 3 filled .35 pistol (overpressure) SMG magazines.
+
+uplink-security-smgmagazine-rubber-name = .35 Rubber SMG Magazines
+uplink-security-smgmagazine-rubber-desc = A box containing 3 filled .35 pistol (rubber) SMG magazines.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
@@ -166,6 +190,12 @@ uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded
 
 uplink-security-speedloaderrubber-name = .45 Pistol Rubber Speed Loader
 uplink-security-speedloaderrubber-desc = A revolver speed loader that comes pre-loaded with .45 rubber cartridges.
+
+uplink-security-speedloaderbox-name = .45 Pistol Speed Loaders
+uplink-security-speedloaderbox-desc = A box of revolver speed loaders that come pre-loaded with .45 pistol cartridges.
+
+uplink-security-speedloaderrubberbox-name = .45 Pistol Rubber Speed Loaders
+uplink-security-speedloaderrubberbox-desc = A box of revolver speed loaders that come pre-loaded with .45 rubber cartridges.
 
 uplink-security-shotlethal-name = Lethal Shotgun Shells
 uplink-security-shotlethal-desc = A box of lethal .50 calibre buckshot shotgun shells.
@@ -240,8 +270,8 @@ uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
 # region Pirate
-uplink-pirate-hardsuit-name = Pirate Hardsuit
-uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-pirate-EVA-name = Pirate EVA Suit
+uplink-pirate-EVA-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
 
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
@@ -254,6 +284,9 @@ uplink-pirate-crate-captain-desc = A chest filled with the necessary goodies for
 
 uplink-pirate-crate-name = Pirate Chest
 uplink-pirate-crate-desc = A chest filled with the necessary goodies for a pirate.
+
+uplink-pirate-wooden-keg-rum-name = A Keg of Rum
+uplink-pirate-wooden-keg-rum-desc = A Keg filled with all the rum a Pirate needs, be sure to drink yourself dead to celebrate!
 
 uplink-pirate-magboots-name = Pirate Magboots
 uplink-pirate-magboots-desc = Pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
@@ -286,7 +319,7 @@ uplink-pirate-satchel-name = Pirate Satchel
 uplink-pirate-satchel-desc = An inconspicuous satchel filled with pirate goodies.
 
 uplink-pirate-flintlock-name = Flintlock Pistol
-uplink-pirate-flintlock-desc = A pirate captain's companion. Yarrr! Uses .60 anti-materiel ammo.
+uplink-pirate-flintlock-desc = A pirate captain's companion. Yarrr! Uses .45 pistol ammo.
 
 uplink-pirate-shotgunammo-name = Blunderbuss Shell Box
 uplink-pirate-shotgunammo-desc = A box of .50 shotgun shells, used in the blunderbuss.
@@ -341,6 +374,9 @@ uplink-pirate-pouch-desc = A pouch for organizing miscellaneous items.
 
 uplink-pirate-jetpack-name = Pirate Jetpack
 uplink-pirate-jetpack-desc = This jetpack hides your radar signature, allowing you to fly undetected in outer space.
+
+uplink-pirate-shipyard-rcd-name = ShipYARRd RCD
+uplink-pirate-shipyard-rcd-desc = This special shipyard RCD has a modified catalog to better suit the freelancer aesthetic. Patch up holes in the hull, expand the ship... So many applications!
 
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle

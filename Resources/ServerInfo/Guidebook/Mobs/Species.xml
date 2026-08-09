@@ -17,7 +17,7 @@
   </Box>
   # Wayfarer specific species
   <Box>
-    <GuideEntityEmbed Entity="MobOldKinVox" Caption="Old-kin Vox"/>
+    <GuideEntityEmbed Entity="MobAurelianVox" Caption="Aurelian Vox"/>
   </Box>
   # Frontier specific species
   <Box>
@@ -38,6 +38,10 @@
   # Starlight specific species
   <Box>
   <GuideEntityEmbed Entity="MobAvali" Caption="Avali"/>
+  <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
   </Box>
-
+  # The Den specific species
+  <Box>
+  <GuideEntityEmbed Entity="MobOvinia" Caption="Ovinia"/>
+  </Box>
 </Document>

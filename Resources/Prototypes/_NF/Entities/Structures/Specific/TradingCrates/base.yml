@@ -7,7 +7,7 @@
   - type: Transform
     noRot: true
   - type: TradeCrate
-    valueAtDestination: 1500
+    valueAtDestination: 1600 #WF: 1500<1600 way too little, no wonder everyone spammed express
     valueElsewhere: 400
   - type: IgnoreMarketModifier
   - type: Icon
@@ -93,14 +93,18 @@
       paper_label: !type:ContainerSlot
   - type: ItemSlots
   - type: RequireProjectileTarget
+  - type: WFBonusCurrency #Wayfarer: Add additional currency that checks destination
+    currency: WayfarerMerchantToken
 
 - type: entity
   parent:
   - CrateTradeBaseSecure
-  - BaseC3SyndicateContraband
+  - BaseBMContraband # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   id: CrateTradeBaseSecureContraband
-  name: Syndicate contraband crate
-  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+#  name: Syndicate contraband crate # Wayfarer
+  name: packaged contraband crate
+#  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT. # Wayfarer
+  description: A crate full of various illicit goods, origin unkown, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
   abstract: true
   components:
   - type: Fixtures

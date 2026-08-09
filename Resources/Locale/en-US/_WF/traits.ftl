@@ -10,7 +10,25 @@ trait-herbivore-desc = You are a Herbivore, you can only eat products that conta
 trait-claybody-name = Clay Body
 trait-claybody-desc = Your body is made of living clay. Others can pluck pieces from you, and you'll slowly grow back to your full size.
 
+trait-mime-name = Mime
+trait-mime-desc = You have taken the mime's vow of silence.
+
 loadout-trait-restriction = Requires the { $trait } trait.
+
+## Juggling system
+
+juggling-action-popup = You start juggling!
+juggling-no-gravity = You can't juggle without gravity!
+
+## Balloon twisting system
+
+balloon-twist-verb-category = Twist into...
+balloon-twist-shape-dog = Dog
+balloon-twist-shape-clown = Clown
+balloon-twist-shape-banana = Banana
+balloon-twist-shape-cat = Cat
+balloon-twist-shape-moth = Moth
+balloon-twist-success = You twist the balloon into shape!
 
 ## Clay Body system
 

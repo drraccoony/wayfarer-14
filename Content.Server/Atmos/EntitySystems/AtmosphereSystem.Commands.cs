@@ -4,6 +4,7 @@ using Content.Server.Atmos.Components;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared._NF.Atmos.Components; // Frontier
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -20,11 +21,17 @@ public sealed partial class AtmosphereSystem
         _consoleHost.RegisterCommand("fixgridatmos",
             "Makes every tile on a grid have a roundstart gas mix.",
             "fixgridatmos <grid Ids>", FixGridAtmosCommand, FixGridAtmosCommandCompletions);
+
+        // Frontier: Toggle atmos per map
+        _consoleHost.RegisterCommand("setmapatmosenabled",
+            "Sets whether atmos devices should work on a map",
+            "setmapatmosenabled <map id> <enabled>", SetMapAtmosEnabledCommand);
     }
 
     private void ShutdownCommands()
     {
         _consoleHost.UnregisterCommand("fixgridatmos");
+        _consoleHost.UnregisterCommand("setmapatmosenabled"); // Frontier
     }
 
     [AdminCommand(AdminFlags.Debug)]
@@ -36,7 +43,7 @@ public sealed partial class AtmosphereSystem
            return;
        }
 
-       var mixtures = new GasMixture[13]; // Add one per added array. // Frontier:9<13
+       var mixtures = new GasMixture[14]; // Add one per added array. // Frontier:9<13 // Wayfarer: 13<14
        for (var i = 0; i < mixtures.Length; i++)
            mixtures[i] = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
 
@@ -86,6 +93,10 @@ public sealed partial class AtmosphereSystem
        mixtures[12].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
        mixtures[12].AdjustMoles(Gas.WaterVapor, Atmospherics.NitrogenMolesStandard);
        mixtures[12].Temperature = 340f; // Sauna
+
+       // Wayfarer - 13: Respiron (101kpa)
+       // God I hate this is an array, actually. If this is ever in a merge conflict, and you feel like changing the mixtures number, make sure to also change the mode in id: AtmosFixRespironMarker
+       mixtures[13].AdjustMoles(Gas.Respiron, Atmospherics.MolesCellStandard);
 
        foreach (var arg in args)
        {
@@ -195,4 +206,37 @@ public sealed partial class AtmosphereSystem
 
         return CompletionResult.FromOptions(options);
     }
+
+    // Frontier: Toggle atmos per map
+    [AdminCommand(AdminFlags.Debug)]
+    private void SetMapAtmosEnabledCommand(IConsoleShell shell, string argstr, string[] args)
+    {
+        if (args.Length != 2)
+        {
+            shell.WriteError("Not enough arguments.");
+            return;
+        }
+
+        if (!bool.TryParse(args[1], out var enable) || !int.TryParse(args[0], out var intMapId))
+        {
+            shell.WriteError("Invalid arguments.");
+            return;
+        }
+
+        if (!_mapSystem.TryGetMap(new MapId(intMapId), out var mapUid))
+        {
+            shell.WriteError("Target map does not exist.");
+            return;
+        }
+
+        if (enable)
+        {
+            RemComp<AtmosDisabledMapComponent>(mapUid.Value);
+        }
+        else
+        {
+            EnsureComp<AtmosDisabledMapComponent>(mapUid.Value);
+        }
+    }
+    // End Frontier: Toggle atmos per map
 }

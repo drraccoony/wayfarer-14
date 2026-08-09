@@ -25,6 +25,11 @@
     delays: # Frontier
       stamp:
         length: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
+# Wayfarer Start
+  - type: Tag
+    tags:
+    - WhitelistWallet
+# end Wayfarer
 
 - type: entity
   name: alternate rubber stamp
@@ -151,7 +156,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [RubberStampBase, BaseCGPContraband] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: RubberStampHos
   categories: [ DoNotMap ]
   components:
@@ -231,7 +236,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [RubberStampBase, BaseCGPContraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: RubberStampWarden
   categories: [ DoNotMap ]
   components:
@@ -270,7 +275,7 @@
 
 - type: entity
   name: detective's rubber stamp
-  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [RubberStampBase, BaseCGPContraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: RubberStampDetective
   categories: [ DoNotMap ]
   components:
@@ -311,7 +316,7 @@
 
 - type: entity
   name: wizard's rubber stamp
-  parent: [RubberStampBase, BaseC3WizardContraband] # Frontier: BaseMagicalContraband<BaseC3WizardContraband
+  parent: [RubberStampBase ] # Frontier: BaseMagicalContraband<BaseC3WizardContraband # Wayfarer: Removed BaseC3WizardContraband
   id: RubberStampWizard
   description: A chaotic wizard stamp for serving unchaotic paperwork, how ironic.
   categories: [ DoNotMap ]

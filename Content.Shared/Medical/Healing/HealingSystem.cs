@@ -15,10 +15,17 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes; // Wayfarer
+using Content.Shared.Tag; // Wayfarer
+using Robust.Shared.Serialization.TypeSerializers.Implementations; // Wayfarer
+using Content.Shared.Inventory; // Wayfarer
+using Content.Shared.Buckle; // Wayfarer
+using Content.Shared.Buckle.Components;
+using Content.Shared.Silicons.Borgs.Components; // Wayfarer
 
 namespace Content.Shared.Medical.Healing;
 
-public sealed class HealingSystem : EntitySystem
+public sealed partial class HealingSystem : EntitySystem // Wayfarer: Added Partial
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
@@ -30,6 +37,10 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Wayfarer
+    [Dependency] private readonly InventorySystem _inventorySystem = default!; // Wayfarer
+
+    private static readonly ProtoId<TagPrototype> SurgeryToolsTag = "SurgeryTool"; // Wayfarer
 
     public override void Initialize()
     {
@@ -92,7 +103,7 @@ public sealed class HealingSystem : EntitySystem
             if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
                 dontRepeat = true;
         }
-        else
+        else if (!_tag.HasTag(args.Used.Value, SurgeryToolsTag)) // Wayfarer: Surgery tools should not be consumed.
         {
             PredictedQueueDel(args.Used.Value);
         }
@@ -161,8 +172,7 @@ public sealed class HealingSystem : EntitySystem
     {
         if (args.Handled)
             return;
-
-        if (TryHeal(healing, args.User, args.User))
+        if (TryHeal(healing, args.User, args.User, args.User)) // Wayfarer: 4th argument, to surpport surgery tools detecting buckled.
             args.Handled = true;
     }
 
@@ -171,11 +181,11 @@ public sealed class HealingSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target == null)
             return;
 
-        if (TryHeal(healing, args.Target.Value, args.User))
+        if (TryHeal(healing, args.Target.Value, args.User, args.Target.Value)) // Wayfarer: 4th argument, to surpport surgery tools detecting buckled.
             args.Handled = true;
     }
 
-    private bool TryHeal(Entity<HealingComponent> healing, Entity<DamageableComponent?> target, EntityUid user)
+    private bool TryHeal(Entity<HealingComponent> healing, Entity<DamageableComponent?> target, EntityUid user, EntityUid? targetBuckle = null) // Wayfarer: add optional buckle target
     {
         if (!Resolve(target, ref target.Comp, false))
             return false;
@@ -199,6 +209,14 @@ public sealed class HealingSystem : EntitySystem
             return false;
         }
 
+        // Wayfarer: block healing if the damage is a big ouch owie (too severe)
+        if (IsHealingThresholdExceeded(healing, target!))
+        {
+            _popupSystem.PopupClient(Loc.GetString("medical-item-too-severe", ("item", healing.Owner)), healing, user);
+            return false;
+        }
+        // End Wayfarer
+
         _audio.PlayPredicted(healing.Comp.HealingBeginSound, healing, user);
 
         var isNotSelf = user != target.Owner;
@@ -212,6 +230,15 @@ public sealed class HealingSystem : EntitySystem
         var delay = isNotSelf
             ? healing.Comp.Delay
             : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
+
+        // Wayfarer: Surgical Devices delay is affected by whether the patient is on a bed, and the doctors clothes being sterile
+        if (_tag.HasTag(healing, SurgeryToolsTag))
+        {
+
+            var surgerySpeedModifier = 1 - (GetSurgicalEnvironmentBonus(target, healing, user, targetBuckle) / 10);
+            delay = delay * surgerySpeedModifier;
+        }
+        // End wayfarer
 
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: healing)
@@ -247,4 +274,78 @@ public sealed class HealingSystem : EntitySystem
         var output = percentDamage * (mod - 1) + 1;
         return Math.Max(output, 1);
     }
+    // Wayfarer
+    public float GetSurgicalEnvironmentBonus(Entity<DamageableComponent?> target, Entity<HealingComponent> healing, EntityUid user, EntityUid? targetBuckle)
+    {
+        //generates a score, used for increasing the speed of surgery
+        var surgicalEnvironmentPoints = 0.0;
+        //Medical gloves
+        if (_inventorySystem.TryGetSlotEntity(user, "gloves", out var gloves))
+        {
+            surgicalEnvironmentPoints += 1; //any gloves are good - but sterile ones are better.
+            var userGlovesID = MetaData(gloves.Value).EntityPrototype?.ID;
+            if (userGlovesID == "ClothingHandsGlovesNitrile" || userGlovesID == "ClothingHandsGlovesLatex") //Id references instead of adding a new tag is used, to make it easier to strip out this system.
+            {
+                surgicalEnvironmentPoints += 1;
+            }
+        }
+        //medical mask
+        if (_inventorySystem.TryGetSlotEntity(user, "mask", out var mask))
+        {
+            surgicalEnvironmentPoints += 1; //any mask is good - but sterile ones are better.
+            var userMaskID = MetaData(mask.Value).EntityPrototype?.ID;
+            if (userMaskID == "ClothingMaskSterile" || userMaskID == "ClothingMaskBreathMedical" || userMaskID == "ClothingMaskBreathMedicalSecurity")
+            {
+                surgicalEnvironmentPoints += 1;
+            }
+        }
+        //scrubs
+        if (_inventorySystem.TryGetSlotEntity(user, "jumpsuit", out var jumpsuit))
+        {
+            var userJumpsuitID = MetaData(jumpsuit.Value).EntityPrototype?.ID;
+            if (userJumpsuitID == "UniformScrubsColorGreen" || userJumpsuitID == "UniformScrubsColorBlue" || userJumpsuitID == "UniformScrubsColorPurple")
+            {
+                surgicalEnvironmentPoints += 0.5;
+            }
+        }
+        //cap
+        if (_inventorySystem.TryGetSlotEntity(user, "head", out var head))
+        {
+            var userHeadID = MetaData(head.Value).EntityPrototype?.ID;
+            if (userHeadID == "ClothingHeadHatSurgcapGreen" || userHeadID == "ClothingHeadHatSurgcapBlue" || userHeadID == "ClothingHeadHatSurgcapPurple")
+            {
+                surgicalEnvironmentPoints += 0.5;
+            }
+        }
+        //bed
+        if (targetBuckle.HasValue && TryComp<BuckleComponent>(targetBuckle.Value, out var buckleComp))
+        {
+            if (buckleComp.Buckled)
+            {
+                surgicalEnvironmentPoints += 1; //any bed (or chair) is good - but surgical beds are better.
+                if (buckleComp.BuckledTo != null)
+                {
+                    var bedID = MetaData(buckleComp.BuckledTo.Value).EntityPrototype?.ID;
+                    if (bedID == "StasisBed" || bedID == "OperatingTable")
+                    {
+                        surgicalEnvironmentPoints += 2;
+                    }
+                }
+            }
+        }
+        //Cyborg - as borgs cant wear clothes, they get seperate bonuses to make medical cyborgs viable. 
+
+        if (TryComp<BorgSwitchableTypeComponent>(user, out var chassis) && chassis is not null)
+        {
+            surgicalEnvironmentPoints += 2; //any cyborg is as good as a humanoid with non-sterile gloves and a mask
+            if (chassis.SelectedBorgType == "medical")
+            {
+                surgicalEnvironmentPoints += 3; //medical cyborgs are as good as a humanoid with full surgical gear on. 
+            }
+        }
+
+        return (float)Math.Min(surgicalEnvironmentPoints, 8); //cap it at 8 points, so that surgery cant become instant.
+    }
+    // End Wayfarer
+
 }

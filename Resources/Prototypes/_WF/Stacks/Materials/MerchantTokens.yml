@@ -1,0 +1,6 @@
+# Merchant tokens
+- type: stack
+  id: WayfarerMerchantToken
+  name: stack-wayfarer-merchanttoken
+  icon: _WF/Objects/Specific/Cargo/merchanttoken.rsi
+  spawn: WayfarerMerchantToken1

@@ -42,7 +42,7 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
 
     public void UpdateState(CommunityGoalConsoleState state)
     {
-        // ── Staging area ──────────────────────────────────────────────────────
+        // Staging area
         StagingList.RemoveAllChildren();
 
         var totalStacks = state.StagedItems.Count;
@@ -93,7 +93,7 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
             StagingList.AddChild(row);
         }
 
-        // ── Pallet items ──────────────────────────────────────────────────────
+        //  Pallet items 
         if (hasPalletItems)
         {
             StagingList.AddChild(new Label
@@ -130,7 +130,7 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
             }
         }
 
-        // ── Goals list ────────────────────────────────────────────────────────
+        // Goals list
         GoalsList.RemoveAllChildren();
 
         if (state.ActiveGoals.Count == 0)

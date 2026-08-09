@@ -248,8 +248,6 @@
   - type: Tag # Frontier
     tags: # Frontier
     - SmallThrusterMachineCircuitboard # Frontier
-  - type: PirateBountyItem # Wayfarer
-    id: ThrusterMachineCircuitboard
 
 # Gyroscope
 - type: entity
@@ -266,8 +264,6 @@
       Capacitor: 1
     stackRequirements:
       Glass: 2
-  - type: PirateBountyItem # Wayfarer
-    id: Gyroscope
 
 - type: entity
   id: SmallGyroscopeSecurityMachineCircuitboard
@@ -356,7 +352,7 @@
 
 - type: entity
   id: PortableGeneratorDKMachineCircuitboard
-  parent: [ BaseMachineCircuitboard, BaseC2ContrabandUnredeemable ]
+  parent: [ BaseMachineCircuitboard ] # Wayfarer: Removed contraband
   name: D-K portable generator machine board
   description: A machine printed circuit board for a D-K-type portable generator.
   components:
@@ -378,7 +374,7 @@
 
 - type: entity
   id: PortableGeneratorDKJrMachineCircuitboard
-  parent: [ BaseMachineCircuitboard, BaseC1Contraband ]
+  parent: BaseMachineCircuitboard # Wayfarer: Removed contraband
   name: D-K Jr. portable generator machine board
   description: A machine printed circuit board for a D-K Jr.-type portable generator.
   components:
@@ -400,7 +396,7 @@
 
 # Wizards and cultists
 - type: entity
-  parent: BaseMachineCircuitboard
+  parent: [ BaseMachineCircuitboard ] # Wayfarer: Removed BaseC3WizardContraband
   id: ScrollWizardStaffRechargerAltar
   name: wizard staff altar binding scroll
   description: An odd amalgamation of wizardry and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
@@ -432,7 +428,7 @@
       price: 0
 
 - type: entity
-  parent: ScrollWizardStaffRechargerAltar
+  parent: [ BaseC2WizardContraband, ScrollWizardStaffRechargerAltar ] # Wayfarer: BaseC3CultContraband<BaseC2WizardContraband
   id: ScrollCultStaffRechargerAltar
   name: blood cult staff altar binding scroll
   description: An odd amalgamation of eldritch magic and circuitry. Somehow it has a number of ports matching a standard NanoTrasen machine frame.
@@ -477,8 +473,8 @@
         # CableHV: 10
 
 - type: entity
+  parent: [ BaseC2WizardContraband, ScrollWizardStaffRechargerAltar ] # Wayfarer: BaseC3CultContraband<BaseC2WizardContraband
   id: ScrollCultForge
-  parent: ScrollWizardStaffRechargerAltar
   name: cult forge binding scroll
   components:
     - type: Sprite
@@ -629,7 +625,7 @@
 
 - type: entity
   id: PirateStitcherCircuitboard
-  parent: [UniformPrinterMachineCircuitboard, BaseC3PirateContrabandNoValue]
+  parent: [UniformPrinterMachineCircuitboard] # Wayfarer: Remove contraband
   name: pirate stitcher machine board
   description: Clearly brand new.
   components:

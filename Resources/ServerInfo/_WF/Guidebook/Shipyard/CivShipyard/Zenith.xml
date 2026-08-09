@@ -1,0 +1,45 @@
+<Document>
+  # ZENITH-CLASS SURVEY SHUTTLE
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapZenith" Caption=""/>
+  </Box>
+
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 3-5
+
+  [color=#a4885c]Power Gen Type:[/color] Uranium x2
+
+  # Shuttle Brief
+
+  The Zenith is Silkworm Shipyard's premium shuttle for scientists that prefer to not compromise on comfort during their surveying operations. The crew is provided with communal quarters, a fully equipped restroom, as well as a break room perfect for a small celebration after a long scientific expedition. The ship's layout and plentiful interior space encourages customization to better suit the crew's needs.
+
+  Recommended crew size is three people: captain, researcher, salvager. In standard configuration, the Zenith also supports a cargo technician and a pilot. It's possible to operate the ship with a skeleton crew of two, with the researcher and/or the salvager sharing responsibilities of the captain.
+
+  # Notable features
+
+  - Rooms with windows are equipped with shutters linked to buttons in grey frames.
+  - Crew quarters and captain's quarters are equipped with light switches in purple frames.
+  - Engineering room contains an engine shut-off button, framed in red.
+  - A withdraw-only ATM is accessible on either dock for convenient transactions.
+  - Bridge and Research Lab are connected to an internal holopad system, allowing easy communication between the captain/pilot and the researcher.
+
+  # Technical Details
+
+  In standard configuration, the Zenith has a power load of 53.5 kW. Engaging the engine shut-off system brings this number down to 32.5 kW.
+
+  The ship is divided into three sections for the purposes of APC destribution: Bridge (powers the bow of the ship up to the entrance to the central cargo bay), Science (powers the research lab and the central cargo bay) and Engineering (powers the generator room and the stern dock).
+
+  The Zenith is equipped with 15 thrusters: 8 rear-facing, 3 forward-facing and 4 side-facing (2 for each side).
+
+  # Useful Information
+
+  [textlink="Preflight checklist" link="PreflightChecklist"/]
+
+  [textlink="Guide to shuttle piloting" link="Piloting"/]
+
+  [textlink="Sector topology" link="SectorTopology"/]
+
+  [textlink="Guide to scientific research" link="Science"/]
+
+</Document>

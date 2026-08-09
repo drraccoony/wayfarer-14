@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterBaseLarge, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterArmorSrCarapace
   name: "station representative's carapace"
   description: "A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative."
@@ -28,7 +28,7 @@
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioArmoredMercenary
   name: mercenary bio suit
-  description: Favorite protective gear of any syndicate chemical warfare enjoyers.
+  description: The choice of armor for any mercenaries battling bio-hazards in atmosphere.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Bio/mercenary.rsi
@@ -51,7 +51,7 @@
 # Syndicate armored bio suit
 - type: entity
   parent:
-  - BaseC3SyndicateContraband
+  - BaseBMContraband # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   - ClothingOuterBioGeneral
   - ContrabandClothing
   id: ClothingOuterBioArmoredSyndicate
@@ -77,21 +77,21 @@
     damageCoefficient: 0.60
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterVestWebMercenary, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband | ClothingOuterBaseLarge<ClothingOuterVestWebMercenary
   id: ClothingOuterArmorNfsd
   name: CGP armor
   description: Get shot, maybe survive?
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi
+    sprite: _WF/Clothing/OuterClothing/Armor/CGP_armor.rsi # Wayfarer: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi < _WF/Clothing/OuterClothing/Armor/CGP_armor.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi
+    sprite: _WF/Clothing/OuterClothing/Armor/CGP_armor.rsi # Wayfarer: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi < _WF/Clothing/OuterClothing/Armor/CGP_armor.rsi
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.65
+        Piercing: 0.60 #WF: 0.65<0.60
         Heat: 0.7
         Caustic: 0.65
   - type: ClothingSpeedModifier
@@ -102,7 +102,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ BaseC1Contraband, ClothingOuterVestWebMercenary ]
+  parent: ClothingOuterVestWebMercenary # Wayfarer: Removed contraband
   id: ClothingOuterVestWebMercenaryBlack
   components:
   - type: Sprite

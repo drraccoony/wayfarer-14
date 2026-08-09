@@ -25,7 +25,7 @@
 #Shortswords
 - type: entity
   name: cutlass
-  parent: [ BaseSword, BaseC1Contraband ] # Frontier: BaseMajorContraband<BaseC1Contraband
+  parent: BaseSword # Frontier: BaseMajorContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: Cutlass
   description: A wickedly curved blade, often seen in the hands of space pirates.
   components:
@@ -50,7 +50,7 @@
 
 - type: entity
   name: machete
-  parent: [ BaseSword, BaseC1Contraband ] # Frontier: BaseMajorContraband<BaseC1Contraband
+  parent: [ BaseSword ] # Frontier: BaseMajorContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: Machete
   description: A large, vicious looking blade.
   components:
@@ -76,10 +76,15 @@
 #Longswords
 - type: entity
   name: captain's sabre
-  parent: [ BaseSword, BaseC1Contraband ] # Frontier: BaseCommandContraband<BaseC1Contraband
+  parent: BaseSword # Frontier: BaseCommandContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: CaptainSabre
   description: A ceremonial weapon belonging to the captain of the station.
   components:
+  # Wayfarer Start
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/sabre_drop.ogg
+  # Wayfarer End
   - type: Sprite
     sprite: Objects/Weapons/Melee/captain_sabre.rsi
   - type: MeleeWeapon
@@ -115,7 +120,7 @@
 
 - type: entity
   name: katana
-  parent: [ BaseSword, BaseC1Contraband ] # Frontier: BaseMajorContraband<BaseC1Contraband
+  parent: [ BaseSword ] # Frontier: BaseMajorContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: Katana
   description: Ancient craftwork made with not so ancient plasteel.
   components:
@@ -127,7 +132,8 @@
   - type: MeleeWeapon
     damage:
       types:
-        Slash: 15
+        Slash: 16 #Frontier: Increased from 15
+    attackRate: 1.25 #Frontier: Added/Increased from 1.0
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
@@ -180,14 +186,14 @@
 #Greatswords
 - type: entity
   name: claymore
-  parent: [ BaseSword, BaseC1Contraband ] # Frontier: BaseMajorContraband<BaseC1Contraband
+  parent: BaseSword # Frontier: BaseMajorContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: Claymore
   description: An ancient war blade.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/claymore.rsi
   - type: MeleeWeapon
-    attackRate: 0.75
+    attackRate: 1.0 #Frontier: Buffed from 0.75
     damage:
       types:
         Slash: 20

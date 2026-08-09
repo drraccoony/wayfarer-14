@@ -6,12 +6,21 @@
   components:
   - type: StorageFill
     contents:
-      - id: Hemostat
-      - id: Saw
-      - id: Drill
-      - id: Cautery
-      - id: Retractor
-      - id: Scalpel
+      # - id: Hemostat
+      # - id: Saw
+      # - id: Drill
+      # - id: Cautery
+      # - id: Retractor
+      # - id: Scalpel
+      # Wayfarer
+      - id: BruteSurgeryKit
+      - id: BurnSurgeryKit
+      - id: ToxinSurgeryKit
+      - id: SyringeInaprovaline
+      - id: ClothingHandsGlovesNitrile
+      - id: EmergencyRollerBedSpawnFolded
+      - id: ClothingMaskSterile
+      # End Wayfarer
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
@@ -21,14 +30,21 @@
   components:
   - type: StorageFill
     contents:
-      - id: Hemostat
-      - id: SawAdvanced
-      - id: Drill
-      - id: Cautery
-      - id: Retractor
-      - id: ScalpelAdvanced
+      # - id: Hemostat
+      # - id: SawAdvanced
+      # - id: Drill
+      # - id: Cautery
+      # - id: Retractor
+      # - id: ScalpelAdvanced
       - id: ClothingHandsGlovesNitrile
       - id: EmergencyRollerBedSpawnFolded
+      # Wayfarer
+      - id: BruteSurgeryKit
+      - id: BurnSurgeryKit
+      - id: ToxinSurgeryKit
+      - id: SyringeInaprovaline
+      - id: ClothingMaskSterile
+      # End Wayfarer
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -341,7 +357,7 @@
         amount: 2
 
 - type: entity
-  parent: [ ClothingBackpackDuffelBundle, BaseC3Contraband ] # Frontier BaseMajorContraband<BaseC3Contraband
+  parent: [ ClothingBackpackDuffelBundle, BaseBMContraband ] # Frontier BaseMajorContraband<BaseC3Contraband # Wayfarer: BaseC2ContrabandUnredeemable<BaseBMContraband
   id: ClothingBackpackDuffelAcolyteBundle
   name: acolyte armor bundle
   description: "Contains the Acolyte Armor, the must have of any cult leader."

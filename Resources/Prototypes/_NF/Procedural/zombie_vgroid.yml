@@ -204,7 +204,7 @@
     contents: SpawnMobZombieOdysseusTable # Boss
   - !type:MobsDunGen
     minCount: 1
-    maxCount: 2
+    maxCount: 1 # Wayfarer: 2<1
     contents: SpawnMobZombiePileTable # Infinite Spawner (Timed)
 
 - type: entityTable

@@ -1,0 +1,31 @@
+- type: entity
+  name: Merchant Token
+  parent: BaseItem
+  id: WayfarerMerchantToken
+  suffix: 20 MT
+  description: A token for those that help carry the burden of cargo. Exhange it at your nearest token trade-in station
+  components:
+  - type: Sprite
+    sprite: _WF/Objects/Specific/Cargo/merchanttoken.rsi
+    state: wayfarermerchanttoken
+  - type: Item
+    sprite: _WF/Objects/Specific/Cargo/merchanttoken.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: WayfarerMerchantToken
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      WayfarerMerchantToken: 1
+
+- type: entity
+  parent: WayfarerMerchantToken
+  id: WayfarerMerchantToken1
+  suffix: 1 MT
+  components:
+  - type: Stack
+    count: 1

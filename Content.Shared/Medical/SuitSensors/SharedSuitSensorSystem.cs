@@ -26,6 +26,8 @@ using Content.Shared.Salvage; // Frontier
 using Content.Shared.Salvage.Expeditions; // Frontier
 using Robust.Shared.Map.Components; // Frontier
 
+using Content.Shared.SSDIndicator; // Coyote
+
 namespace Content.Shared.Medical.SuitSensors;
 
 public abstract class SharedSuitSensorSystem : EntitySystem
@@ -446,6 +448,11 @@ public abstract class SharedSuitSensorSystem : EntitySystem
                 break;
         }
 
+        // Wayfarer: SSD indicator in crew monitor UI
+        if (TryComp<SSDIndicatorComponent>(sensor.User.Value, out var indicatorComp))
+            status.IsSpaceSleepDisorder = indicatorComp.IsSSD;
+        // End Wayfarer
+
         return status;
     }
 
@@ -476,6 +483,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             payload.Add(SuitSensorConstants.NET_MAP_HASH, status.MapHash); // Frontier
         if (status.LocationName != null) // Frontier
             payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName); // Frontier
+        payload.Add(SuitSensorConstants.NET_IS_SSD, status.IsSpaceSleepDisorder); // Wayfarer
 
         return payload;
     }
@@ -500,6 +508,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_OWNER_UID, out NetEntity ownerUid)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATION_NAME, out string? location)) return null; // Frontier
+        if (!payload.TryGetValue(SuitSensorConstants.NET_IS_SSD, out bool? isSpaceSleepDisorder)) return null; // Wayfarer
 
         // try get total damage and cords (optionals)
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
@@ -514,6 +523,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             TotalDamageThreshold = totalDamageThreshold,
             Coordinates = coords,
             MapHash = mapHash, // Frontier - Crew monitor map check
+            IsSpaceSleepDisorder = isSpaceSleepDisorder.Value, // Wayfarer
         };
         return status;
     }

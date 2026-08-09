@@ -1,6 +1,6 @@
 - type: entity
   name: CGP energy sword
-  parent: [BaseC2ContrabandUnredeemable, EnergySword]
+  parent: [BaseCGPContraband, EnergySword] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: EnergySwordNfsd
   description: A very loud beam of concentrated energy that drains the stamina from people it hits.  It's highly destructive to non-living equipment.
   components:
@@ -14,13 +14,13 @@
         Heat: 3
         Structural: 30
   - type: StaminaDamageOnHit
-    damage: 17 # 6 hits
+    damage: 22 # Wayfarer: 17<22 5 hits
   - type: StaminaDamageOnCollide
-    damage: 17 # 6 hits
+    damage: 22 # Wayfarer: 17<22 5 hits
 
 - type: entity
   id: NFEnergyPickaxe
-  parent: [EnergySword, BaseC1Contraband] # Has a reflect chance
+  parent: [EnergySword, BaseNotContraband] # Has a reflect chance # Wayfarer: add BaseNotContraband
   name: holopickaxe
   description: A holographic mining tool with blades comprised of hard light. Doesn't pack the same punch as an energy weapon, but more compact than most mining tools when turned off.
   components:
@@ -30,8 +30,8 @@
     - 0,0,2,0
     - 1,1,1,2
   - type: MeleeWeapon
-    autoAttack: true # WF
-    attackRate: 1.5 # WF
+    autoAttack: true # Wayfarer
+    attackRate: 1.5 # Wayfarer
   - type: ItemToggleMeleeWeapon
     activatedDamage:
         types: # Slightly less total damage than wielded crusher glaive has
@@ -72,6 +72,7 @@
   - type: Tag
     tags:
     - Pickaxe
+    - DepositBlacklist # Wayfarer
   - type: StaticPrice
     price: 200
   - type: MiningGatheringSoft

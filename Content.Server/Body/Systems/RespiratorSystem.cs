@@ -17,7 +17,8 @@ using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.EffectConditions;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.SSDIndicator; // Wayfarer, needed to check if something has the component.
+using Content.Shared.SSDIndicator; // Wayfarer
+using Content.Shared.Mind.Components; // Wayfarer
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -79,8 +80,12 @@ public sealed class RespiratorSystem : EntitySystem
             if (_mobState.IsDead(uid))
                 continue;
 
-            if (TryComp<SSDIndicatorComponent>(uid, out var ssd) && ssd.IsSSD) // Wayfarer: Prevents SSD clients from breathing to prevent offline asphyx deaths.
+            // Wayfarer: Prevents SSD clients that have a mind associated to them from breathing to prevent offline asphyx deaths.
+            if (TryComp<SSDIndicatorComponent>(uid, out var ssd) && ssd.IsSSD
+             && TryComp<MindContainerComponent>(uid, out var mindContComp)
+              && mindContComp.HasMind)
                 continue;
+            // End Wayfarer
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
@@ -198,7 +203,7 @@ public sealed class RespiratorSystem : EntitySystem
     /// <returns>Returns true only if the air is not toxic, and it wouldn't suffocate.</returns>
     public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp, logMissing: false)) // Wayfarer: Add logMissing: false
             return false;
 
         // Get the gas at our location but don't actually remove it from the gas mixture.
@@ -222,7 +227,7 @@ public sealed class RespiratorSystem : EntitySystem
     /// <returns>Returns true only if the gas mixture is not toxic, and it wouldn't suffocate.</returns>
     public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent, GasMixture gas)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp, logMissing: false)) // Wayfarer: Add logMissing: false
             return false;
 
         var ev = new CanMetabolizeGasEvent(gas);

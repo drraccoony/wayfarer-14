@@ -35,7 +35,7 @@ public sealed class EmpSystem : SharedEmpSystem
         // Wayfarer: Stop EMP disabling radio
         // SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         // SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
-        // Wayfarer end
+        // End Wayfarer
 
         //SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker); // Frontier: Upstream - #28984
         //SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive); // Frontier: Upstream - #28984
@@ -194,18 +194,17 @@ public sealed class EmpSystem : SharedEmpSystem
         return msg;
     }
     // End Frontier
+    /*// Wayfarer: Stop EMP disabling radio
+    private void OnRadioSendAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioSendAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
 
-    // Wayfarer: Stop EMP disabling radio
-    // private void OnRadioSendAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioSendAttemptEvent args)
-    // {
-    //     args.Cancelled = true;
-    // }
-    //
-    // private void OnRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioReceiveAttemptEvent args)
-    // {
-    //     args.Cancelled = true;
-    // }
-    // Wayfarer end
+    private void OnRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioReceiveAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+    */ // Wayfarer End
 
     //private void OnApcToggleMainBreaker(EntityUid uid, EmpDisabledComponent component, ref ApcToggleMainBreakerAttemptEvent args) // Frontier: Upstream - #28984
     //{

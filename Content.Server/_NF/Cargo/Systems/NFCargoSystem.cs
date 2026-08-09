@@ -21,6 +21,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
+using Content.Server._WF.Cargo.Systems; //Wayfarer
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -49,6 +50,8 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly WFCargoSystem _wfCargoSystem = default!; //Wayfarer
+
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;

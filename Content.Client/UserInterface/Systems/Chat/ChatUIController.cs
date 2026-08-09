@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
+using System.Text.RegularExpressions; // Wayfarer
 using Content.Client.Chat.Managers;
 using Content.Client.Chat.TypingIndicator;
 using Content.Client.Chat.UI;
@@ -84,6 +85,7 @@ public sealed partial class ChatUIController : UIController
         {SharedChatSystem.ConsolePrefix, ChatSelectChannel.Console},
         {SharedChatSystem.LOOCPrefix, ChatSelectChannel.LOOC},
         {SharedChatSystem.SubtleLOOCPrefix, ChatSelectChannel.SubtleLOOC},
+        {SharedChatSystem.ShipOOCPrefix, ChatSelectChannel.ShipOOC}, // Wayfarer
         {SharedChatSystem.OOCPrefix, ChatSelectChannel.OOC},
         {SharedChatSystem.EmotesPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
@@ -100,6 +102,7 @@ public sealed partial class ChatUIController : UIController
         {ChatSelectChannel.Console, SharedChatSystem.ConsolePrefix},
         {ChatSelectChannel.LOOC, SharedChatSystem.LOOCPrefix},
         {ChatSelectChannel.SubtleLOOC, SharedChatSystem.SubtleLOOCPrefix},
+        {ChatSelectChannel.ShipOOC, SharedChatSystem.ShipOOCPrefix}, // Wayfarer
         {ChatSelectChannel.OOC, SharedChatSystem.OOCPrefix},
         {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
         {ChatSelectChannel.Subtle, SharedChatSystem.SubtlePrefix}, // Floofstation
@@ -535,9 +538,11 @@ public sealed partial class ChatUIController : UIController
         CanSendChannels |= ChatSelectChannel.OOC;
         CanSendChannels |= ChatSelectChannel.LOOC;
         CanSendChannels |= ChatSelectChannel.SubtleLOOC;
+        CanSendChannels |= ChatSelectChannel.ShipOOC; // Wayfarer
         FilterableChannels |= ChatChannel.OOC;
         FilterableChannels |= ChatChannel.LOOC;
         FilterableChannels |= ChatChannel.SubtleLOOC;
+        FilterableChannels |= ChatChannel.ShipOOC; // Wayfarer
 
         // can always hear server (nobody can actually send server messages).
         FilterableChannels |= ChatChannel.Server;
@@ -711,7 +716,9 @@ public sealed partial class ChatUIController : UIController
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        // var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _, radioChannel) = SplitInputContents(Rope.Collapse(box.ChatInput.Input.TextRope).ToLower()); 
+        // Wayfarer - Multiline chatbox
 
         if (prefixChannel == ChatSelectChannel.None)
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null);
@@ -762,8 +769,15 @@ public sealed partial class ChatUIController : UIController
     {
         _typingIndicator?.ClientSubmittedChatText();
 
-        var text = box.ChatInput.Input.Text;
-        box.ChatInput.Input.Clear();
+        // var text = box.ChatInput.Input.Text;
+        // box.ChatInput.Input.Clear();
+        // Wayfarer - Multiline chatbox
+        var text = Rope.Collapse(box.ChatInput.Input.TextRope);
+        // Clean up message and prevent massive amounts of newlines
+        text = new Regex("\n\n\n*").Replace(text, "\n\n").Trim();
+        box.ChatInput.Input.TextRope = new Rope.Leaf("");
+        box.ChatInput.Input.SetHeight = 22;
+        // End Wayfarer
         box.ChatInput.Input.ReleaseKeyboardFocus();
         UpdateSelectedChannel(box);
 
@@ -798,7 +812,9 @@ public sealed partial class ChatUIController : UIController
         if (chatBox == null)
             return;
 
-        var msg = chatBox.ChatInput.Input.Text.TrimEnd();
+        // var msg = chatBox.ChatInput.Input.Text.TrimEnd();
+        var msg = Rope.Collapse(chatBox.ChatInput.Input.TextRope).TrimEnd(); 
+        // Wayfarer - Multiline chatbox
         // Don't send on OOC/LOOC obviously!
 
         // we need to handle selected channel
@@ -826,8 +842,12 @@ public sealed partial class ChatUIController : UIController
             : Loc.GetString(forceSay.ForceSayMessageWrapNoSuffix,
                 ("message", msg));
 
-        chatBox.ChatInput.Input.SetText(modifiedText);
-        chatBox.ChatInput.Input.ForceSubmitText();
+        // chatBox.ChatInput.Input.SetText(modifiedText);
+        // chatBox.ChatInput.Input.ForceSubmitText();
+        // WF - Multiline chatobox
+        chatBox.ChatInput.Input.TextRope = new Rope.Leaf(modifiedText);
+        chatBox.Submit();
+        // End Wayfarer
     }
 
     private void OnChatMessage(MsgChatMessage message)
@@ -875,7 +895,7 @@ public sealed partial class ChatUIController : UIController
         }
 
         // Play LOOC sound notification if enabled and on cooldown
-        if (_loocSoundEnabled && _audio != null && _ghost is not {IsGhost: true} && (msg.Channel == ChatChannel.LOOC || msg.Channel == ChatChannel.SubtleLOOC))
+        if (_loocSoundEnabled && _audio != null && _ghost is not {IsGhost: true} && (msg.Channel == ChatChannel.LOOC || msg.Channel == ChatChannel.SubtleLOOC || msg.Channel == ChatChannel.ShipOOC)) // Wayfarer: Add ShipOOC
         {
             var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
             var currentTime = _timing.CurTime;
@@ -976,6 +996,12 @@ public sealed partial class ChatUIController : UIController
             case ChatChannel.SubtleLOOC:
                 AddSpeechBubble(msg, SpeechBubble.SpeechType.SubtleLooc);
                 break;
+
+            // Wayfarer
+            case ChatChannel.ShipOOC:
+                AddSpeechBubble(msg, SpeechBubble.SpeechType.ShipOoc);
+                break;
+            // End Wayfarer
         }
     }
 

@@ -281,6 +281,7 @@
       weight: 0.5
       children:
       - id: ReagentGrinderIndustrialMachineCircuitboard
+      - id: JuicerIndustrialMachineCircuitboard # Wayfarer
       - id: ChemMasterMachineCircuitboard
       - id: ElectrolysisUnitMachineCircuitboard
       - id: StasisBedMachineCircuitboard
@@ -320,6 +321,7 @@
       weight: 18
       children:
       - id: RPED
+      - id: ShipyardRPD # Wayfarer
       - id: ShipyardRCD
       - id: ShipyardRCDAmmo
       - id: AdvancedMineralScannerEmpty

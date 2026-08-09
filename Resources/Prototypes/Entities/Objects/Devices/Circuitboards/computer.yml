@@ -239,8 +239,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: SalvageExpeditionsComputerCircuitboard
-  name: expedition console board # Frontier: "salvage expeditions computer" < "expedition console"
-  description: A computer printed circuit board for an expedition console. # Frontier: "salvage expeditions computer" < "expedition console"
+  name: salvage expeditions computer board
+  description: A computer printed circuit board for a salvage expeditions computer.
   components:
     - type: Sprite
       state: cpu_supply
@@ -377,7 +377,7 @@
       prototype: ComputerWallmountCrewMonitoring # Frontier
 
 - type: entity
-  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseComputerCircuitboard, BaseCGPContraband] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: IDComputerCircuitboard
   name: ID card computer board
   description: A computer printed circuit board for an ID card console.
@@ -409,7 +409,7 @@
       prototype: ComputerTabletopBodyScanner # Frontier
 
 - type: entity
-  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseComputerCircuitboard, BaseCGPContraband] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: CommsComputerCircuitboard
   name: communications computer board
   description: A computer printed circuit board for a communications console.
@@ -471,7 +471,7 @@
     prototype: ComputerWallmountRadar # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseCGPContraband] # Wayfarer: add BaseCGPContraband
   id: AdvancedRadarConsoleCircuitboard # Frontier
   name: advanced radar console computer board
   components:
@@ -571,7 +571,7 @@
       prototype: ComputerTabletopCloningConsole # Frontier
 
 - type: entity
-  parent: [ BaseComputerCircuitboard, BaseMilitaryContraband ] # Wayfarer: Added BaseMilitaryContraband Contraband
+  parent: [ BaseComputerCircuitboard, BaseCGPContraband ] # Wayfarer: Added BaseCGPContraband
   id: ComputerIFFCircuitboard
   name: IFF console board
   description: Allows you to control the IFF characteristics of this vessel.

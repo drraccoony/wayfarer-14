@@ -1,8 +1,8 @@
-﻿{
+{
     "version": 1,
     "license": "CC-BY-SA-3.0",
     "copyright": "Inspired by previous shuttle maps by erhardsteinhauer (discord/github), used font from https://github.com/tgstation/tgstation/blob/master/icons/obj/signs.dmi.",
-    "extra_copyright" : "buckler, heater, hauler, grandqueen, icarus, kite, parma, phalanx, pridwen, qauata, svalinn, dioddef, hamger, hammerhead, medivac, mjolnir, scryer, swan, reclaimer, dagger, looter, beater, ratrod by goodfaun (discord/github), grandideals by Rui",
+    "extra_copyright" : "buckler, heater, hauler, grandqueen, icarus, kite, parma, phalanx, pridwen, qauata, svalinn, dioddef, hamger, hammerhead, medivac, mjolnir, scryer, swan, behir, dagger, looter, mephit, ratrod by goodfaun (discord/github), moppet by feathernights; grandideals by Rui; kobold, zipper by mauvelikeroses/gaywolfgirl6; felix, infelix, poppet by nnelg",
     "metaAtlas": false,
     "size": {
         "x": 128,
@@ -11,6 +11,12 @@
     "states": [
         {
             "name": "buckler"
+        },
+        {
+            "name": "downtownsuperstar"
+        },
+        {
+            "name": "felix"
         },
         {
             "name": "heater"
@@ -25,16 +31,25 @@
             "name": "icarus"
         },
         {
+            "name": "infelix"
+        },
+        {
             "name": "grandideals"
         },
         {
             "name": "kite"
         },
         {
+            "name": "moppet"
+        },
+        {
             "name": "parma"
         },
         {
             "name": "phalanx"
+        },
+        {
+            "name": "poppet"
         },
         {
             "name": "pridwen"
@@ -67,7 +82,7 @@
             "name": "swan"
         },
         {
-            "name": "reclaimer"
+            "name": "behir"
         },
         {
             "name": "dagger"
@@ -76,10 +91,19 @@
             "name": "looter"
         },
         {
-            "name": "beater"
+            "name": "mephit"
         },
         {
             "name": "ratrod"
+        },
+        {
+            "name": "kobold"
+        },
+        {
+            "name": "zipper"
+        },
+        {
+            "name": "zenith"
         }
     ]
 }

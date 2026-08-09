@@ -7,6 +7,7 @@ using Content.Shared.Actions;
 using Content.Shared.Bible;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.CombatMode.Pacification; // Wayfarer
 using Content.Shared.Damage;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
@@ -145,6 +146,7 @@ namespace Content.Server.Bible
             }
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar.
+            /* // Wayfarer: Not anymore.
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))
             {
                 if (_random.Prob(component.FailChance))
@@ -161,6 +163,16 @@ namespace Content.Server.Bible
                     return;
                 }
             }
+            */
+            // Checks to see if they are a pacifist. If not, no heal ability.
+            var hasPacifistComponent = HasComp<PacifiedComponent>(args.User);
+            if (!hasPacifistComponent)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("bible-heal-fail-nonpacifist"), args.User, args.User);
+                _delay.TryResetDelay((uid, useDelay));
+                return;
+            }
+            // End Wayfarer
 
             var damage = _damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid);
 

@@ -501,6 +501,7 @@
         - id: MedkitFilled
           weight: 2
         - id: MedkitOxygenFilled
+        - id: MedkitNitrogenFilled # Wayfarer
         - id: MedkitBruteFilled
         - id: MedkitBurnFilled
         - id: MedkitToxinFilled
@@ -663,7 +664,7 @@
       - !type:AllSelector
         children:
         - id: NFWeaponRifleAssaultGestio
-        - id: MagazineRifle
+        - id: NFMagazineRifle20 # Wayfarer
       #DoubleBarrel
       - !type:AllSelector
         children:

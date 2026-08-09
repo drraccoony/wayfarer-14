@@ -3,6 +3,17 @@
   parent: BaseItem
   abstract: true
   components:
+  # Wayfarer Start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
+  # Wayfarer End
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
@@ -219,7 +230,7 @@
       - Pill
       - Crayon
       - Paper
-    # Wayfarer End
+    # End Wayfarer
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
   # to intestines instead.

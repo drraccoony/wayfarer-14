@@ -51,12 +51,29 @@
       path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
   - type: StaticPrice # Frontier
     price: 150 # Frontier
+  # Wayfarer Start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/gun_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/gun_drop.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/gun_drop.ogg
+      params:
+        volume: -8
+  # Wayfarer End
 
 
 - type: entity
   abstract: true # Frontier: use NF variant
   name: security shell gun
-  parent: [WeaponFlareGun, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  parent: WeaponFlareGun # Frontier: BaseSecurityContraband<BaseC1Contraband # Wayfarer: Removed contraband
   id: WeaponFlareGunSecurity
   description: A modified flare gun originally designed to be used by security to launch non-lethal shotgun shells, however it can also fire lethal shells without risk.
   components:

@@ -95,7 +95,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
     {
         var root = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(4, 2) };
 
-        // ── Header row: [Active] Title [Edit] [Delete]
+        // Header row: [Active] Title [Edit] [Delete]
         var header = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
         var activeCheck = new CheckBox { Text = string.Empty, Pressed = goal.IsActive, ToolTip = "Active" };
@@ -141,7 +141,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         // Add requirement row
         root.AddChild(BuildAddRequirementRow(goal.Id));
 
-        // ── Edit form (hidden by default, toggled by Edit button)
+        // Edit form (hidden by default, toggled by Edit button)
         var editForm = BuildEditForm(goal);
         editForm.Visible = false;
         root.AddChild(editForm);
@@ -162,7 +162,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
     {
         var outer = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(28, 1) };
 
-        // ── Main row
+        // Main row
         var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
         // Icon preview — prototype-based only
@@ -205,7 +205,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         row.AddChild(removeBtn);
         outer.AddChild(row);
 
-        // ── Inline edit row (hidden by default)
+        // Inline edit row (hidden by default)
         var editRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 2, 0, 2), Visible = false };
         editRow.AddChild(new Label { Text = "New qty:", Margin = new Thickness(24, 0, 4, 0), VerticalAlignment = VAlignment.Center });
         var qtyField = new LineEdit { Text = req.RequiredAmount.ToString(), MinWidth = 100, PlaceHolder = "Required amount" };
@@ -287,7 +287,28 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
             tagRow.Visible = args.Pressed;
         };
 
-        // ── Row 2: display name + amount + add button
+        // ── Row 1b: tag ID input (hidden in proto mode)
+        var tagRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 2), Visible = false };
+        var tagField = new LineEdit { PlaceHolder = "Tag ID (e.g. Trash)", HorizontalExpand = true, MinWidth = 180 };
+        var tagStatusLabel = new Label
+        {
+            Text = string.Empty,
+            Margin = new Thickness(6, 0),
+            VerticalAlignment = VAlignment.Center,
+            FontColorOverride = Color.FromHex("#888888"),
+        };
+        tagRow.AddChild(new Label { Text = "Tag:  ", VerticalAlignment = VAlignment.Center });
+        tagRow.AddChild(tagField);
+        tagRow.AddChild(tagStatusLabel);
+        outer.AddChild(tagRow);
+
+        useTagCheck.OnToggled += args =>
+        {
+            searchRow.Visible = !args.Pressed;
+            tagRow.Visible = args.Pressed;
+        };
+
+        // Row 2: display name + amount + add button
         var addRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
         var nameField = new LineEdit { PlaceHolder = "Display name (auto-filled)", MinWidth = 150 };

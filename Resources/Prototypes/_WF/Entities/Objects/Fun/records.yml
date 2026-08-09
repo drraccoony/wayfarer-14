@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseRecord
+  id: WFRecord
+  name: chill record
+  description: For that much needed coffee break.
+  components:
+  - type: Sprite
+    state: golden
+  - type: JukeboxContainer
+    tracks:
+    - WFChillpeach200am
+    - WFChillpeachInDreamLand
+    - WFChillpeachPurple
+    - WFRamalowAnxiety
+    - WFRiddimanDeepSpace
+    - WFSethClownMusic

@@ -8,6 +8,7 @@
   suffix: AI
   abstract: true
   components:
+  - type: Carriable # Wayfarer, makes all mobs carriable. Weight still applies.
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -61,7 +62,6 @@
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite # Wayfarer change
   - type: Body
     prototype: Animal
   - type: Climbing

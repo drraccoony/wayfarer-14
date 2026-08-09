@@ -10,6 +10,8 @@
     JetpackMiniFilled: 10
     HandHeldMassScanner: 10
     AppraisalCartridge: 3
+    AccessConfiguratorCivilian: 3 # Wayfarer
+    CorporationCartridge: 3 #Wayfarer
 # Keys
     EncryptionKeyCommon: 3
     EncryptionKeyTraffic: 3
@@ -27,6 +29,7 @@
     ClothingUniformJumpsuitPilot: 3
     ClothingOuterCoatBomber: 3
     ClothingHeadsetAltPilot: 3
+    NFClothingWristsetPilotCommon: 3
     ClothingEyesGlassesPilot: 3
     ClothingHandsGlovesPilot: 3
     ClothingHeadHatPilot: 3
@@ -48,6 +51,7 @@
     HandHeldMassScanner: 4294967295 # Infinite
     AppraisalCartridge: 4294967295 # Infinite
     AccessConfiguratorCivilian: 4294967295 # Coyote, Infinite.
+    CorporationCartridge: 3 #Wayfarer
 # Keys
     EncryptionKeyCommon: 4294967295 # Infinite
     EncryptionKeyTraffic: 4294967295 # Infinite

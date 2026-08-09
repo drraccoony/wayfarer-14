@@ -427,8 +427,8 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: ComputerWithdrawBankATMFlatpack
-  name: withdraw only atm flatpack
-  description: A flatpack used for constructing an atm. Best not to think about it.
+  name: withdraw-only bank ATM flatpack
+  description: A flatpack used for constructing an ATM. Best not to think about it.
   components:
   - type: Flatpack
     entity: ComputerWithdrawBankATM
@@ -703,7 +703,7 @@
     - state: medical_console
 
 - type: entity
-  parent: [ BaseNFFlatpack, BaseMilitaryContraband ] # Wayfarer: Added BaseMilitaryContraband Contraband
+  parent: [ BaseNFFlatpack, BaseCGPContraband ] # Wayfarer: Added BaseCGPContraband
   id: ComputerIFFFlatpack
   name: IFF computer flatpack
   description: A flatpack used for constructing a IFF computer.

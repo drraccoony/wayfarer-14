@@ -35,6 +35,8 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: WFBonusCurrency #Wayfarer: Add additional currency
+    currency: WayfarerMerchantToken
 
 - type: entity
   parent: CrateTradeBaseSecure
@@ -43,7 +45,7 @@
   description: An urgent crate of goods made in the Frontier sector, ready to be quickly sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
   components:
   - type: TradeCrate
-    valueAtDestination: 2500
+    valueAtDestination: 2200 #WF 2500<2300 to compensate for coin
     valueElsewhere: 1200
     expressDeliveryDuration: 1680 # twenty-eight minutes, go go (worst distance is ~6.5 km trade-cargo A, then 12 km to cargo b, 15.4 min at 20 m/s, giving ~10 minutes in adverse conditions for cargo pickup and dropoff)
     expressOnTimeBonus: 1500
@@ -79,6 +81,8 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: WFBonusCurrency #Wayfarer: Add additional currency that checks destination
+    currency: WayfarerMerchantToken
 
 # region Contraband Crates
 - type: entity
@@ -177,7 +181,7 @@
 - type: entity
   parent: CrateTradeBaseSecureContraband
   id: CrateTradeContrabandSecure4
-  name: Donk Co. contraband crate
+#  name: Donk Co. contraband crate # Wayfarer
   categories: [ HideSpawnMenu ]
   components:
   - type: Icon
@@ -210,7 +214,7 @@
 - type: entity
   parent: CrateTradeBaseSecureContraband
   id: CrateTradeContrabandSecure5
-  name: Cybersun Industries contraband crate
+#  name: Cybersun Industries contraband crate # Wayfarer
   categories: [ HideSpawnMenu ]
   components:
   - type: Icon

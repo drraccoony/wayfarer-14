@@ -27,11 +27,22 @@
     - Burst
   - type: NFWeaponDetails
     class: weapon-details-class-light-machine-gun
+  # Wayfarer Start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
+  # Wayfarer End
 
 #region manufacturer
 - type: entity
   abstract: true
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameLightMachineGun ]
+  parent: [ BaseBMContraband, NFBaseWeaponFrameLightMachineGun ] # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   id: NFBaseWeaponFrameLightMachineGunGorlex
   components:
   - type: Gun

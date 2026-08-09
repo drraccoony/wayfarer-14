@@ -105,6 +105,8 @@
     - NFServiceArchetypeStatic
     - NFPietyStatic
     - NFCandlesStatic
+    - WFServiceStatic # Wayfarer
+    - WFServiceStorage # Wayfarer
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabEmagStatic
@@ -157,6 +159,8 @@
     - NFLightsColoredStatic
     - NFServiceArchetypeStatic
     - NFMcServiceTechfabStatic
+    - WFServiceStatic # Wayfarer
+    - WFServiceStorage # Wayfarer
 
 - type: entity
   parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
@@ -198,8 +202,11 @@
     - NFEngineeringStructureBoardsStatic
     - NFEngineeringMaterialsStatic
     - NFInflatablesStatic
-    - CSPlumbingStatic # CS - showers, sinks, drains
     - NFEngineeringArchetypeStatic
+    # Coyote Sector
+    - CSPlumbingStatic # Showers, sinks, drains
+    # Far Horizons
+    - ReactorPartsBasic
 
   - type: BlueprintReceiver
     whitelist:
@@ -265,7 +272,7 @@
   description: Prints equipment for use by CGP.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Machines/techfab.rsi
+    sprite: _WF/Structures/Machines/techfab.rsi # Frontier: _NF/Structures/Machines/techfab.rsi < _WF/Structures/Machines/techfab.rsi
     snapCardinals: true
     layers:
     - state: icon
@@ -296,17 +303,27 @@
     - NfsdWeaponsStatic
     - NfsdPracticeStatic
     - NfsdAmmoStatic
-    - NFMercenaryMagazineStatic
+#    - NFMercenaryMagazineStatic # Wayfarer
     - NFMercenaryStorageStatic
+    - NFMercenaryArchetypeMeleeStatic # Wayfarer
     - NfsdToolsStatic
     - NfsdTargetsStatic
     - NfsdBoardsStatic
+    - NfsdReportingStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintNfsdTechfab
       - NFBlueprintAdvanced
   - type: OreSiloClient
+  # Wayfarer: Didn't inherit properly
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  # End Wayfarer
 
 - type: entity
   id: MercenaryTechFab
@@ -363,7 +380,7 @@
 - type: entity
   id: MercenaryTechFabHacked
   parent:
-  - BaseC3Contraband
+  - BaseBMContraband # Wayfarer: BaseC3Contraband<BaseBMContraband
   - MercenaryTechFab
   - BaseHyperlathe
   - PunkHoloGraffitiOverlay # Prototype can be located at /Resources/Prototypes/_NF/Entities/Structures/Holographic/graffiti.yml

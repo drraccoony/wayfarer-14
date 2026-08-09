@@ -217,6 +217,9 @@
         # Wayfarer start
         conditions:
         - !type:OrganType
+          type: Vox
+          shouldHave: false
+        - !type:OrganType
           type: Avali
           shouldHave: false
         # End Wayfarer
@@ -224,8 +227,29 @@
           types:
             Caustic: 1
     # Wayfarer start
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4 # same as water
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: true
+      - !type:SatiateThirst
+        factor: 1 # same as welding fuel
+        conditions:
+        - !type:OrganType
+          type: Vox
+          shouldHave: true
     Medicine:
       effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Vox
+        damage:
+          types:
+            Asphyxiation: -1
       - !type:HealthChange
         conditions:
         - !type:OrganType
@@ -242,6 +266,9 @@
           type: Rat
           shouldHave: false
         # Wayfarer start
+        - !type:OrganType
+          type: Vox
+          shouldHave: false
         - !type:OrganType
           type: Avali
           shouldHave: false

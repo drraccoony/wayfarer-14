@@ -1,0 +1,44 @@
+#Vending machine trading
+- type: entity
+  parent: [BaseStructureDisableAnchoring, StorePresetMerchantUplink, VendingMachine]
+  id: WFVendingMachineMerchantToken
+  name: Merchant's Trade Vendor
+  description: A warm thanks to the many members of the merchant's league.
+  components:
+  - type: VendingMachine
+    cashSlot: Null
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    screenState: screen
+  - type: Sprite
+    sprite: _WF/Structures/Machines/VendingMachines/merchantvendor.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: "screen"
+      map: ["enum.VendingMachineVisualLayers.Screen"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.3
+    color: "#ad2c2b"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WayfarerMerchantToken: 0 
+  - type: Tag
+    tags:
+    - WFMerchantUplink

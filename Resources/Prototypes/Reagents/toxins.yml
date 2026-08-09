@@ -413,6 +413,10 @@
       - !type:ChemVomit
         probability: 0.1 #Scaled for time, not metabolismrate. # DeltaV - Increased from .04 Vomit more when there is a lot of it
         conditions:
+          # Wayfarer Start
+          - !type:ReagentThreshold
+            min: 0.1 #need multiple ticks of added theobromine in a row before vomiting happens, so that caramexenin can prevent it
+          # End Wayfarer
           - !type:EventResponse
             message: "TheobromineIntolerance"
             response: "Vomit"

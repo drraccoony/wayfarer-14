@@ -1,7 +1,7 @@
 #region base weapon
 - type: entity
   id: NFBaseItemWeaponGun
-  parent: [ BaseC1Contraband, BaseItem ]
+  parent: [ BaseItem, RecyclableItemDeviceComplexNormal ] # Wayfarer: added recyclable component to all guns, removed contraband
   suffix: Frontier
   abstract: true
   components:
@@ -148,8 +148,8 @@
     - Back
     - suitStorage
   - type: SpeedModifiedOnWield
-    walkModifier: 0.65
-    sprintModifier: 0.65
+    walkModifier: 0.50
+    sprintModifier: 0.50
 
 - type: entity
   id: NFBaseWeaponEncumbranceCrossbow

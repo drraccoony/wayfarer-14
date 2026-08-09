@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: CloudOfNeutronFlux
+# Discord: Vyuga
+
+# Maintainer Info
+# GitHub: CloudOfNeutronFlux
+# Discord: Vyuga
+- type: vessel
+  id: Zenith
+  parent: BaseVessel
+  name: SWS Zenith
+  description: A premium surveying vessel. Full suite of amenities allows the crew to perform long exploration journeys without sacrificing comfort.
+  price: 129000 # (64760+487*50)*1.45 ([appraise on init]+[size]*50)*[+1 primary science; +0.15 sub-primary robotics; +0.15 sub-primary anomaly; +0.15 primary Support]
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_WF/Shuttles/Civilian/zenith.yml
+  guidebookPage: ShipyardZenith
+  class:
+  - Science
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Zenith
+  mapName: 'Zenith'
+  mapPath: /Maps/_WF/Shuttles/Civilian/zenith.yml
+  minPlayers: 0
+  stations:
+    Zenith:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Zenith {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          WayfarerInterview: [ 0, 0 ]

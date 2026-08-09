@@ -102,6 +102,10 @@
         orGroup: GiftPool
       - id: PlushieArachind
         orGroup: GiftPool
+      - id: PlushieSheep
+        orGroup: GiftPool
+      - id: PlushieSpaceSheep
+        orGroup: GiftPool
       - id: ClothingNeckCloakMoth
         orGroup: GiftPool
       - id: ToyMouse
@@ -378,6 +382,10 @@
         orGroup: GiftPool
       - id: RGBStaff
         orGroup: GiftPool
+      # Wayfarer: Add EXPIEEEE
+      - id: PlushieExperiment
+        orGroup: GiftPool
+      # End Wayfarer
     sound:
       path: /Audio/Effects/unwrap.ogg
 

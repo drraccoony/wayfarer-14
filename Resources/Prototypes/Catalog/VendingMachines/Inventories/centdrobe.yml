@@ -28,6 +28,8 @@
     SLClothingUniformJumpskirtCentcomOfficial: 3
     SLClothingUniformJumpskirtCentcomOfficer: 3
     SLClothingUniformJumpsuitCentcomOfficerBlack: 3
+    IMPClothingHeadHatCentcommIntern: 3
+    IMPClothingUniformJumpsuitCentcommIntern: 3
     # End Wayfarer
   contrabandInventory:
     ToyFigurineCaptain: 1

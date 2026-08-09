@@ -1,7 +1,7 @@
 - type: entity
   id: ClothingOuterCoatBHTrench
   name: "bounty hunter's flak trenchcoat"
-  parent: [ BaseC1Contraband, ClothingOuterCoatHoSTrench ]
+  parent: ClothingOuterCoatHoSTrench # Wayfarer: Removed contraband
   description: A greatcoat enhanced with a bulletproof alloy for some extra protection and style for those with a charismatic presence.
   components:
   - type: Sprite
@@ -56,62 +56,116 @@
     clothingPrototype: ClothingHeadHatHoodCardinalHood
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterStorageBase, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterCoatNfsdBomber
   name: CGP bomber
   description: Lookin' slick Tom.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_bomber.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi < _WF/Clothing/OuterClothing/Misc/CGP_bomber.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_bomber.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi < _WF/Clothing/OuterClothing/Misc/CGP_bomber.rsi
+  # Wayfarer start
+  - type: TemperatureProtection # Other items like this have protections. This is based on other bomber jackets and coats in the server.
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+    # end Wayfarer
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterStorageBase, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterCoatNfsdBomberBrigmed
   name: CGP brigmedic bomber
   description: Blood may stain.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_brigmed_bomber.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi < _WF/Clothing/OuterClothing/Misc/CGP_brigmed_bomber.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_brigmed_bomber.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi < _WF/Clothing/OuterClothing/Misc/CGP_brigmed_bomber.rsi
+  # Wayfarer start
+  - type: TemperatureProtection # Other items like this have protections. This is based on other bomber jackets and coats in the server.
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+    # end Wayfarer
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterStorageBase, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterCoatNfsdFormal
   name: CGP formal coat
   description: Snazzy.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_formal.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi < _WF/Clothing/OuterClothing/Misc/CGP_formal.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_formal.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi < _WF/Clothing/OuterClothing/Misc/CGP_formal.rsi
+  # Wayfarer start
+  - type: TemperatureProtection # Other items like this have protections. This is based on other bomber jackets and coats in the server.
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+    # end Wayfarer
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterStorageBase, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterCoatNfsdFormalSheriff
   name: CGP commodore's formal coat
   description: Very snazzy.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_sheriff_formal.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi < _WF/Clothing/OuterClothing/Misc/CGP_sheriff_formal.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_sheriff_formal.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi < _WF/Clothing/OuterClothing/Misc/CGP_sheriff_formal.rsi
+    # Wayfarer start
+  - type: TemperatureProtection # Other items like this have protections. This is based on other bomber jackets and coats in the server.
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+    # end Wayfarer
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterStorageBase, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterCoatNfsdLongCoat
   name: CGP long coat
   description: Big iron on his hip...
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_long.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi < _WF/Clothing/OuterClothing/Misc/CGP_long.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
+    sprite: _WF/Clothing/OuterClothing/Misc/CGP_long.rsi # Wayfarer: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi < _WF/Clothing/OuterClothing/Misc/CGP_long.rsi
+  # Wayfarer start
+  - type: TemperatureProtection # Other items like this have protections. This is based on open flak coats.
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  # end Wayfarer
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
+  parent: [ ClothingOuterStorageBase, BaseCGPContraband ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
   id: ClothingOuterJacketSr
   name: station representative's jacket
   description: The upper part of the station representative's uniform.
@@ -127,7 +181,7 @@
       - state: equipped-OUTERCLOTHING
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC3PirateContrabandNoValue ]
+  parent: [ ClothingOuterStorageBase ] # Wayfarer: Remove contraband
   id: ClothingOuterCoatPirateCaptain
   name: pirate captain's coat
   description: Y'arrgh har fiddle di dee.
@@ -138,7 +192,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/pirate_captain.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: [ ClothingOuterStorageFoldableBase ] # Wayfarer: Remove contraband
   id: ClothingOuterCoatArcadiaTrench
   name: arcadia flak trenchcoat
   description: A flak trenchcoat produced by Arcadia Industries, enhanced with a bulletproof alloy for some extra protection.
@@ -175,7 +229,7 @@
     damageCoefficient: 0.60
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC3WizardContraband ]
+  parent: [ ClothingOuterStorageBase ] # Wayfarer: Removed BaseC3WizardContraband
   id: ClothingOuterWizardBrick
   name: brick wizard coat
   description: ClothingOuterWizardBrick

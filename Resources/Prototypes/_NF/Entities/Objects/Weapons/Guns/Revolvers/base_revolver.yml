@@ -25,6 +25,17 @@
     price: 200
   - type: NFWeaponDetails
     class: weapon-details-class-revolver
+  # Wayfarer Start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
+  # Wayfarer End
 
 #region manufacturer
 - type: entity
@@ -43,7 +54,7 @@
 
 - type: entity
   abstract: true
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRevolver ]
+  parent: [ NFBaseWeaponFrameRevolver ] # Wayfarer: Remove contraband
   id: NFBaseWeaponFrameRevolverGorlex
   components:
   - type: Gun
@@ -57,7 +68,7 @@
 
 - type: entity
   abstract: true
-  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRevolver ]
+  parent: [ NFBaseWeaponFrameRevolver ] # Wayfarer: Remove contraband
   id: NFBaseWeaponFrameRevolverSteelbolt
   components:
   - type: Gun
@@ -127,6 +138,26 @@
         - NFCartridgePistol45
         - NFSpeedLoaderPistol45
     proto: NFCartridgePistol45
+
+# Wayfarer: Flintlock
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamber
+  id: NFBaseWeaponFlintlockChamber # fuck this parenting hell
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-45
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - NFCartridgePistol45
+    capacity: 1
+    proto: NFCartridgePistol45
+    chambers: [ True ]
+    ammoSlots: [ null ]
+# End Wayfarer
 
 - type: entity
   abstract: true

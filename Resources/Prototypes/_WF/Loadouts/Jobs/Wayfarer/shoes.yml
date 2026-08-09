@@ -1024,3 +1024,22 @@
   price: 500
   equipment:
     shoes: SLClothingShoesBootsSalvage1208134
+
+# DeltaV clothing
+- type: loadout
+  id: WFDVClothingShoesBootsFishing
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 500
+  equipment:
+    shoes: DVClothingShoesBootsFishing
+
+- type: loadout
+  id: WFDVClothingShoesMiscWhite
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 750
+  equipment:
+    shoes: DVClothingShoesMiscWhite

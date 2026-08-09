@@ -1,3 +1,4 @@
+#Outlaw uplink
 - type: entity
   id: StorePresetOutlawUplink
   abstract: true
@@ -21,3 +22,23 @@
     - Doubloon
     balance:
       Doubloon: 0
+      
+#Merchant Uplink
+- type: entity
+  id: StorePresetMerchantUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-merchant-uplink
+    categories:
+    - UplinkMerchantsMedical
+    - UplinkMerchantsEngineering
+    - UplinkMerchantsTechnology
+    - UplinkMerchantMisc
+    - UplinkMerchantsCGP
+    - UplinkMerchantsOutlaw
+    - UplinkMerchantsFun
+    currencyWhitelist:
+    - WayfarerMerchantToken
+    balance:
+      WayfarerMerchantToken: 0

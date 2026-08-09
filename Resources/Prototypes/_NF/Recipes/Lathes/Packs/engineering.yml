@@ -19,6 +19,7 @@
   - FireAlarmElectronics
   - FirelockElectronics
   - FreezerElectronics
+  - IntercomElectronics # Wayfarer
   - MailingUnitElectronics
   - StationMapElectronics
   - SubstationMachineCircuitboard
@@ -53,6 +54,10 @@
   id: NFEngineeringMaterialsStatic
   recipes:
   #- NFSheetRGlassProcessed
+  - NFSheetPaperFromWood
+  - NFSheetPaperFromCardboard
+  - NFMaterialCardboard1Processed
+  - PaperFromSheetPaper
   - NFSheetPGlass1Processed
   - NFSheetRPGlass1Processed
   - NFSheetPlasteel1Processed
@@ -72,6 +77,10 @@
   - JawsOfLife
   - BorgModuleRCD
   - BorgModuleAdvancedTool
+  - ShipyardRCD
+  - ShipyardRCDAmmo
+  - ClothingHandsGlovesColorYellow
+  - NFClothingEyesGlassesMeson
 
 - type: latheRecipePack
   id: NFEngineeringBoards
@@ -83,11 +92,15 @@
   recipes:
   - GasMiningDrillMachineCircuitboard
   - GaslockFrameMachineCircuitboard
-#  - GaslockBigFrameMachineCircuitboard
+  - AlertsComputerCircuitboard
+  - PowerComputerCircuitboard
+  - AtmosMonitoringComputerCircuitboard
+  - SolarAssemblyFlatpack
 
 - type: latheRecipePack
   id: NFEngineering
   recipes:
+  - ShipyardRPD # Wayfarer
   - ShipyardRCD
   - ShipyardRCDAmmo
   - ConstructionBagOfHolding
@@ -98,4 +111,4 @@
   - SuperMatterBinStockPart
   - PicoManipulatorStockPart
   - NFWeaponParticleDecelerator
-#  - NFWeaponParticleDecelerator
+  - RadiationBlockingProjector # Far Horizons

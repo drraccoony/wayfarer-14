@@ -6,3 +6,12 @@
   components:
   - type: Sprite
     sprite: _WF/Clothing/Neck/Cloaks/poly.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMerchant
+  name: Merchant's Cloak
+  description: Without beginning or end, the hand of the merchant stretches into the infinite.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Neck/Cloaks/merchant.rsi

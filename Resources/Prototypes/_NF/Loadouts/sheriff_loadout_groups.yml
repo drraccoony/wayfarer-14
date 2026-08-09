@@ -4,6 +4,8 @@
   loadouts:
   - SheriffClothingUniformJumpsuitSheriff
   - SheriffClothingUniformJumpskirtSheriff
+  - SeniorOfficerClothingUniformJumpsuitSeniorOfficer # Wayfarer
+  - BailiffClothingUniformJumpsuitBailiff # Wayfarer
   fallbacks:
   - SheriffClothingUniformJumpsuitSheriff
   - SheriffClothingUniformJumpskirtSheriff
@@ -14,6 +16,7 @@
   minLimit: 0
   loadouts:
   - SheriffOuterClothing
+  - CGPPatrolSuitCommodore # Wayfarer
 
 - type: loadoutGroup
   id: SheriffHead
@@ -57,5 +60,6 @@
   - SheriffClothingHeadsetAltNfsdBrownCentcom
   - SheriffClothingHeadsetAltNfsdCreamandBrownCentcom
   - SheriffClothingHeadsetAltNfsdGreenCentcom
+  - SheriffNFClothingWristsetSheriff
   fallbacks:
   - SheriffClothingHeadsetAltNfsdCreamandBrownCentcom

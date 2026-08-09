@@ -537,3 +537,45 @@
   price: 1000
   equipment:
     neck: SLRedRegaliaCloak
+
+# DeltaV clothing
+- type: loadout
+  id: WFDVClothingNeckTieWhite
+  price: 500
+  equipment:
+    neck: DVClothingNeckTieWhite
+  groupBy: "ties"
+
+- type: loadout
+  id: WFDVClothingNeckTieBlack
+  price: 500
+  equipment:
+    neck: DVClothingNeckTieBlack
+  groupBy: "ties"
+
+- type: loadout
+  id: WFDVClothingNeckTieBrown
+  price: 500
+  equipment:
+    neck: DVClothingNeckTieBrown
+  groupBy: "ties"
+
+- type: loadout
+  id: WFDVClothingNeckTieBlue
+  price: 500
+  equipment:
+    neck: DVClothingNeckTieBlue
+  groupBy: "ties"
+
+- type: loadout
+  id: WFDVClothingNeckTieGreen
+  price: 500
+  equipment:
+    neck: DVClothingNeckTieGreen
+  groupBy: "ties"
+
+- type: loadout
+  id: WFDVClothingNeckCopperNecklace
+  price: 500
+  equipment:
+    neck: DVClothingNeckCopperNecklace

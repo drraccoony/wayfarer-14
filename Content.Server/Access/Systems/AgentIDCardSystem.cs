@@ -94,6 +94,7 @@ namespace Content.Server.Access.Systems
 
         private void OnAfterInteract(EntityUid uid, AgentIDCardComponent component, AfterInteractEvent args)
         {
+            /* // Wayfarer: Disabled access copying
             if (args.Target == null || !args.CanReach || _lock.IsLocked(uid) ||
                 !TryComp<AccessComponent>(args.Target, out var targetAccess) || !HasComp<IdCardComponent>(args.Target))
                 return;
@@ -105,33 +106,33 @@ namespace Content.Server.Access.Systems
             access.Tags.UnionWith(targetAccess.Tags);
             var addedLength = access.Tags.Count - beforeLength;
 
-            // // DeltaV - Copy NanoChat data if available // Wayfarer: Disabled
-            // if (TryComp<NanoChatCardComponent>(args.Target, out var targetNanoChat) &&
-            //     TryComp<NanoChatCardComponent>(uid, out var agentNanoChat))
-            // {
-            //     // First clear existing data
-            //     _nanoChat.Clear((uid, agentNanoChat));
-            //
-            //     // Copy the number
-            //     if (_nanoChat.GetNumber((args.Target.Value, targetNanoChat)) is { } number)
-            //         _nanoChat.SetNumber((uid, agentNanoChat), number);
-            //
-            //     // Copy all recipients and their messages
-            //     foreach (var (recipientNumber, recipient) in _nanoChat.GetRecipients((args.Target.Value, targetNanoChat)))
-            //     {
-            //         _nanoChat.SetRecipient((uid, agentNanoChat), recipientNumber, recipient);
-            //
-            //         if (_nanoChat.GetMessagesForRecipient((args.Target.Value, targetNanoChat), recipientNumber) is not
-            //             { } messages)
-            //             continue;
-            //
-            //         foreach (var message in messages)
-            //         {
-            //             _nanoChat.AddMessage((uid, agentNanoChat), recipientNumber, message);
-            //         }
-            //     }
-            // }
-            // // End DeltaV
+            // DeltaV - Copy NanoChat data if available
+            if (TryComp<NanoChatCardComponent>(args.Target, out var targetNanoChat) &&
+                TryComp<NanoChatCardComponent>(uid, out var agentNanoChat))
+            {
+                // First clear existing data
+                _nanoChat.Clear((uid, agentNanoChat));
+
+                // Copy the number
+                if (_nanoChat.GetNumber((args.Target.Value, targetNanoChat)) is { } number)
+                    _nanoChat.SetNumber((uid, agentNanoChat), number);
+
+                // Copy all recipients and their messages
+                foreach (var (recipientNumber, recipient) in _nanoChat.GetRecipients((args.Target.Value, targetNanoChat)))
+                {
+                    _nanoChat.SetRecipient((uid, agentNanoChat), recipientNumber, recipient);
+
+                    if (_nanoChat.GetMessagesForRecipient((args.Target.Value, targetNanoChat), recipientNumber) is not
+                        { } messages)
+                        continue;
+
+                   foreach (var message in messages)
+                   {
+                       _nanoChat.AddMessage((uid, agentNanoChat), recipientNumber, message);
+                    }
+                }
+            }
+            // End DeltaV
 
             if (addedLength == 0)
             {
@@ -146,8 +147,9 @@ namespace Content.Server.Access.Systems
                 _popupSystem.PopupEntity(Loc.GetString("agent-id-new-1", ("card", args.Target)), args.Target.Value, args.User);
                 return;
             }
+            */ // Wayfarer end
 
-            _popupSystem.PopupEntity(Loc.GetString("agent-id-new", ("number", addedLength), ("card", args.Target)), args.Target.Value, args.User);
+            // _popupSystem.PopupEntity(Loc.GetString("agent-id-new", ("number", addedLength), ("card", args.Target)), args.Target.Value, args.User); Wayfarer: disabled access copying
         }
 
         private void AfterUIOpen(EntityUid uid, AgentIDCardComponent component, AfterActivatableUIOpenEvent args)
@@ -157,17 +159,18 @@ namespace Content.Server.Access.Systems
 
             if (!TryComp<IdCardComponent>(uid, out var idCard))
                 return;
+            /* // Wayfarer: Disabled
+            DeltaV - Get current number if it exists // Wayfarer: Disabled
+            uint? currentNumber = null;
+            if (TryComp<NanoChatCardComponent>(uid, out var comp))
+                currentNumber = comp.Number;
 
-            // // DeltaV - Get current number if it exists // Wayfarer: Disabled
-            // uint? currentNumber = null;
-            // if (TryComp<NanoChatCardComponent>(uid, out var comp))
-            //     currentNumber = comp.Number;
-            //
-            // var state = new AgentIDCardBoundUserInterfaceState(
-            //     idCard.FullName ?? "",
-            //     idCard.LocalizedJobTitle ?? "",
-            //     idCard.JobIcon,
-            //     currentNumber); // DeltaV - Pass current number
+            var state = new AgentIDCardBoundUserInterfaceState(
+                idCard.FullName ?? "",
+                idCard.LocalizedJobTitle ?? "",
+                idCard.JobIcon,
+                currentNumber); // DeltaV - Pass current number
+            */ // Wayfarer End
             var state = new AgentIDCardBoundUserInterfaceState(idCard.FullName ?? "", idCard.LocalizedJobTitle ?? "", idCard.JobIcon);
             _uiSystem.SetUiState(uid, AgentIDCardUiKey.Key, state);
         }

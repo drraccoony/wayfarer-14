@@ -1,18 +1,10 @@
 gun-examine-nf-recoil = - [color={$color}]Recoil[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] per shot
-gun-examine-nf-recoil-compare = - [color={$color}]Recoil[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] per shot [color={$deltaColor}]({$delta}°)[/color]
 gun-examine-nf-stability = - [color={$color}]Stability[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] per second
-gun-examine-nf-stability-compare = - [color={$color}]Stability[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] per second [color={$deltaColor}]({$delta}°)[/color]
 gun-examine-nf-max-angle = - [color={$color}]Maximum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color]
-gun-examine-nf-max-angle-compare = - [color={$color}]Maximum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] [color={$deltaColor}]({$delta}°)[/color]
 gun-examine-nf-min-angle = - [color={$color}]Minimum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color]
-gun-examine-nf-min-angle-compare = - [color={$color}]Minimum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] [color={$deltaColor}]({$delta}°)[/color]
 gun-examine-nf-fire-rate = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color]
-gun-examine-nf-fire-rate-compare = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color] [color={$deltaColor}]({$delta} RPS)[/color]
 gun-examine-nf-fire-rate-burst = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color] (burst of [color=lightblue]{$burstsize}[/color] at [color=lightblue]{NATURALFIXED($burstrate, 1)} RPS[/color])
-gun-examine-nf-fire-rate-burst-compare = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color] (burst of [color=lightblue]{$burstsize}[/color] at [color=lightblue]{NATURALFIXED($burstrate, 1)} RPS[/color]) [color={$deltaColor}]({$delta} RPS)[/color]
 gun-examine-nf-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color]
-gun-examine-nf-muzzle-velocity-compare = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color] [color={$deltaColor}]({$delta} m/s)[/color]
-gun-examine-nf-stat-modifier = [bold]([color=lime]{$plus}{NATURALPERCENT($difference, 1)}[/color])[/bold]
 gun-examine-nf-class = - [color={$color}]Class[/color]: [color=lightblue]{$value}[/color]
 gun-examine-nf-manufacturer = - [color={$color}]Manufacturer[/color]: [color=lightblue]{$value}[/color]
 
@@ -33,8 +25,12 @@ gun-examine-energybolt-medium = 1100J energy beam
 gun-examine-hitscan-high = 1400J energy beam
 gun-examine-hitscan-high-p = 1900J energy beam
 gun-examine-hitscan-xray = 1900J X-ray beam
+# Wayfarer Start
+gun-examine-energybolt-low-disabler-shotgun = 500J energy/disabler bolt
+# Wayfarer End
 gun-examine-energybolt-low = 750J energy bolt
 gun-examine-energybolt-low-disabler-pistol = 750J energy/disabler bolt
+gun-examine-energybolt-low-disabler-repeater = 940J energy/disabler bolt
 gun-examine-energybolt-high = 1400J energy bolt
 gun-examine-energybolt-disabler-pistol = 750J disabler bolt
 gun-examine-energybolt-disabler-practice = 25J disabler bolt
@@ -53,6 +49,7 @@ gun-examine-caliber-mail-capsule = mail capsules
 
 # Manufacturers (alphabetical please)
 weapon-details-manufacturer-custom-made = Custom Made
+weapon-details-manufacturer-children-of-the-atom = Children of the Atom
 weapon-details-manufacturer-cybersun-industries = Cybersun Industries
 weapon-details-manufacturer-foam-force-llc = Foam Force LLC
 weapon-details-manufacturer-frontier-gunsmith-consortium = Frontier Gunsmith Consortium
@@ -73,9 +70,3 @@ weapon-details-class-shotgun = Shotgun
 weapon-details-class-sniper = Sniper Rifle
 weapon-details-class-submachine-gun = Submachine Gun
 weapon-details-class-tool = Tool
-
-# Weapon rarity descriptions
-weapon-description-rarity-uncommon = This is an [bold][color=#33FF44]uncommon[/color][/bold] weapon.
-weapon-description-rarity-rare = This is a [bold][color=#33CCFF]rare[/color][/bold] weapon.
-weapon-description-rarity-epic = This is an [bold][color=#CC66FF]epic[/color][/bold] weapon.
-weapon-description-rarity-legendary = This is a [bold][color=#FFCC00]legendary[/color][/bold] weapon.

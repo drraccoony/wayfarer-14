@@ -2,6 +2,8 @@ uplink-outlaw-hardsuit-name = Outlaw Hardsuit
 uplink-outlaw-hardsuit-desc = A rugged, lightly armored combat hardsuit used by Outlaws.
 uplink-outlaw-hardsuitcombat-name = Outlaw Combat Hardsuit
 uplink-outlaw-hardsuitcombat-desc = A heavy combat hardsuit used by Outlaws.
+uplink-pirate-hardsuit-name = Pirate Softsuit
+uplink-pirate-hardsuit-desc = Hailed from the depths of the ocean, more suitable for water than for space.
 
 uplink-outlaw-tacvest-name = Tactical Vest
 uplink-outlaw-tacvest-desc = A tactical vest procured from the Black Market. Sturdy materials provide good protection.
@@ -29,15 +31,26 @@ uplink-outlaw-cash100-desc = Wads out for the ladies!
 
 uplink-outlaw-box35ext-name = .35 Extended Magazines
 uplink-outlaw-box35ext-desc = A box full of extended pistol (.35 pistol) magazines.
+uplink-outlaw-box35extrubber-name = .35 Extended ( Rubber ) Magazines
+uplink-outlaw-box35extrubber-desc = A box full of extended pistol (.35 pistol, rubber) magazines.
 uplink-outlaw-box35extoverpressure-name = .35 Extended Overpressure Magazines
 uplink-outlaw-box35extoverpressure-desc = A box full of extended pistol (.35 pistol, overpressure) magazines.
 uplink-outlaw-box35extincendiary-name = .35 Extended Incendiary Magazines
 uplink-outlaw-box35extincendiary-desc = A box full of extended pistol (.35 pistol, incendiary) magazines.
 uplink-outlaw-box35exturanium-name = .35 Extended Uranium Magazines
 uplink-outlaw-box35exturanium-desc = A box full of extended pistol (.35 pistol, uranium) magazines.
+uplink-outlaw-box35smg-name = .35 SMG (Overpressure) Magazines
+uplink-outlaw-box35smg-desc = A box full of smg (.35 pistol, Overpressure) magazines.
+uplink-outlaw-box35smgrubber-name = .35 SMG ( Rubber ) Magazines
+uplink-outlaw-box35smgrubber-desc = A box full of smg (.35 pistol, rubber) magazines.
+
+uplink-outlaw-ecutlass-name = Energy Cutlass
+uplink-outlaw-ecutlass-desc = An energy cutlass!
 
 uplink-outlaw-box45speedloader-name = .45 Pistol Speedloaders
 uplink-outlaw-box45speedloader-desc = A box full of (.45 pistol) speedloaders.
+uplink-outlaw-box45speedloaderrubber-name = .45 Pistol Rubber Speedloaders
+uplink-outlaw-box45speedloaderrubber-desc = A box full of (.45 pistol, rubber) speedloaders.
 uplink-outlaw-box45speedloaderoverpressure-name = .45 Pistol Overpressure Speedloaders
 uplink-outlaw-box45speedloaderoverpressure-desc = A box full of (.45 pistol, overpressure) speedloaders.
 uplink-outlaw-box45speedloaderincendiary-name = .45 Pistol Incendiary Speedloaders
@@ -57,6 +70,8 @@ uplink-outlaw-vialthc-name = Vial (THC)
 uplink-outlaw-vialthc-desc = The main psychoactive compound in cannabis.
 uplink-outlaw-vialspacedrugs-name = Vial (Space Mirage)
 uplink-outlaw-vialspacedrugs-desc = An illegal compound which induces a number of effects such as loss of balance and visual artefacts.
+uplink-outlaw-uncockedmedipen-name = Uncocked Combat Medipen
+uplink-outlaw-uncockedmedipen-desc = A combat medipen, ready to be primed in the outlaw assembler.
 
 uplink-outlaw-voucher-name = Black Market ship voucher
 uplink-outlaw-voucher-desc = A voucher card allowing the redemption of a ship from the black market shipyard.
@@ -66,10 +81,20 @@ uplink-outlaw-bundle-paperwork-desc = Contains a set of stamps, paper, and pen.
 uplink-outlaw-bundle-kidnap-name = Kidnapper Bundle
 uplink-outlaw-bundle-kidnap-desc = Contains a set of restraints, a stun baton and some lube for good measure.
 
+uplink-outlaw-iff-name = IFF Console Flatpack
+uplink-outlaw-iff-desc = A pre-assembled IFF console, procured from the Black Market. Don't get caught!
+uplink-outlaw-techfab-name = Outlaw Techfab
+uplink-outlaw-techfab-desc = Prints the questionably legal items recovered from decrypted black-market data, and a few other things.
+uplink-outlaw-assembler-name = Black Market Assembler
+uplink-outlaw-assembler-desc = A repurposed multi-assembler, ominously painted for assembling things, omniously.
+
 uplink-outlaw-pirateplushie-name = Yarr Moth Plushie
 uplink-outlaw-pirateplushie-desc = It's dastardly and has a dashing cloak. It chitters when you squeeze it!
-uplink-outlaw-card-name = Syndicate Business Card
-uplink-outlaw-card-desc = A blood-red colored business card.
+uplink-outlaw-card-name = Outlaw Business Card
+uplink-outlaw-card-desc = A black business card.
+
+uplink-outlaw-c20-name = C-20r Submachine Gun
+uplink-outlaw-c20-desc = Old faithful: The classic C-20r Submachine Gun
 
 uplink-outlaw-cannon-name = Pirate Cannon
 uplink-outlaw-cannon-desc = A ship mounted pirate cannon... don't we have railguns?

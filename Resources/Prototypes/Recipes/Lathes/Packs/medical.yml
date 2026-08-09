@@ -34,6 +34,9 @@
   - Drill
   - Saw
   - Hemostat
+  - BruteSurgeryKit # Wayfarer
+  - BurnSurgeryKit # Wayfarer
+  - ToxinSurgeryKit # Wayfarer
 
 - type: latheRecipePack
   id: MedicalStatic
@@ -69,6 +72,7 @@
   - MedkitBurn
   - MedkitToxin
   - MedkitO2
+  - MedkitN2 # Imp
   - MedkitBrute
   - MedkitAdvanced
   - MedkitRadiation
@@ -77,8 +81,8 @@
 - type: latheRecipePack
   id: MedicalBoardsStatic
   recipes:
-  - ElectrolysisUnitMachineCircuitboard
-  - CentrifugeMachineCircuitboard
+  # - ElectrolysisUnitMachineCircuitboard # Frontier: dynamic
+  # - CentrifugeMachineCircuitboard # Frontier: dynamic
   # - ChemDispenserMachineCircuitboard # Frontier: dynamic
   # - ChemMasterMachineCircuitboard # Frontier: dynamic
   - CondenserMachineCircuitBoard

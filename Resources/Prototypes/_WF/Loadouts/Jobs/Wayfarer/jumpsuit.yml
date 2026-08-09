@@ -2969,3 +2969,567 @@
   equipment:
     jumpsuit: SLClothingUniformJumpsuitMimeSuaveBlack
   groupBy: "mime"
+
+# Impstation clothing
+- type: loadout
+  id: WFIMPClothingUniformCircusClown
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformCircusClown
+  groupBy: "clown"
+
+- type: loadout
+  id: WFIMPClothingUniformJokester
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJokester
+  groupBy: "clown"
+
+- type: loadout
+  id: WFIMPClothingUniformJesterEvil
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJesterEvil
+  groupBy: "clown"
+
+- type: loadout
+  id: WFIMPClothingUniformJumpsuitMimeCropped
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJumpsuitMimeCropped
+  groupBy: "mime"
+
+- type: loadout
+  id: WFIMPClothingUniformJumpsuitMimeNouveau
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJumpsuitMimeNouveau
+  groupBy: "mime"
+
+- type: loadout
+  id: WFIMPClothingUniformHitmanSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformHitmanSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformFuneralSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformFuneralSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformNightclubSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformNightclubSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformMrSpaceWide
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformMrSpaceWide
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformBrownSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformBrownSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformCreamSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformCreamSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformDetectiveSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformDetectiveSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformMiamiVice
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformMiamiVice
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformJumpsuitTailcoatSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJumpsuitTailcoatSuit
+  groupBy: "fancySuit"
+
+- type: loadout
+  id: WFIMPClothingUniformSeniorBartender
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformSeniorBartender
+  groupBy: "jumpsuitBartender"
+
+- type: loadout
+  id: WFIMPClothingUniformBurglarJumpsuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformBurglarJumpsuit
+  groupBy: "casualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformBrosBlazer
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformBrosBlazer
+  groupBy: "casualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformSailorSuit
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformSailorSuit
+  groupBy: "casualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformJumpsuitCourier
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJumpsuitCourier
+  groupBy: "casualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformJumpsuitMusicianMarchingBand
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformJumpsuitMusicianMarchingBand
+  groupBy: "casualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformSpaceJumpsuitCasualBrown
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformSpaceJumpsuitCasualBrown
+  groupBy: "spaceCasualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformSpaceJumpsuitCasualTriColor
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformSpaceJumpsuitCasualTriColor
+  groupBy: "spaceCasualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformSpaceJumpsuitCasualMulti
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformSpaceJumpsuitCasualMulti
+  groupBy: "spaceCasualJumpsuit"
+
+- type: loadout
+  id: WFIMPClothingUniformSpaceJumpsuitCasualBlue
+  price: 500
+  equipment:
+    jumpsuit: IMPClothingUniformSpaceJumpsuitCasualBlue
+  groupBy: "spaceCasualJumpsuit"
+# DeltaV clothing
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitBlack
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitBlack
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitBlackAlt
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitBlackAlt
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitBlackMob
+  price: 1000
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitBlackMob
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitBrown
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitBrown
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitBrownAlt
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitBrownAlt
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitBrownMob
+  price: 1000
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitBrownMob
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitWhite
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitWhite
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitWhiteAlt
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitWhiteAlt
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSuitWhiteMob
+  price: 1000
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSuitWhiteMob
+  groupBy: "suits"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitJeansRed
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitJeansRed
+  groupBy: "jeans"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitJeansGreen
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitJeansGreen
+  groupBy: "jeans"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitJeansBrown
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitJeansBrown
+  groupBy: "jeans"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitWrestlerCostumeGreen
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitWrestlerCostumeGreen
+  groupBy: "wrestler"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitWrestlerCostumeRed
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitWrestlerCostumeRed
+  groupBy: "wrestler"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitWrestlerCostumeYellow
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitWrestlerCostumeYellow
+  groupBy: "wrestler"
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitWrestlerCostumeBlue
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitWrestlerCostumeBlue
+  groupBy: "wrestler"
+
+- type: loadout
+  id: WFDVClothingUniformElf
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformElf
+
+- type: loadout
+  id: WFDVClothingUniformHarbingerTunic
+  price: 650
+  equipment:
+    jumpsuit: DVClothingUniformHarbingerTunic
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitSober
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitSober
+
+- type: loadout
+  id: WFDVClothingUniformJumpsuitLostTourist
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpsuitLostTourist
+
+- type: loadout
+  id: WFDVClothingUniformJumpskirtOveralls
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpskirtOveralls
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: WFDVClothingUniformSkirtCourier
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformSkirtCourier
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: WFDVClothingUniformJumpskirtFestiveDressRed
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpskirtFestiveDressRed
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: WFDVClothingUniformJumpskirtElf
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpskirtElf
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: WFDVClothingUniformJumpskirtWaitstaffFormal
+  price: 500
+  equipment:
+    jumpsuit: DVClothingUniformJumpskirtWaitstaffFormal
+  groupBy: "jumpskirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorWhite
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorWhite
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorGrey
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorGrey
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorBlack
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorBlack
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorBlue
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorBlue
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorDarkBlue
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorDarkBlue
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorTeal
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorTeal
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorGreen
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorGreen
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorDarkGreen
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorDarkGreen
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorOrange
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorOrange
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorPink
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorPink
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorRed
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorRed
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorYellow
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorYellow
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorPurple
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorPurple
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorLightBrown
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorLightBrown
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorBrown
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorBrown
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckColorMaroon
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckColorMaroon
+  groupBy: "turtleneck"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorWhite
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorWhite
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorGrey
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorGrey
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorBlack
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorBlack
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorBlue
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorBlue
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorDarkBlue
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorDarkBlue
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorTeal
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorTeal
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorGreen
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorGreen
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorDarkGreen
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorDarkGreen
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorOrange
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorOrange
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorPink
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorPink
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorRed
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorRed
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorYellow
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorYellow
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorPurple
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorPurple
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorLightBrown
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorLightBrown
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorBrown
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorBrown
+  groupBy: "turtleneck-skirt"
+
+- type: loadout
+  id: WFDVClothingUniformTurtleneckSkirtColorMaroon
+  price: 250
+  equipment:
+    jumpsuit: DVClothingUniformTurtleneckSkirtColorMaroon
+  groupBy: "turtleneck-skirt"

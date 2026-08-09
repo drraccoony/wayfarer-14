@@ -37,6 +37,23 @@
   tileReactions:
     - !type:CleanTileReaction {}
     - !type:CleanDecalsReaction {}
+  # Wayfarer start
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4 # same as water / ammonia for avali
+        conditions:
+        - !type:OrganType
+          type: Avali
+          shouldHave: true
+      - !type:SatiateThirst
+        factor: 2.5 # average of ammonia and water for vox
+        conditions:
+        - !type:OrganType
+          type: Vox
+          shouldHave: true
+  # End Wayfarer
 
 - type: reagent
   id: SoapReagent

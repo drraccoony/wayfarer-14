@@ -125,7 +125,7 @@
     # Wayfarer: Fix Sigh
     Sigh:
       collection: MaleSigh
-    # Wayfarer end
+    # End Wayfarer
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -165,7 +165,7 @@
     # Wayfarer: Fix Sigh
     Sigh:
       collection: FemaleSigh
-    # Wayfarer end
+    # End Wayfarer
 
 - type: emoteSounds
   id: MaleSlime
@@ -675,6 +675,20 @@
     path: /Audio/Animals/goat_bah.ogg
     params:
       variation: 0.125
+
+- type: emoteSounds
+  id: Sheep
+  sound:
+    collection: Sheep
+    params:
+      variation: 0.05
+
+- type: emoteSounds
+  id: SheepSpace
+  sound:
+    collection: SheepSpace
+    params:
+      variation: 0.05
 
 - type: emoteSounds
   id: Scurret

@@ -18,8 +18,9 @@
   accessGroups:
   - GeneralAccess
   special:
-  - !type:AddImplantSpecial
-    implants: [ TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -60,6 +61,7 @@
   groups:
   - EmergencyResponderJumpsuit
   - WFOuterClothing
+  - ContractorForcedOuterClothing
   - WFBackpack
   - WFShoes
   - WFHead

@@ -42,6 +42,9 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: WFBonusCurrency #Wayfarer: Add additional currency that checks destination
+    currency: WayfarerMerchantToken
+    amount: 5
 
 - type: entity
   parent: CrateGenericSteel

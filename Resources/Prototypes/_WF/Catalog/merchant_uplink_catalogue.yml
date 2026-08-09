@@ -1,0 +1,282 @@
+# Medical
+# HypoSpray
+- type: listing
+  id: UplinkMerchantHypospray
+  name:  uplink-merchant-hypospray-name
+  description: uplink-merchant-hypospray-desc
+  productEntity: HypoMini
+  icon: { sprite: _NF/Objects/Specific/Medical/hypomini.rsi, state: hypo }
+  cost:
+    WayfarerMerchantToken: 20
+  categories:
+  - UplinkMerchantsMedical
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+# Curine bottle
+- type: listing
+  id: UplinkMerchantCurine
+  name:  uplink-merchant-curine-name
+  description: uplink-merchant-curine-desc
+  productEntity: ChemistryBottleOmnizine
+  icon: { sprite: _DV/Objects/Specific/Chemistry/beaker.rsi, state: beaker }
+  cost:
+    WayfarerMerchantToken: 8
+  categories:
+  - UplinkMerchantsMedical
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#ChemvendRestock
+- type: listing
+  id: UplinkMerchantChemvendRestock
+  name:  uplink-merchant-chemvendrestock-name
+  description: uplink-merchant-chemvendrestock-desc
+  productEntity: VendingMachineRestockChemVend
+  icon: { sprite: Objects/Specific/Service/vending_machine_restock.rsi, state: base }
+  cost:
+    WayfarerMerchantToken: 90
+  categories:
+  - UplinkMerchantsMedical
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+# Engineering  --
+
+# RTG flatpack
+- type: listing
+  id: UplinkMerchantRTGFlatpack
+  name:  uplink-merchant-rtgflatpack-name
+  description: uplink-merchant-rtgflatpack-desc
+  productEntity: GeneratorRTGFlatpack
+  icon: { sprite: Structures/Power/Generation/rtg.rsi, state: rtg }
+  cost:
+    WayfarerMerchantToken: 50
+  categories:
+  - UplinkMerchantsEngineering
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+# Hellfire Freezer
+- type: listing
+  id: UplinkMerchantHellfireFreezer
+  name:  uplink-merchant-hellfirefreezer-name
+  description: uplink-merchant-hellfirefreezer-desc
+  productEntity: HellfireFreezerMachineCircuitBoard
+  icon: { sprite: _Impstation/Structures/Piping/Atmospherics/hellfirethermomachine.rsi, state: freezerOff }
+  cost:
+    WayfarerMerchantToken: 60
+  categories:
+  - UplinkMerchantsEngineering
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+# Fuel tank
+- type: listing
+  id: UplinkMerchantHighCapFuelTank
+  name:  uplink-merchant-capfueltank-name
+  description: uplink-merchant-capfueltank-desc
+  productEntity: WeldingFuelTankHighCapacity
+  icon: { sprite: Structures/Storage/tanks.rsi, state: highfueltank-2 }
+  cost:
+    WayfarerMerchantToken: 40
+  categories:
+  - UplinkMerchantsEngineering
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+# Advanced maggies
+- type: listing
+  id: UplinkMerchanAdvMaggies
+  name:  uplink-merchant-advmaggies-name
+  description: uplink-merchant-advmaggies-desc
+  productEntity: ClothingShoesBootsMagAdv
+  icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+  cost:
+    WayfarerMerchantToken: 50
+  categories:
+  - UplinkMerchantsEngineering
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#Science --
+
+# Anomalite
+- type: listing
+  id: UplinkMerchanAnomalite
+  name:  uplink-merchant-anomalite-name
+  description: uplink-merchant-anomalite-desc
+  productEntity: MaterialAnomalite1
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: anomalite }
+  cost:
+    WayfarerMerchantToken: 20
+  categories:
+  - UplinkMerchantsTechnology
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+#Cargo --
+
+#Chefvend restock
+- type: listing
+  id: UplinkMerchantChefvendRestock
+  name:  uplink-merchant-chefvendrestock-name
+  description: uplink-merchant-chefvendrestock-desc
+  productEntity: VendingMachineRestockChefvend
+  icon: { sprite: Objects/Specific/Service/vending_machine_restock.rsi, state: base }
+  cost:
+    WayfarerMerchantToken: 50
+  categories:
+  - UplinkMerchantMisc
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#Plates Medium
+- type: listing
+  id: UplinkMerchantPlatesMedium
+  name:  uplink-merchant-platesmedium-name
+  description: uplink-merchant-platesmedium-desc
+  productEntity: CratePlateMedium
+  icon: { sprite: _Mono/Clothing/ArmorPlate/armor_medium.rsi, state: icon }
+  cost:
+    WayfarerMerchantToken: 40
+  categories:
+  - UplinkMerchantMisc
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#Plastic
+- type: listing
+  id: UplinkMerchantPlasticCrate
+  name:  uplink-merchant-plasticcrate-name
+  description: uplink-merchant-plasticcrate-desc
+  productEntity: CrateMaterialPlastic
+  icon: { sprite: Objects/Materials/Sheets/other.rsi, state: plastic_3 }
+  cost:
+    WayfarerMerchantToken: 30
+  categories:
+  - UplinkMerchantMisc
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#Cloth
+- type: listing
+  id: UplinkMerchantClothCrate
+  name:  uplink-merchant-clothcrate-name
+  description: uplink-merchant-clothcrate-desc
+  productEntity: CrateMaterialTextiles
+  icon: { sprite: Objects/Materials/materials.rsi, state: cloth_3 }
+  cost:
+    WayfarerMerchantToken: 30
+  categories:
+  - UplinkMerchantMisc
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#Outlaw --
+
+- type: listing
+  id: UplinkMerchantDataDisk
+  name:  uplink-merchant-datadiskencrypt-name
+  description: uplink-merchant-datadiskencrypt-desc
+  productEntity: TreasureDatadiskEncrypted
+  icon: { sprite: Objects/Misc/module.rsi, state: harddisk_mini }
+  cost:
+    WayfarerMerchantToken: 15
+  categories:
+  - UplinkMerchantsOutlaw
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#CGP --
+
+#Fun --
+
+#Beret - 100 crates, getting up there
+- type: listing
+  id: UplinkMerchantBeretMerchant
+  name:  uplink-merchant-beretmerchant-name
+  description: uplink-merchant-beretmerchant-desc
+  productEntity: ClothingHeadHatMerchantBeret
+  icon: { sprite: _WF/Clothing/Head/Hats/merchants_beret.rsi, state: icon }
+  cost:
+    WayfarerMerchantToken: 100
+  categories:
+  - UplinkMerchantsFun
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#coat - 500 crates, you should probably go touch some grass
+- type: listing
+  id: UplinkMerchantCoatMerchant
+  name:  uplink-merchant-coatmerchant-name
+  description: uplink-merchant-coatmerchant-desc
+  productEntity: ClothingHeadHatMerchantBeret
+  icon: { sprite: _WF/Clothing/OuterClothing/Misc/merchant_armored_coat.rsi, state: icon }
+  cost:
+    WayfarerMerchantToken: 500
+  categories:
+  - UplinkMerchantsFun
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink
+
+#Cloak - 1000 crates, only for true psychogamers. LIST OF CONFIRMED PSYCHOGAMERS:
+- type: listing
+  id: UplinkMerchantCloak
+  name:  uplink-merchant-cloak-name
+  description: uplink-merchant-cloak-desc
+  productEntity: ClothingNeckMerchant
+  icon: { sprite: _WF/Clothing/Neck/Cloaks/merchant.rsi, state: icon }
+  cost:
+    WayfarerMerchantToken: 1000
+  categories:
+  - UplinkMerchantsFun
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - WFMerchantUplink

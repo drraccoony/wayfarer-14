@@ -13,7 +13,7 @@
   displayWeight: 60 # Top
   canBeAntag: false
   accessGroups:
-  - AllAccess
+  - StationCommand # Wayfarer: AllAccess<StationCommand
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, NFSDTrackingImplant ]
@@ -35,7 +35,19 @@
     - RubberStampSr
     - DoorRemoteCommand
   encryptionKeys:
-  - EncryptionKeyStationMaster
+  # Wayfarer Start
+  # - EncryptionKeyStationMaster # Wayfarer SR should not have CGP channels.
+    - EncryptionKeyCommon
+    - EncryptionKeyCommand
+    - EncryptionKeyEngineering
+    - EncryptionKeyMedical
+    - EncryptionKeyScience
+    - EncryptionKeyService
+    - EncryptionKeyCargo
+    - EncryptionKeyTraffic
+    - EncryptionKeyGreeting
+    - EncryptionKeySecurity
+    # End Wayfarer
 
 - type: chameleonOutfit
   id: StationRepresentativeChameleonOutfit

@@ -27,3 +27,13 @@
     severity: BlackMarket
     turnInValues:
       FrontierUplinkCoin: 1
+      
+#Merchant Beret
+- type: entity
+  parent: [ClothingHeadBaseButcherable] 
+  id: ClothingHeadHatMerchantBeret
+  name: Merchant Beret
+  description: A beret proudly displaying the owner as a member of the merchant's guild.
+  components:
+  - type: Sprite
+    sprite: _WF/Clothing/Head/Hats/merchants_beret.rsi # Wayfarer: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi < _WF/Clothing/Head/Hats/CGP_beret_green.rsi

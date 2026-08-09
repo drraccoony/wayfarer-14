@@ -1300,6 +1300,13 @@
   parent: NFBaseBootRecipe
   result: ClothingHandsGlovesCombat
 
+# Wayfarer
+- type: latheRecipe
+  id: ClothingHandsGlovesCombatWhite
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesCombatWhite
+# Wayfer End
+
 - type: latheRecipe
   id: ClothingHandsGlovesSr
   parent: NFBaseBootRecipe
@@ -1314,6 +1321,14 @@
   id: ClothingHandsGlovesCombatNfsdCream
   parent: NFBaseBootRecipe
   result: ClothingHandsGlovesCombatNfsdCream
+
+- type: latheRecipe
+  id: ClothingHandsGlovesColorYellow
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesColorYellow
+  categories:
+  - ClothesNF
+  - Tools
 
 # region Boots
 - type: latheRecipe
@@ -1401,6 +1416,14 @@
   id: ClothingEyesEyepatch
   parent: NFBaseJumpsuitRecipe
   result: ClothingEyesEyepatch
+
+- type: latheRecipe
+  parent: NFBaseWearableDeviceRecipe
+  id: NFClothingEyesGlassesMeson
+  result: ClothingEyesGlassesMeson
+  categories:
+  - ClothesNF
+  - Tools
 
 # region Wallets
 - type: latheRecipe

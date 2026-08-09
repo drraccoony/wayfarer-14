@@ -1,7 +1,7 @@
 #region frame
 - type: entity
   abstract: true
-  parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseGunMeleeAttackHigh, NFBaseItemWeaponGun ]
+  parent: [ NFBaseWeaponEncumbranceSniper, NFBaseGunMeleeAttackHigh, NFBaseItemWeaponGun ] # Wayfarer: Removed contraband
   id: NFBaseWeaponFrameRifleSniper
   suffix: Frontier
   components:
@@ -12,11 +12,11 @@
     minAngle: -0 # Set to 0 because GunRequiresWield
     maxAngle: -0
   - type: Gun
-    projectileSpeed: 30
-    minAngle: 1.4
-    maxAngle: 7
-    angleIncrease: 5.6
-    angleDecay: 3.7
+    projectileSpeed: 40
+    minAngle: 0.5
+    maxAngle: 3.4
+    angleIncrease: 0.4
+    angleDecay: 2.5
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -27,19 +27,38 @@
     pvsIncrease: 1
   - type: NFWeaponDetails
     class: weapon-details-class-sniper
+  # Wayfarer Start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
+  # Wayfarer End
 
 #region manufacturer
 - type: entity
   abstract: true
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSniper ]
+  parent: [ NFBaseWeaponFrameRifleSniper, BaseBMContraband ] # Wayfarer: BaseC3SyndicateContraband<BaseBMContraband
   id: NFBaseWeaponFrameRifleSniperCybersun
   components:
   - type: Gun
-    angleIncrease: 5.6
-    angleDecay: 3.7
-    fireRate: 0.8
+    fireRate: 0.80
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  abstract: true
+  parent: [ BaseCGPContraband, NFBaseWeaponFrameRifleSniper ] # Wayfarer: BaseC2ContrabandUnredeemable<BaseCGPContraband
+  id: NFBaseWeaponFrameRifleSniperNanotrasen
+  components:
+  - type: Gun
+    fireRate: 0.70
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
 
 #region chamber
 - type: entity
@@ -60,3 +79,15 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleChamber60
+  id: NFBaseWeaponRifleChamber60Rubber
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 5
+    proto: NFCartridgeRifle60Rubber
+    whitelist:
+      tags:
+      - NFCartridgeRifle60

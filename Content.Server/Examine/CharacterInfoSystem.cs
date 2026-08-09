@@ -84,7 +84,7 @@ public sealed class CharacterInfoSystem : EntitySystem
         {
             response.RoleplayLevel = "Level 1";
         }
-        // Wayfarer End
+        // End Wayfarer
 
         // Get description (flavor text)
         if (TryComp<DetailExaminableComponent>(entity, out var detailExaminable))

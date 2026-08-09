@@ -54,7 +54,7 @@
     - id: Bible
     - id: ClothingHeadHatBishopMitre
     - id: ClothingOuterCoatBishop
-    - id: BibleUserImplanter
+#    - id: BibleUserImplanter # Wayfarer: Faith implanter removed, covered by the existing Pious trait
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -67,7 +67,7 @@
     - id: Weejurnum
     - id: ClothingOuterRobesWeedChurch
     - id: ClothingHeadWeedChurchBishop
-    - id: BibleUserImplanter
+#    - id: BibleUserImplanter # Wayfarer: Faith implanter removed, covered by the existing Pious trait
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -532,6 +532,9 @@
     - id: PlushieMoffbar
       prob: 0.5
       orGroup: Plushie
+    - id: NFPlushieLizardMusician
+      prob: 0.5
+      orGroup: Plushie
       # Rare loot, drops should be special.
     - id: PlushieJanitor
       prob: 0.05
@@ -548,6 +551,10 @@
     - id: PlushieGoblin
       prob: 0.05
       orGroup: Plushie
+    # Wayfarer: EXPIEEE
+    - id: PlushieExperiment
+      orGroup: Plushie
+    # End Wayfarer
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1111,7 +1118,7 @@
     contents:
     - id: ClothingHeadHatPwig
     - id: NFWeaponRifleMusket
-    - id: CartridgeAntiMateriel
+    - id: NFCartridgeRifle60 # Wayfarer
       amount: 2
     - id: PaperMailNTMusket
 
@@ -1200,17 +1207,15 @@
     - id: ClothingBeltChampion
     - id: PaperMailNTBoxer
 
-# Wayfarer
-# - type: entity
-#   categories: [ HideSpawnMenu ]
-#   parent: BaseMail
-#   id: MailNFIFFBoard
-#   suffix: IFF board
-#   components:
-#   - type: Mail
-#     contents:
-#     - id: ComputerIFFCircuitboard
-# End Wayfarer
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMail
+  id: MailNFIFFBoard
+  suffix: IFF board
+  components:
+  - type: Mail
+    contents:
+    - id: ComputerIFFCircuitboard
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1243,6 +1248,16 @@
   - type: Mail
     contents:
     - id: WeaponVulpCannon
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMailLarge
+  id: MailNFPlushieCannon
+  suffix: plushie cannon
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponPlushieCannon
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1303,6 +1318,9 @@
       orGroup: Instrument
     # Uncommon
     - id: PhoneInstrument
+      orGroup: Instrument
+      prob: 0.1
+    - id: NFPlushieLizardMusician
       orGroup: Instrument
       prob: 0.1
     # Rare
@@ -1479,6 +1497,9 @@
     - id: ReagentGrinderMachineCircuitboard
       orGroup: Board
     - id: ReagentGrinderIndustrialMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: JuicerIndustrialMachineCircuitboard # Wayfarer
       orGroup: Board
       prob: 0.5
     - id: SurveillanceWirelessCameraMovableCircuitboard
@@ -1839,7 +1860,7 @@
         orGroup: Mask
       - id: ClothingMaskScaredMime
         orGroup: Mask
-      - id: MimePowersImplanter
+#      - id: MimePowersImplanter # Wayfarer: Mime vow implanter removed, replaced by the new Mime trait
 
 # Base Nyano mail
 
@@ -2010,6 +2031,17 @@
       maxAmount: 2
     - id: Handcuffs
       maxAmount: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMail
+  id: MailLizardWallet
+  suffix: lizard wallet
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingWalletLeatherLizard
+        orGroup: Clothes
 
 # TODO: make this more interesting
 - type: entity

@@ -16,6 +16,8 @@
   - Shipyard
   - PreflightChecklist
   - CommunityGoals
+  - Consent # wayfarer
+  - Contraband # wayfarer
 
 - type: guideEntry
   id: Bank
@@ -66,7 +68,7 @@
 - type: guideEntry
   id: CargoHauling
   name: guide-entry-cargo-hauling
-  text: "/ServerInfo/_NF/Guidebook/CargoHauling.xml"
+  text: "/ServerInfo/_WF/Guidebook/CargoHauling.xml" #WF: moving to our vs until commentfix /ServerInfo/_NF/Guidebook/CargoHauling.xml</ServerInfo/_WF/Guidebook/CargoHauling.xml
   priority: 6
 
 # Hiring children

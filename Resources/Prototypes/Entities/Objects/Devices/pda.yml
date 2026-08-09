@@ -150,6 +150,7 @@
   - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
     preserveOnSale: true
   - type: BlipCartridge
+  - type: CleanupImmune # Wayfarer
 
 - type: entity
   parent: BasePDA
@@ -527,13 +528,15 @@
     accentVColor: "#a23e3e"
   - type: Icon
     state: pda-qm
-  - type: CartridgeLoader
-    preinstalled:
-    - CrewManifestCartridge
-    - NotekeeperCartridge
-    - NanoTaskCartridge
-    - NewsReaderCartridge
-    - AstroNavCartridge
+# Wayfarer start: fix cartridges, should use BasePda now
+#  - type: CartridgeLoader
+#    preinstalled:
+#    - CrewManifestCartridge
+#    - NotekeeperCartridge
+#    - NanoTaskCartridge
+#    - NewsReaderCartridge
+#    - AstroNavCartridge
+# wayfarer end
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand
 
@@ -721,6 +724,7 @@
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand
 
+# Start Wayfarer
 #- type: entity
 #  parent: BasePDA
 #  id: HoPPDA
@@ -747,6 +751,7 @@
 #    state: pda-hop
 #  - type: BlipCartridge
 #    defaultPreset: BlipPresetCommand
+# Wayfarer End
 
 - type: entity
   parent: BasePDA
@@ -1095,8 +1100,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA
@@ -1160,10 +1165,10 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: [ BasePDA ] # WF Removed Contraband
+  parent: [ BasePDA ] # Wayfarer: Removed Contraband
   id: SyndiPDA
-  name: syndicate PDA
-  description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
+  name: red PDA # Wayfarer: Renamed
+  description: Be honest... you probably stole this. # Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people! # Wayfarer
   components:
   - type: Pda
     id: SyndicateIDCard
@@ -1174,15 +1179,20 @@
        pda-syndi
   - type: PdaBorderColor
     borderColor: "#891417"
+    accentVColor: "#333333" # Wayfarer - Matches better
   - type: Icon
     state: pda-syndi
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
+      - CrewManifestCartridge # Wayfarer
       - NotekeeperCartridge
       - NanoChatCartridge # DeltaV
       - NanoTaskCartridge
+      - NewsReaderCartridge # Wayfarer
+      - BountyContractsCartridge # Wayfarer
       - AstroNavCartridge # Frontier
+      - BlipCartridge # Frontier
   - type: BlipCartridge
     defaultPreset: BlipPresetPirate
 
@@ -1363,6 +1373,7 @@
   - type: Icon
     state: pda-boxer
 
+# Start Wayfarer
 #- type: entity
 #  parent: BaseSecurityPDA
 #  id: DetectivePDA
@@ -1419,6 +1430,7 @@
 #    - WantedListCartridge
 #    - MedTekCartridge
 #    - NanoChatCartridge # DeltaV
+# Wayfarer End
 
 - type: entity
   parent: ClownPDA
@@ -1549,10 +1561,10 @@
     defaultPreset: BlipPresetPirate
 
 - type: entity
-  parent: [ BaseMedicalPDA ] # WF Removed Contraband
+  parent: [ BaseMedicalPDA ] # Wayfarer: Removed Contraband
   id: SyndiAgentPDA
-  name: syndicate corpsman PDA
-  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
+  name: red corpsman PDA # Wayfarer: Renamed
+  description: Even Coldlight needs medics. #For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead! # Wayfarer
   components:
   - type: Pda
     id: SyndicateIDCard
@@ -1563,15 +1575,21 @@
        pda-syndi-agent
   - type: PdaBorderColor
     borderColor: "#891417"
+    accentHColor: "#d7d7d0" # Wayfarer - Matches better
+    accentVColor: "#333333" # Wayfarer - Matches better
   - type: Icon
     state: pda-syndi-agent
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
+      - CrewManifestCartridge # Wayfarer
       - NotekeeperCartridge
-      - NanoTaskCartridge
-      - MedTekCartridge
       - NanoChatCartridge # DeltaV
+      - NanoTaskCartridge
+      - NewsReaderCartridge # Wayfarer
+      - BountyContractsCartridge # Wayfarer
+      - AstroNavCartridge # Frontier
+      - BlipCartridge # Frontier
 
 - type: entity
   parent: [BasePDA, SelectableLock]

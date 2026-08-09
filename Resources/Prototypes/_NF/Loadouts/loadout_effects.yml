@@ -6,7 +6,7 @@
     species:
     - SlimePerson
     - Vox
-    - OldKinVox
+    - AurelianVox # Wayfarer
 
 - type: loadoutEffectGroup
   id: NFOxygenBreather
@@ -15,7 +15,7 @@
     species:
     - SlimePerson
     - Vox
-    - OldKinVox
+    - AurelianVox # Wayfarer
     - Sheleg # Different meds
     inverted: true
 
@@ -32,14 +32,6 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Diona
-    inverted: true
-
-- type: loadoutEffectGroup
-  id: NFHeadwearCapable
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Sheleg
     inverted: true
 
 - type: loadoutEffectGroup
@@ -86,3 +78,10 @@
   - !type:RoleBlacklistLoadoutEffect
     blacklist:
     - JobStationRepresentative
+
+- type: loadoutEffectGroup
+  id: NFIsGoblin
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Goblin

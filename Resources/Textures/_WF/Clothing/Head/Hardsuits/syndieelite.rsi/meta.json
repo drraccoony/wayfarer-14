@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-4.0",
-    "copyright": "Light states modified by javadocs (discord) from base sprites.",
+    "copyright": "Light states modified by javadocs (discord) and Feathernights from base sprites.",
 
     "size": {
         "x": 32,
@@ -22,6 +22,22 @@
         },
         {
             "name": "on-equipped-HELMET-light-dog",
+            "directions": 4
+        },
+        {
+            "name": "on-equipped-HELMET-light-avali",
+            "directions": 4
+        },
+        {
+            "name": "on-equipped-HELMET-light-avox",
+            "directions": 4
+        },
+        {
+            "name": "on-equipped-HELMET-light-feroxi",
+            "directions": 4
+        },
+        {
+            "name": "on-equipped-HELMET-light-reptilian",
             "directions": 4
         }
     ]

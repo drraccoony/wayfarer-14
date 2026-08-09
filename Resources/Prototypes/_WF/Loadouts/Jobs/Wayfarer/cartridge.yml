@@ -28,3 +28,9 @@
   price: 100
   cartridges:
   - LogProbeCartridge
+
+- type: loadout
+  id: WFCorpCartridge
+  price: 5000
+  cartridges:
+  - CorporationCartridge

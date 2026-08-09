@@ -166,6 +166,7 @@
 #    - id: CigarCase # Frontier
 #      prob: 0.15 # Frontier
 #    - id: ClothingBeltChiefEngineerFilled # Frontier
+    - id: ClothingBeltChiefEngineerFilledBasic # Frontier
     - id: ClothingEyesGlassesMeson
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltEngineering
@@ -175,6 +176,7 @@
     # - id: RCDAmmo # Frontier
     - id: RubberStampCE
     - id: MetalFoamGrenade
+    - id: ShipyardRPD # Wayfarer
     - id: ShipyardRCD # Frontier
     - id: ShipyardRCDAmmo # Frontier
     - id: trayScanner # Frontier

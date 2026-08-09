@@ -378,6 +378,20 @@
   storage:
     back:
     - WehfarerPlushie
+
+- type: loadout
+  id: PlushieVox
+  price: 0 # Same as Lizard
+  storage:
+    back:
+    - PlushieVox
+
+- type: loadout
+  id: PlushieExperiment
+  price: 0
+  storage:
+    back:
+    - PlushieExperiment
 #End Wayfarer
 
 - type: loadout
@@ -407,6 +421,13 @@
   storage:
     back:
     - HarmonicaInstrument
+
+- type: loadout
+  id: WFOcarinaInstrument
+  price: 500
+  storage:
+    back:
+    - OcarinaInstrument
 
 - type: loadout
   id: WFSaxophoneInstrument

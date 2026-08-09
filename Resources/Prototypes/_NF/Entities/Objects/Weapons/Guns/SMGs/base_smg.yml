@@ -25,11 +25,22 @@
     price: 350
   - type: NFWeaponDetails
     class: weapon-details-class-submachine-gun
+  # Wayfarer Start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SMGPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SMGDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SMGDrop
+  # Wayfarer End
 
 #region manufacturer
 - type: entity
   abstract: true
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: [NFBaseWeaponFrameSubMachineGun, BaseMilitaryContraband] # Wayfarer: add BaseMilitaryContraband
   id: NFBaseWeaponFrameSubMachineGunNanotrasen
   components:
   - type: Gun
@@ -43,7 +54,7 @@
 
 - type: entity
   abstract: true
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameSubMachineGun ]
+  parent: [ BaseMilitaryContraband, NFBaseWeaponFrameSubMachineGun ] # Wayfarer: BaseC3SyndicateContraband<BaseMilitaryContraband
   id: NFBaseWeaponFrameSubMachineGunCybersun
   components:
   - type: Gun
@@ -55,7 +66,7 @@
 
 - type: entity
   abstract: true
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameSubMachineGun ]
+  parent: [ BaseMilitaryContraband, NFBaseWeaponFrameSubMachineGun ] # Wayfarer: BaseC3SyndicateContraband<BaseMilitaryContraband
   id: NFBaseWeaponFrameSubMachineGunGorlex
   components:
   - type: Gun

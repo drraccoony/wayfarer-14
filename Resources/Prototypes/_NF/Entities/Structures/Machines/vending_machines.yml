@@ -194,7 +194,7 @@
 - type: entity
   id: VendingMachineArcadia
   name: ArcadiaDrobe
-  parent: [ VendingMachine, BaseC3Contraband ]
+  parent: [ VendingMachine ] # Wayfarer: Removed contraband
   description: Selling clothes from another reality for cheap prices!
   components:
     - type: VendingMachine
@@ -382,7 +382,7 @@
 - type: entity
   parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineNfsdDrobe
-  name: NFSDDrobe
+  name: CGPDrobe # Wayfarer NFSDDrobe<CGPDrobe
   description: A vending machine for CGP and CGP clothing!
   components:
   - type: VendingMachine
@@ -393,7 +393,7 @@
   - type: DatasetVocalizer
     dataset: NfsdDrobeAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/nfsddrobe.rsi
+    sprite: _WF/Structures/Machines/VendingMachines/nfsddrobe.rsi # Wayfarer: _NF/Structures/Machines/VendingMachines/nfsddrobe.rsi < _WF/Structures/Machines/VendingMachines/nfsddrobe.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -432,7 +432,7 @@
 - type: entity
   parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineNfsdTech
-  name: NFSDTech
+  name: CGPTech # Wayfarer NFSDTech<CGPTech
   description: A vending machine for CGP and CGP tech!
   components:
   - type: VendingMachine
@@ -443,7 +443,7 @@
   - type: DatasetVocalizer
     dataset: NfsdDrobeAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/nfsdtech.rsi
+    sprite: _WF/Structures/Machines/VendingMachines/nfsdtech.rsi # Wayfarer: _NF/Structures/Machines/VendingMachines/NfsdTech.rsi < _WF/Structures/Machines/VendingMachines/NfsdTech.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -843,13 +843,13 @@
   components:
   - type: VendingMachine
     pack: PickNPackPOIInventory
-  - type: AccessReader
-    access: [["Mercenary"], ["Security"], ["HeadOfPersonnel"], ["HeadOfSecurity"]]
-  - type: ActivatableUIRequiresAccess
+  #- type: AccessReader # Wayfarer: Commented out the access.
+  #  access: [["Mercenary"], ["Security"], ["HeadOfPersonnel"], ["HeadOfSecurity"]]
+  #- type: ActivatableUIRequiresAccess
 
 #region conjured MagiVend
 - type: entity
-  parent: [ BaseC3WizardContraband, VendingMachineMagivend ]
+  parent: [ BaseC2WizardContraband, VendingMachineMagivend ] # Wayfarer: BaseC3WizardContraband<BaseC2WizardContraband
   id: NFVendingMachineMagivend
   suffix: Frontier
   components:
