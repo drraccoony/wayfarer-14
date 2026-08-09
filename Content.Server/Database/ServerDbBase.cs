@@ -2675,7 +2675,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     RequirementId = requirementId,
                     PlayerUserId = playerUserId.Value,
                     CharacterName = characterName,
-                    EntityPrototypeId = entityPrototypeId ?? req.EntityPrototypeId ?? string.Empty,
+                    EntityPrototypeId = entityPrototypeId ?? req.EntityPrototypeId ?? (req.TagId != null ? $"tag:{req.TagId}" : string.Empty),
                     Amount = amount,
                     RoundId = roundId,
                     ContributedAt = DateTime.UtcNow,
