@@ -3,6 +3,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components; // Wayfarer
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Station.Components; // Wayfarer
@@ -150,6 +151,10 @@ public sealed class ShuttleCrewStatusSystem : EntitySystem
 
             // Check if the player has an attached entity
             if (session.AttachedEntity is not { } playerEntity)
+                continue;
+
+            // Ghosts don't count as active crew
+            if (HasComp<GhostComponent>(playerEntity))
                 continue;
 
             // Check if the player entity still exists
