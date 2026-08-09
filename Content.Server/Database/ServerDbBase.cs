@@ -2600,6 +2600,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             string? tagId,
             string? displayName,
             long requiredAmount,
+            bool isKillOrder = false,
             CancellationToken cancel = default)
         {
             await using var db = await GetDb(cancel);
@@ -2609,6 +2610,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 GoalId = goalId,
                 EntityPrototypeId = entityPrototypeId,
                 TagId = tagId,
+                IsKillOrder = isKillOrder,
                 DisplayName = displayName,
                 RequiredAmount = requiredAmount,
                 CurrentAmount = 0,

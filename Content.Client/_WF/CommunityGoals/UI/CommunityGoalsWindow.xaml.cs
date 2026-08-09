@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Numerics;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._WF.CommunityGoals;
 using Content.Shared.Stacks;
@@ -9,6 +11,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using EntityPrototype = Robust.Shared.Prototypes.EntityPrototype;
 
 namespace Content.Client._WF.CommunityGoals.UI;
@@ -22,7 +25,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
     public Action<string, string, int?, int?>? OnCreateGoal;
     public Action<int, string, string, int?, int?, bool>? OnUpdateGoal;
     public Action<int>? OnDeleteGoal;
-    public Action<int, string?, string?, string?, long>? OnAddRequirement;
+    public Action<int, string?, string?, bool, string?, long>? OnAddRequirement;
     public Action<int>? OnRemoveRequirement;    public Action<int, long>? OnUpdateRequirement;
     public CommunityGoalsWindow()
     {
@@ -147,7 +150,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         root.AddChild(editForm);
 
         editButton.OnPressed += _ => { editForm.Visible = !editForm.Visible; };
-        deleteButton.OnPressed += _ => { OnDeleteGoal?.Invoke(goal.Id); };
+        deleteButton.OnPressed += _ => ShowDeleteConfirmation(goal);
 
         // Active toggle applies immediately
         activeCheck.OnToggled += args =>
@@ -158,6 +161,54 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         return root;
     }
 
+    /// <summary>
+    /// Pops up a confirmation window before deleting a goal — this permanently removes the goal,
+    /// all of its requirements, and its contribution history, and cannot be undone.
+    /// </summary>
+    private void ShowDeleteConfirmation(CommunityGoalData goal)
+    {
+        var window = new DefaultWindow
+        {
+            Title = "Delete Community Goal",
+            MinSize = new Vector2(300, 140),
+        };
+
+        var content = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(8) };
+
+        var warningLabel = new RichTextLabel { MaxWidth = 280f, Margin = new Thickness(0, 0, 0, 8) };
+        var safeTitle = goal.Title.Replace("[", "(").Replace("]", ")");
+        warningLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+            $"Are you sure you want to delete \"{safeTitle}\"?\n\n" +
+            "This will permanently remove the goal, all of its requirements, and all recorded contributions. " +
+            "[color=#ff8888]This is a destructive action and cannot be undone.[/color]"),
+            defaultColor: Color.White);
+        content.AddChild(warningLabel);
+
+        var buttonRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, HorizontalAlignment = HAlignment.Right };
+        var cancelBtn = new Button { Text = "Cancel", MinWidth = 80 };
+        var confirmBtn = new Button
+        {
+            Text = "Delete Permanently",
+            MinWidth = 130,
+            Margin = new Thickness(6, 0, 0, 0),
+            StyleClasses = { StyleNano.StyleClassButtonColorRed },
+        };
+        buttonRow.AddChild(cancelBtn);
+        buttonRow.AddChild(confirmBtn);
+        content.AddChild(buttonRow);
+
+        window.Contents.AddChild(content);
+
+        cancelBtn.OnPressed += _ => window.Close();
+        confirmBtn.OnPressed += _ =>
+        {
+            OnDeleteGoal?.Invoke(goal.Id);
+            window.Close();
+        };
+
+        window.OpenCentered();
+    }
+
     private Control BuildRequirementRow(CommunityGoalRequirementData req)
     {
         var outer = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(28, 1) };
@@ -166,7 +217,25 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
         // Icon preview — prototype-based only
-        if (req.EntityPrototypeId != null && _protoManager.TryIndex<EntityPrototype>(req.EntityPrototypeId, out _))
+        if (req.IsKillOrder)
+        {
+            var killBadge = new Label
+            {
+                Text = "[kill]",
+                FontColorOverride = Color.FromHex("#ff9966"),
+                Margin = new Thickness(0, 0, 4, 0),
+                VerticalAlignment = VAlignment.Center,
+            };
+            row.AddChild(killBadge);
+
+            if (req.EntityPrototypeId != null && _protoManager.TryIndex<EntityPrototype>(req.EntityPrototypeId, out _))
+            {
+                var killIcon = new EntityPrototypeView { MinWidth = 20, MinHeight = 20, Margin = new Thickness(0, 0, 4, 0), VerticalAlignment = VAlignment.Center };
+                killIcon.SetPrototype(req.EntityPrototypeId);
+                row.AddChild(killIcon);
+            }
+        }
+        else if (req.EntityPrototypeId != null && _protoManager.TryIndex<EntityPrototype>(req.EntityPrototypeId, out _))
         {
             var icon = new EntityPrototypeView { MinWidth = 20, MinHeight = 20, Margin = new Thickness(0, 0, 4, 0), VerticalAlignment = VAlignment.Center };
             icon.SetPrototype(req.EntityPrototypeId);
@@ -185,7 +254,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         }
 
         var name = req.DisplayName ?? req.TagId ?? req.EntityPrototypeId ?? "?";
-        var tooltip = req.TagId != null ? $"tag:{req.TagId}" : (req.EntityPrototypeId ?? "");
+        var tooltip = req.IsKillOrder ? $"kill:{req.EntityPrototypeId}" : req.TagId != null ? $"tag:{req.TagId}" : (req.EntityPrototypeId ?? "");
         var progress = $"{req.CurrentAmount:N0} / {req.RequiredAmount:N0}";
         var pct = req.RequiredAmount > 0 ? (double)req.CurrentAmount / req.RequiredAmount * 100 : 0;
         var done = req.CurrentAmount >= req.RequiredAmount;
@@ -208,7 +277,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         // Inline edit row (hidden by default)
         var editRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 2, 0, 2), Visible = false };
         editRow.AddChild(new Label { Text = "New qty:", Margin = new Thickness(24, 0, 4, 0), VerticalAlignment = VAlignment.Center });
-        var qtyField = new LineEdit { Text = req.RequiredAmount.ToString(), MinWidth = 100, PlaceHolder = "Required amount" };
+        var qtyField = new LineEdit { Text = req.RequiredAmount.ToString(), MinWidth = 100, PlaceHolder = "20" };
         editRow.AddChild(qtyField);
         var saveBtn = new Button { Text = "Save", MinWidth = 50, Margin = new Thickness(6, 0, 0, 0) };
         editRow.AddChild(saveBtn);
@@ -235,15 +304,18 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
     {
         var outer = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(28, 2) };
 
-        // ── Mode toggle: Prototype vs Tag
+        // ── Mode toggle: Prototype vs Tag vs Kill Order
         var modeRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 2) };
         var useTagCheck = new CheckBox { Text = "Tag mode", ToolTip = "Check to add a tag-based requirement (e.g. 'Trash') instead of a specific prototype." };
+        var useKillCheck = new CheckBox { Text = "Kill order", Margin = new Thickness(8, 0, 0, 0), ToolTip = "Check to add a kill-order requirement (e.g. 'NFMobCarp') satisfied by killing that mob instead of delivering it." };
         modeRow.AddChild(useTagCheck);
+        modeRow.AddChild(useKillCheck);
         outer.AddChild(modeRow);
 
-        // ── Row 1a: prototype ID + live validation (visible in proto mode)
+        // ── Row 1a: prototype ID + live validation (visible in proto/kill mode)
         var searchRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 2) };
 
+        var protoLabel = new Label { Text = "Proto: ", VerticalAlignment = VAlignment.Center };
         var protoIcon = new EntityPrototypeView
         {
             MinWidth = 24, MinHeight = 24,
@@ -260,7 +332,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
             FontColorOverride = Color.FromHex("#888888"),
         };
 
-        searchRow.AddChild(new Label { Text = "Proto: ", VerticalAlignment = VAlignment.Center });
+        searchRow.AddChild(protoLabel);
         searchRow.AddChild(protoIcon);
         searchRow.AddChild(protoField);
         searchRow.AddChild(statusLabel);
@@ -281,17 +353,33 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
         tagRow.AddChild(tagStatusLabel);
         outer.AddChild(tagRow);
 
+        void UpdateModeVisibility()
+        {
+            searchRow.Visible = !useTagCheck.Pressed;
+            tagRow.Visible = useTagCheck.Pressed;
+            protoLabel.Text = useKillCheck.Pressed ? "Kill:  " : "Proto: ";
+            protoField.PlaceHolder = useKillCheck.Pressed ? "Mob prototype ID (e.g. NFMobCarp)" : "Prototype ID (e.g. SheetSteel)";
+        }
+
         useTagCheck.OnToggled += args =>
         {
-            searchRow.Visible = !args.Pressed;
-            tagRow.Visible = args.Pressed;
+            if (args.Pressed)
+                useKillCheck.Pressed = false;
+            UpdateModeVisibility();
+        };
+
+        useKillCheck.OnToggled += args =>
+        {
+            if (args.Pressed)
+                useTagCheck.Pressed = false;
+            UpdateModeVisibility();
         };
 
         // Row 2: display name + amount + add button
         var addRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
         var nameField = new LineEdit { PlaceHolder = "Display name (auto-filled)", MinWidth = 150 };
-        var amountField = new LineEdit { PlaceHolder = "Required amount", MinWidth = 100 };
+        var amountField = new LineEdit { PlaceHolder = "20", MinWidth = 100 };
         var addBtn = new Button { Text = "Add Requirement", MinWidth = 110 };
 
         addRow.AddChild(new Label { Text = "Name: ", VerticalAlignment = VAlignment.Center });
@@ -373,7 +461,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
                 if (!_protoManager.HasIndex<TagPrototype>(tagId))
                     return;
 
-                OnAddRequirement?.Invoke(goalId, null, tagId, displayName, amount);
+                OnAddRequirement?.Invoke(goalId, null, tagId, false, displayName, amount);
 
                 tagField.Text = string.Empty;
             }
@@ -385,7 +473,7 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
                 if (!_protoManager.HasIndex<EntityPrototype>(protoId))
                     return;
 
-                OnAddRequirement?.Invoke(goalId, protoId, null, displayName, amount);
+                OnAddRequirement?.Invoke(goalId, protoId, null, useKillCheck.Pressed, displayName, amount);
 
                 protoField.Text = string.Empty;
                 protoIcon.Visible = false;

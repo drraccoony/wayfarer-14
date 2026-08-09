@@ -1530,6 +1530,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("goal_id");
 
+                    b.Property<bool>("IsKillOrder")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_kill_order");
+
                     b.Property<long>("RequiredAmount")
                         .HasColumnType("INTEGER")
                         .HasColumnName("required_amount");
@@ -2531,17 +2535,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Goal");
                 });
 
-            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBox", b =>
-                {
-                    b.HasOne("Content.Server.Database.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("FK_wayfarer_safety_deposit_box_profile_profile_id");
-
-                    b.Navigation("Profile");
-                });
-
             modelBuilder.Entity("Content.Server.Database.WayfarerCorporationInvite", b =>
                 {
                     b.HasOne("Content.Server.Database.WayfarerCorporation", "Corporation")
@@ -2576,6 +2569,17 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasConstraintName("FK_wayfarer_corporation_stations_wayfarer_corporations_corporation_id");
 
                     b.Navigation("Corporation");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBox", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_wayfarer_safety_deposit_box_profile_profile_id");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("Content.Server.Database.WayfarerSafetyDepositBoxItem", b =>

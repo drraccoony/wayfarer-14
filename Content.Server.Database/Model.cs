@@ -1824,6 +1824,13 @@ namespace Content.Server.Database
         public string? TagId { get; set; }
 
         /// <summary>
+        /// When true, this requirement is satisfied by killing entities of <see cref="EntityPrototypeId"/>
+        /// rather than by delivering them to a community goal console/pallet.
+        /// </summary>
+        [Required, Column("is_kill_order")]
+        public bool IsKillOrder { get; set; }
+
+        /// <summary>
         /// Optional human-readable display name override. Falls back to prototype/tag name if null.
         /// </summary>
         [Column("display_name")]

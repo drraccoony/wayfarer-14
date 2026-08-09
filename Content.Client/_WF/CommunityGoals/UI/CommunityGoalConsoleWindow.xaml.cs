@@ -64,7 +64,7 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
             // Highlight if this type matches any active goal requirement
             var matched = state.ActiveGoals
                 .Any(g => g.Requirements.Any(r =>
-                    (r.EntityPrototypeId != null && r.EntityPrototypeId.Equals(item.PrototypeId, StringComparison.OrdinalIgnoreCase))
+                    (!r.IsKillOrder && r.EntityPrototypeId != null && r.EntityPrototypeId.Equals(item.PrototypeId, StringComparison.OrdinalIgnoreCase))
                     || (r.TagId != null && item.PrototypeId == $"tag:{r.TagId}")));
 
             row.AddChild(new Label
@@ -109,7 +109,7 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
 
                 var matched = state.ActiveGoals
                     .Any(g => g.Requirements.Any(r =>
-                        (r.EntityPrototypeId != null && r.EntityPrototypeId.Equals(item.PrototypeId, StringComparison.OrdinalIgnoreCase))
+                        (!r.IsKillOrder && r.EntityPrototypeId != null && r.EntityPrototypeId.Equals(item.PrototypeId, StringComparison.OrdinalIgnoreCase))
                         || (r.TagId != null && item.PrototypeId == $"tag:{r.TagId}")));
 
                 row.AddChild(new Label
@@ -200,9 +200,9 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
     private static Control BuildRequirementBar(CommunityGoalRequirementData req, List<string> reqKeys, Action<int>? onContribute)
     {
         var isCompleted = req.CurrentAmount >= req.RequiredAmount;
-        var isStaged = req.TagId != null
+        var isStaged = !req.IsKillOrder && (req.TagId != null
             ? reqKeys.Contains($"tag:{req.TagId}")
-            : req.EntityPrototypeId != null && reqKeys.Contains(req.EntityPrototypeId);
+            : req.EntityPrototypeId != null && reqKeys.Contains(req.EntityPrototypeId));
 
         var pct = req.RequiredAmount > 0
             ? Math.Clamp((double)req.CurrentAmount / req.RequiredAmount, 0, 1)
@@ -220,7 +220,7 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
         // Label row
         var labelRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
-        var bullet = isStaged && !isCompleted ? "▶ " : "• ";
+        var bullet = req.IsKillOrder ? "☠ " : isStaged && !isCompleted ? "▶ " : "• ";
         labelRow.AddChild(new Label
         {
             Text = $"{bullet}{name}",
@@ -238,16 +238,20 @@ public sealed partial class CommunityGoalConsoleWindow : FancyWindow
             Margin = new Thickness(8, 0, 0, 0),
         });
 
-        // Per-requirement contribute button
-        var reqId = req.Id;
-        var contributeBtn = new Button
+        // Kill-order requirements are satisfied by killing the target, not by delivering items —
+        // no per-requirement contribute button for those.
+        if (!req.IsKillOrder)
         {
-            Text = Loc.GetString("community-goal-console-contribute-req"),
-            Disabled = isCompleted || !isStaged,
-            Margin = new Thickness(8, 0, 0, 0),
-        };
-        contributeBtn.OnPressed += _ => onContribute?.Invoke(reqId);
-        labelRow.AddChild(contributeBtn);
+            var reqId = req.Id;
+            var contributeBtn = new Button
+            {
+                Text = Loc.GetString("community-goal-console-contribute-req"),
+                Disabled = isCompleted || !isStaged,
+                Margin = new Thickness(8, 0, 0, 0),
+            };
+            contributeBtn.OnPressed += _ => onContribute?.Invoke(reqId);
+            labelRow.AddChild(contributeBtn);
+        }
 
         row.AddChild(labelRow);
 

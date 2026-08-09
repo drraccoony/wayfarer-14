@@ -11,6 +11,7 @@ public sealed class CommunityGoalRequirementData
     public int Id;
     public string? EntityPrototypeId;
     public string? TagId;
+    public bool IsKillOrder;
     public string? DisplayName;
     public long RequiredAmount;
     public long CurrentAmount;
@@ -100,14 +101,16 @@ public sealed class AddCommunityGoalRequirementMessage : EuiMessageBase
     public int GoalId;
     public string? EntityPrototypeId;
     public string? TagId;
+    public bool IsKillOrder;
     public string? DisplayName;
     public long RequiredAmount;
 
-    public AddCommunityGoalRequirementMessage(int goalId, string? entityPrototypeId, string? tagId, string? displayName, long requiredAmount)
+    public AddCommunityGoalRequirementMessage(int goalId, string? entityPrototypeId, string? tagId, bool isKillOrder, string? displayName, long requiredAmount)
     {
         GoalId = goalId;
         EntityPrototypeId = entityPrototypeId;
         TagId = tagId;
+        IsKillOrder = isKillOrder;
         DisplayName = displayName;
         RequiredAmount = requiredAmount;
     }

@@ -6,10 +6,13 @@ using Content.Server.Database;
 using Content.Server.Research.Disk;
 using Content.Server.GameTicking;
 using Content.Server._NF.RoundNotifications.Events;
+using Content.Server._WF.CommunityGoals.Components;
 using Content.Shared._WF.CommunityGoals;
+using Content.Shared.Mobs;
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Robust.Shared.Log;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._WF.CommunityGoals;
@@ -48,6 +51,73 @@ public sealed class CommunityGoalsSystem : EntitySystem
         base.Initialize();
         _sawmill = _log.GetSawmill("community_goals");
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
+        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    /// <summary>
+    /// Watches for mobs dying and records a contribution toward any active kill-order
+    /// requirement matching the dead mob's prototype.
+    /// </summary>
+    private async void OnMobStateChanged(MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead || args.OldMobState == MobState.Dead)
+            return;
+
+        var protoId = MetaData(args.Target).EntityPrototype?.ID;
+        if (protoId == null)
+            return;
+
+        Guid? playerUserId = null;
+        string? characterName = null;
+        if (args.Origin is { } origin && TryComp<ActorComponent>(origin, out var actor))
+        {
+            playerUserId = actor.PlayerSession.UserId;
+            characterName = MetaData(origin).EntityName;
+        }
+
+        await RecordKill(args.Target, protoId, playerUserId, characterName);
+    }
+
+    /// <summary>
+    /// Records a kill of <paramref name="entityPrototypeId"/> toward every active kill-order
+    /// requirement that targets it. Each requirement is only ever credited once per
+    /// <paramref name="killedEntity"/> — reviving and re-killing the same mob won't count again.
+    /// Returns the number of requirements updated.
+    /// </summary>
+    public async Task<int> RecordKill(EntityUid killedEntity, string entityPrototypeId, Guid? playerUserId = null, string? characterName = null)
+    {
+        var updated = 0;
+        var roundId = _gameTicker.RoundId;
+        HashSet<int>? credited = null;
+
+        foreach (var goal in _activeGoals)
+        {
+            foreach (var req in goal.Requirements)
+            {
+                if (!req.IsKillOrder || req.EntityPrototypeId == null)
+                    continue;
+                if (!req.EntityPrototypeId.Equals(entityPrototypeId, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                // Only fetch/create the tracking component once we know this death matches
+                // at least one kill-order requirement.
+                credited ??= EnsureComp<CommunityGoalKillCreditComponent>(killedEntity).CreditedRequirements;
+                if (!credited.Add(req.Id))
+                    continue; // this exact mob already got credit for this requirement
+
+                await _db.AddCommunityGoalContribution(req.Id, 1, playerUserId, characterName, req.EntityPrototypeId, roundId);
+                req.CurrentAmount += 1;
+                updated++;
+
+                _sawmill.Debug($"Kill: '{entityPrototypeId}' → goal #{goal.Id} req #{req.Id} " +
+                               $"({req.CurrentAmount}/{req.RequiredAmount})");
+            }
+        }
+
+        if (updated > 0)
+            RaiseLocalEvent(new CommunityGoalsUpdatedEvent());
+
+        return updated;
     }
 
     private async void OnRoundStarted(RoundStartedEvent ev)
@@ -68,6 +138,7 @@ public sealed class CommunityGoalsSystem : EntitySystem
                 Id = r.Id,
                 EntityPrototypeId = r.EntityPrototypeId,
                 TagId = r.TagId,
+                IsKillOrder = r.IsKillOrder,
                 DisplayName = r.DisplayName,
                 RequiredAmount = r.RequiredAmount,
                 CurrentAmount = r.CurrentAmount,
@@ -98,6 +169,9 @@ public sealed class CommunityGoalsSystem : EntitySystem
                 if (req.TagId != null)
                     continue;
                 if (req.EntityPrototypeId == null)
+                    continue;
+                // Kill-order requirements are only satisfied by RecordKill, not by delivering items
+                if (req.IsKillOrder)
                     continue;
                 if (!MatchesRequirement(entityPrototypeId, itemStackType, req.EntityPrototypeId))
                     continue;
@@ -133,6 +207,10 @@ public sealed class CommunityGoalsSystem : EntitySystem
         {
             foreach (var req in goal.Requirements)
             {
+                // Kill-order requirements are only satisfied by RecordKill, not by delivering items
+                if (req.IsKillOrder)
+                    continue;
+
                 bool matches;
                 if (req.TagId != null)
                 {
@@ -198,6 +276,10 @@ public sealed class CommunityGoalsSystem : EntitySystem
     /// </summary>
     public bool EntityMatchesRequirement(EntityUid item, CommunityGoalRequirementData req)
     {
+        // Kill-order requirements are only satisfied by killing the entity, not by delivering it
+        if (req.IsKillOrder)
+            return false;
+
         if (req.TagId != null)
             return _tags.HasTag(item, new ProtoId<TagPrototype>(req.TagId));
 
@@ -299,6 +381,7 @@ public sealed class CommunityGoalsSystem : EntitySystem
                 Id = r.Id,
                 EntityPrototypeId = r.EntityPrototypeId,
                 TagId = r.TagId,
+                IsKillOrder = r.IsKillOrder,
                 DisplayName = r.DisplayName,
                 RequiredAmount = r.RequiredAmount,
                 CurrentAmount = r.CurrentAmount,
