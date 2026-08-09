@@ -287,27 +287,6 @@ public sealed partial class CommunityGoalsWindow : FancyWindow
             tagRow.Visible = args.Pressed;
         };
 
-        // ── Row 1b: tag ID input (hidden in proto mode)
-        var tagRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 2), Visible = false };
-        var tagField = new LineEdit { PlaceHolder = "Tag ID (e.g. Trash)", HorizontalExpand = true, MinWidth = 180 };
-        var tagStatusLabel = new Label
-        {
-            Text = string.Empty,
-            Margin = new Thickness(6, 0),
-            VerticalAlignment = VAlignment.Center,
-            FontColorOverride = Color.FromHex("#888888"),
-        };
-        tagRow.AddChild(new Label { Text = "Tag:  ", VerticalAlignment = VAlignment.Center });
-        tagRow.AddChild(tagField);
-        tagRow.AddChild(tagStatusLabel);
-        outer.AddChild(tagRow);
-
-        useTagCheck.OnToggled += args =>
-        {
-            searchRow.Visible = !args.Pressed;
-            tagRow.Visible = args.Pressed;
-        };
-
         // Row 2: display name + amount + add button
         var addRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
 
