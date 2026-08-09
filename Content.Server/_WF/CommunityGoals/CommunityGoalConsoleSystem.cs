@@ -44,6 +44,10 @@ public sealed class CommunityGoalConsoleSystem : EntitySystem
         _palletScanTimer = PalletScanInterval;
 
         // Periodically refresh open console UIs so pallet item changes appear live.
+        // This is also what propagates CommunityGoalsUpdatedEvent (contributions, kills,
+        // admin edits, round start) to consoles other than the one that caused the change —
+        // deliberately debounced to this interval instead of refreshing immediately per event,
+        // since kill-order contributions can fire in bursts (e.g. an AOE killing many mobs at once).
         var query = EntityQueryEnumerator<CommunityGoalConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -64,26 +68,11 @@ public sealed class CommunityGoalConsoleSystem : EntitySystem
         SubscribeLocalEvent<CommunityGoalConsoleComponent, CommunityGoalCommitMessage>(OnCommit);
         SubscribeLocalEvent<CommunityGoalConsoleComponent, CommunityGoalClearStagingMessage>(OnClearStaging);
         SubscribeLocalEvent<CommunityGoalConsoleComponent, CommunityGoalContributeToRequirementMessage>(OnContributeToRequirement);
-        SubscribeLocalEvent<CommunityGoalsUpdatedEvent>(OnGoalsUpdated);
     }
 
     private void OnInit(EntityUid uid, CommunityGoalConsoleComponent comp, ComponentInit args)
     {
         _containers.EnsureContainer<Container>(uid, CommunityGoalConsoleComponent.StagingContainerId);
-    }
-
-    /// <summary>
-    /// Whenever the active goals list changes (contribution, admin edit, round start),
-    /// push fresh state to every community goal console that has open UIs.
-    /// </summary>
-    private void OnGoalsUpdated(CommunityGoalsUpdatedEvent ev)
-    {
-        var query = EntityQueryEnumerator<CommunityGoalConsoleComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (_uiSystem.IsUiOpen(uid, CommunityGoalConsoleUiKey.Key))
-                UpdateUI(uid, comp);
-        }
     }
 
     private void OnUIOpened(EntityUid uid, CommunityGoalConsoleComponent comp, BoundUIOpenedEvent args)
