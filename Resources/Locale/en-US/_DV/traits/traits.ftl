@@ -7,9 +7,6 @@ trait-french-accent-desc = 'Ze winds are changing, and you 'ave a strong desire 
 trait-spanish-accent-name = Spanish accent
 trait-spanish-accent-desc = Your Espanish traditions shine through, get those espesos!
 
-trait-mobster-accent-name = Mobster accent
-trait-mobster-accent-desc = Fugeddaboutit! Yous talk numhally, capiche?
-
 trait-irish-accent-name = Irish accent
 trait-irish-accent-desc = Ya sap! Seems you got a pet hate fer rubbish!
 
