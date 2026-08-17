@@ -42,7 +42,7 @@
   - PilotEars
   - ContractorEncryptionKey
   - ContractorBoxSurvival
-  - PilotPDA
+  - ContractorPDA
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter
@@ -68,7 +68,7 @@
   - MercenaryEars
   - ContractorEncryptionKey
   - ContractorBoxSurvival
-  - MercenaryPDA
+  - ContractorPDA
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter
@@ -93,7 +93,7 @@
   - SecurityGuardBelt
   - SecurityGuardEars
   - NfsdBoxSurvival
-  - SecurityGuardPDA
+  - ContractorPDA
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter
@@ -111,9 +111,9 @@
   id: JobPublicAffairsLiaison
   groups:
   - ContractorHead
-  - PalNeck
-  - PalJumpsuit
-  - PalGloves
+  - ContractorNeck
+  - ContractorJumpsuit
+  - ContractorGloves
   - NfsdBackpackBrown
   - NfsdForcedOuterClothing
   - NfsdShoesBrown
@@ -122,7 +122,7 @@
   - ContractorBelt
   - NfsdEarsBrown
   - NfsdBoxSurvival
-  - PalPDA
+  - ContractorPDA
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter
@@ -174,7 +174,7 @@
   - NFPirateFace
   - NFPirateEars
   - ContractorBoxSurvival
-  - NFPirateFirstMatePDA
+  - ContractorPDA
   - ContractorWallet
   - PirateBackpackItems
   - ContractorHandItems

@@ -77,7 +77,7 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard.xml"
   priority: 7
   children:
-  - ShipyardCivilian
+  - CivShipyard
   - ShipyardStaff
   - ShipyardMedical
   - ShipyardExpedition
