@@ -182,11 +182,6 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Hammer.xml"
 
 - type: guideEntry
-  id: ShipyardHauler
-  name: guide-entry-shipyard-hauler
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Hauler.xml"
-
-- type: guideEntry
   id: ShipyardHonker
   name: guide-entry-shipyard-honker
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Honker.xml"

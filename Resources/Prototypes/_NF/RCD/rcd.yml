@@ -203,18 +203,6 @@
 
 # Airlocks
 - type: rcd
-  id: AirlockHatchPirateLocked
-  category: PirateAirlocks
-  sprite: /Textures/_NF/Interface/Radial/RCD/hatch.png
-  mode: ConstructObject
-  prototype: AirlockHatchPirateLocked
-  cost: 4
-  delay: 4
-  collisionMask: FullTileMask
-  rotation: Camera
-  fx: EffectRCDConstruct4
-
-- type: rcd
   id: AirlockMiningPirateLocked
   category: PirateAirlocks
   sprite: /Textures/_NF/Interface/Radial/RCD/mining_airlock.png
@@ -224,42 +212,6 @@
   delay: 4
   collisionMask: FullTileMask
   rotation: Camera
-  fx: EffectRCDConstruct4
-
-- type: rcd
-  id: AirlockMiningGlassPirateLocked
-  category: PirateAirlocks
-  sprite: /Textures/_NF/Interface/Radial/RCD/mining_glass_airlock.png
-  mode: ConstructObject
-  prototype: AirlockMiningGlassPirateLocked
-  cost: 4
-  delay: 4
-  collisionMask: FullTileMask
-  rotation: Camera
-  fx: EffectRCDConstruct4
-
-- type: rcd
-  id: AirlockShuttleSyndicatePirateLocked
-  category: PirateAirlocks
-  sprite: /Textures/_NF/Interface/Radial/RCD/external_syndicate_airlock.png
-  mode: ConstructObject
-  prototype: AirlockShuttleSyndicatePirateLocked
-  cost: 4
-  delay: 4
-  collisionMask: FullTileMask
-  rotation: User
-  fx: EffectRCDConstruct4
-
-- type: rcd
-  id: AirlockGlassShuttleSyndicatePirateLocked
-  category: PirateAirlocks
-  sprite: /Textures/_NF/Interface/Radial/RCD/external_glass_syndicate_airlock.png
-  mode: ConstructObject
-  prototype: AirlockGlassShuttleSyndicatePirateLocked
-  cost: 4
-  delay: 4
-  collisionMask: FullTileMask
-  rotation: User
   fx: EffectRCDConstruct4
 
 # Lighting
