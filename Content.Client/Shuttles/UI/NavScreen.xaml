@@ -76,7 +76,17 @@
                     TextAlign="Center"
                     Margin="0 0 0 1"
                     ToggleMode="True"/>
+                <controls:Button Name="NavRadarSettingsButton"
+                    Text="{controls:Loc 'shuttle-console-nav-radar-settings'}"
+                    TextAlign="Center"
+                    Margin="0 0 0 1"/>
             <!-- End Frontier: formatting adjustments / hide player shuttles -->
+
+                <controls:Button Name="AutopilotButton"
+                    Text="{controls:Loc 'shuttle-console-autopilot'}"
+                    TextAlign="Center"
+                    Margin="0 0 0 3"
+                    ToggleMode="True"/>
             <!-- Frontier - Inertia dampener controls-->
             <controls:BoxContainer Name="DampenerModeButtons"
                           Orientation="Horizontal"
@@ -189,6 +199,25 @@
                 </controls:BoxContainer>
             </controls:BoxContainer>
             <!-- End Frontier - Service Flags -->
+
+            <controls:BoxContainer Name="NetworkPortButtons"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          Visible="False"
+                          Margin="0 2 0 0">
+                <controls:Label Text="Network Ports"/>
+                <controls:GridContainer Columns="4"
+                               HorizontalExpand="True">
+                    <controls:Button Name="DeviceButton1" Text="1" Margin="0 0 1 1"/>
+                    <controls:Button Name="DeviceButton2" Text="2" Margin="0 0 1 1"/>
+                    <controls:Button Name="DeviceButton3" Text="3" Margin="0 0 1 1"/>
+                    <controls:Button Name="DeviceButton4" Text="4" Margin="0 0 0 1"/>
+                    <controls:Button Name="DeviceButton5" Text="5" Margin="0 0 1 0"/>
+                    <controls:Button Name="DeviceButton6" Text="6" Margin="0 0 1 0"/>
+                    <controls:Button Name="DeviceButton7" Text="7" Margin="0 0 1 0"/>
+                    <controls:Button Name="DeviceButton8" Text="8" Margin="0"/>
+                </controls:GridContainer>
+            </controls:BoxContainer>
 
         </controls:BoxContainer>
     </controls:ScrollContainer>
