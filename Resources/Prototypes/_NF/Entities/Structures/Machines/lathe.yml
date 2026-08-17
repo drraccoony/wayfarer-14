@@ -310,7 +310,7 @@
     - NfsdToolsStatic
     - NfsdTargetsStatic
     - NfsdBoardsStatic
-    - NfsdReportingStatic
+    - ReportingStatic
   - type: BlueprintReceiver
     whitelist:
       tags:

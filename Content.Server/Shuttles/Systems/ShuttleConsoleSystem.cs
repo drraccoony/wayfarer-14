@@ -172,11 +172,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         AfterActivatableUIOpenEvent args) // Wayfarer: Fixes intercomm flight bug.
     {
         TryPilot(args.User, uid);
-        /*
-        if (!TryPilot(args.User, uid))
-            args.Cancel();
-        */
-        TryPilot(args.User, uid); // Wayfarer
     }
 
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
