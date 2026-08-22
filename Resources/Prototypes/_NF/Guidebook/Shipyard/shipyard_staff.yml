@@ -2,10 +2,7 @@
   id: ShipyardStaff
   name: guide-entry-shipyard-staff
   text: "/ServerInfo/_NF/Guidebook/ShipyardStaff.xml"
-  children:
-  - ShipyardBroom
-  - ShipyardHarbormaster
-  
+
 - type: guideEntry
   id: ShipyardBroom
   name: guide-entry-shipyard-broom

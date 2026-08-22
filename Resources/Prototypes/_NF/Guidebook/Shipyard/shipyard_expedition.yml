@@ -2,14 +2,6 @@
   id: ShipyardExpedition
   name: guide-entry-shipyard-expedition
   text: "/ServerInfo/_NF/Guidebook/ShipyardExpedition.xml"
-  children:
-  - ShipyardAegis
-  - ShipyardAnchor
-  - ShipyardBrigand
-  - ShipyardCharon
-  - ShipyardDove
-  - ShipyardDragonfly
-  - ShipyardPathfinder
 
 - type: guideEntry
   id: ShipyardAegis

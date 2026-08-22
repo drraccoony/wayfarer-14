@@ -3,10 +3,7 @@
   name: guide-entry-shipyard-scrap
   text: "/ServerInfo/_NF/Guidebook/ShipyardScrap.xml"
   children:
-  - ShipyardConstruct
-  - ShipyardGeode
   - ShipyardRusty
-  - ShipyardTide
 
 - type: guideEntry
   id: ShipyardConstruct
