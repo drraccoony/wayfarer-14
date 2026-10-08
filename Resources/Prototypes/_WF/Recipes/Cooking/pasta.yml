@@ -1,0 +1,23 @@
+- type: microwaveMealRecipe
+  id: RecipeDryPasta
+  name: dry pasta recipe
+  result: FoodPastaDry
+  time: 5
+  group: Pasta
+  reagents:
+    Flour: 15
+    Egg: 6
+    OilOlive: 5
+  recipeType: Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeAssembledSpaghetti
+  name: sauced spaghetti recipe
+  result: FoodNoodles
+  time: 5
+  group: Pasta
+  solids:
+    FoodNoodlesBoiled: 1
+  reagents:
+    TomatoSauce: 10
+  recipeType: Assembler

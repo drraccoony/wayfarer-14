@@ -1,0 +1,38 @@
+<Document>
+# Pot Cooking
+
+<Box>
+<GuideEntityEmbed Entity="CookingPot"/>
+<GuideEntityEmbed Entity="ChemistryHotplate"/>
+</Box>
+
+Print a cooking pot at a service lathe. The pot holds 100 units of liquid and has a separate storage window for solid ingredients. Pour liquids into it normally and insert food by using the food on the pot. Activate the pot to retrieve its contents.
+
+## Boiling
+
+Add at least 10 units of water and place the pot on a powered hotplate. After the water reaches 100 degrees Celsius and stays there for five seconds, it becomes boiled water. Solid ingredients cook only while the pot remains on an active hotplate with at least 10 units of hot boiled water.
+
+Removing the pot from heat, draining it, or letting it cool interrupts cooking and resets ingredient timers. Removing an ingredient also resets its timer. Boiled water remains boiled water when cooled, but cold boiled water cannot cook food.
+
+## Tomato Preparation
+
+Use a knife on a tomato to make two slices. Slice each slice again to make diced tomato. Slicing and boiling preserve the food's actual contents, including contaminants and reduced portions.
+
+Onion slices and red onion slices can also be diced with a knife.
+
+Whole tomatoes and tomato slices take 15 seconds in boiled water. Diced tomatoes take 10 seconds. Remove the boiled tomatoes and grind them, rather than juicing them, to collect tomato sauce.
+
+## Pasta
+
+Make dry pasta in a food assembler using 15 units of flour, 6 units of egg, and 5 units of olive oil. Boil dry pasta in the pot for 20 seconds to make boiled spaghetti. Assemble one boiled spaghetti with 10 units of tomato sauce in a food assembler to finish the dish.
+
+## Broth, Soup, and Stew
+
+For broth, combine 8 units of boiled water, 1 unit of nutriment, and 1 unit of table salt. Heat to 100 degrees Celsius to make 10 units of broth. Ground food supplies nutriment.
+
+For creamy tomato soup, combine 2 units of tomato sauce, 2 units of broth, and 1 unit of cream. Heat to at least 80 degrees Celsius to make 5 units of soup.
+
+For tomato stew, combine 4 units of broth, 2 units of tomato sauce, and 1 unit of protein from ground cooked meat. Heat to at least 80 degrees Celsius to make 7 units of stew.
+
+Transfer the finished soup or stew into a bowl to serve. Existing microwave and oven recipes remain available.
+</Document>

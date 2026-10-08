@@ -1,0 +1,71 @@
+- type: entity
+  id: CookingPot
+  parent: BaseStorageItem
+  name: cooking pot
+  description: A steel pot for boiling ingredients and simmering soups.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/bucket.rsi
+    layers:
+    - state: icon
+    - state: fill-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    maxItemSize: Normal
+    whitelist:
+      components:
+      - Edible
+    blacklist:
+      components:
+      - Storage
+  - type: CookingPot
+  - type: FitsInDispenser
+  - type: NFCookware
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 100
+  - type: RefillableSolution
+    solution: food
+  - type: DrainableSolution
+    solution: food
+  - type: DrawableSolution
+    solution: food
+  - type: MixableSolution
+    solution: food
+  - type: Spillable
+    solution: food
+  - type: ExaminableSolution
+    solution: food
+  - type: SolutionItemStatus
+    solution: food
+  - type: SolutionTransfer
+    transferAmount: 10
+    maxTransferAmount: 100
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+  - type: StaticPrice
+    price: 50
+
+- type: latheRecipe
+  id: CookingPot
+  parent: BaseServiceItemsRecipe
+  result: CookingPot
+  materials:
+    Steel: 300

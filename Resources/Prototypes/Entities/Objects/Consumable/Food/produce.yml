@@ -903,6 +903,17 @@
   id: FoodTomato
   description: I say to-mah-to, you say tom-mae-to.
   components:
+  # Wayfarer: tomatoes can be sliced, then diced.
+  - type: SliceableFood
+    count: 2
+    slice: FoodTomatoSlice
+  # Wayfarer: boil tomatoes before grinding them into sauce.
+  - type: BoilableFood
+    result: FoodTomatoBoiled
+    reagentConversions:
+      Nutriment: TomatoSauce
+      Vitamin: TomatoSauce
+      Water: TomatoSauce
   - type: FlavorProfile
     flavors:
       - tomato
@@ -1406,6 +1417,10 @@
   id: FoodOnionSlice
   description: Nothing to cry over.
   components:
+  # Wayfarer: slices can be diced with a knife.
+  - type: SliceableFood
+    count: 1
+    slice: FoodOnionDiced
   - type: FlavorProfile
     flavors:
       - onion
@@ -1437,6 +1452,10 @@
   id: FoodOnionRedSlice
   description: Purple despite the name.
   components:
+  # Wayfarer: slices can be diced with a knife.
+  - type: SliceableFood
+    count: 1
+    slice: FoodOnionRedDiced
   - type: FlavorProfile
     flavors:
       - onion

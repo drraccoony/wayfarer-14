@@ -24,6 +24,9 @@
   id: Chef
   name: guide-entry-chef
   text: "/ServerInfo/Guidebook/Service/Chef.xml"
+  # Wayfarer: boiling, dicing, and sauce preparation.
+  children:
+  - PotCooking
 
 - type: guideEntry
   id: Janitorial

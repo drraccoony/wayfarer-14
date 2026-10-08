@@ -1,0 +1,10 @@
+reagent-name-boiled-water = boiled water
+reagent-desc-boiled-water = Water that has been brought to a rolling boil.
+reagent-name-broth = broth
+reagent-desc-broth = A savory stock for soups and stews.
+reagent-name-tomato-soup = tomato soup
+reagent-desc-tomato-soup = A smooth tomato soup enriched with broth and cream.
+reagent-physical-desc-savory = savory
+reagent-name-tomato-stew = tomato stew
+reagent-desc-tomato-stew = A hearty tomato and meat stew simmered in broth.
+guide-entry-pot-cooking = Pot Cooking

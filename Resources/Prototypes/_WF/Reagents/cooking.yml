@@ -1,0 +1,36 @@
+- type: reagent
+  id: BoiledWater
+  parent: Water
+  name: reagent-name-boiled-water
+  desc: reagent-desc-boiled-water
+  color: "#b5d8f2"
+
+- type: reagent
+  id: Broth
+  parent: Nutriment
+  name: reagent-name-broth
+  desc: reagent-desc-broth
+  physicalDesc: reagent-physical-desc-savory
+  flavor: richbroth
+  color: "#bfa34c"
+  recognizable: true
+
+- type: reagent
+  id: TomatoSoup
+  parent: Nutriment
+  name: reagent-name-tomato-soup
+  desc: reagent-desc-tomato-soup
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: tomato
+  color: "#d95c35"
+  recognizable: true
+
+- type: reagent
+  id: TomatoStew
+  parent: Nutriment
+  name: reagent-name-tomato-stew
+  desc: reagent-desc-tomato-stew
+  physicalDesc: reagent-physical-desc-savory
+  flavor: richbroth
+  color: "#b95739"
+  recognizable: true

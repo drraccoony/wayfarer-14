@@ -1,0 +1,41 @@
+- type: reaction
+  id: CookingBroth
+  impact: Low
+  minTemp: 373.15
+  reactants:
+    BoiledWater:
+      amount: 8
+    Nutriment:
+      amount: 1
+    TableSalt:
+      amount: 1
+  products:
+    Broth: 10
+
+- type: reaction
+  id: CreamyTomatoSoup
+  impact: Low
+  minTemp: 353.15
+  reactants:
+    TomatoSauce:
+      amount: 2
+    Broth:
+      amount: 2
+    Cream:
+      amount: 1
+  products:
+    TomatoSoup: 5
+
+- type: reaction
+  id: HeartyTomatoStew
+  impact: Low
+  minTemp: 353.15
+  reactants:
+    Broth:
+      amount: 4
+    TomatoSauce:
+      amount: 2
+    Protein:
+      amount: 1
+  products:
+    TomatoStew: 7

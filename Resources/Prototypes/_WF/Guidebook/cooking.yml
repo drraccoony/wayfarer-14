@@ -1,0 +1,4 @@
+- type: guideEntry
+  id: PotCooking
+  name: guide-entry-pot-cooking
+  text: "/ServerInfo/_WF/Guidebook/Service/PotCooking.xml"
